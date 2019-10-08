@@ -108,9 +108,9 @@ export default {
   width:59.9rem;
   height:4.8075rem;
   background: rgba(255, 255, 255, 0.2);
- /* position: fixed;
+  position: fixed;
   top:2.3rem;
-  left:0rem; */
+  left:0rem;
   overflow-x: auto;
 /* 	background:plum; */
 }
@@ -118,25 +118,26 @@ export default {
 .tianjia {
   list-style: none;
   width:4.6rem;
-  height:4.4rem;
+  height:5.9375rem;
   float: left;
   margin-left:0.37875rem;
-  margin-top:0.2rem;
+  margin-top:0.465rem;
  /* margin-bottom:0.2125rem; */
   background: url(../../assets/image/jia4@2x.png) no-repeat;
-  background-size:4.6rem 4.4rem;
+  background-size:3.81875rem 3.825rem;
 }
 .xmn{
   list-style: none;
   width:4.6rem;
-  height:4.5rem;
+  height:4.2rem;
   background: #ffffff;
   float: left;
   margin-left:0.37875rem;
-  margin-top:0.15rem;
+  margin-top:0.425rem;
+  /* margin-bottom: 10px; */
   padding-left: 0px;
   padding-right: 0px;
-	/* background:red; */
+/* 	background:red; */
 }
 /* 获取图片 */
 .hqtp {
@@ -168,7 +169,6 @@ export default {
   color: rgba(51, 51, 51, 1);
   line-height:0.6rem;
 	/* background:blue; */
-  text-align: center;
 }
 .start,.end {
   display:inline-block;
@@ -176,7 +176,7 @@ export default {
   height:0.4rem;
   font-size:0.3rem;
   text-align: center;
-  margin-bottom:0.05rem;
+  margin-bottom:0.1rem;
   /* padding-left:0.1rem; */
   font-weight: 400;
   color: rgba(153, 153, 153, 1);

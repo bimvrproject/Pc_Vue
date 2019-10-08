@@ -16,18 +16,14 @@
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
-					<!-- 	<router-link to="/newjian"> -->
+						<router-link to="/newjian">
 							<img class="xmimg" :src="xmtb" alt="" />
 							<i class="xm" ref="xmcol">项目</i>
-						<!-- </router-link> -->
+						</router-link>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
 						</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="xinjianxm">
-							<!-- 新建项目 -->
-						<Newjian v-show="newxy"></Newjian>
-					</el-dropdown-menu>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
@@ -65,7 +61,7 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目 -->
-			<!-- <Newjian v-show="newxy"></Newjian> -->
+			<Newjian v-show="newxy"></Newjian>
 			<!-- 悬浮登录窗口 --结束 -->
 		</div>
 		<!-- 点击联系我们的遮罩 -->
@@ -175,7 +171,6 @@
 			},
 			fndianji() {
 				this.$router.push('/Login');
-				this.xmtb = require('../../assets/image/bluefz.png');
 			},
 			// fnxuni(){
 			// 	this.xianyinxuni = !this.xianyinxuni;
@@ -297,49 +292,27 @@
 </script>
 
 <style>
-		.xinjianxm{
-		position:absolute;
-		top:2.3rem !important;
-		left:0rem !important;
-		border:0rem solid #000000 !important;
-		padding:0rem !important;
-		margin:0rem !important;
-		/* background:red; */
-		/* placement:top-start */
-		width:0rem !important;
-		height:0rem !important;
-	}
-	.popper__arrow{
-		border-width:0rem !important;
-		position:absolute;
-		overflow:hidden;
-    }
-	/* #popper__arrow{
-		font-size:0rem !important;
-	} */
 	.lomore {
 		background: rgba(225, 225, 225, 0.6);
 		position: absolute;
 		top: 1.825rem !important;
-		left: 16.175rem !important;
+		left: 15.175rem !important;
 		border: none;
 		padding: 0.1rem;
-		border-radius:0;
 	}
 
 	.moo {
-		width: 4.34375rem;
+		width: 3.75rem;
 		/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
 		padding-left: 0.2rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
-		/* background:red; */
 	}
 
 	.mores1 {
-		width: 4.3rem;
-		height: 0.8rem;
+		width: 3.75rem;
+		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
 		line-height: 0.9rem;
@@ -347,7 +320,6 @@
 		font-size: 0.46rem;
 		font-weight: 500;
 		/* 	background:red; */
-	/* 		padding-top:0.1rem; */
 	}
 
 	.moresb {
@@ -492,7 +464,7 @@
 		font-size: 0.625rem;
 		font-family: MicrosoftYaHei;
 		font-weight: 400;
-		color: #333333;
+		/* 	color: #2180ed; */
 		font-style: normal;
 		padding-left: 0.15625rem;
 		line-height: 0.53125rem;

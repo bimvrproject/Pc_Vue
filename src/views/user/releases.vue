@@ -16,8 +16,7 @@
 							<div v-show="pzshow">
 								<div class="piczk">
 								<img src="../../assets/image/paizhao.png" class="picimgzk" alt="" />
-									<span class="picpz" @click="paizhao">拍照</span>
-									<img id="result" style="display: none;"/>
+									<span class="picpz">拍照</span>
 								</div>
 							</div>
 						</div>
@@ -172,24 +171,6 @@
 	</div>
 </template>
 <script>
-	import kscreenshot from 'kscreenshot'
-	import axios from 'axios';
-	//65指键盘中的A
-	var kscreen = new kscreenshot({
-		 key: 65, // 设置快捷键 目前为 shift+a
-		endCB:function(data){
-			console.log('截图');
-			// console.log(data);
-			document.getElementById('result').setAttribute('src', data)
-			// 			//过滤data:URL
-			// axios.get(api.Ceshi+"?data="+data).then(result=>{
-			// 	console.log(result.data+"++++++++++");
-			// })
-		},
-		cancelCB: function () {
-			console.log('取消')
-		}
-	})
 export default {
 	data() {
 		return {
@@ -226,10 +207,6 @@ export default {
 	created() {},
 	mounted() {},
 	methods: {
-		//拍照
-		paizhao(){
-			kscreen.startScreenShot() // 开启截屏 也可以使用快捷键 开启截屏
-		},
 		//点击平面图纸中的具体某一个平面图纸
 		fnzkpm(index){
 			this.pmtzxunhuan = true
