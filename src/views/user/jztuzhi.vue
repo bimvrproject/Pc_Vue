@@ -1,320 +1,821 @@
 <template>
 	<div>
-				<el-main>
+		<div class="zongjt" @click="cetuend" style="overflow:hidden;">
+			<!-- 	<iframe src="https://www.baidu.com/s?tn=news&rtt=1&bsst=1&wd=%E9%A6%99%E6%B8%AF&cl=2&origin=ps" frameborder="0" style="width:100%;height:100%;"></iframe> -->
+		</div>
+		<div class="lefttopjzm">
+			<div class="leftjzm">
+				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
+				<Xunilogo v-show="xianyinxuni"></Xunilogo>
+			</div>
+		</div>
+		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;border: 1px red solid;"
+		 v-if="pmph">
+		 <img :src="pmdrawpicture" alt="">
+		 </div>
+		<div>
 			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
-			<div class="login-parent">
-				<div class="top-right"> 
+			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
+			<!-- 右侧top部分 -->
+			<div class="hometopjzmjztz" v-show="hometop">
+				<!-- 下拉菜单---项目 -->
+				<el-dropdown style="float: left;margin-left:-1.4rem;">
+					<span class="el-dropdown-link" @click="fnjztz">
+						<img class="xmimgjztz" src="../../assets/image/bluefz.png" alt="" />
+						<i class="xmjztz" ref="xmcol" style="color: #2180ED;">项目</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img
+							 src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;"></i>
+					</span>
+					<Newjian v-show="xianyin"></Newjian>
+				</el-dropdown>
+				<!-- 下拉菜单---项目--结束 -->
+				<!-- 下拉菜单---社区 -->
+				<el-dropdown style="float: left; margin-left:1.5rem;">
+					<span class="el-dropdown-link" @click="fnjztzsq">
+						<img class="sqimgjztz" src="../../assets/image/sq@2x.png" />
+						<i class="sqjztz" style="color: #333333;">社区</i>
+						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
+					</span>
+				</el-dropdown>
+				<!-- 下拉菜单---社区--结束 -->
+				<!-- 下拉菜单---更多 -->
+				<el-dropdown style="float: left; margin-left:1.5rem;">
+					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
+					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin">
+						<img class="moreimgjztz" src="../../assets/image/more@2x.png" />
+						<i class="morejztz">更多</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
+						</i>
+					</span>
+					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
+						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
+							<div class="mores1" @click="fnabout">联系我们</div>
+							<div class="moresb">版本号: v 1.0.1</div>
+						</div>
+					</el-dropdown-menu>
+				</el-dropdown>
+				<!-- 下拉菜单---更多--结束 -->
+			</div>
+			<!-- 新建项目/管线综合/图纸 -->
+			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
+				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">建筑结构</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
+				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+			</div>
+			<!-- 右侧图纸 -->
+			<div class="youtu" @click="cetubut" v-if="cetubuts"><img src="../../assets/image/tpzuohua.png" alt="" /></div>
+			<!-- 右侧展开图 -->
+			<div class="youbigtu" v-if="cetuxy">
+				<div class="pmzong">
+					<div class="pmtop">
+						<div class="pmtopn">
+							<!-- 平面图纸 -->
+							<div @click="pmtz" style="display:flex;">
+								<img :src="pmt" alt="" class="pmt" />
+								<span class="pmz">平面图纸</span>
+								<img :src="pmjt" alt="" class="pmjt" />
+							</div>
+						</div>
+					</div>
+					<!-- 平面图纸展开 -->
+					<div class="pmzk" v-if="pmxy">
+						<!-- 新建项目 -->
+						<ul>
+							<li v-for="(item, index) in drawingarrpm" :key="index" @dblclick="pmdb(item.drawName+ (index + 1),item.resPictureId,index)" class="pmnew" style="position:relative;cursor: pointer;"
+							 @click="drawdanji(index)">
+								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
+								<span class="pmtz5" v-if="fontdrawingarrpm">{{ item.drawName + (index + 1) }}</span>
+								<input type="text" v-if="inputdrawingarrpm" v-model="inputdrawingar" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;"  @blur="change22(index)" />
+							</li>
+						</ul>
+						<div class="pm6">
+							<div>
+								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
+									<!-- <uploader-unsupport></uploader-unsupport> -->
+									<uploader-drop class="uplm">
+										<uploader-btn :directory="true" :single="true" class="upbtn"><span class="pltop"></span></uploader-btn>
+									</uploader-drop>
+									<uploader-list></uploader-list>
+								</uploader>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 立面图纸 -->
+				<div class="pmzong">
+					<div class="pmtop">
+						<div class="pmtopn">
+							<!-- 	立面图纸 -->
+							<div class="pmtopnr" @click="lmtz" style="display:flex;">
+								<img :src="lmt" alt="" class="pmt" />
+								<span class="pmz">立面图纸</span>
+								<img :src="lmjt" alt="" class="pmjt" />
+							</div>
+						</div>
+					</div>
+					<!-- 立面图纸展开 -->
+					<div class="pmzk" v-if="lmxy">
+						<!-- 新建项目 -->
+						<ul>
+							<li v-for="(item, index) in drawingarrlm" :key="index"  class="pmnew" style="position:relative;">
+								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
+								<span class="pmtz5">{{ item.drawName + (index + 1) }}</span>
+								<!-- <input v-model="wang5" v-show="showrename5" type="text" @blur="changename5" style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);" /> -->
+							</li>
+						</ul>
+							<div class="pm6">
+								<div>
+									<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
+										<!-- <uploader-unsupport></uploader-unsupport> -->
+										<uploader-drop class="uplm">
+											<uploader-btn :directory="true" :single="true" class="upbtn"><span class="pltop"></span></uploader-btn>
+										</uploader-drop>
+										<uploader-list></uploader-list>
+									</uploader>
+								</div>
+							</div>
+						
+					</div>
 				</div>
 			</div>
-			
-				<!-- 右侧top部分 -->
-				<div class="hometop" v-show="hometop">
-						<!-- 下拉菜单---项目 -->
-					<el-dropdown style="float: left; margin-left: 5%;">			
-						<span class="el-dropdown-link">
-							<img class="xmimg" src="../../assets/image/sshouse.png"/>
-								<router-link to="/"><i class="xm">项目</i></router-link>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-					<!-- 	<Newjian v-show="xianyin"></Newjian> -->
-					</el-dropdown>
-					<!-- 下拉菜单---项目--结束 -->
-					<!-- 下拉菜单---社区 -->
-					<el-dropdown style="float: left; margin-left: 5%;">
-						<span class="el-dropdown-link">
-							<img class="sqimg" src="../../assets/image/shequ.png"/> 
-							<i class="sq">社区</i>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item>交友</el-dropdown-item>
-							<el-dropdown-item disabled>消息</el-dropdown-item>
-							<el-dropdown-item divided>互动</el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-					<!-- 下拉菜单---社区--结束 -->
-					<!-- 下拉菜单---更多 -->
-					<el-dropdown style="float: left; margin-left: 5%;">
-						<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-						<span class="el-dropdown-link">
-							<img class="moreimg" src="../../assets/image/more@2x.png"/> 
-							<i class="more">更多</i>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item>更改密码</el-dropdown-item>
-							<el-dropdown-item disabled>版本 1.0</el-dropdown-item>
-							<el-dropdown-item divided>注销登录</el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-					<!-- 下拉菜单---更多--结束 -->
+			<!-- 图纸-->
+			<div class="drawing" v-show="centerdra">
+				<!-- 图纸中部图片 -->
+				<div class="drawingtop">
+					<img src="../../assets/image/draw.png" alt="">
 				</div>
-				<div class="jztuzhi">
-				<h2>上传建筑图纸</h2>
+				<!-- 图纸中的汉字 -->
+				<div class="drawinghz">
+					这里还没有图纸,需要上传哦
 				</div>
-        <!-- 上传建筑结构图纸 -->
-		</el-main>
+				<!-- 平面图纸和立面图纸的按钮 -->
+				<div class="drawingbut">
+					<!-- 平面 -->
+					<div class="drawpm">
+						<div>
+							<div>
+								<uploader :file-status-text="statusText" :options="options1">
+									<!-- <uploader-unsupport></uploader-unsupport> -->
+									<uploader-drop class="drawdrop">
+										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
+									</uploader-drop>
+									<uploader-list></uploader-list>
+								</uploader>
+							</div>
+						</div>
+					</div>
+					<!-- 立面 -->
+					<div class="drawlm">
+						<div>
+							<div>
+								<!--  @file-complete="onFileSuccess" -->
+								<uploader :file-status-text="statusText" :options="options2">
+									<!-- <uploader-unsupport></uploader-unsupport> -->
+									<uploader-drop class="drawdrop">
+										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
+									</uploader-drop>
+									<uploader-list></uploader-list>
+								</uploader>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 点击联系我们的遮罩 -->
+		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark"></div>
 	</div>
 </template>
 <script>
-  import api from "@/api/api.js";
-	import qs from "qs";
-	import Newjian from "./newjian";
-	import Xunilogo from "./xunilogo";
-	 export default {
-	    data() {
-	      return {
-				panduan:false,
-				xianyin : false,
-				xianyinxuni:false,
-				hometop:true,
-	      }
+	import api from '@/api/api.js';
+	import axios from 'axios';
+	import Newjian from './newjian';
+	import Xunilogo from './xunilogo';
+	import addressurls from '@/api/ip.js';
+	// import Zheader from './header';
+	export default {
+		data() {
+			return {
+				// 中间显示图纸部分
+				pmph:false,
+				// 中间初始样式
+				centerdra:true,
+				updraw: true,
+				pmdrawpicture: '',
+				panduan: false,
+				xianyin: false,
+				xianyinxuni: false,
+				hometop: true,
+				cetuxy: false,
+				cetubuts: true,
+				pmxy: false,
+				lmxy: false,
+				pmt: require('../../assets/image/pmtz.png'),
+				lmt: require('../../assets/image/pmtz.png'),
+				pmjt: require('../../assets/image/pmjtxia.png'),
+				lmjt: require('../../assets/image/pmjtxia.png'),
+				lmore: require('../../assets/image/pmjtxia.png'),
+				// 联系我们
+				abouts: false,
+				drawingarrpm: [],		//接收平面图纸
+				drawingarrlm: [],		//接收立面图纸
+				projectidsdrawingarr: [],
+				title: '12312313122',
+				statusText: {
+					success: '成功了',
+					error: '出错了',
+					uploading: '上传中',
+					paused: '暂停中',
+					waiting: '等待中'
+				},
+				options1: {
+					target: api.Uploadbuildingdrawing, //SpringBoot后台接收文件夹数据的接口
+					testChunks: false, //是否分片-不分片
+					chunkSize: '2048000000000'
+				},
+				options2: {
+					target: api.Uploadbuildingdrawing, //SpringBoot后台接收文件夹数据的接口
+					testChunks: false, //是否分片-不分片
+					chunkSize: '2048000000000'
+				},
+				//总的等陆头部
+				// zheaderxy: true,
+				//上传限制
+				attrs: {
+					accept: '.zip, .jar, .war, .rar, .7z'
+				},
+				fontdrawingarrpm:true,//平面图纸字体
+				inputdrawingarrpm:false, //平面图纸input框
+				inputdrawingar:"",//平面图纸input框字体
+			};
 		},
-		components:{
+		components: {
 			Newjian,
 			Xunilogo,
+			// Zheader
 		},
 		created() {
-			// this.$eventbus.$on("shows",()=>{
-			// 	this.xianyinxuni=true;
-			// });
-			// this.$eventbus.$on("showyin",()=>{
-			// 	this.xianyinxuni=false;
-			// });
-			// // console.log(this.xianyinxuni)
-			// this.$eventbus.$on("hometop",()=>{
-			// 	this.hometop=true;
-			// });
-			// this.$eventbus.$on("xianyin",()=>{
-			// 	this.xianyin=true;
-			// });
-			this.$eventbus.$emit("shows")
+			var prid = localStorage.getItem('projectid');
+			//绑定平面图纸
+			axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/1").then(result => {
+				console.log(result.data)
+				this.drawingarrpm = result.data;
+			});
+			//绑定立面图纸
+			axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/2").then(result => {
+				console.log(result.data)
+				this.drawingarrlm = result.data;
+			});
+			axios.get(api.getprojectids + '/' + prid).then(result => {
+				// console.log(result.data);
+				this.projectidsdrawingarr = result.data;
+				if (this.projectidsdrawingarr.length != 0) {
+					this.updraw = false;
+				}
+			});
+			// console.log(localStorage.getItem('xnjztz'));
+			// console.log(localStorage.getItem('wallss1s'))
+			// this.arr = localStorage.getItem('wallss1s') ? JSON.parse(localStorage.getItem('wallss1s')) : [{msg:平面,change:false},{msg:50,change:false},{id:2,msg:50,change:false},{msg:50,change:false}],
+			this.$eventbus.$on('shows', () => {
+				this.xianyinxuni = true;
+			});
+			this.$eventbus.$on('showyin', () => {
+				this.xianyinxuni = false;
+			});
+			// console.log(this.xianyinxuni)
+			this.$eventbus.$on('hometop', () => {
+				this.hometop = true;
+			});
+			this.$eventbus.$on('xianyin', () => {
+				this.xianyin = true;
+			});
+			this.$eventbus.$emit('shows');
 		},
 		mounted() {
-
-	  },
+			this.$eventbus.$emit('cezhan', 'tuzhi');
+			this.$eventbus.$emit('hometop');
+		},
 		methods: {
-			fnxuni(){
-				this.xianyinxuni = !this.xianyinxuni;
-					this.xianyin = false;
+			// 点击联系我们
+			fnabout() {
+				this.$eventbus.$emit('abouts');
+				this.abouts = true;
 			},
-			fns(){
-				this.xianyin = !this.xianyin;
-				// this.xianyinxuni = false;
-				this.$eventbus.$emit("showyin");
+			// 点击联系之后出现的遮罩
+			fnaboutmark() {
+				this.$eventbus.$emit('aboutsbi');
+				this.abouts = false;
 			},
-			// fnxuni(){
-			// 	this.xianyin = false;
+			// 划过更多
+			fnmoin() {
+				this.lmore = require('../../assets/image/shang.png');
+			},
+			// 移出社区
+			fnleave() {
+				this.lmore = require('../../assets/image/pmjtxia.png');
+			},
+			//平面图纸双击事件
+			pmdb(name,index,index1){
+				console.log(name+"-----"+index+"----"+index1);
+				// this.fontdrawingarrpm=false;
+				// this.inputdrawingarrpm=true;
+				// this.inputdrawingar=name;
+			},
+			//点击图纸名称显示图纸
+			drawdanji(index) {
+				alert(123)
+				this.pmph=true;
+				this.centerdra = false;
+				var drawid = this.drawingarrpm[index].resPictureId;
+				axios.get(api.SelectByPrimaryKey + '/' + drawid).then(result => {
+					console.log(result.data);
+					this.pmdrawpicture = addressurls.url + result.data.url;
+					console.log(this.pmdrawpicture)
+				});
+			},
+			// 点击项目，跳转到login页
+			fnjztz() {
+				this.$router.push('/Login');
+			},
+			//点击社区，跳转到社区页
+			fnjztzsq() {
+				this.$router.push('/');
+			},
+			// xjlmfn() {
+			// 	this.arr.push(6);
 			// },
-			fn4(){
-					this.loginWindow='display:block';
+			// xjfn() {
+			// 	this.drawingarr.push(6);
+			// },
+
+			changename() {
+				// this.wang = wang,
+				(this.showname = true), (this.showrename = false);
+				//设置localStroage值
+				localStorage.setItem('wang', this.wang);
 			},
+			cetuend() {
+				this.cetuxy = false;
+				this.cetubuts = true;
+			},
+			cetubut() {
+				this.cetuxy = true;
+				this.cetubuts = false;
+			},
+			pmtz() {
+				(this.pmxy = true),
+				(this.lmxy = false),
+				(this.pmt = require('../../assets/image/zkwj.png')),
+				(this.pmjt = require('../../assets/image/pmshang.png')),
+				(this.lmt = require('../../assets/image/pmtz.png')),
+				(this.lmjt = require('../../assets/image/pmjtxia.png'));
+			},
+			lmtz() {
+				this.lmxy = true;
+				this.pmxy = false;
+				(this.lmt = require('../../assets/image/zkwj.png')),
+				(this.lmjt = require('../../assets/image/pmshang.png')),
+				(this.pmt = require('../../assets/image/pmtz.png')),
+				(this.pmjt = require('../../assets/image/pmjtxia.png'));
+			},
+			help2() {
+				location.href = 'http://www.jh-bim.com/home/solution';
+			},
+			Preservation2() {
+				this.$router.push('/baocun');
+			},
+			xiugai3() {
+				this.$router.push('/xiugai');
+			},
+			abouts4() {
+				this.$router.push('/about');
+			}
 		}
-	}
+	};
 </script>
 
 <style>
-	*{padding:0;margin:0}
-	/* 	html{height:100%};
-		body{height:100%}; */
-		.zong{
-			width:1920px;
-			height:1080px;
-		/* 	background:green; */
-			background-image: url(../../assets/image/bg@2x.png);
-		  background-repeat: no-repeat;
-		  background-size:100% 100%;
-	   	background-attachment: fixed;
-		}
-		.el-main {
-			width:1703px  !important;
-			height: 1080px  !important;
-			/* padding-left:50px; */
-			/* padding-top:29px; */
-			padding:0 !important;
-		}
-		/*top右上角 */
-		.top-right{
-			width:282px;
-			height:29px;
-		/* 	background:blue; */
-			float:right;
-		}
-		.login-img{
-			cursor:pointer;
-		}
-		/*登录右上角的登录 */
-		.login-parent{
-			width:1703px;
-			height:29px;
+	/* 更多 */
+	.jzmodelmore {
+		background: rgba(225, 225, 225, 0.6);
+		position: absolute;
+		top: 2.125rem !important;
+		left: 15.175rem !important;
+		border: none;
+		padding: 0.1rem;
+	}
+	.moo {
+		width: 3.75rem;
+		/* 		height: 195px; */
+		/* 	background: url(../../assets/image/mores.png); */
+		padding-left: 0.2rem;
+		padding-right: 0.25rem;
+		cursor: pointer;
+	}
+	.mores1 {
+		width: 3.75rem;
+		height: 0.9rem;
+		border-bottom: 1px solid #999999;
+		text-align: left;
+		line-height: 0.9rem;
+		color: #666666;
+		font-size: 0.46rem;
+		font-weight: 500;
 		/* 	background:red; */
-		}	
-		.imgzong{
-			width:160px;
-			height:25px;
-			/* background:green; */
-			float:left;
-			padding-top:4px;
-		}
-		.dengl{
-			float:left;
-			margin-left:3px;
-			font-size:14px;
-			color: #2180ED;
-		}
-		.guanbi-toprig{
-			width:120px;
-			height:29px;
-			/* background:red; */
-			float:left;
-		}
-		.toprig1,.toprig3{
-			display:block;
-			width:36px;
-			height:27px;
-		/* 	background:blue; */
-			float:left;
-			border:1px solid #2180ED;
-		}
-		.toprig2{
-			display:block;
-			width:36px;
-			height:27px;
-			/* 	background:blue; */
-			float:left;
-			border-top:1px solid #2180ED;
-			border-bottom:1px solid #2180ED;
-		}
-		/* 主页top部分*/
-		.hometop{
-			width:1703px;
-			height:57px;
-		/* 	background:plum; */
-		}
-		/* 左侧边栏 */
-		.left{
-			width:217px;
-			height:987px;
-			/* background:blue; */
-		}
-		.logo{
-			width:117px;
-			height:28px;
-			padding-left:50px;
-			/* background:black; */
-		  padding-top:29px;
-			/* left:15px; */
-			/* background:red; */
-		}
-		.lefttop{
-			width:216px;
-			height:60px;
+	}
+	.moresb {
+		border: 0;
+		text-align: left;
+		line-height: 0.9rem;
+		color: #666666;
+		font-size: 0.46rem;
+		font-weight: 500;
+		/* 	background:red; */
+	}
+	a {
+		color: #333333;
+		text-decoration: none;
+	}
+
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	.zongjt {
+		width: 60rem;
+		height: 33.75rem;
+		/* 	background:green; */
+		/* 	background: url(../../assets/image/bjt.jpg); */
+		/* background-repeat: no-repeat;
+	background-size: 100% 100%; */
+		/* 	background-attachment: fixed; */
+		position: relative;
+	}
+
+	.el-main {
+		/* padding-left:50px; */
+		/* padding-top:29px; */
+		padding: 0 !important;
+	}
+
+	/* 主页top部分*/
+	.hometopjzmjztz {
+		position: absolute;
+		top: 0.9375rem;
+		left: 6.9375rem;
+		/* background:red; */
+		line-height: 1.78125rem;
+	}
+
+	/* 左侧边栏 */
+	.left {
+		width: 217px;
+		height: 987px;
+		/* background:blue; */
+		padding-right: 10px;
+	}
+
+	.logojzm {
+		width: 3.65625rem;
+		height: 0.875rem;
+		padding-left: 0.65625rem;
+		padding-top: 0.90625rem;
+		padding-right: 0px;
+	}
+
+	.lefttopjzm {
+		width: 6.75rem;
+		height: 1.875rem;
 		/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
-		}
-	 .el-dropdown-link {
-	    cursor: pointer;
-	    color: #333333;
-	  }
-		.xmimg{
-			width:27px;
-			height:26px;
-			padding-left:80px;
-			padding-top:2px;
-		}
-		.xm{
-			width:38px;
-	    height:17px;
-	    font-size:20px;
-	    font-family:MicrosoftYaHei;
-	    font-weight:400;
-	    color:rgba(51,51,51,1);
-			font-size:20px;
-			font-style:normal;
-			padding-left:5px;
-			line-height:17px;
-		}
-		.sqimg{
-			width:27px;
-			height:26px;
-		}
-		.sq{
-			width:40px;
-			height:18px;
-			color:#2180ED;
-			font-size:20px;
-			font-family:MicrosoftYaHei;
-			font-weight:400;
-			padding-left:6px;
-			font-style:normal;
-		}
-		.moreimg{
-			width:25px;
-			height:25px;
-		}
-		.more{
-			width:39px;
-			height:19px;
-			font-size:20px;
-			font-style:normal;
-			padding-left:5px;
-			font-family:MicrosoftYaHei;
-	    font-weight:400;
-	    color:rgba(51,51,51,1);
-		}
-		.el-dropdown-link2 {
-	    cursor: pointer;
-	    color: #2180ED;
-	  }
-	  .el-icon-arrow-down {
-	    font-size: 20px;
-	  }
-	  .upfile{
-	  		width:400px;
-	  		height:148px;
-	  		background:rgba(225,225,225,.6);
-	  		position:absolute;
-	  		top:460px;
-	  		left:770px;
-	  		border-radius:15px;
-	  	/* 	border:2px dashed ghostwhite; */
-	  	}
-	  .upfilezx{
-	  	 width:390px;
-	  	 height:115px;
-	  	 background:rgba(225,225,225,.3);
-	  	 position:absolute;
-	  	 top:0;
-	  	 left:0;
-	  	 bottom:0;
-	  	 right:0;
-	  	 margin:auto;
-	  	 border-radius:9px;
-	  	 border:5px solid #FFFFFF;
-	  	 padding-top:25px;
-	  }
-	  .upfiletit{
-	  	 width:390px;
-	  	 color:#333333;
-	  	 font-size:30px;
-	  	 display:inline-block;
-	  }
-	  .uploader-drop{
-	  	 display:inline-block;
-	  	 width:175px;
-	  	 height:40px;
-	  	 margin-top:15px;
-	  	 border-radius:20px;
-	  	 background:url(../../assets/image/juxing3@2x.png) no-repeat #0000FF;
-	  	 text-align:center;
-	  	 line-height:40px;
-	  	 color:#FFFFFF;
-	  	 
-	  }
-	  .uploader-btn{
-	  	 border:0 solid #0000FF !important;
-	  	 color:#e8e7eb !important;
-	  	 font-size:26px !important;
-	  }
+		position: absolute;
+		top: 0rem;
+	}
+
+	.el-dropdown-link {
+		cursor: pointer;
+		color: #333333;
+	}
+
+	.xmimgjztz {
+		width: 0.84375rem;
+		height: 0.8125rem;
+		padding-left: 2.5rem;
+		padding-top: 0.0625rem;
+	}
+
+	.xmjztz {
+		width: 0.84375rem;
+		height: 0.53125‬;
+		font-size: 0.625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		color: #2180ed;
+		font-style: normal;
+		padding-left: 0.15625rem;
+		line-height: 0.53125rem;
+	}
+
+	.sqimgjztz,
+	.bjimgjztz {
+		width: 0.84375rem;
+		height: 0.8125rem;
+	}
+
+	.sqjztz {
+		width: 1.25rem;
+		height: 0.5625rem;
+		font-size: 0.625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		padding-left: 0.1875rem;
+		font-style: normal;
+	}
+
+	.moreimgjztz {
+		width: 0.78125rem‬;
+		height: 0.78125rem;
+	}
+
+	.morejztz {
+		width: 1.21875rem;
+		height: 0.59375rem;
+		font-size: 0.625rem;
+		font-style: normal;
+		padding-left: 0.15625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		color: rgba(51, 51, 51, 1);
+	}
+
+	.el-dropdown-link2 {
+		cursor: pointer;
+		color: #2180ed;
+	}
+
+	.el-icon-arrow-down {
+		font-size: 20px;
+	}
+
+	/* 右侧图纸 */
+	.youtu {
+		width: 1.5625rem;
+		height: 5.03125rem;
+		position: absolute;
+		top: 14.375rem;
+		right: 0rem;
+		cursor: pointer;
+	}
+
+	.youtu img {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* 右侧大图 */
+	.youbigtu {
+		width: 5.03125rem;
+		height: 31.3125rem;
+		position: absolute;
+		top: 1.21875rem;
+		left: 54.96875rem;
+		background: url(../../assets/image/touju.png) no-repeat;
+		background-size: 5.03125rem 31.3125rem;
+	}
+
+	.pmtop {
+		width: 5.03125rem;
+		height: 1.40625rem;
+		/* 	background:red; */
+	}
+
+	.pmtopn {
+		width: 5.03125rem;
+		height: 1.375rem;
+		background: rgba(225, 226, 226, 0.3);
+		border-bottom: 0.03125rem solid #666666;
+		line-height: 1.375rem;
+		cursor: pointer;
+	}
+
+	.pmt {
+		display: inline-block;
+		width: 0.6875rem;
+		height: 0.59375rem;
+		float: left;
+		margin-left: 0.4375rem;
+		margin-right: 0.25rem;
+		margin-top: 0.4rem;
+	}
+
+	.pmz {
+		display: inline-block;
+		/* float: left; */
+		font-size: 0.5rem;
+		font-weight: 400;
+		color: #333333;
+		margin-right: 0.25rem;
+		/* flex:1; */
+		/* 	background:blue; */
+		/* height:1.2rem; */
+	}
+
+	.pmjt {
+		display: inline-block;
+		float: left;
+		width: 0.46875rem;
+		height: 0.25rem;
+		margin-top: 0.6rem;
+		margin-left: 0rem;
+	}
+
+	.pm1,
+	.pm2,
+	.pm3,
+	.pm4,
+	.pm5,
+	.pmnew {
+		list-style: none;
+		width: 5.03125rem;
+		height: 1.375rem;
+		/* 	background:red; */
+		border-bottom: 0.03125rem solid #666666;
+		line-height: 1.375rem;
+	}
+
+	.pmt1,
+	.pmt2,
+	.pmt3,
+	.pmt4,
+	.pmt5 {
+		display: inline-block;
+		width: 0.5625rem;
+		height: 0.6875rem;
+		float: left;
+		margin-left: 0.8rem;
+		margin-top: 0.3rem;
+	}
+
+	.pmtz1,
+	.pmtz2,
+	.pmtz3,
+	.pmtz4,
+	.pmtz5 {
+		color: #666666;
+		font-size: 0.4375rem;
+		font-weight: 400;
+		float: left;
+		margin-left: 0.25rem;
+		width: 3rem;
+		height: 1.2rem;
+		/* background:red; */
+		text-align: left;
+		/* 	background:red; */
+	}
+
+	.pm6 {
+		width: 5.03125rem;
+		height: 1.375rem;
+		border-bottom: 0.03125rem solid #666666;
+		line-height: 1.5625rem;
+		/* background:red; */
+	}
+
+	/* 中见部分图纸 */
+	.drawing {
+		width: 15.625rem;
+		height: 15.625rem;
+		/* background:red; */
+		position: absolute;
+		left: 25rem;
+		top: 10rem;
+	}
+
+	/* 图片 */
+	.drawingtop {
+		width: 12.84375rem;
+		height: 7.8125rem;
+		/* background:plum; */
+		margin-left: 1.3rem;
+	}
+
+	.drawingtop img {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* 中间图片的汉字 */
+	.drawinghz {
+		width: 15.625rem;
+		height: 3rem;
+		/* background:blue; */
+		font-size: 0.9375rem;
+		font-family: PingFang SC;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 4.3rem;
+	}
+
+	/* 平面立面总按钮 */
+	.drawingbut {
+		width: 15.625rem;
+		height: 4.7rem;
+		/* background:plum; */
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.drawpm {
+		width: 5.46875rem;
+		height: 4.7rem;
+		/* background:blue; */
+		margin-left: 2rem;
+	}
+
+	.drawlm {
+		width: 5.46875rem;
+		height: 4.7rem;
+		/* background:blue; */
+		margin-right: 1.6rem;
+	}
+
+	.drawdrop {
+		/* padding:0.3125rem; */
+		border: 0 !important;
+		background-color: #FFFFFF !important;
+		width: 4.76875rem !important;
+		height: 1.375rem !important;
+		margin-top: 1.06875rem;
+		border-radius: 0 !important;
+		/* line-height:1.25rem; */
+		/* font-size:0.3875rem; */
+		font-family: PingFang SC;
+		font-weight: 500;
+		color: rgba(255, 255, 255, 1);
+		background: url(../../assets/image/pmd.png) no-repeat;
+		background-size: 100% 75%;
+		display: flex;
+		justify-content: center;
+	}
+
+	.drawbtn {
+		/* padding:0.125rem 0.25rem !important; */
+		line-height: 0.8rem !important;
+		border-radius: 0 !important;
+		font-size: 0.6125rem !important;
+		width: 4.76875rem !important;
+		height: 0.775rem !important;
+		border: none !important;
+		color: #FFFFFF !important;
+		padding:0.03125rem 0.25rem !important;
+	}
+
+	/* 右侧 */
+	.uplm {
+		width: 4.16125rem !important;
+		height: 1.052rem !important;
+		background: #ffffff;
+		margin-top: 0rem;
+		margin-bottom: 0rem;
+		padding: 0.14rem 0rem 0.14rem 0.48rem  !important;
+		border: 0 !important;
+		background-color: #ffffff !important;
+		border-radius: 0 !important;
+		/* line-height:1.25rem; */
+		/* font-size:0.1875rem; */
+		font-family: PingFang SC;
+		font-weight: 500;
+		color: rgba(255, 255, 255, 1);
+		/* background:url(../../assets/image/pmd.png) no-repeat; */
+		/* background-size:100% 75%; */
+		display: flex;
+		justify-content: center;
+	}
+
+	.upbtn {
+		width: 5.03125rem !important;
+		height: 0.75rem !important;
+		color: #333333 !important;
+		line-height: 0.75rem !important;
+		border-radius: 0 !important;
+		font-weight: 500;
+		font-size: 0.4225rem !important;
+		border: none !important;
+		margin-top:0.16rem;
+	}
+ .pltop{
+ 	width:2.6rem;
+ 	height:0.6rem;
+ 	background:red;
+ 	display:inline-block;
+ 	float:left;
+ 	background:url(../../assets/image/xjtz.png) no-repeat;
+ 	background-size:2.6rem 0.6rem;
+ }
 </style>

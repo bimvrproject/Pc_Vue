@@ -1,0 +1,856 @@
+<template>
+	<div>
+		<div class="logoxn">
+			<div class="xunitops">
+				<div class="xunitop">
+					<div class="ce1s" @click="ce1"></div>
+					<div class="ces"></div>
+					<div class="cenrgroup">
+						<!-- 图片 -->
+						<div class="fb-tp">
+							<div class="picture" @click="picture">
+								<img src="../../assets/image/tuimg.png" class="picimg" alt="" />
+								<span class="pictp" style="color:#FFFFFF;">图片</span>
+							</div>
+							<!-- 图片展开的拍照 -->
+							<div v-show="pzshow">
+								<div class="piczk">
+								<img src="../../assets/image/paizhao.png" class="picimgzk" alt="" />
+									<span class="picpz" @click="paizhao">拍照</span>
+									<img id="result" style="display: none;"/>
+								</div>
+							</div>
+						</div>
+						<!-- 动画 -->
+						<div>
+							<div class="animation" @click="animation">
+								<img src="../../assets/image/dh.png" class="picimg1" alt="" />
+								<span class="pictp1" style="color:#FFFFFF;">动画</span>
+							</div>
+							<!-- 动画展开的拍照 -->
+							<div class="animationzk" v-show="animationzk">
+								<!-- 自由拍摄 -->
+								<div>
+									<div class="pzzk" @click="pzzk">
+										<img src="../../assets/image/zyps.png" class="pzzy" alt="" />
+										<span class="zyps">自由拍摄</span>
+									</div>
+									<!--拍摄-->
+									<div class="zypszi" v-show="zypszi">
+									<img src="../../assets/image/pss.png" class="zypsziimg" alt="" />
+										<span class="zypszips">拍摄</span>
+									</div>
+								</div>
+
+								<!-- 路径拍摄 -->
+								<div>
+									<div class="ljps" @click="ljps">
+										<img src="../../assets/image/ljps.png" class="ljpsimg" alt="" />
+										<span class="ljpszi">路径拍摄</span>
+									</div>
+									<div v-show="lujin">
+										<!-- 选择文件夹 -->
+										<div class="wjj">
+											<img src="../../assets/image/fbwjj.png" class="wjjimg" alt="" />
+											<!-- 给选择文件夹一个按钮，然后往后端发送请求，让后端返回存入数据库的所有图纸 -->
+											<span class="chawjj" @click="Folder">选择文件夹</span>
+											<img src="../../assets/image/fbxl.png" class="xlwjj" alt="" />
+										</div>
+										<!-- 后端获取回来的数据进行循环渲染 -->
+										<div v-show="Plane">
+											<div class="Plane">
+												<img src="../../assets/image/ttt.png" class="ExPlaneimg" alt="" />
+												<span class="ExPlane">平面图纸1</span>
+											</div>
+											<div class="Plane">
+												<img src="../../assets/image/ttt.png" class="ExPlaneimg" alt="" />
+												<span class="ExPlane">平面图纸1</span>
+											</div>
+											<div class="Plane">
+											<img src="../../assets/image/ttt.png"  class="ExPlaneimg" alt="" />
+												<span class="ExPlane">平面图纸1</span>
+											</div>
+										</div>
+
+										<!--预览 -->
+										<div>
+											<div class="preview" @click="previews">
+												<img src="../../assets/image/yl.png" class="previewimg" alt="" />
+												<span class="previews">预览</span>
+											</div>
+										</div>
+										<!-- 预览展开 -->
+										<div v-show="preview"></div>
+										<!-- 拍摄 -->
+										<div>
+											<div class="Path">
+												<img src="../../assets/image/pss.png" class="Pathimg" alt="" />
+												<span class="Paths">拍摄</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 动画结束 -->
+						<!-- 清单 -->
+						<div>
+							<div class="list" @click="list">
+							<img src="../../assets/image/qingdan.png" class="listimg" alt="" />
+								<span class="lists">清单</span>
+							</div>
+							<!-- 展开清单 -->
+							<div v-show="lists"><!-- 123121 --></div>
+						</div>
+						<!-- 清单结束 -->
+						<!-- 图纸开始 -->
+						<div>
+							<div class="Drawings" @click="fntuz">
+								<img src="../../assets/image/ttt.png" class="Drawingimg" alt="" />
+								<span class="Drawings1">图纸</span>
+							</div>
+							<!-- 图纸展开 -->
+							<div>
+								<!-- 文件夹 -->
+								<div v-show="fnwenjj">
+									<div class="fdraw" @click="fnwenjianjia">
+									<img src="../../assets/image/fbwjj.png" class="fdrawimg" alt="" />
+										<span class="fdraws">选择文件夹</span>
+										<img src="../../assets/image/fbxl.png" class="fdraws1" alt="" />
+									</div>
+									<!-- 图纸文件夹展开 -->
+									<div v-show="tzwjjzk">
+										<!-- 平面图纸 -->
+										<div>
+											<div class="pmloader" @click="fnfbpm">
+												<img src="../../assets/image/fbwjj.png" class="pmloaderimg" alt="" />
+												<span class="pmloaders">平面图纸</span>
+												<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
+											</div>
+											<!-- 展开平面图纸 -->
+											<ul v-show="fbzkpm">
+												<li  v-for="(item, index) in zkpmtzarr" :key="index" class="zkpmloader" @click="fnzkpm(index)">
+													<img src="../../assets/image/ttt.png" class="zkpmloaderimg" alt="" /></span>
+													<span class="zkpmloaders" @click="fnpmtzxh">平面图纸1</span>
+													<img src="../../assets/image/dxk.png" class="zkpmloaderimg1" alt="" />
+													<img src="../../assets/image/dui.png" class="zkpmloaderimg11"  alt="" />
+												</li>
+											</ul>
+										</div>
+										<!-- 立面图纸 -->
+										<div>
+											<div class="pmloader" @click="fnlmtz">
+												<img src="../../assets/image/fbwjj.png" class="pmloaderimg" alt="" />
+												<span class="pmloaders">立面图纸</span>
+											<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
+											</div>
+											<!-- 展开立面图纸 -->
+											<ul v-show="zklmtz">
+												<li v-for="(item, index) in zklmtzarr" :key="index" class="zkpmloader">
+												<img src="../../assets/image/ttt.png" class="zkpmloaderimg" alt="" />
+													<span class="zkpmloaders">立面图纸1</span>
+													<img src="../../assets/image/dxk.png" class="zkpmloaderimg1" alt="" />
+											 	<img class="zkpmloaderimg11" src="../../assets/image/dui.png" v-show="pmtzxunhuan" alt="" />
+												</li>
+											</ul>
+										</div>
+										<!-- 发布 -->
+										<div>
+											<div class="rele">
+												<img src="../../assets/image/feiji.png" class="releimg" alt="" />
+												<span class="reles">发布</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	import kscreenshot from 'kscreenshot'
+	import axios from 'axios';
+	//65指键盘中的A
+	var kscreen = new kscreenshot({
+		 key: 65, // 设置快捷键 目前为 shift+a
+		endCB:function(data){
+			console.log('截图');
+			// console.log(data);
+			document.getElementById('result').setAttribute('src', data)
+			// 			//过滤data:URL
+			// axios.get(api.Ceshi+"?data="+data).then(result=>{
+			// 	console.log(result.data+"++++++++++");
+			// })
+		},
+		cancelCB: function () {
+			console.log('取消')
+		}
+	})
+export default {
+	data() {
+		return {
+			//拍照显隐
+			pzshow: false,
+			// 自由拍摄显隐
+			zypszi: false,
+			//点击动画显隐
+			animationzk: false,
+			// 点击路径拍摄文件夹时控制图纸显隐
+			Plane: false,
+			//点击预览时控制预览中的内容
+			preview: false,
+			//点击路径拍摄控制路径拍摄的显隐
+			lujin: false,
+			//点击清单控制清单的显隐
+			lists: false,
+			// 平面图纸循环
+			pmtzxunhuan: false,
+			//平面展开图
+			fbzkpm: false,
+			//立面展开图
+			zklmtz: false,
+			//图纸文件夹展开
+			tzwjjzk: false,
+			//图纸显隐
+			fnwenjj: false,
+		 // 展开平面图纸数组
+		 zkpmtzarr:[0,0,0,0,0],
+		 // 展开立面图纸数组
+		 zklmtzarr:[0]
+		};
+	},
+	created() {},
+	mounted() {},
+	methods: {
+		//拍照
+		paizhao(){
+			kscreen.startScreenShot() // 开启截屏 也可以使用快捷键 开启截屏
+		},
+		//点击平面图纸中的具体某一个平面图纸
+		fnzkpm(index){
+			this.pmtzxunhuan = true
+			},
+		ce1() {
+			this.$router.push('/');
+		},
+		//点击图片
+		picture() {
+			//拍照显示
+			(this.pzshow = true),
+				//动画隐藏
+				(this.animationzk = false),
+				// 自由拍摄显隐
+				(this.zypszi = false),
+				//点击路径拍摄控制路径拍摄的显隐
+				(this.lujin = false),
+				//点击预览时控制预览中的内容
+				(this.preview = false),
+				// 点击路径拍摄文件夹时控制图纸显隐
+				(this.Plane = false),
+				//清单隐藏
+				(this.lists = false),
+				//图纸隐藏
+				(this.fnwenjj = false),
+				// 平面图纸循环
+				(this.pmtzxunhuan = false),
+				//平面展开图
+				(this.fbzkpm = false),
+				//立面展开图
+				(this.zklmtz = false),
+				//图纸文件夹展开
+				(this.tzwjjzk = false);
+		},
+		// 点击自由拍摄控制拍摄显隐
+		pzzk() {
+			this.zypszi = true;
+		},
+		//点击动画
+		animation() {
+			//自由拍摄与路径拍摄显隐
+			(this.animationzk = true),
+				//图片中得拍照隐藏
+				(this.pzshow = false),
+				//清单隐藏
+				(this.lists = false),
+				//图纸隐藏
+				(this.fnwenjj = false),
+				// 平面图纸循环
+				(this.pmtzxunhuan = false),
+				//平面展开图
+				(this.fbzkpm = false),
+				//立面展开图
+				(this.zklmtz = false),
+				//图纸文件夹展开
+				(this.tzwjjzk = false);
+		},
+		//点击文件夹
+		Folder() {
+			this.Plane = true;
+		},
+		//点击预览
+		previews() {
+			this.preview = true;
+		},
+		//
+		ljps() {
+			this.lujin = true;
+		},
+		//点击清单
+		list() {
+			//清单里边得内容出现
+			(this.lists = true),
+				//动画隐藏
+				(this.animationzk = false),
+				//自由拍摄与路径拍摄显隐
+				(this.animationzk = false),
+				// 自由拍摄显隐
+				(this.zypszi = false),
+				//点击路径拍摄控制路径拍摄的显隐
+				(this.lujin = false),
+				//点击预览时控制预览中的内容
+				(this.preview = false),
+				// 点击路径拍摄文件夹时控制图纸显隐
+				(this.Plane = false),
+				//图片中得拍照隐藏
+				(this.pzshow = false),
+				//图纸隐藏
+				(this.fnwenjj = false),
+				// 平面图纸循环
+				(this.pmtzxunhuan = false),
+				//平面展开图
+				(this.fbzkpm = false),
+				//立面展开图
+				(this.zklmtz = false),
+				//图纸文件夹展开
+				(this.tzwjjzk = false);
+		},
+		//点击具体某一个展开得平面图纸，显示一个对勾
+		fnpmtzxh() {
+			this.pmtzxunhuan = true;
+		},
+		//点击平面图纸让展开
+		fnfbpm() {
+			this.fbzkpm = true;
+		},
+		//点击立面图纸让展开
+		fnlmtz() {
+			this.zklmtz = true;
+		},
+		//点击图纸中得文件夹
+		fnwenjianjia() {
+			this.tzwjjzk = true;
+		},
+		//点击图纸
+		fntuz() {
+			//文件夹出现
+			(this.fnwenjj = true),
+				//清单里边得内容出现
+				(this.lists = false),
+				//动画隐藏
+				(this.animationzk = false),
+				// 自由拍摄显隐
+				(this.zypszi = false),
+				//点击路径拍摄控制路径拍摄的显隐
+				(this.lujin = false),
+				//点击预览时控制预览中的内容
+				(this.preview = false),
+				//图片中得拍照隐藏
+				(this.pzshow = false);
+		}
+	}
+};
+</script>
+
+<style scoped>
+/* 发布侧边栏轮廓 */
+.logoxn {
+	width:6.78125rem;
+	height:31.625rem;
+}
+.xunitop {
+	width:6.875rem;
+	height:33.75rem;
+	background: url(../../assets/image/homecebian8@2x.png) no-repeat;
+	position: absolute;
+	top: 0px;
+	background-size:6.875rem 33.75rem;
+	padding-top: 0rem;
+}
+.ce1s {
+	width:4.78125rem;
+	height:2.5rem;
+	background: url(../../assets/image/logotop@2x.png) no-repeat;
+	background-size:3.65625rem 0.875rem;
+	position: absolute;
+	top:0.90625rem;
+	left:1.875rem;
+/* 	background-color:red; */
+}
+.ces {
+	width:6.15625rem;
+	height:0.0625rem;
+	background: url(../../assets/image/fgx.png) no-repeat;
+	background-size:6.15625rem 0.09375rem;
+	position: absolute;
+	top:2.5rem;
+	right:0.3125rem;
+	left:0.3125rem;
+	/* background-color:red; */
+}
+li {
+	list-style: none;
+}
+/* 侧边下部 */
+.cenrgroup {
+	width:6.78125rem;
+	height:29.78125rem;
+	/* background:blue; */
+	position: absolute;
+	top:3.84375rem;
+	left: 0rem;
+}
+/* 图片 */
+.fb-tp {
+	margin-bottom:1.40625rem;
+	cursor: pointer;
+	/* background:red; */
+}
+.picture {
+	width:5.0625rem;
+	height:0.625rem;
+	/* background:red; */
+	padding-left:1.71875rem;
+	margin-bottom:0.625rem;
+}
+.picimg {
+	width:0.65625rem;
+	height:0.625rem;
+	/* background:green; */
+	float: left;
+}
+.pictp {
+	display: inline-block;
+	font-size:0.5625rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	float: left;
+	/* background:plum; */
+	margin-left:0.15625rem;
+	line-height:0.625rem;
+}
+/* 拍照 */
+.piczk {
+	width:4.6875rem;
+	height:0.625rem;
+	/* background:green; */
+	padding-left:2.0626rem;
+	cursor: pointer;
+}
+.picimgzk {
+	width:0.71875rem;
+	height:0.5rem;
+	float: left;
+	margin-right:0.15625rem;
+	padding-top:0.09375rem;
+	/* background:red; */
+}
+.picpz {
+	font-size:0.5rem;
+	font-size: 0.5rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	/* background:plum; */
+}
+/* 动画 */
+.animation {
+	width:5.1875rem;
+	height:0.625rem;
+	/* background:red; */
+	padding-left:1.71875rem;
+	margin-bottom:0.625rem;
+	cursor: pointer;
+}
+.picimg1 {
+	width:0.65625rem;
+	height:0.625rem;
+	/* 	background:green; */
+	float: left;
+}
+.pictp1 {
+	display: inline-block;
+	font-size:0.5625rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	float: left;
+	/* background:plum; */
+	margin-left:0.15625rem;
+	line-height:0.625rem;
+}
+/* 动画的展开部分 */
+.animationzk {
+	padding-left:1.875rem;
+}
+/* 自由拍摄 */
+.pzzk {
+	width:4.90625rem;
+	height:0.625rem;
+	/* 	background:red; */
+	cursor: pointer;
+}
+.pzzy {
+	width:0.625rem;
+	height:0.59375rem;
+	/* background:green; */
+	float: left;
+}
+.zyps {
+	display: inline-block;
+	font-size:0.5rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.15625rem;
+}
+/* 自由拍摄里边的拍摄 */
+.zypszi {
+	width:4.21875rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.46875rem;
+	padding-left:0.6875rem;
+	cursor: pointer;
+}
+.zypsziimg {
+	width:0.4375rem;
+	height:0.4375rem;
+	/* background:green; */
+	float: left;
+	padding-top: 3px;
+}
+.zypszips {
+	display: inline-block;
+	font-size:0.4375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.15625rem;
+}
+/*路径拍摄 */
+.ljps {
+	width:4.84375rem;
+	height:0.625rem;
+	/* 	background:red; */
+	margin-top:0.9375rem;
+	cursor: pointer;
+}
+.ljpsimg {
+	width:0.625rem;
+	height:0.6875rem;
+	/* background:plum; */
+	float: left;
+}
+.ljpszi {
+	font-size:0.5rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: #ffffff;
+	float: left;
+	margin-left:0.2rem;
+}
+/* 选择文件夹 */
+.wjj {
+	width:3.8875rem;
+	height:0.625rem;
+	/* background:red; */
+	padding-left:0.6875rem;
+	margin-top:0.46875rem;
+	cursor: pointer;
+}
+.wjjimg {
+	width:0.5rem;
+	height:0.4375rem;
+/* 	background:plum; */
+	float: left;
+	padding-top:0.09375rem;
+}
+.chawjj {
+	/* background:green; */
+	font-size:0.375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.15625rem;
+	line-height:0.6375rem;
+}
+.xlwjj {
+	width:0.375rem;
+	height:0.25rem;
+	/* background:green; */
+	float:left;
+	margin-left:0.25rem;
+	margin-top:0.23rem;
+}
+/* 后端获取回来的平面图纸展示 */
+.Plane {
+	width:3.375rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.25rem;
+	padding-left:1rem;
+	cursor: pointer;
+}
+.ExPlaneimg {
+	width:0.5rem;
+	height:0.5625rem;
+	/* background:plum; */
+	float: left;
+	padding-top:0.09375rem;
+}
+.ExPlane {
+	font-size:0.375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.21875rem;
+/* 	background:green; */
+	padding-top:0.1rem;
+}
+/* 预览 */
+.preview {
+	width:4.6875rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.46875rem;
+	padding-left:0.15625rem;
+	cursor: pointer;
+}
+.previewimg {
+	width:0.5625rem;
+	height:0.40625rem;
+	/* background:plum; */
+	float: left;
+	padding-top:0.0625rem;
+}
+.previews {
+	font-size:0.4375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.25rem;
+}
+/* 拍摄 */
+.Path {
+	width:4.53125rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.46875rem;
+	padding-left:0.25rem;
+	cursor: pointer;
+}
+.Pathimg {
+	width:0.4375rem;
+	height:0.4375rem;
+	/* 	background:plum; */
+	float: left;
+	padding-top:0.09375rem;
+}
+.Paths {
+	font-size:0.4375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: #ffffff;
+	float: left;
+	margin-left:0.25rem;
+}
+/* 清单 */
+.list {
+	width:5.0625rem;
+	height:0.625rem;
+	/* 	background:red; */
+	padding-left:1.71875rem;
+	margin-top:1.40625rem;
+	cursor: pointer;
+}
+.listimg {
+	width:0.53125rem;
+	height:0.6562rem;
+	/* 	background:plum; */
+	float: left;
+}
+.lists {
+	font-size:0.5625rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.25rem;
+	line-height:0.625rem;
+}
+/* 图纸 */
+.Drawings {
+	width:5rem;
+	height:0.625rem;
+	margin-top:1.40625rem;
+	padding-left:1.71875rem;
+	cursor: pointer;
+}
+.Drawingimg {
+	width:0.5rem;
+	height:0.625rem;
+	float: left;
+}
+.Drawings1 {
+	font-size:0.5625rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.25rem;
+	line-height:0.625rem;
+}
+/* 图片展开的文件夹 */
+.fdraw {
+	width:5rem;
+	height:0.625rem;
+	margin-top:0.3125rem;
+	padding-left:1.71875rem;
+	cursor: pointer;
+}
+.fdrawimg {
+	width:0.59375rem;
+	height:0.5rem;
+	padding-top:0.09375rem;
+	float: left;
+}
+.fdraws {
+	font-size:0.4375rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
+	line-height:0.625rem;
+	margin-left: 6px;
+	float: left;
+}
+.fdraws1 {
+  width:0.4375rem;
+  height:0.1875rem;
+	float: left;
+	line-height:0.625rem;
+	margin-left:0.25rem;
+	margin-top:0.2rem;
+	/* background:red; */
+}
+/* 选择文件夹中的平面图纸 */
+.pmloader {
+	width:5rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.3125rem;
+	padding-left:1.9375rem;
+	cursor: pointer;
+}
+.pmloaderimg {
+	width:0.59375rem;
+	height:0.5rem;
+	float: left;
+}
+.pmloaders {
+	font-size:0.4375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	margin-left:0.1875rem;
+	line-height:0.625rem;
+}
+.pmloaderimg1 {
+	float: left;
+	line-height:0.625rem;
+	margin-left:0.25rem;
+	width:0.4375rem;
+	height:0.25rem;
+	margin-top:0.2rem;
+}
+/* 平面,立面图纸展开 */
+.zkpmloader {
+	width:4.3125rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.3125rem;
+	padding-left:2.34375rem;
+	position: relative;
+	cursor: pointer;
+}
+.zkpmloaderimg {
+	width:0.4375rem;
+	height:0.5625rem;
+	/* background:plum; */
+	float: left;
+}
+.zkpmloaders {
+	width:2.8125rem;
+	height:0.625rem;
+	display: inline-block;
+	font-size:0.4375rem;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+	/* background:blue; */
+	float: left;
+	margin-left:0.1875rem;
+	text-align: left;
+}
+.zkpmloaderimg1 {
+	width:0.5rem;
+	height:0.5rem;
+	/* background:plum; */
+	float:left;
+	margin-top:0.1rem;
+}
+.zkpmloaderimg11 {
+	width:0.5625rem;
+	height:0.375rem;
+	position: absolute;
+	left:5.8125rem;
+	top:0.15625rem;
+}
+/* 图纸中的发布 */
+.rele {
+	width:4.0625rem;
+	height:0.625rem;
+	/* background:red; */
+	margin-top:0.9375rem;
+	padding-left:2.8125rem;
+	cursor: pointer;
+}
+.releimg {
+	display: inline-block;
+	width:0.59375rem;
+	height:0.5625rem;
+	float: left;
+}
+.releimg img {
+	width: 100%;
+	height: 100%;
+}
+.reles {
+	font-size:0.4375rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
+	float: left;
+	line-height:0.625rem;
+	margin-left:0.1875rem;
+}
+</style>

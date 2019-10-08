@@ -1,702 +1,689 @@
 <template>
-	<el-container style="overflow:-Scroll;overflow-y:hidden;" class="zong">
+	<div>
+		<div class="zonglogin"></div>
 		<div class="lefttop">
 			<div class="left">
-				<img class="logo" src="../../assets/image/jinghekeji.png" @click="fnxuni"/>
+				<img class="logo" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 			</div>
 		</div>
-		<el-main>
+		<div>
 			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
-			<div class="login-parent">
-				<div class="top-right"> 
-				<!-- 登录头像 -->
-				<div class="imgzong">
-					<div class="login-img"  @click="fn4">
-							<span class="logintopimg" ><img src="../../assets/image/userimg@2x.png" alt=""></span>
-							<!-- <span class="logintop">登录</span> -->
-					</div>
-					<div class="dengl">{{title}}</div>
-				</div>
-					<!-- 小化 -->
-					<div class="guanbi-toprig">
-						 <span class="toprig1"><img src="" alt=""></span>
-						 <span class="toprig2"><img src="" alt=""></span>
-						 <span class="toprig3"><img src="" alt=""></span>
-					</div>
-				</div>
+			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
+			<!-- 右侧top部分 -->
+			<div class="hometoplo" v-show="hometop">
+				<!-- 下拉菜单---项目 -->
+				<el-dropdown style="float: left;margin-left:-1.4rem;">
+					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
+						<router-link to="/newjian">
+							<img class="xmimg" :src="xmtb" alt="" />
+							<i class="xm" ref="xmcol">项目</i>
+						</router-link>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
+						</i>
+					</span>
+					<el-dropdown-menu slot="dropdown" class="xinjianxm">
+							<!-- 新建项目 -->
+						<Newjian v-show="newxy"></Newjian>
+					</el-dropdown-menu>
+				</el-dropdown>
+				<!-- 下拉菜单---项目--结束 -->
+				<!-- 下拉菜单---社区 -->
+				<el-dropdown style="float: left;margin-left:1.5rem;">
+					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew">
+						<img class="sqimg" :src="sqtb" />
+						<i class="sq" ref="sqcol" :style="sqcolor">社区</i>
+						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
+					</span>
+				</el-dropdown>
+				<!-- 下拉菜单---社区--结束 -->
+
+				<!-- 下拉菜单---更多 -->
+				<el-dropdown style="float: left;margin-left:1.5rem;">
+					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
+					<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
+						<img class="moreimg" :src="moretb" />
+						<i class="more" ref="gdcol">更多</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
+						</i>
+					</span>
+					<el-dropdown-menu slot="dropdown" class="lomore">
+						<div class="moo" @mouseleave="fnleave">
+							<div class="mores1">
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
+							</div>
+							<div class="mores1" @click="fnabout">联系我们</div>
+							<div class="moresb">版本号: v 1.0.1</div>
+						</div>
+					</el-dropdown-menu>
+				</el-dropdown>
+				<!-- 更多下拉 -->
+				<!-- <More v-show="more"></More> -->
+				<!-- 下拉菜单---更多--结束 -->
 			</div>
-			
-				<!-- 右侧top部分 -->
-				<div class="hometop" v-show="hometop">
-						<!-- 下拉菜单---项目 -->
-					<el-dropdown style="float: left; margin-left: 5%;">			
-						<span class="el-dropdown-link" @click="fns()">
-							<router-link to="/newjian">
-							<img class="xmimg" src="../../assets/image/sshouse.png"/>
-							<i class="xm">项目</i>
-							</router-link>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-						<!-- <el-dropdown-menu slot="dropdown">
-							<el-dropdown-item>项目1</el-dropdown-item>
-							<el-dropdown-item>项目2</el-dropdown-item>
-							<el-dropdown-item>项目3</el-dropdown-item>
-							<el-dropdown-item disabled>项目4</el-dropdown-item>
-							<el-dropdown-item divided>项目5</el-dropdown-item>
-						</el-dropdown-menu> -->
-						<!-- <Newjian v-show="xianyin"></Newjian> -->
-					</el-dropdown>
-					<!-- 下拉菜单---项目--结束 -->
-					<!-- 下拉菜单---社区 -->
-					<el-dropdown style="float: left; margin-left: 5%;">
-						<span class="el-dropdown-link">
-							<img class="sqimg" src="../../assets/image/shequ.png"/> 
-							<i class="sq">社区</i>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item>交友</el-dropdown-item>
-							<el-dropdown-item disabled>消息</el-dropdown-item>
-							<el-dropdown-item divided>互动</el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-					<!-- 下拉菜单---社区--结束 -->
-					
-					<!-- 下拉菜单---更多 -->
-					<el-dropdown style="float: left; margin-left: 5%;">
-						<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-						<span class="el-dropdown-link">
-							<img class="moreimg" src="../../assets/image/more@2x.png"/> 
-							<i class="more">更多</i>
-							<i class="el-icon-arrow-down el-icon--right"></i>
-						</span>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item>更改密码</el-dropdown-item>
-							<el-dropdown-item disabled>版本 1.0</el-dropdown-item>
-							<el-dropdown-item divided>注销登录</el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-					<!-- 下拉菜单---更多--结束 -->
-				</div>
-				<!-- 悬浮登录窗口 --开始 -->
-				<div id="popContainer" :style="loginWindow" style="position: fixed; z-index: 49;">
-						<!-- 这个是遮罩,蒙窗 -->
-				</div>
-				<!-- 登录 -->
-				<div class="login" :style="loginWindow" >
-							<!-- <div style="width: 100%;height: 40px;background-image: url(../../assets/image/dingbutiao.png);"> -->
-							<div class="close">
-								<!-- 	<div style="color: #FFFFFF;font-size: 12px;float: left;margin-left: 10px;margin-top: 10px;">用户名</div> -->
-									<!-- <img src="../../assets/image/close.png"  style="width: 20px; height: 20px;float: right;margin-right: 10px;margin-top: 10px;" @click="closeLoginwindow"/> -->
-									<img src="../../assets/image/close.png"  @click="closeLoginwindow"/>
-							</div>
-							<div class="loginlogo">
-								<img src="../../assets/image/loginlogo@2x.png" alt="">
-							</div>
-							<!-- 验证账号密码是否正确 -->
-							<span class="yanzheng" v-if="panduan">密码账号不正确</span>
-							<!-- 输入用户名 -->
-							<div class="user">
-								<div class="userimg">
-									 <img src="../../assets/image/userimg@2x.png" alt="">
-								</div>
-								 <div class="fenge">
-									 <img src="../../assets/image/juxing11@2x.png" alt="">
-								 </div>
-								 <input type="text"  placeholder="输入手机号" v-model="username" @blur="fn1">
-							</div>
-							<!-- 输入密码 -->
-							<div class="password">
-								<div class="passwordimg">
-									 <img src="../../assets/image/userimg@2x.png" alt="">
-								</div>
-								 <div class="fenge">
-									 <img src="../../assets/image/juxing11@2x.png" alt="">
-								 </div>
-								 <input type="text" placeholder="输入密码"  v-model="password"  @blur="fn2">
-							</div>
-							<!-- 记住密码  忘记密码 -->
-							<div class="refo">
-								<div class="remember">
-									 	<el-checkbox v-model="checked">记住密码</el-checkbox>
-								</div>
-								<div class="forget">
-								     <div class="forget-paw">忘记密码</div>
-								</div>
-							</div>	
-							<!-- 登录 -->
-							<div class="Logon-button" @click="login()">
-								<span>
-									登录
-								</span>
-							</div>
-							<!-- 还没有账号？马上去注册 -->
-							<div class="login-footer">
-									 <i class="noreg">还没有账户?</i><i class="login-reg" @click="fn3">马上注册</i>
-							</div>
-							
-							<!-- 临时线 -->
-						<!-- 	<div style="margin: auto;border:1px solid blue;width: 30%;margin-top: 10px;"></div>
-							<div style="display:inline;">账号 : </div>
-							<el-input placeholder="用户名手机号" v-model="username" clearable blur="" style="width: 60%;margin-top: 20px;"></el-input>
-							<br />
-							<div style="display:inline;">密码 : </div>
-							<el-input placeholder="请输入密码" v-model="password" show-password style="width: 60%;margin-top: 10px;"></el-input>
-							<br />
-							<div>
-								<div style="color: #2180ED;font-size: 12px;display: inline-table;float: left;margin-left: 105px;margin-top: 10px;">记住密码</div>
-							
-						   	<div style="color: #2180ED;font-size: 12px;display: inline-table;float: right;margin-right: 60px;margin-top: 10px;">忘记密码</div>
-							</div>
-							<div style="margin-top: 40px">
-								<el-button type="primary" style="width: 60%;font-size:14px" @click="login">登录</el-button>
-							</div>
-							<div style="margin-top: 10px">还没有账户 ? <a href="https://www.baidu.com">马上注册</a></div> -->
-					</div>
-				<!-- 悬浮登录窗口 --结束 -->
-		</el-main>
+			<!-- 新建项目 -->
+			<!-- <Newjian v-show="newxy"></Newjian> -->
+			<!-- 悬浮登录窗口 --结束 -->
+		</div>
+		<!-- 点击联系我们的遮罩 -->
+		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);"
+		 v-show="abouts" @click="fnaboutmark">
+
+		</div>
 		<router-view></router-view>
-	</el-container>
+	</div>
 </template>
 
 <script>
-	import api from "@/api/api.js";
-	import qs from "qs";
-	import Newjian from "./newjian";
-	import Xunilogo from "./xunilogo";
-	 export default {
-    data() {
-      return {
-			username: '',
-			password: '',
-			loginWindow:'',
-			checked:'',
-			panduan:false,
-			xianyin : false,
-			xianyinxuni:false,
-			hometop:true,
-			title:'登录'
-      }
-	},
-	components:{
-		Newjian,
-		Xunilogo,
-	},
-	created() {
-		this.$eventbus.$on("shows",()=>{
-			this.xianyinxuni=true;
-		});
-		this.$eventbus.$on("showyin",()=>{
-			this.xianyinxuni=false;
-		});
-		// console.log(this.xianyinxuni)
-		this.$eventbus.$on("hometop",()=>{
-			this.hometop=true;
-		});
-		this.$eventbus.$on("xianyin",()=>{
-			this.xianyin=true;
-		});
-		this.$eventbus.$on("changetitle",(str)=>{
-			this.title = str;
-		})
-	},
-	mounted() {
-			if(window.localStorage.getItem("token") != null){
-				this.loginWindow='display: none';
-				 //请求用户接口查询 用户信息
-				
-						// .then(res => this.loginSuccess(res))
-            // .catch(err => this.requestFailed(err))
-            // .finally(() => {
-            // // state.loginBtn = false;
-            // });
-			}else{
-				this.loginWindow='';
+	/*eslint-disable*/
+	import api from '@/api/api.js';
+	import axios from 'axios';
+	import qs from 'qs';
+	import Newjian from './newjian';
+	import Xunilogo from './xunilogo';
+	// import More from './more';
+	// import Zheader from './header';
+	// import Release from './release';
+	export default {
+		data() {
+			return {
+				username: '',
+				password: '',
+				loginWindow: '',
+				checked: '',
+				panduan: false,
+				xianyin: false,
+				xianyinxuni: false,
+				hometop: true,
+				title: '12345678901',
+				box1: true,
+				xmtb: require('../../assets/image/sshouse.png'),
+				sqtb: require('../../assets/image/sq@2x.png'),
+				moretb: require('../../assets/image/more@2x.png'),
+				xmxl: require('../../assets/image/shang.png'),
+				lmore: require('../../assets/image/pmjtxia.png'),
+				sqcolor: 'color: #333333',
+				//发布组件
+				release: false,
+				//新建项目
+				newxy: false,
+				//总的等陆头部
+				// zheaderxy:true
+				// 联系我们
+				abouts: false
 			};
-  },
-	methods: {
-		fnxuni(){
-			this.xianyinxuni = !this.xianyinxuni;
-				this.xianyin = false;
 		},
-		fns(){
-			this.xianyin = !this.xianyin;
-			// this.xianyinxuni = false;
-			this.$eventbus.$emit("showyin");
+		components: {
+			Newjian,
+			Xunilogo,
+			// More,
+			// Zheader
+			// Release
 		},
-		// fnxuni(){
-		// 	this.xianyin = false;
-		// },
-		fn4(){
-				this.loginWindow='display:block';
+		created() {
+			this.$eventbus.$on('shows', () => {
+				this.xianyinxuni = true;
+			});
+			this.$eventbus.$on('showyin', () => {
+				this.xianyinxuni = false;
+			});
+			// console.log(this.xianyinxuni)
+			this.$eventbus.$on('hometop', () => {
+				this.hometop = true;
+			});
+			this.$eventbus.$on('xianyin', () => {
+				this.xianyin = true;
+			});
+			this.$eventbus.$on('changetitle', str => {
+				this.title = str;
+			});
+			this.$eventbus.$on('xmcolor', () => {
+				this.xmtb = require('../../assets/image/bluefz.png');
+				this.$refs.xmcol.style.color = '#2180ED';
+				this.sqtb = require('../../assets/image/sq@2x.png');
+				this.this.$refs.xmcol.style.color = '#333333';
+				this.sqcolor = 'color:#333';
+			});
 		},
-		fn3(){
-			this.$router.push('/Register')
-		},
-		fn1(){
-			var re =  /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|4|5|6|7|8|9])\d{8}$/;
-				if(!re.test(this.username)){
-					this.panduan = true;
-				}else{
-					this.panduan = false;
-				}
-		},
-		fn2(){
-			var re =  /^\w{6,12}$/;
-			if(!re.test(this.password)){
-				this.panduan= true
-			}else{
-				this.panduan= false
+		mounted() {
+			if (window.localStorage.getItem('token') != null) {
+				this.loginWindow = 'display: none';
+				//请求用户接口查询 用户信息
+
+				// .then(res => this.loginSuccess(res))
+				// .catch(err => this.requestFailed(err))
+				// .finally(() => {
+				// // state.loginBtn = false;
+				// });
+			} else {
+				this.loginWindow = '';
 			}
 		},
-		login(){
-			if(this.username =="" || this.password =="" ){
-				 this.panduan = true;
-				}else{
-					//请求登录接口
-						this.$http.post(api.Login,qs.stringify({username: this.username,
-					           password: this.password
-					         })	
-					       )
-								 .then(res => this.loginSuccess(res))
-					       .catch(err => this.requestFailed(err))
-					       .finally(() => {
-					       // state.loginBtn = false;
-					       });
-								 // 调用登录时返回的用户名
-						this.$eventbus.$emit('changetitle','res.data.username')		 
-								 
-				}
-				
+		methods: {
+			// 点击联系我们
+			fnabout() {
+				this.$eventbus.$emit('abouts');
+				this.abouts = true
 			},
-		loginSuccess(res) {
-      // 如果登录成功，存储token
-      if (res.code == "0") {
-        this.$store.commit("settoken", res.data.token);
-        window.localStorage.setItem("token", res.data.token);
-				// this.$router.push("/home");
-				this.loginWindow='display: none';
-				this.getUserByToken();
-      } else {
-        this.msg = res.msg;
-        this.show = true;
-        setTimeout(() => {
-          this.show = false;
-        }, 1200);
-      }
-    },
-		requestFailed() {
-      this.msg = "应用发生错误";
-      this.show = true;
-		},
-		getUserByToken(){
-			this.$http.post(api.GetUser).then(res => this.userHome(res));
-		},
-		userHome(res){
-				this.username = res.data.userName;
-				console.log("this.userName   "+this.userName);
-		},
-		// 关闭login悬浮窗
-		closeLoginwindow(){
-			this.loginWindow='display:none';
+			// 点击联系之后出现的遮罩
+			fnaboutmark() {
+				this.$eventbus.$emit('aboutsbi');
+				this.abouts = false;
+			},
+			fndianji() {
+				this.$router.push('/Login');
+				this.xmtb = require('../../assets/image/bluefz.png');
+			},
+			// fnxuni(){
+			// 	this.xianyinxuni = !this.xianyinxuni;
+			// 	this.xianyin = false;
+			// 	this.box1=!this.box1
+			// },
+			fns() {
+				this.xianyin = !this.xianyin;
+				// this.xianyinxuni = false;
+				// this.$eventbus.$emit('showyin');
+				// this.$router.push('/Login/newjian');
+				this.newxy = true
+				this.xmtb = require('../../assets/image/bluefz.png');
+				this.sqtb = require('../../assets/image/sq@2x.png');
+				this.moretb = require('../../assets/image/more@2x.png');
+				this.lmore = require('../../assets/image/pmjtxia.png');
+				this.xmxl = require('../../assets/image/shang.png');
+				this.$refs.xmcol.style.color = '#2180ED';
+				this.sqcolor = 'color:#333333';
+				this.$refs.gdcol.style.color = '#333333';
+			},
+			//划过社区
+			fnnew() {
+				this.newxy = false
+			},
+			sqq() {
+				this.xmtb = require('../../assets/image/sshouse.png');
+				this.xmxl = require('../../assets/image/pmjtxia.png');
+				this.$refs.xmcol.style.color = '#333333';
+				this.sqtb = require('../../assets/image/sq@2x.png');
+				this.sqcolor = 'color:#333333';
+				this.lmore = require('../../assets/image/shang.png');
+			},
+			// 移出更多
+			fnleave() {
+				this.lmore = require('../../assets/image/pmjtxia.png')
+			},
+			fncomenter() {
+				this.$router.push('/');
+				this.sqtb = require('../../assets/image/shequ.png');
+				this.sqcolor = 'color:#2180ED';
+				this.$refs.xmcol.style.color = '#333333';
+				this.xmtb = require('../../assets/image/sshouse.png');
+				this.$refs.gdcol.style.color = '#333333';
+				this.moretb = require('../../assets/image/more@2x.png');
+			},
+			// fnxuni(){
+			// 	this.xianyin = false;
+			// },
+			fn4() {
+				this.loginWindow = 'display:block';
+			},
+			fn3() {
+				this.$router.push('/Register');
+			},
+			fn1() {
+				var re = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|4|5|6|7|8|9])\d{8}$/;
+				if (!re.test(this.username)) {
+					this.panduan = true;
+				} else {
+					this.panduan = false;
+				}
+			},
+			fn2() {
+				var re = /^\w{6,12}$/;
+				if (!re.test(this.password)) {
+					this.panduan = true;
+				} else {
+					this.panduan = false;
+				}
+			},
+			// login() {
+			// 	if (this.username == '' || this.password == '') {
+			// 		this.panduan = true;
+			// 	} else {
+			// 		//请求登录接口
+			// 		this.$http
+			// 			.post(api.Login, qs.stringify({ username: this.username, password: this.password }))
+			// 			.then(res => this.loginSuccess(res))
+			// 			.catch(err => this.requestFailed(err))
+			// 			.finally(() => {});
+			// 		// 调用登录时返回的用户名
+			// 		this.$eventbus.$emit('changetitle', 'res.data.username');
+			// 	}
+			// },
+			// loginSuccess(res) {
+			// 	// 如果登录成功，存储token
+			// 	if (res.code == '0') {
+			// 		this.$store.commit('settoken', res.data.token);
+			// 		window.localStorage.setItem('token', res.data.token);
+			// 		// this.$router.push("/home");
+			// 		this.loginWindow = 'display: none';
+			// 		this.getUserByToken();
+			// 	} else {
+			// 		this.msg = res.msg;
+			// 		this.show = true;
+			// 		setTimeout(() => {
+			// 			this.show = false;
+			// 		}, 1200);
+			// 	}
+			// },
+			// requestFailed() {
+			// 	this.msg = '应用发生错误';
+			// 	this.show = true;
+			// },
+			// getUserByToken() {
+			// 	this.$http.post(api.GetUser).then(res => this.userHome(res));
+			// },
+			// userHome(res) {
+			// 	this.username = res.data.userName;
+			// 	console.log('this.userName   ' + this.userName);
+			// },
+			// 关闭login悬浮窗
+			closeLoginwindow() {
+				this.loginWindow = 'display:none';
+			}
 		}
-	}
-}
+	};
 </script>
 
 <style>
-	a{
-		color:#333333;
+		.xinjianxm{
+		position:absolute;
+		top:2.3rem !important;
+		left:0rem !important;
+		border:0rem solid #000000 !important;
+		padding:0rem !important;
+		margin:0rem !important;
+		/* background:red; */
+		/* placement:top-start */
+		width:0rem !important;
+		height:0rem !important;
+	}
+	.el-icon-caret-top{
+		font-size:0rem !important;
+	}
+	.lomore {
+		background: rgba(225, 225, 225, 0.6);
+		position: absolute;
+		top: 1.825rem !important;
+		left: 15.175rem !important;
+		border: none;
+		padding: 0.1rem;
+	}
+
+	.moo {
+		width: 3.75rem;
+		/* 		height: 195px; */
+		/* 	background: url(../../assets/image/mores.png); */
+		padding-left: 0.2rem;
+		padding-right: 0.25rem;
+		cursor: pointer;
+	}
+
+	.mores1 {
+		width: 3.75rem;
+		height: 0.9rem;
+		border-bottom: 1px solid #999999;
+		text-align: left;
+		line-height: 0.9rem;
+		color: #666666;
+		font-size: 0.46rem;
+		font-weight: 500;
+		/* 	background:red; */
+	}
+
+	.moresb {
+		border: 0;
+		text-align: left;
+		line-height: 0.9rem;
+		color: #666666;
+		font-size: 0.46rem;
+		font-weight: 500;
+		/* 	background:red; */
+	}
+
+	a {
+		color: #333333;
 		text-decoration: none;
 	}
-	*{padding:0;margin:0}
-/* 	html{height:100%};
-	body{height:100%}; */
-	.zong{
-		width:1920px;
-		height:1080px;
-	/* 	background:green; */
-		background-image: url(../../assets/image/bg@2x.png);
-	  background-repeat: no-repeat;
-	  background-size:100% 100%;
-   	background-attachment: fixed;
+
+	* {
+		padding: 0;
+		margin: 0;
 	}
+
+	body {
+		width: 100%;
+	}
+
+	html {
+		width: 100%;
+	}
+
+	.zonglogin {
+		width: 59.9375rem;
+		height: 33.65625rem;
+		/* background:green; */
+		background: url(../../assets/image/bjt.jpg);
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+	}
+
+	.boxlo {
+		width: 216px;
+		height: 59px;
+		background: rgba(225, 225, 225, 0.1);
+	}
+
+	.poxlo {
+		width: 216px;
+		height: 60px;
+		background: url(../../assets/image/homecebian8@2x.png) no-repeat;
+		background-size: 216px 60px;
+	}
+
 	.el-main {
-		width:1703px  !important;
-		height: 1080px  !important;
-	/* 	background-color:green; */
+		/* 	background-color:green; */
 		/* padding-left:50px; */
 		/* padding-top:29px; */
-		padding:0 !important;
+		padding: 0 !important;
 	}
-	/*top右上角 */
-	.top-right{
-		width:282px;
-		height:29px;
-	/* 	background:blue; */
-		float:right;
+
+	.login-img1 {
+		width: 20px;
+		height: 18px;
+		cursor: pointer;
+		float: left;
+		display: inline-block;
 	}
-	.login-img{
-		cursor:pointer;
+
+	/* 保存 */
+	.save {
+		width: 48px;
+		height: 22px;
+		float: left;
+		margin-top: 5px;
 	}
-	/*登录右上角的登录 */
-	.login-parent{
-		width:1703px;
-		height:29px;
-	/* 	background:red; */
-	}	
-	.imgzong{
-		width:160px;
-		height:25px;
-		/* background:green; */
-		float:left;
-		padding-top:4px;
+
+	.save img {
+		width: 100%;
+		height: 100%;
 	}
-	.dengl{
-		float:left;
-		margin-left:3px;
-		font-size:14px;
-		color: #2180ED;
+
+	/* 发布 */
+	.release {
+		width: 48px;
+		height: 22px;
+		float: left;
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 18px;
 	}
-	.guanbi-toprig{
-		width:120px;
-		height:29px;
-		/* background:red; */
-		float:left;
+
+	.release img {
+		width: 100%;
+		height: 100%;
 	}
-	.toprig1,.toprig3{
-		display:block;
-		width:36px;
-		height:27px;
-	/* 	background:blue; */
-		float:left;
-		border:1px solid #2180ED;
-	}
-	.toprig2{
-		display:block;
-		width:36px;
-		height:27px;
-		/* 	background:blue; */
-		float:left;
-		border-top:1px solid #2180ED;
-		border-bottom:1px solid #2180ED;
-	}
+
 	/* 主页top部分*/
-	.hometop{
-		width:1703px;
-		height:57px;
-	/* 	background:plum; */
+	.hometoplo {
+		/* width:46.875rem;
+	height:1.78125rem; */
+		position: absolute;
+		top: 0.6375rem;
+		left: 6.9375rem;
+		/* background:red; */
+		line-height: 1.78125rem;
 	}
+
 	/* 左侧边栏 */
-	.left{
-		width:217px;
-		height:987px;
-		/* background:blue; */
-	}
-	.logo{
-		width:117px;
-		height:28px;
-		padding-left:50px;
-		/* background:black; */
-	  padding-top:29px;
-		/* left:15px; */
+	.logo {
+		width: 3.65625rem;
+		height: 0.875rem;
+		/* padding-left: 1.8625rem; */
+		padding-top: 0.90625rem;
+		margin-left: 0.5625rem;
 		/* background:red; */
 	}
-	.lefttop{
-		width:216px;
-		height:60px;
-	/* 	background-color:green;
-		background: url(../../assets/image/homecebian8@2x.png); */
+
+	.lefttop {
+		width: 6.75rem;
+		height: 1.875rem;
+		/* 	background-color:green;
+			background: url(../../assets/image/homecebian8@2x.png); */
+		position: absolute;
+		top: 0px;
+		/* background:red; */
 	}
- .el-dropdown-link {
-    cursor: pointer;
-    color: #333333;
-  }
-	.xmimg{
-		width:27px;
-		height:26px;
-		padding-left:80px;
-		padding-top:2px;
+
+	.el-dropdown-link {
+		cursor: pointer;
 	}
-	.xm{
-		width:38px;
-    height:17px;
-    font-size:20px;
-    font-family:MicrosoftYaHei;
-    font-weight:400;
-    color:rgba(51,51,51,1);
-		font-size:20px;
-		font-style:normal;
-		padding-left:5px;
-		line-height:17px;
+
+	.xmimg {
+		width: 0.84375rem;
+		height: 0.8125rem;
+		padding-left: 2.5rem;
+		padding-top: 0.0625rem;
 	}
-	.sqimg{
-		width:27px;
-		height:26px;
+
+	.xm {
+		width: 0.84375rem;
+		height: 0.53125‬;
+		font-size: 0.625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		/* 	color: #2180ed; */
+		font-style: normal;
+		padding-left: 0.15625rem;
+		line-height: 0.53125rem;
 	}
-	.sq{
-		width:40px;
-		height:18px;
-		color:#2180ED;
-		font-size:20px;
-		font-family:MicrosoftYaHei;
-		font-weight:400;
-		padding-left:6px;
-		font-style:normal;
+
+	.sqimg {
+		width: 0.84375rem;
+		height: 0.8125rem;
 	}
-	.moreimg{
-		width:25px;
-		height:25px;
+
+	.sq {
+		width: 1.25rem;
+		height: 0.5625rem;
+		font-size: 0.625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		padding-left: 0.1875rem;
+		font-style: normal;
 	}
-	.more{
-		width:39px;
-		height:19px;
-		font-size:20px;
-		font-style:normal;
-		padding-left:5px;
-		font-family:MicrosoftYaHei;
-    font-weight:400;
-    color:rgba(51,51,51,1);
+	.moreimg {
+		width: 0.78125rem‬;
+		height: 0.78125rem;
+	}
+	.more {
+		width: 1.21875rem;
+		height: 0.59375rem;
+		font-size: 0.625rem;
+		font-style: normal;
+		padding-left: 0.15625rem;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		color: rgba(51, 51, 51, 1);
 	}
 	.el-dropdown-link2 {
-    cursor: pointer;
-    color: #2180ED;
-  }
-  .el-icon-arrow-down {
-    font-size: 20px;
-  }
+		cursor: pointer;
+		/*  color: #2180ED; */
+	}
+	.el-icon-arrow-down {
+		font-size: 20px;
+	}
 	/* 登录 */
-	.login{
-		width:555px;
-		height:555px;
-		position:absolute;
-		z-index:50;
-		top:40%;
-		left:50%;
-		margin-top:-223px;
-		margin-left:-550px;
+	.login {
+		width: 12.34375rem;
+		height: 12.34375rem;
+		position: absolute;
+		z-index: 50;
+		top: 10.5rem;
+		left: 22.3125rem;
+		/* 	margin-top: -228px;
+	margin-left: -550px; */
 		background-color: white;
-		background:url(../../assets/image/beijing@2x.png) no-repeat;
-		background-size: 555px 555px; 
+		background: url(../../assets/image/beijing@2x.png) no-repeat;
+		background-size: 12.34375rem 12.34375rem;
 	}
-	#popContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0);
-}
-.logintopimg{
-	display:block;
-	width:18px;
-	height:18px;
-	float:left;
-	padding-top:4px;
-	margin-right:3px;
-}
-.logintopimg img {
-	width:100%;
-	height:100%;
-}
-.logintop{
-	color:#2180ED;
-	font-size:14px;
-	float:left;
-}
-.close{
-	width:20px;
-	height:20px;
-	background:linear-gradient(180deg,rgba(255,255,255,0.2));
-  border-radius:2px;
-	position:absolute;
-	right:-50px;
-}
-.close img{
-	width:20px;
-	height:20px;
-}
-.loginlogo{
-	width:129px;
-	height:37px;
-	position:absolute;
-  left:214px;
-	top:126px;
-}
-.loginlogo img{
-	width:100%;
-	height:100%;
-}
-.user{
-	width:289px;
-	height:40px;
-	position:absolute;
-	top:217px;
-	left:134px;
-	background:#FFFFFF;
-}
-.userimg{
-	width:27px;
-	height:30px;
-	display:block;
-	float:left;
-	padding-let:9px;
-	padding-top:6px;
-	padding-right:4px;
-}
-.userimg img{
-	width:100%;
-	height:100%;
-}
-.fenge{
-	 width:2px;
-	 height:25px;
-	 float:left;
-	}
-.fenge img{
-	width:2px;
-	height:25px;
-	padding-top:5px;
-}
-.user input{
-	 width:244px;
-   height:40px;
-	 float:left;
-	 padding-left:12px;
-	 border:none;
-	 line-height:40px;
-	 display:inline-block;
-}
-.yanzheng{
-	display:block;
-	width:128px;
-	height:16px;
-	font-size:16px;
-	font-weight:400;
-	font-family:MicrosoftYaHei;
-	color:red;
-	position:absolute;
-	left:214px;
-	top:191px;
-}
-.password{
-	width:289px;
-	height:40px;
-	position:absolute;
-	top:283px;
-	left:134px;
-	background:#FFFFFF; 
-}
-.passwordimg{
-	width:27px;
-	height:30px;
-	display:block;
-	float:left;
-	padding-let:9px;
-	padding-top:6px;
-	padding-right:4px;
-}
-.passwordimg img{
-	width:100%;
-	height:100%;
-}
-.fenge{
-	 width:2px;
-	 height:25px;
-	 float:left;
-	}
-.fenge img{
-	width:2px;
-	height:25px;
-	padding-top:5px;
-}
-.password input{
-	 width:239px;
-   height:39px;
-	 float:left;
-	 padding-left:12px;
-	 border:none;
-	 line-height:40px;
-	 display:inline-block;
-}
 
-/* 记住忘记密码 */
-.refo{
-	width:260px;
-	height:15px;
-	position:absolute;
-	top:330px;
-	left:152px;
-	margin-top:5px;
-}
-.el-checkbox__label{
-	position:absolute;
-	left:-30px;
-	top:-2px;
-	font-size:12px;
-	color:#2180ED;
-	padding-left:13px;
-	background:rgba(0,0,0,0);
-}
-.el-checkbox__inner{
-	position:absolute;
-	left:-35px;
-	top:-10px;
-}
- .remember{
-	width:63px;
-	height:11px;
+	#popContainer {
+		width: 59.9375rem;
+		height: 33.65625rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.2);
 	}
-/* 忘记密码 */
-.forget-paw{
-	  color:#2180ED;
-		font-size:12px;
-		position:absolute;
-		left:186px;
-		top:-4px;
-		font-weight:400;
-		cursor:pointer;
+
+
+	.logintop {
+		color: #2180ed;
+		font-size: 14px;
+		float: left;
 	}
-/* 登录按钮 */
-.Logon-button{
-	 width:255px;
-	 height:36px;
-	 position:absolute;
-	 top:372px;
-	 left:150px;
-	 background:url(../../assets/image/juxing3@2x.png);
-	 cursor:pointer;
+
+	.close {
+		width: 0.445rem;
+		height: 0.445rem;
+		/* background: linear-gradient(180deg, rgba(255, 255, 255, 0.2)); */
+		border-radius: 2px;
+		position: absolute;
+		right: -1.2625rem;
 	}
-.Logon-button span{
-	font-size:14px;
-	font-weight:400;
-	font-family:MicrosoftYaHei;
-	color:#FFFFFF;
-	text-align:center;
-	line-height:36px;
-}
-/* 还没有账号？马上注册 */
-.login-footer{
-	 width:155px;
-	 height:20px;
-	 font-size:12px;
-	 position:absolute;
-	 top:418px;
-	 left:216px;
+
+	.close img {
+		width: 0.445rem;
+		height: 0.445rem;
 	}
-	.noreg{
-		font-family:MicrosoftYaHei;
-		font-weight:400;
+
+	.loginlogo {
+		width: 3.53125rem;
+		height: 0.85625rem;
+		position: absolute;
+		left: 4.256rem;
+		top: 2.7062rem;
+	}
+
+	.loginlogo img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.user {
+		width: 6.03125rem;
+		height: 0.838rem;
+		position: absolute;
+		top: 4.625rem;
+		right: 3.2rem;
+		background: #ffffff;
+		/* 	background:red; */
+	}
+
+	.user input {
+		width: 5.7rem;
+		height: 0.838rem;
+		float: left;
+		padding-left: 0.3rem;
+		border: none;
+		line-height: 1.25rem;
+		display: inline-block;
+	}
+
+	.yanzheng {
+		display: block;
+		/* width:3.0rem;
+	height:0.5rem; */
+		font-size: 0.3rem;
+		font-weight: 400;
+		font-family: MicrosoftYaHei;
+		color: red;
+		position: absolute;
+		left: 4.6rem;
+		top: 3.9rem;
+	}
+
+	.password {
+		width: 6rem;
+		height: 0.82rem;
+		position: absolute;
+		top: 6.19rem;
+		right: 3.2rem;
+		background: #ffffff;
+		/* background:red; */
+	}
+
+	.password input {
+		width: 3.6rem;
+		height: 0.82rem;
+		/* float: left; */
+		padding-left: 0.25rem;
+		border: none;
+		line-height: 0.82rem;
+		display: inline-block;
+		float: left;
+	}
+
+	/* 登录按钮 */
+	.Logon-button {
+		width: 5.279rem;
+		height: 0.8017rem;
+		position: absolute;
+		top: 7.7rem;
+		left: 3.3875rem;
+		background: url(../../assets/image/juxing3@2x.png);
+		background-size: 5.279rem 0.8017rem;
+		cursor: pointer;
+		font-size: 0.3933rem;
+		font-weight: 400;
+		font-family: MicrosoftYaHei;
+		color: #ffffff;
+		text-align: center;
+		line-height: 0.8017rem;
+	}
+
+	/* 还没有账号？马上注册 */
+	.login-footer {
+		width: 4.0375rem;
+		height: 0.625rem;
+		font-size: 0.375rem;
+		position: absolute;
+		top: 8.725rem;
+		/* left:4.3rem; */
+		right: 4.3rem;
+	}
+
+	.noreg {
+		font-family: MicrosoftYaHei;
+		display: inline-block;
+		font-weight: 400;
 		font-style: normal;
-    color:rgba(51,51,51,1);
+		font-size: 0.375rem;
+		color: rgba(51, 51, 51, 1);
 	}
-	.login-reg{
-		color:#2180ED;
-		font-family:MicrosoftYaHei;
-		font-weight:400;
-		font-style:normal;
-		cursor:pointer;
+
+	.login-reg {
+		color: #2180ed;
+		font-family: MicrosoftYaHei;
+		display: inline-block;
+		font-weight: 400;
+		font-size: 0.333rem;
+		font-style: normal;
+		cursor: pointer;
 	}
 </style>

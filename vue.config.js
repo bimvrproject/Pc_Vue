@@ -1,4 +1,28 @@
+const webpack = require('webpack')
 module.exports = {
+    pluginOptions: {
+        electronBuilder: {
+            builderOptions: {
+                win: {
+                    icon: './public/app.ico'
+                },
+                mac: {
+                    icon: './public/app.png'
+                },
+                productName: '虚拟建造'
+            }
+        }
+    },
+	configureWebpack: {
+      plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'window.$': 'jquery'
+        })
+      ]
+    },
   publicPath: "./",
   // 将部署应用程序的基本URL
   // 默认情况下，Vue CLI假设您的应用程序将部署在域的根目录下。
@@ -32,7 +56,8 @@ module.exports = {
   // },
 
   //   lintOnSave：{ type:Boolean default:true } 问你是否使用eslint
-  lintOnSave: true,
+    lintOnSave:false,
+	 // lintOnSave:process.env.NODE_ENV !== 'PRODUCTION',
   // productionSourceMap：{ type:Bollean,default:true } 生产源映射
   // 如果您不需要生产时的源映射，那么将此设置为false可以加速生产构建
   productionSourceMap: false,
@@ -47,7 +72,7 @@ module.exports = {
     // proxy: 'http://127.0.0.1:6666' // 配置跨域处理,只有一个代理
     proxy: {
       "/v1.0": {
-        target: "http://127.0.0.1:6666",
+        target: "http://36.112.65.110:9090",
         ws: true,
         changeOrigin: true,
         pathRewriter: {
@@ -59,5 +84,5 @@ module.exports = {
       //           target: '<other_url>'
       //       }
     } // 配置多个代理
-  }
+  },
 };
