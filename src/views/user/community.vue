@@ -483,22 +483,28 @@ export default {
 <style>
 	.lomorecom {
 		background: rgba(225, 225, 225, 0.6);
-		position: absolute;
-		top:2.125rem  !important;
-		left:14.975rem !important;
-		border: none;
+	position: absolute;
+	top: 1.825rem !important;
+	left: 16.175rem !important;
+	border: none;
+	padding: 0.1rem;
+	border-radius:0;
 	}
+		.popper__arrow{
+		border-width:0rem !important;
+		position:absolute;
+		overflow:hidden;
+	  }
 	.moocom {
-		width:3.75rem;
-		/* width: 183px;
-		height: 195px; */
-		/* background: url(../../assets/image/mores.png); */
-		padding-left:0.2rem;
-		padding-right:0.25rem;
+		width: 4.34375rem;
+		/* 		height: 195px; */
+		/* 	background: url(../../assets/image/mores.png); */
+		padding-left: 0.2rem;
+		padding-right: 0.25rem;
 		cursor: pointer;
 	}
 	.mores1com {
-		width:3.75rem;
+		width: 4.3rem;
 		height:0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;

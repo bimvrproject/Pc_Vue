@@ -1,18 +1,5 @@
 const webpack = require('webpack')
 module.exports = {
-    pluginOptions: {
-        electronBuilder: {
-            builderOptions: {
-                win: {
-                    icon: './public/app.ico'
-                },
-                mac: {
-                    icon: './public/app.png'
-                },
-                productName: '虚拟建造'
-            }
-        }
-    },
 	configureWebpack: {
       plugins: [
         new webpack.ProvidePlugin({

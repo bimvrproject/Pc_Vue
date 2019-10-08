@@ -23,17 +23,17 @@ protocol.registerSchemesAsPrivileged([{
 
 function createWindow () {
   // Create the browser window.
-    win = new BrowserWindow({
-      width: 1200,
-      height: 800,
-      autoHideMenuBar: true,
-      webPreferences: {
-         webSecurity: false,
-        nodeIntegration: true,
-      },
-	   icon: `${__static}/app.ico`,
-	  
-    })
+  win = new BrowserWindow({
+    width: 1600,
+    height: 1000,
+    autoHideMenuBar: true,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      webSecurity: false,
+
+    }
+  })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode

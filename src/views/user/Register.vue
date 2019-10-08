@@ -32,23 +32,25 @@
 				<!-- 下拉菜单---社区--结束 -->
 			
 				<!-- 下拉菜单---更多 -->
-				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
-					<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
-						<img class="moreimgcom" :src="moretb" />
-						<i class="morecom" ref="gdcol">更多</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;"></i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="lomorecom">
-						<div class="moocom">
-							<a class="mores1com" href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;">帮助</a>
-							<div class="mores1com" @click="Preservation">保存设置</div>
-							<div class="mores1com" @click="xiugai">修改密码</div>
-							<div class="mores1com" @click="abouts">联系我们</div>
-							<div class="moresbcom">版本号: v 1.0.1</div>
+			<el-dropdown style="float: left;margin-left:1.5rem;">
+				<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
+				<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
+					<img class="moreimg" :src="moretb" />
+					<i class="more" ref="gdcol">更多</i>
+					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+						<img :src="lmore" alt="" style="width: 100%;height: 100%;">
+					</i>
+				</span>
+				<el-dropdown-menu slot="dropdown" class="lomore">
+					<div class="moo" @mouseleave="fnleave">
+						<div class="mores1">
+							<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
 						</div>
-					</el-dropdown-menu>
-				</el-dropdown>
+						<div class="mores1" @click="fnabout">联系我们</div>
+						<div class="moresb">版本号: v 1.0.1</div>
+					</div>
+				</el-dropdown-menu>
+			</el-dropdown>
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
 				<!-- 下拉菜单---更多--结束 -->
@@ -248,6 +250,7 @@ export default {
 			xmtb: require('../../assets/image/sshouse.png'),
 			sqtb: require('../../assets/image/sq@2x.png'),
 			moretb: require('../../assets/image/more@2x.png'),
+			lmore: require('../../assets/image/pmjtxia.png'),
 			sqcolor: 'color: #333333',
 			token:"",
 			//总的等陆头部
@@ -332,22 +335,22 @@ export default {
 			}
 			// this.loginWindow = 'display:block';
 		},
-		Preservation() {
-			this.$router.push('/baocun');
-		},
-		xiugai() {
-			this.$router.push('/xiugai');
-		},
-		abouts() {
-			this.$router.push('/about');
-		},
+		// Preservation() {
+		// 	this.$router.push('/baocun');
+		// },
+		// xiugai() {
+		// 	this.$router.push('/xiugai');
+		// },
+		// abouts() {
+		// 	this.$router.push('/about');
+		// },
 		sqq() {
-			// this.moretb = require('../../assets/image/moress.png');
-			// this.$refs.gdcol.style.color = '#2180ED';
 			this.xmtb = require('../../assets/image/sshouse.png');
+			this.xmxl = require('../../assets/image/pmjtxia.png');
 			this.$refs.xmcol.style.color = '#333333';
-			// this.sqtb = require('../../assets/image/sq@2x.png');
-			// this.sqcolor = 'color:#333333';
+			this.sqtb = require('../../assets/image/sq@2x.png');
+			this.sqcolor = 'color:#333333';
+			this.lmore = require('../../assets/image/shang.png');
 		},
 		fn5() {
 			this.$router.push('/');
@@ -418,40 +421,45 @@ export default {
 </script>
 
 <style>
-	.lomorecom {
+		.lomore {
 		background: rgba(225, 225, 225, 0.6);
 		position: absolute;
-		top:2.125rem  !important;
-		left:16.175rem !important;
+		top: 1.825rem !important;
+		left: 16.175rem !important;
 		border: none;
+		padding: 0.1rem;
+		border-radius:0;
 	}
-	.moocom {
-		/* width: 183px;
-		height: 195px; */
-		background: url(../../assets/image/mores.png);
-		padding-left:0.2rem;
-		padding-right:0.25rem;
+	
+	.moo {
+		width: 4.34375rem;
+		/* 		height: 195px; */
+		/* 	background: url(../../assets/image/mores.png); */
+		padding-left: 0.2rem;
+		padding-right: 0.25rem;
 		cursor: pointer;
 	}
-	.mores1com {
-		width:3.2rem;
-		height:0.7rem;
+	
+	.mores1 {
+		width: 4.3rem;
+		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
-		line-height:0.7rem;
+		line-height: 0.9rem;
 		color: #666666;
-		font-size:0.3rem;
+		font-size: 0.46rem;
 		font-weight: 500;
-	/* 	background:red; */
+		/* 	background:red; */
 	}
-	.moresbcom {
+	
+	.moresb {
 		border: 0;
 		text-align: left;
-		line-height:0.7rem;
+		line-height: 0.9rem;
 		color: #666666;
-		font-size:0.3rem;
+		font-size: 0.46rem;
 		font-weight: 500;
-		/* background:red; */
+		/* 	background:red; */
 	}
 	a {
 		color: #333333;
@@ -947,11 +955,11 @@ export default {
 	padding-left:0.1875rem;
 	font-style: normal;
 }
-.moreimgcom {
+.moreimg {
 	width: 0.78125rem‬;
 	height: 0.78125rem;
 }
-.morecom {
+.more {
 	width:1.21875rem;
 	height:0.59375rem;
 	font-size:0.625rem;

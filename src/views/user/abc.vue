@@ -53,27 +53,53 @@
 </style>
 
  -->
- <template>
-	 <el-dropdown>
-  <span class="el-dropdown-link">
-    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-  </span>
-  <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item>黄金糕</el-dropdown-item>
-    <el-dropdown-item>狮子头</el-dropdown-item>
-    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-    <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-    <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-  </el-dropdown-menu>
-</el-dropdown>
+ <!-- <template>
+	 <el-breadcrumb separator="/">
+  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+  <el-breadcrumb-item>活动管理</a></el-breadcrumb-item>
+  <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+  <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+</el-breadcrumb>
+
 </template>
 <style>
-  .el-dropdown-link {
-    cursor: pointer;
-    color: #409EFF;
-  }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
-</style>
+</style> -->
+<template>
+	<el-menu  mode="horizontal" >
+	  <el-submenu>
+	    <template slot="title" class="gzt" style="color">我的工作台</template>
+	    <!-- <el-menu-item index="2-1">选项1</el-menu-item>
+	    <el-menu-item index="2-2">选项2</el-menu-item>
+	    <el-menu-item index="2-3">选项3</el-menu-item> -->
+			<div>
+				1321
+			</div>
+	  </el-submenu>
+	</el-menu>
 	
+</template>
+	
+<script>
+  export default {
+    data() {
+      return {
+        // activeIndex: '1',
+        // activeIndex2: '1'
+      };
+    },
+    methods: {
+      // handleSelect(key, keyPath) {
+      //   console.log(key, keyPath);
+      // }
+    }
+  }
+</script>
+<style>
+	.el-submenu__icon-arrow, .el-icon-arrow-down{
+		display:none;
+	}
+	.el-menu.el-menu--horizontal{
+		border-bottom:0rem !important;
+		color:red
+	}
+</style>
