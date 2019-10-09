@@ -6,6 +6,7 @@
 			<!-- 表身 -->
 			<!-- 旧密码 -->
 			<div class="jiu">
+				
 				<span class="jm">旧密码 :</span>
 				<el-input v-model="jiu" placeholder="请输入旧密码"></el-input>
 			</div>

@@ -115,12 +115,7 @@
 														/>
 													</i>
 													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-left:0.3125rem;" @click="clear(index)"alt="">
-													<!-- <i style="font-style:normal;display:inline-block;width:0.40625rem;height:0.5rem;margin-bottom:10px;" @click="clear(index)">
-														<img src="../../assets/image/lj.png" alt="" style="width:100%;height:100%;" />
-													</i> -->
-													<!-- <i style="font-style:normal;display:inline-block;width:0.46875rem;height:0.5rem;float:right;" @click="store(index)">
-														<img src="../../assets/image/bcc.png" alt="" style="width:100%;height:100%;" />
-													</i> -->
+												
 												</span>
 											</div>
 										</li>
