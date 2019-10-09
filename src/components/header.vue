@@ -160,7 +160,7 @@
 			top:0.6rem; */
 		/* 	background:url(../assets/image/dlbj.png) no-repeat;
 			background-size:7.3125rem 5.21875rem; */
-			background:rgba(225,225,225,.5) !important;
+			background:rgba(225,225,225,.3) !important;
 			}
 		.hhh{
 			position:absolute;
@@ -173,7 +173,7 @@
 			margin-left:0.3rem;
 			cursor:pointer;
 			/* background:url(../assets/image/dlbj.png) no-repeat !important; */
-			background:rgba(225,225,225,.6) !important;
+			background:rgba(225,225,225,.3) !important;
 			border:none !important;
 		}
 			/* top */

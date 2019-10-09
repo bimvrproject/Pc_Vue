@@ -52,7 +52,7 @@
 					<el-dropdown-menu slot="dropdown" class="lomore">
 						<div class="moo" @mouseleave="fnleave">
 							<div class="mores1">
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 							</div>
 							<div class="mores1" @click="fnabout">联系我们</div>
 							<div class="moresb">版本号: v 1.0.1</div>
@@ -318,7 +318,7 @@
 		overflow:hidden;
 	}
 	.lomore {
-		background: rgba(225, 225, 225, 0.6);
+		background: rgba(225, 225, 225, 0.3);
 		width:4.75rem;
 		/* background:red; */
 		position: absolute;
@@ -331,12 +331,12 @@
 		width:4.75rem;
 		/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
-		padding-left: 0.2rem;
+		padding-left: 0.1rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
 	}
 	.mores1 {
-		width: 4.75rem;
+		width: 4.65rem;
 		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
@@ -344,8 +344,8 @@
 		color: #666666;
 		font-size: 0.46rem;
 		font-weight: 500;
-		/* background:red; */
-		padding-top:0.2rem;
+	/* 	background:red; */
+		padding-top:0.12rem;
 	}
 	.moresb {
 		border: 0;
@@ -482,7 +482,7 @@
 		font-size: 0.625rem;
 		font-family: MicrosoftYaHei;
 		font-weight: 400;
-		/* 	color: #2180ed; */
+			color: #333333;
 		font-style: normal;
 		padding-left: 0.15625rem;
 		line-height: 0.53125rem;
