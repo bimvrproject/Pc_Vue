@@ -301,13 +301,17 @@
 		height:0rem;
 		padding:0 !important;
 		margin:0 !important;
-	}
-	.el-dropdown-menu{
 		position:absolute;
 		top:2.3rem !important;
 		left:0rem !important;
 		border:none !important;
 	}
+	/* .el-dropdown-menu{
+		position:absolute;
+		top:2.3rem !important;
+		left:0rem !important;
+		border:none !important;
+	} */
 	.popper__arrow{
 		border-width:0rem !important;
 		left:0 !important;

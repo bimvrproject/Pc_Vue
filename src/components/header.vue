@@ -4,12 +4,46 @@
 		 <div class="login-parent">
 		 	<div class="top-right">
 		 		<!-- 登录头像 -->
-		 		<div class="imgzong" @mouseenter="fnss">
-		 			<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
+		 		<el-dropdown class="imgzong" style="position:relative;">
+					<div>
+						<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
 		 				<!-- <span class="logintop">登录</span> -->
 		 			<!-- <div class="dengl">{{message ? message : "登录"}}</div> -->
 					<div class="dengl">{{$store.state.phone ? $store.state.phone : "登录"}}</div>
-		 		</div>
+					</div>	
+					<el-dropdown-menu slot="dropdown" class="hhh">
+							 	 <div class="dlzong">
+								 		 <!-- top -->
+								 		 <div class="dltop">
+								 			 <!-- 头像图片 -->
+								 			 <div class="logindl"></div>
+								 			 <!-- 手机号，vip级别，到期时间 -->
+								 			 <div class="svdrigh">
+								 				 <div style="display:flex;">
+								 					 <span class="svdone">{{$store.state.phone ? $store.state.phone : "未登录"}}</span><img src="../assets/image/vipg.png" alt="">
+								 				 </div> 
+								 				<!-- 到期时间 -->
+								 				<div class="comsj">
+								 					<span class="comsjo">2020年8月26日</span>
+								 					<span class="comsjt">到期</span>
+								 				</div>
+								 			 </div>
+								 		 </div>
+								 		 <!-- lineone -->
+								 		 <img src="../assets/image/line.png" style="width:6.46875rem;height:0.0625rem;float:left;margin-left:0.45rem;" alt="">
+								 		 <!-- 会员升级 -->
+								 		 <div class="vip">
+								 			 会员升级
+								 		 </div>
+								 		  <!-- lineone -->
+								 		 <img src="../assets/image/line.png" style="width:6.46875rem;height:0.0625rem;float:left;margin-left:0.45rem;" alt="">
+								 		 <!-- 退出 -->
+								 		 <div class="dllave">
+								 			 退出
+								 		 </div>
+						</div>
+					</el-dropdown-menu>
+		 		</el-dropdown>
 		 		<!-- 小化 -->
 		 			<div class="guanbi-toprig">
 		 			<span class="toprig11"><img src="../assets/image/min.png" alt="" style="width:1.21875‬rem;height:0.875rem;" /></span>
@@ -21,36 +55,7 @@
 		 <!-- 划过头部的时候显示会员级别到期时间的框 -->
 		 <!-- 	<div style="width:5rem;height:1.2rem;position:absolute;right:5rem;z-index:20000;background:green;"  @mouseleave="fnls" >
 		 	 </div> -->
-		 	 <div class="dlzong" v-show="fndl" @mouseleave="fnls">
-		 		 <!-- top -->
-		 		 <div class="dltop">
-		 			 <!-- 头像图片 -->
-		 			 <div class="logindl"></div>
-		 			 <!-- 手机号，vip级别，到期时间 -->
-		 			 <div class="svdrigh">
-		 				 <div style="display:flex;">
-		 					 <span class="svdone">{{$store.state.phone ? $store.state.phone : "未登录"}}</span><img src="../assets/image/vipg.png" alt="">
-		 				 </div> 
-		 				<!-- 到期时间 -->
-		 				<div class="comsj">
-		 					<span class="comsjo">2020年8月26日</span>
-		 					<span class="comsjt">到期</span>
-		 				</div>
-		 			 </div>
-		 		 </div>
-		 		 <!-- lineone -->
-		 		 <img src="../assets/image/line.png" style="width:6.46875rem;height:0.0625rem;float:left;margin-left:1.25rem;" alt="">
-		 		 <!-- 会员升级 -->
-		 		 <div class="vip">
-		 			 会员升级
-		 		 </div>
-		 		  <!-- lineone -->
-		 		 <img src="../assets/image/line.png" style="width:6.46875rem;height:0.0625rem;float:left;margin-left:1.25rem;" alt="">
-		 		 <!-- 退出 -->
-		 		 <div class="dllave">
-		 			 退出
-		 		 </div>
-		 	 </div>
+	
 	</div>
 </template>
 
@@ -59,16 +64,16 @@
 		data(){
 			return{
 				// a:""
-			fndl:false
+			fndl:true
 			}
 		},
 		methods:{
-			fnss(){
-				this.fndl = true
-			},
-			fnls(){
-				this.fndl = false
-			}
+			// fnss(){
+			// 	this.fndl = true
+			// },
+			// fnls(){
+			// 	this.fndl = false
+			// }
 		},
      // props:["message"],
 		created(){
@@ -148,26 +153,36 @@
 	}
 	/* 登录下拉框 */
 		.dlzong{
-			margin-top:0.5rem;
-			width:8.3125rem;
-			height:7.21875rem;
-			position:absolute;
+			width:7.3125rem;
+			height:5.21875rem;
+			/* position:absolute;
 			right:0.78rem;
-			top:-0.46rem;
-			background:url(../assets/image/dlbj.png) no-repeat 0.8rem 1.3rem;
-			background-size:7.3125rem 5.21875rem;
-		/* 	background-color:plum; */
+			top:0.6rem; */
+		/* 	background:url(../assets/image/dlbj.png) no-repeat;
+			background-size:7.3125rem 5.21875rem; */
+			background:rgba(225,225,225,.5) !important;
+			}
+		.hhh{
+			position:absolute;
+			left:51.5rem !important;
+			top:0.6rem !important;
+			margin-top:0.5rem;
+			width:0rem;
+			height:0rem;
 			z-index:200;
 			margin-left:0.3rem;
 			cursor:pointer;
-			}
+			/* background:url(../assets/image/dlbj.png) no-repeat !important; */
+			background:rgba(225,225,225,.6) !important;
+			border:none !important;
+		}
 			/* top */
 	.dltop{
 		width:6.56875rem;
 		height:2.75rem;
-		/* background:red; */
-		margin-top:1.1rem;
-		margin-left:1.28rem;
+	/* 	background:red; */
+	/* 	margin-top:1.1rem; */
+		margin-left:0.45rem;
 		display:flex;
 		align-items: center;
 	}
@@ -178,7 +193,7 @@
 		background:url(../assets/image/dllogo.png) no-repeat;
 		background-size:1.4375rem 1.4375rem;
 		/* background-color:paleturquoise; */
-		margin-left:0.3rem;
+		/* margin-left:0.3rem; */
 	}
 	/* 到期，权限，级别总 */
 	.svdrigh{
@@ -222,8 +237,8 @@
 	.vip,.dllave{
 		width:6.36875rem;
 		height:1.1rem;
-	/* 	background:blue; */
-		margin-left:1.3rem;
+		/* background:blue; */
+		margin-left:0.45rem;
 		font-size:0.5rem;
 	  font-family:Microsoft YaHei;
 	  font-weight:400;
