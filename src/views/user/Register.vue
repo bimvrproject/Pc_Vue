@@ -57,13 +57,14 @@
 			</div>
 			
 				<!-- 悬浮登录窗口 --开始 -->
-				<div id="popContainer" :style="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
+				<div id="popContainer" v-show="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
 				<!-- 登录 -->
-				<div class="login" :style="loginWindow">
+				<div class="login" v-show="loginWindow">
 					<div class="close"><img src="../../assets/image/close.png" @click="closeLoginwindow" /></div>
 					<div class="loginlogo"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
 					<!-- 验证账号密码是否正确 -->
 					<span class="Nophone" v-if="panduanphone">{{phonename}}</span>
+					<span class="Nophone" v-if="panduandenglu">该账户已注册,<span @click="fn3"  style="text-decoration:underline;cursor: pointer;">请登录</span></span>
 					<!-- 验证码是否正确 -->
 					<span class="yanzhengma" v-if="yzm">验证码不正确</span>
 					<!-- 输入手机号 -->
@@ -81,6 +82,10 @@
 					</div>
 					<!-- 注册 -->
 					<div class="reg-button" @click="login()"><span>完成注册</span></div>
+					<div class="login-footer">
+						<i class="noreg">已有账户!</i>
+						<i class="login-reg" @click="fn3">立即登录</i>
+					</div>
 				</div>
 					 	<!-- 社区部分 -->
 				<div>
@@ -227,11 +232,12 @@ import More from './more';
 export default {
 	data() {
 		return {
+			panduandenglu:false,
 			sendCode: true, // 控制发送验证码按钮显示
 			authTime: 0, // 倒计时
 			username: '',
 			password: '',
-			loginWindow: '',
+			loginWindow: true,
 			checked: '',
 			//手机号是否正确
 			panduanphone:false,
@@ -271,7 +277,17 @@ export default {
 		// Zheader
 		// Release
 	},
+	created(){
+		this.$eventbus.$on('loginhertru', () => {
+			// this.loginWindow = true;
+			this.$router.push("/")
+		});
+	},
 	methods: {
+		//立即登录
+		fn3(){
+			this.$router.push("/")
+		},
 		// 移出更多
 		fnleave() {
 			this.lmore = require('../../assets/image/pmjtxia.png')
@@ -317,8 +333,7 @@ export default {
 									}, 1000)
 								})
 							}else{
-								this.phonename="注册失败,该账户已被使用";
-								this.panduanphone = true;
+								this.panduandenglu=true;
 							}
 						})
 						this.panduanphone = false;
@@ -341,9 +356,8 @@ export default {
 				if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
-					this.loginWindow = 'display:block';
+					this.loginWindow = true;
 			}
-			// this.loginWindow = 'display:block';
 		},
 		fncom() {
 			this.comarr.push(0);
@@ -352,19 +366,10 @@ export default {
 			if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
-					this.loginWindow = 'display:block';
+					this.loginWindow = true;
 			}
-			// this.loginWindow = 'display:block';
+			
 		},
-		// Preservation() {
-		// 	this.$router.push('/baocun');
-		// },
-		// xiugai() {
-		// 	this.$router.push('/xiugai');
-		// },
-		// abouts() {
-		// 	this.$router.push('/about');
-		// },
 		sqq() {
 			this.xmtb = require('../../assets/image/sshouse.png');
 			this.xmxl = require('../../assets/image/pmjtxia.png');
@@ -391,8 +396,7 @@ export default {
 						if(result.data==undefined){
 							this.panduanphone = false;
 						}else{
-							this.phonename="注册失败,该账户已被使用";
-							this.panduanphone = true;
+							this.panduandenglu=true;
 						}
 					})
 					this.panduanphone = false;
@@ -409,7 +413,7 @@ export default {
 		},
 		//注册
 		login() {
-			
+			this.panduandenglu=false;
 			if(this.phone1==null || this.phone1==""){
 				this.phonename="手机号不能为空";
 				this.panduanphone = true;
@@ -420,11 +424,13 @@ export default {
 						this.panduanphone = true;
 					}else if(result.code==0){
 						window.sessionStorage.setItem('token',this.token);
+						this.$store.commit("settoken",this.token);
+						this.$store.commit("setPhone",this.phone1);
 						//注册成功跳转页面
 						this.panduanphone = false;
-					this.loginWindow = 'display:none';
-						alert("跳转页面")
-						alert(this.phone1)
+						this.loginWindow = false;
+						// alert("跳转页面")
+						// alert(this.phone1)
 					}else{
 						this.phonename = '应用发生错误';
 						this.panduanphone = true;
@@ -435,7 +441,7 @@ export default {
 		},
 		// 关闭login悬浮窗
 		closeLoginwindow() {
-			this.loginWindow = 'display:none';
+			this.loginWindow = false;
 		}
 	}
 };
@@ -1161,7 +1167,7 @@ export default {
 	width:5.32rem;
 	height:0.78rem;
 	position: absolute;
-	top:8rem;
+	top:7.5rem;
 	left:3.5rem;
 	background: url(../../assets/image/juxing3@2x.png);
 	background-size:5.32rem 0.78rem; 
@@ -1175,5 +1181,32 @@ export default {
 	color: #ffffff;
 	text-align: center;
 	line-height:0.41rem;
+}
+/* 已有账号跳转登录 */
+.login-footer {
+	width:4.0375rem;
+	height:0.625rem;
+	font-size:0.375rem;
+	position: absolute;
+	top:8.725rem;
+	/* left:4.3rem; */
+	right:4.3rem;
+}
+.noreg {
+	font-family: MicrosoftYaHei;
+	display:inline-block;
+	font-weight: 400;
+	font-style: normal;
+	font-size:0.375rem;
+	color: rgba(51, 51, 51, 1);
+}
+.login-reg {
+	color: #2180ed;
+	font-family: MicrosoftYaHei;
+	display:inline-block;
+	font-weight: 400;
+	font-size:0.333rem;
+	font-style: normal;
+	cursor: pointer;
 }
 </style>
