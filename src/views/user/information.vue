@@ -179,11 +179,11 @@ export default {
 			},
 		// 点击项目
 		fnxxxm(){
-				this.$router.push('/Login');
+			this.$router.push('/Login');
 		},
 		// 点击社区
 		fnxxsq(){
-				this.$router.push('/');
+			this.$router.push('/');
 		},
 		fns() {
 			this.xianyin = !this.xianyin;
