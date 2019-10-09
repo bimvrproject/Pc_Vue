@@ -109,7 +109,7 @@
 						<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 							<!-- <uploader-unsupport></uploader-unsupport> -->
 							<uploader-drop class="mdrawdrop">
-								<uploader-btn :directory="false" :single="true" class="mdrawdbtn" :attrs="attrs">上传立面图纸</uploader-btn>
+								<uploader-btn :directory="false" :single="true" class="mdrawdbtn" :attrs="attrs">上传建筑模型</uploader-btn>
 							</uploader-drop>
 							<uploader-list></uploader-list>
 						</uploader>
