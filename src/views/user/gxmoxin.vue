@@ -74,22 +74,8 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
 			</div>
-
-			<!-- 上传 -->
-			<!-- <div v-show="fileshow">
-				<div class="upfile13">
-					<div class="upfilezx13">
-						<span class="upfiletit113">上传管线综合的模型</span>
-						<uploader :file-status-text="statusText" :options="options" class="uploader-example" @file-complete="onFileSuccess">
-							<uploader-unsupport></uploader-unsupport>
-							<uploader-drop class="wen13"><uploader-btn :directory="true" :single="true">选择文件夹</uploader-btn></uploader-drop>
-							<uploader-list></uploader-list>
-						</uploader>
-					</div>
-				</div>
-			</div> -->
 			<!-- 中间图纸总体 -->
-			<div class="gxmxdraw" v-show="false">
+			<div class="gxmxdraw">
 			  <!-- 中间图纸的图片 -->
 				<div class="gxmxdrawtop">
 					<img src="../../assets/image/mdraw.png" alt="">
@@ -116,7 +102,7 @@
 		</div>
 				<!-- 图片展示轮播图 -->
 		 <!-- Swiper -->
-		 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+		 <!-- <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
 		   <div class="swiper-wrapper">
 			 <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t4.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
@@ -129,7 +115,6 @@
 		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div>
 		   </div>
-		   <!-- Add Arrows -->
 		   <div class="swiper-button-next swiper-button-white"></div>
 		   <div class="swiper-button-prev swiper-button-white"></div>
 		 </div>
@@ -146,7 +131,7 @@
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div>
 		   </div>
-		 </div>
+		 </div> -->
 	</div>
 </template>
 <script>
