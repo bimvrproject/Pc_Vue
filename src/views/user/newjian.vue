@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<ul class="animated fadeIn newjiantop" v-show="tian">
+			<li @click="fns" class="tianjia"></li>
 			<li v-for="(item, index) in projectLists" :key="index" class="xmn" @click="fnt(index)">
 				<div class="hqtp">
 					<span class="delimg"><img src="../../assets/image/shanchu@2x.png"  @click.stop="delproject(index)" /></span>
@@ -12,7 +13,6 @@
 					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span>
 				</div>
 			</li>
-			<li @click="fns" class="tianjia"></li>
 		</ul>
    <Newxm v-show="xmxinayin"></Newxm>
   </div>
@@ -106,7 +106,7 @@ export default {
 <style scoped>
 .newjiantop {
   width:59.9rem;
-  height:4.8075rem;
+  /* height:4.8075rem; */
   background: rgba(255, 255, 255, 0.2);
 /* position: fixed;
   top:2.3rem;
@@ -132,7 +132,7 @@ export default {
   height:4.5rem;
   background: #ffffff;
   float: left;
-  margin-left:0.37875rem;
+  margin-left:0.32rem;
   margin-top:0.15rem;
   padding-left: 0px;
   padding-right: 0px;
@@ -198,7 +198,7 @@ export default {
   right:0rem;
   cursor: pointer;
 	background:rgba(225,225,225,.3);
-	padding:0.5rem;
+	padding:0.3rem;
 	/* padding-right:0.6rem;
 	padding-top:0.4rem;
 	padding-left:0.9rem;
