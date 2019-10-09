@@ -17,7 +17,7 @@
 			<div class="hometopjzmth" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fnthirxm">
+					<span class="el-dropdown-link" @click="fnthirxm()">
 						<img class="xmimgth" src="../../assets/image/bluefz.png" />
 						<i class="xmth" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -29,7 +29,7 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnthirsq">
+					<span class="el-dropdown-link" @click="fnthirsq()">
 						<img class="sqimgth" src="../../assets/image/sq@2x.png" />
 						<i class="sqth" style="color: #333;">社区</i>
 					</span>
@@ -38,18 +38,18 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-					<span class="el-dropdown-link" @mouseenter="fnmoin">
+					<span class="el-dropdown-link" @mouseenter="fnmoin()">
 						<img class="moreimgth" src="../../assets/image/more@2x.png" />
 						<i class="moreth">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+					<el-dropdown-menu slot="dropdown" class="thirmore">
+						<div class="thirmoo" @mouseenter="fnmoin" @mouseleave="fnleave()">
+							<div class="thirmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.25rem;">帮助</a></div>
+							<div class="thirmores1" @click="fnabout">联系我们</div>
+							<div class="thirmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -61,7 +61,7 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;" @click="fnthg">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">模型</span>
 			</div>
 			<!-- 碰撞点数 -->
 			<div class="numberth">
@@ -177,24 +177,30 @@ export default {
 
 <style>
 /* 更多 */
-.jzmodelmore {
-	background: rgba(225, 225, 225, 0.6);
+.thirmore {
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
 	top: 2.125rem !important;
-	left: 15.175rem !important;
+	left: 16.175rem !important;
 	border: none;
 	padding: 0.1rem;
+	border-radius: 0rem !important;
 }
-.moo {
-	width: 3.75rem;
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.thirmoo {
+	width: 4.75rem;
 	/* 		height: 195px; */
 	/* 	background: url(../../assets/image/mores.png); */
-	padding-left: 0.2rem;
+	padding-left: 0.1rem;
 	padding-right: 0.25rem;
 	cursor: pointer;
 }
-.mores1 {
-	width: 3.75rem;
+.thirmores1 {
+	width: 4.65rem;
 	height: 0.9rem;
 	border-bottom: 1px solid #999999;
 	text-align: left;
@@ -204,7 +210,7 @@ export default {
 	font-weight: 500;
 	/* 	background:red; */
 }
-.moresb {
+.thirmoresb {
 	border: 0;
 	text-align: left;
 	line-height: 0.9rem;

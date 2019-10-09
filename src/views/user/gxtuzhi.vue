@@ -48,12 +48,10 @@
 						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="gxtzmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1">
-							  <a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
-							</div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+						<div class="gxtzmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="gxtzmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="gxtzmores1" @click="fnabout">联系我们</div>
+							<div class="gxtzmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -64,9 +62,9 @@
 			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
 				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">建筑结构</span>
+				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">图纸</span>
 			</div>
 			<!-- 右侧图纸 -->
 			<div class="youtu" @click="cetubut" v-if="cetubuts"><img src="../../assets/image/tpzuohua.png" alt="" /></div>
@@ -77,9 +75,9 @@
 						<div class="pmtopn">
 							<!-- 平面图纸 -->
 							<div @click="pmtz" class="pmtzbox" style="display:flex;">
-								<img :src="pmt" alt="" class="pmt"/>
+								<img :src="pmt" alt="" class="pmt" />
 								<span class="pmz">平面图纸</span>
-								<img :src="pmjt" alt="" class="pmjt"/>
+								<img :src="pmjt" alt="" class="pmjt" />
 							</div>
 						</div>
 					</div>
@@ -88,7 +86,7 @@
 						<!-- 新建项目 -->
 						<ul>
 							<li v-for="(item, index) in drawingarr" :key="index" class="pmnew" style="position:relative;cursor: pointer;" @click="drawdanji(index)" @dblclick="fntu22(index)">
-								<img src="../../assets/image/zk.png" class="pmt5" alt=""/>
+								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
 								<span class="pmtz5" v-if="showname22">{{ item.drawName + (index + 1) }}</span>
 								<input type="text" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;" v-if="showrename22" @blur="change22(index)" />
 							</li>
@@ -97,7 +95,9 @@
 							<div>
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
-									<uploader-drop class="upgt"><uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn></uploader-drop>
+									<uploader-drop class="upgt">
+										<uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn>
+									</uploader-drop>
 									<uploader-list></uploader-list>
 								</uploader>
 							</div>
@@ -135,7 +135,9 @@
 								<div>
 									<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 										<!-- <uploader-unsupport></uploader-unsupport> -->
-										<uploader-drop class="upgt"><uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn></uploader-drop>
+										<uploader-drop class="upgt">
+											<uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn>
+										</uploader-drop>
 										<uploader-list></uploader-list>
 									</uploader>
 								</div>
@@ -181,9 +183,7 @@
 			</div>
 		</div>
 		<!-- 点击联系我们的遮罩 -->
-		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark">
-			
-		</div>
+		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark"></div>
 	</div>
 </template>
 <script>
@@ -214,14 +214,14 @@ export default {
 			drawingarr: [],
 			//总的等陆头部
 			zheaderxy: true,
-			lmore:require('../../assets/image/pmjtxia.png'),
+			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts:false
+			abouts: false
 		};
 	},
 	components: {
 		Newjian,
-		Xunilogo,
+		Xunilogo
 		// Zheader
 	},
 	created() {
@@ -246,12 +246,12 @@ export default {
 	},
 	methods: {
 		// 点击联系我们
-		fnabout(){
-				this.$eventbus.$emit('abouts');
-				this.abouts = true
+		fnabout() {
+			this.$eventbus.$emit('abouts');
+			this.abouts = true;
 		},
 		// 点击联系之后出现的遮罩
-		fnaboutmark(){
+		fnaboutmark() {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
@@ -315,51 +315,57 @@ export default {
 				(this.pmjt = require('../../assets/image/pmjtxia.png'));
 		},
 		// 划过更多
-		fnmoin(){
-			this.lmore=require('../../assets/image/shang.png')
+		fnmoin() {
+			this.lmore = require('../../assets/image/shang.png');
 		},
 		// 移出更多
-		fnleave(){
-			this.lmore=require('../../assets/image/pmjtxia.png')
-			},
+		fnleave() {
+			this.lmore = require('../../assets/image/pmjtxia.png');
+		}
 	}
 };
 </script>
 
 <style>
 .gxtzmore {
-	background: rgba(225, 225, 225, 0.6);
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
-	top:2.125rem  !important;
-	left:15.175rem !important;
+	top: 2.125rem !important;
+	left: 16.175rem !important;
 	border: none;
-	padding:0.1rem;
+	padding: 0.1rem;
+	border-radius: 0rem !important;
 }
-.moo {
-	width:3.75rem;
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.gxtzmoo {
+	width: 4.75rem;
 	/* 		height: 195px; */
-		/* 	background: url(../../assets/image/mores.png); */
-			padding-left:0.2rem;
-			padding-right:0.25rem;
-			cursor: pointer;
+	/* 	background: url(../../assets/image/mores.png); */
+	padding-left: 0.2rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
 }
-.mores1 {
-	width:3.75rem;
-	height:0.9rem;
+.gxtzmores1 {
+	width: 4.65rem;
+	height: 0.9rem;
 	border-bottom: 1px solid #999999;
 	text-align: left;
-	line-height:1rem;
+	line-height: 0.9rem;
 	color: #666666;
-	font-size:0.46rem;
+	font-size: 0.46rem;
 	font-weight: 500;
 	/* 	background:red; */
 }
-.moresb {
+.gxtzmoresb {
 	border: 0;
 	text-align: left;
-	line-height:0.9rem;
+	line-height: 0.9rem;
 	color: #666666;
-	font-size:0.46rem;
+	font-size: 0.46rem;
 	font-weight: 500;
 }
 a {
@@ -674,9 +680,9 @@ a {
 	font-size: 0.6125rem !important;
 	width: 4.76875rem !important;
 	height: 0.775rem !important;
-	border:none !important;
-	color:#FFFFFF !important;
-	padding:0.03125rem 0.25rem !important;
+	border: none !important;
+	color: #ffffff !important;
+	padding: 0.03125rem 0.25rem !important;
 }
 /* 右侧 */
 .upgt {
@@ -685,7 +691,7 @@ a {
 	background: #ffffff;
 	margin-top: 0rem;
 	margin-bottom: 0rem;
-	padding: 0.14rem 0rem 0.14rem 0.48rem  !important;
+	padding: 0.14rem 0rem 0.14rem 0.48rem !important;
 	border: 0 !important;
 	background-color: #ffffff !important;
 	border-radius: 0 !important;
@@ -707,16 +713,16 @@ a {
 	line-height: 0.75rem !important;
 	border-radius: 0 !important;
 	font-size: 0.4225rem !important;
-	border:none !important;
-	margin-top:0.16rem;
+	border: none !important;
+	margin-top: 0.16rem;
 }
-.pltop{
-	width:2.6rem;
-	height:0.6rem;
-	background:red;
-	display:inline-block;
-	float:left;
-	background:url(../../assets/image/xjtz.png) no-repeat;
-	background-size:2.6rem 0.6rem;
+.pltop {
+	width: 2.6rem;
+	height: 0.6rem;
+	background: red;
+	display: inline-block;
+	float: left;
+	background: url(../../assets/image/xjtz.png) no-repeat;
+	background-size: 2.6rem 0.6rem;
 }
 </style>

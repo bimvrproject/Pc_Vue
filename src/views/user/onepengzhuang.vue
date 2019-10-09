@@ -47,11 +47,11 @@
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+					<el-dropdown-menu slot="dropdown" class="onemore">
+						<div class="onemoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="onemores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="onemores1" @click="fnabout">联系我们</div>
+							<div class="onemoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -63,12 +63,12 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;" @click="fnong">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;margin-left:0.15625rem;">模型</span>
 			</div>
 			<!-- 碰撞点数 -->
 			<div class="numberonep">
 				<div class="numbersonep">此处为第一处碰撞点</div>
-				<span class="backonep">返回</span>
+				<span class="backonep" @click="backs()">返回</span>
 				<span class="lookonep" @click="next1()">前往下一处</span>
 			</div>
 		</div>
@@ -164,14 +164,17 @@ export default {
 		// fnxuni(){
 		// 	this.xianyin = false;
 		// },
-		fn4() {
-			this.loginWindow = 'display:block';
-		},
-		look() {
-			this.$router.push('/onepengzhuang');
-		},
+		// fn4() {
+		// 	this.loginWindow = 'display:block';
+		// },
+		// look() {
+		// 	this.$router.push('/onepengzhuang');
+		// },
 		next1() {
 			this.$router.push('/twopengzhuang');
+		},
+		backs() {
+			this.$router.push('/gxpengzhuang');
 		}
 	}
 };
@@ -179,24 +182,30 @@ export default {
 
 <style>
 /* 更多 */
-.jzmodelmore {
-	background: rgba(225, 225, 225, 0.6);
+.onemore {
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
 	top: 2.125rem !important;
-	left: 15.175rem !important;
+	left: 16.175rem !important;
 	border: none;
 	padding: 0.1rem;
+	border-radius: 0rem !important;
 }
-.moo {
-	width: 3.75rem;
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.onemoo {
+	width: 4.75rem;
 	/* 		height: 195px; */
 	/* 	background: url(../../assets/image/mores.png); */
-	padding-left: 0.2rem;
+	padding-left: 0.1rem;
 	padding-right: 0.25rem;
 	cursor: pointer;
 }
-.mores1 {
-	width: 3.75rem;
+.onemores1 {
+	width: 4.65rem;
 	height: 0.9rem;
 	border-bottom: 1px solid #999999;
 	text-align: left;
@@ -206,7 +215,7 @@ export default {
 	font-weight: 500;
 	/* 	background:red; */
 }
-.moresb {
+.onemoresb {
 	border: 0;
 	text-align: left;
 	line-height: 0.9rem;

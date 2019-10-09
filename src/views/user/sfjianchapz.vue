@@ -12,7 +12,7 @@
 		<div>
 			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
-	   <!-- <Zheader v-show="zheaderxy"></Zheader> -->
+			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
 			<div class="hometopjzmsfjc" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
@@ -21,7 +21,9 @@
 						<img class="xmimgsfjc" src="../../assets/image/bluefz.png" />
 						<i class="xmsfjc" style="color: #2180ED;">项目</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;"></i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;" />
+						</i>
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -40,16 +42,16 @@
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
 					<span class="el-dropdown-link" @mouseenter="fnmoin">
 						<img class="moreimgsfjc" src="../../assets/image/more@2x.png" />
-					<i class="moresfjc">更多</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-						<img :src="lmore" alt="" style="width: 100%;height: 100%;">
+						<i class="moresfjc">更多</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
-						<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+					<el-dropdown-menu slot="dropdown" class="sfjcmore">
+						<div class="sfjcmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="sfjcmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="sfjcmores1" @click="fnabout">联系我们</div>
+							<div class="sfjcmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -61,7 +63,7 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;" @click="fng">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">模型</span>
 			</div>
 			<!-- 请问要进行碰撞检查吗 -->
 			<div class="sfjcpz">
@@ -74,8 +76,8 @@
 		</div>
 		<!-- 点击联系我们的遮罩 -->
 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark"></div>
-			<!-- 点进碰撞页中询问是否点击碰撞的遮罩 -->
-<!-- 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="sfjcpz"></div> -->
+		<!-- 点进碰撞页中询问是否点击碰撞的遮罩 -->
+		<!-- 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="sfjcpz"></div> -->
 	</div>
 </template>
 <script>
@@ -87,23 +89,23 @@ import Xunilogo from './xunilogo';
 export default {
 	data() {
 		return {
-			title:"1234567890",
+			title: '1234567890',
 			panduan: false,
 			xianyin: false,
 			xianyinxuni: false,
 			hometop: true,
 			//总的等陆头部
-			zheaderxy:true,
-		 lmore:require('../../assets/image/pmjtxia.png'),
-		 // 联系我们
-		 abouts: false,
-		 //点进碰撞页中询问是否点击碰撞的遮罩
-		// sfjcpz:true
+			zheaderxy: true,
+			lmore: require('../../assets/image/pmjtxia.png'),
+			// 联系我们
+			abouts: false
+			//点进碰撞页中询问是否点击碰撞的遮罩
+			// sfjcpz:true
 		};
 	},
 	components: {
 		Newjian,
-		Xunilogo,
+		Xunilogo
 		// Zheader
 	},
 	created() {
@@ -128,10 +130,10 @@ export default {
 	},
 	methods: {
 		// 点击管线综合路径
-		fngx(){
-			 this.$router.push('/gxmoxin');
-			},
-		fng(){
+		fngx() {
+			this.$router.push('/gxmoxin');
+		},
+		fng() {
 			this.$router.push('/gxmoxin');
 		},
 		// 点击联系我们
@@ -145,19 +147,19 @@ export default {
 			this.abouts = false;
 		},
 		// 划过更多
-		fnmoin(){
-			this.lmore=require('../../assets/image/shang.png')
+		fnmoin() {
+			this.lmore = require('../../assets/image/shang.png');
 		},
 		// 移出更多
-		fnleave(){
-			this.lmore=require('../../assets/image/pmjtxia.png')
-			},
+		fnleave() {
+			this.lmore = require('../../assets/image/pmjtxia.png');
+		},
 		// 点击项目
-		fnsfxm(){
+		fnsfxm() {
 			this.$router.push('/Login');
 		},
 		// 点击社区
-		fnsfsq(){
+		fnsfsq() {
 			this.$router.push('/');
 		},
 		fns() {
@@ -175,8 +177,8 @@ export default {
 			this.$router.push('/onepengzhuang');
 		},
 		//点击取消按钮
-		fnqx(){
-				this.$router.push('/endpengzhuang');
+		fnqx() {
+			this.$router.push('/endpengzhuang');
 		},
 		// 点击确定按钮
 		fn9() {
@@ -187,54 +189,60 @@ export default {
 </script>
 
 <style>
-	/* 更多 */
-	.jzmodelmore {
-		background: rgba(225, 225, 225, 0.6);
-		position: absolute;
-		top: 2.125rem !important;
-		left: 15.175rem !important;
-		border: none;
-		padding: 0.1rem;
-	}
-	.moo {
-		width: 3.75rem;
-		/* 		height: 195px; */
-		/* 	background: url(../../assets/image/mores.png); */
-		padding-left: 0.2rem;
-		padding-right: 0.25rem;
-		cursor: pointer;
-	}
-	.mores1 {
-		width: 3.75rem;
-		height: 0.9rem;
-		border-bottom: 1px solid #999999;
-		text-align: left;
-		line-height: 0.9rem;
-		color: #666666;
-		font-size: 0.46rem;
-		font-weight: 500;
-		/* 	background:red; */
-	}
-	.moresb {
-		border: 0;
-		text-align: left;
-		line-height: 0.9rem;
-		color: #666666;
-		font-size: 0.46rem;
-		font-weight: 500;
-		/* 	background:red; */
-	}
+/* 更多 */
+.sfjcmore {
+	background: rgba(225, 225, 225, 0.3);
+	position: absolute;
+	top: 2.125rem !important;
+	left: 16.175rem !important;
+	border: none;
+	padding: 0.1rem;
+	border-radius: 0rem !important;
+}
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.sfjcmoo {
+	width: 4.75rem;
+	/* 		height: 195px; */
+	/* 	background: url(../../assets/image/mores.png); */
+	padding-left: 0.1rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
+}
+.sfjcmores1 {
+	width: 4.65rem;
+	height: 0.9rem;
+	border-bottom: 1px solid #999999;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
+	/* 	background:red; */
+}
+.sfjcmoresb {
+	border: 0;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
+	/* 	background:red; */
+}
 * {
 	padding: 0;
 	margin: 0;
 }
 .zongsfjc {
-	width:59.9375rem;
-	height:33.65625rem;
+	width: 59.9375rem;
+	height: 33.65625rem;
 	/* background:green; */
 	background: url(../../assets/image/sfpz.png);
 	background-repeat: no-repeat;
-	background-size:100% 100%;
+	background-size: 100% 100%;
 	position: relative;
 }
 .el-main {
@@ -247,10 +255,10 @@ export default {
 	/* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
-	top:0.9375rem;
-	left:6.9375rem;
+	top: 0.9375rem;
+	left: 6.9375rem;
 	/* background:red; */
-	line-height:1.78125rem;
+	line-height: 1.78125rem;
 }
 /* 左侧边栏 */
 .left {
@@ -267,8 +275,8 @@ export default {
 	padding-right: 0rem;
 }
 .lefttopjzm {
-	width:6.75rem;
-	height:1.875rem;
+	width: 6.75rem;
+	height: 1.875rem;
 	/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;
@@ -279,15 +287,15 @@ export default {
 	color: #333333;
 }
 .xmimgsfjc {
-	width:0.84375rem;
-	height:0.8125rem;
-	padding-left:2.5rem;
-	padding-top:0.0625rem;
+	width: 0.84375rem;
+	height: 0.8125rem;
+	padding-left: 2.5rem;
+	padding-top: 0.0625rem;
 }
 .xmsfjc {
-	width:0.84375rem;
-	height:0.53125‬;
-	font-size:0.625rem;
+	width: 0.84375rem;
+	height: 0.53125‬;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
 	color: #2180ed;
@@ -297,16 +305,16 @@ export default {
 }
 .sqimgsfjc,
 .bjimgsfjc {
-	width:0.84375rem;
+	width: 0.84375rem;
 	height: 0.8125rem;
 }
 .sqsfjc {
-	width:1.25rem;
-	height:0.5625rem;
-	font-size:0.625rem;
+	width: 1.25rem;
+	height: 0.5625rem;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
-	padding-left:0.1875rem;
+	padding-left: 0.1875rem;
 	font-style: normal;
 }
 .moreimgsfjc {
@@ -314,11 +322,11 @@ export default {
 	height: 0.78125rem;
 }
 .moresfjc {
-	width:1.21875rem;
-	height:0.59375rem;
-	font-size:0.625rem;
+	width: 1.21875rem;
+	height: 0.59375rem;
+	font-size: 0.625rem;
 	font-style: normal;
-	padding-left:0.15625rem;
+	padding-left: 0.15625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
 	color: rgba(51, 51, 51, 1);
@@ -344,61 +352,61 @@ export default {
 } */
 /* 是否检查碰撞 */
 .sfjcpz {
-	width:12.5rem;
-	height:4.625rem;
-	background:url(../../assets/image/sfjcbjt.png) no-repeat;
-	background-size:12.5rem 4.625rem;
+	width: 12.5rem;
+	height: 4.625rem;
+	background: url(../../assets/image/sfjcbjt.png) no-repeat;
+	background-size: 12.5rem 4.625rem;
 	position: absolute;
-	top:14.0625rem;
-	left:25rem;
-	border-radius:0.625rem;
-	border:0.09375rem solid #ffffff;
-	z-index:200;
+	top: 14.0625rem;
+	left: 25rem;
+	border-radius: 0.625rem;
+	border: 0.09375rem solid #ffffff;
+	z-index: 200;
 }
 .sfjcpz-title {
-	width:12.5rem;
-	height:2.5rem;
+	width: 12.5rem;
+	height: 2.5rem;
 	text-align: center;
-	line-height:2.5rem;
-	font-size:0.9375rem;
-  font-family:PingFang SC;
-  font-weight:500;
-  color:rgba(51,51,51,1);
+	line-height: 2.5rem;
+	font-size: 0.9375rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(51, 51, 51, 1);
 	/* background:red; */
 }
 .sfjcpz-bottom {
-	width:12.5rem;
-	height:3.75rem;
+	width: 12.5rem;
+	height: 3.75rem;
 	/* display:flex;
 			justify-content: space-around;
 			align-items:center; */
 }
 .qu1 {
 	display: inline-block;
-	width:3.125rem;
-	height:1.25rem;
+	width: 3.125rem;
+	height: 1.25rem;
 	background: #ffffff;
-	line-height:1.25rem;
-	border-radius:0.625rem;
-	margin-right:0.625rem;
-	margin-top:0.2375rem;
+	line-height: 1.25rem;
+	border-radius: 0.625rem;
+	margin-right: 0.625rem;
+	margin-top: 0.2375rem;
 	cursor: pointer;
-	font-size:0.6875rem;
-  font-family:PingFang SC;
-  font-weight:500;
-  color:rgba(102,102,102,1);
+	font-size: 0.6875rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(102, 102, 102, 1);
 }
 .qd1 {
 	display: inline-block;
-	width:3.125rem;
-	height:1.25rem;
+	width: 3.125rem;
+	height: 1.25rem;
 	background: #2180ed;
-	line-height:1.25rem;
-	border-radius:0.625rem;
+	line-height: 1.25rem;
+	border-radius: 0.625rem;
 	cursor: pointer;
-	font-size:0.6875rem;
-  font-family:PingFang SC;
-  font-weight:500;
-  color:rgba(255,255,255,1);
+	font-size: 0.6875rem;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
 }
 </style>

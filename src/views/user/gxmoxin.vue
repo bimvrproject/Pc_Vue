@@ -57,7 +57,7 @@
 					<el-dropdown-menu slot="dropdown" class="gxmodelmore">
 						<div class="moogx" @mouseenter="fnmoin" @mouseleave="fnleave">
 						<div class="mores1gx">
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 						</div>	
 						<div class="mores1gx" @click="fnabout">联系我们</div>
 						<div class="moresbgx">版本号: v 1.0.1</div>
@@ -72,7 +72,7 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;"  @click="fnjzmx">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;cursor:pointer;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
 			</div>
 
 			<!-- 上传 -->
@@ -414,15 +414,21 @@ export default {
 		opacity: 1;
 	}
 .gxmodelmore {
-	background: rgba(225, 225, 225, 0.6);
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
 	top:2.125rem  !important;
-	left:24.975rem !important;
+	left:25.975rem !important;
 	border: none;
 	padding:0.1rem;
+	border-radius:0rem !important;
 }
+.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
+	}
 .moogx {
-		width:3.75rem;
+		width:4.75rem;
 	/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
 			padding-left:0.2rem;
@@ -430,7 +436,7 @@ export default {
 			cursor: pointer;
 }
 .mores1gx {
-	width:3.75rem;
+	width:4.65rem;
 	height:0.9rem;
 	border-bottom: 1px solid #999999;
 	text-align: left;

@@ -42,18 +42,18 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin">
+					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin()">
 						<img class="moreimgjztz" src="../../assets/image/more@2x.png" />
 						<i class="morejztz">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+					<el-dropdown-menu slot="dropdown" class="jztzmore">
+						<div class="jztzmoo" @mouseenter="fnmoin()" @mouseleave="fnleave()">
+							<div class="jztzmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="jztzmores1" @click="fnabout()">联系我们</div>
+							<div class="jztzmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -65,7 +65,7 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">建筑结构</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">图纸</span>
 			</div>
 			<!-- 右侧图纸 -->
 			<div class="youtu" @click="cetubut" v-if="cetubuts"><img src="../../assets/image/tpzuohua.png" alt="" /></div>
@@ -401,24 +401,30 @@
 
 <style>
 	/* 更多 */
-	.jzmodelmore {
-		background: rgba(225, 225, 225, 0.6);
+	.jztzmore {
+		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
 		top: 2.125rem !important;
-		left: 15.175rem !important;
+		left: 16.175rem !important;
 		border: none;
 		padding: 0.1rem;
+		border-radius: 0rem !important;
 	}
-	.moo {
-		width: 3.75rem;
+	.popper__arrow {
+		border-width: 0rem !important;
+		left: 0 !important;
+		overflow: hidden;
+	}
+	.jztzmoo {
+		width: 4.75rem;
 		/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
-		padding-left: 0.2rem;
+		padding-left: 0.1rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
 	}
-	.mores1 {
-		width: 3.75rem;
+	.jztzmores1 {
+		width: 4.65rem;
 		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
@@ -428,7 +434,7 @@
 		font-weight: 500;
 		/* 	background:red; */
 	}
-	.moresb {
+	.jztzmoresb {
 		border: 0;
 		text-align: left;
 		line-height: 0.9rem;
@@ -441,12 +447,10 @@
 		color: #333333;
 		text-decoration: none;
 	}
-
 	* {
 		padding: 0;
 		margin: 0;
 	}
-
 	.zongjt {
 		width: 60rem;
 		height: 33.75rem;
@@ -463,7 +467,6 @@
 		/* padding-top:29px; */
 		padding: 0 !important;
 	}
-
 	/* 主页top部分*/
 	.hometopjzmjztz {
 		position: absolute;

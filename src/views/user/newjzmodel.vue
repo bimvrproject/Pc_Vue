@@ -70,10 +70,10 @@
 						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+						<div class="jzmodelmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="jzmodelmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="jzmodelmores1" @click="fnabout">联系我们</div>
+							<div class="jzmodelmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -85,7 +85,7 @@
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
 				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;">建筑结构</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;margin-left:0.15625‬rem;font-weight:500;cursor:pointer;">模型</span>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
 				<el-tooltip class="item" effect="dark" content="下载到本地跟清晰" placement="top">
 					<el-button type="text" style="padding-left: 30px" @click="down()">下载到本地</el-button>
 				</el-tooltip>
@@ -109,7 +109,7 @@
 						<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 							<!-- <uploader-unsupport></uploader-unsupport> -->
 							<uploader-drop class="mdrawdrop">
-								<uploader-btn :directory="false" :single="true" class="mdrawdbtn" :attrs="attrs">上传立面图纸</uploader-btn>
+								<uploader-btn :directory="false" :single="true" class="mdrawdbtn" :attrs="attrs">上传建筑模型</uploader-btn>
 							</uploader-drop>
 							<uploader-list></uploader-list>
 						</uploader>
@@ -443,36 +443,39 @@
 
 <style>
 	.jzmodelmore {
-		background: rgba(225, 225, 225, 0.6);
+		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
 		top: 2.125rem !important;
-		left: 24.075rem !important;
+		left: 25.075rem !important;
 		border: none;
 		padding: 0.1rem;
+		border-radius: 0rem !important;
 	}
-
-	.moo {
-		width: 3.75rem;
+	.popper__arrow {
+		border-width: 0rem !important;
+		left: 0 !important;
+		overflow: hidden;
+	}
+	.jzmodelmoo {
+		width: 4.75rem;
 		/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
-		padding-left: 0.2rem;
+		padding-left: 0.1rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
 	}
-
-	.mores1 {
-		width: 3.75rem;
+	.jzmodelmores1 {
+		width: 4.65rem;
 		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
-		line-height: 1rem;
+		line-height: 0.9rem;
 		color: #666666;
 		font-size: 0.46rem;
 		font-weight: 500;
 		/* 	background:red; */
 	}
-
-	.moresb {
+	.jzmodelmoresb {
 		border: 0;
 		text-align: left;
 		line-height: 0.9rem;
@@ -480,17 +483,14 @@
 		font-size: 0.46rem;
 		font-weight: 500;
 	}
-
 	a {
 		color: #333333;
 		text-decoration: none;
 	}
-
 	* {
 		padding: 0;
 		margin: 0;
 	}
-
 	body {
 		/* width: 1920px; */
 		margin: 0 !important;

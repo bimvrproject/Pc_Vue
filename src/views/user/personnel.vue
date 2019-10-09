@@ -50,10 +50,10 @@
 						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="permodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+						<div class="permoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="permores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="permores1" @click="fnabout">联系我们</div>
+							<div class="permoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -207,23 +207,29 @@ export default {
 <style>
 /* 更多 */
 .permodelmore {
-	background: rgba(225, 225, 225, 0.6);
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
 	top: 2.125rem !important;
-	left: 15.175rem !important;
+	left: 16.175rem !important;
 	border: none;
 	padding: 0.1rem;
+	border-radius:0rem !important;
 }
-.moo {
-	width: 3.75rem;
+.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
+	}
+.permoo {
+	width:4.75rem;
 	/* 		height: 195px; */
 	/* 	background: url(../../assets/image/mores.png); */
 	padding-left: 0.2rem;
 	padding-right: 0.25rem;
 	cursor: pointer;
 }
-.mores1 {
-	width: 3.75rem;
+.permores1 {
+	width: 4.65rem;
 	height: 0.9rem;
 	border-bottom: 1px solid #999999;
 	text-align: left;
@@ -233,7 +239,7 @@ export default {
 	font-weight: 500;
 	/* 	background:red; */
 }
-.moresb {
+.permoresb {
 	border: 0;
 	text-align: left;
 	line-height: 0.9rem;

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="zongin" style="overflow:hidden;">
-		<!-- 	<iframe src="https://www.baidu.com/s?tn=news&rtt=1&bsst=1&wd=%E9%A6%99%E6%B8%AF&cl=2&origin=ps" frameborder="0" style="width:100%;height:100%;"></iframe> -->
+			<!-- 	<iframe src="https://www.baidu.com/s?tn=news&rtt=1&bsst=1&wd=%E9%A6%99%E6%B8%AF&cl=2&origin=ps" frameborder="0" style="width:100%;height:100%;"></iframe> -->
 		</div>
 		<div class="lefttopjzm">
 			<div class="leftjzm">
@@ -9,7 +9,9 @@
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 			</div>
 		</div>
-			<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;background:red;" v-if="false"><img :src="drawpicture" style="" /></div>
+		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;background:red;" v-if="false">
+			<img :src="drawpicture" style="" />
+		</div>
 		<div class="box">
 			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
@@ -21,7 +23,9 @@
 					<span class="el-dropdown-link" @click="fnxxxm">
 						<img class="xmimgin" src="../../assets/image/bluefz.png" alt="" />
 						<i class="xmin" ref="xmcol" style="color: #2180ED;">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="xmxl" alt="" style="width: 100%;height: 100%;"></i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img :src="xmxl" alt="" style="width: 100%;height: 100%;" />
+						</i>
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -42,16 +46,14 @@
 						<img class="moreimgin" src="../../assets/image/more@2x.png" />
 						<i class="morein">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
-							</i>
+							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
+						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="inmodelmore">
-						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-								<div class="mores1" >
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-							</div>	
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
+						<div class="inmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+							<div class="inmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+							<div class="inmores1" @click="fnabout">联系我们</div>
+							<div class="inmoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -64,7 +66,7 @@
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">信息编辑</span>
 			</div>
 			<!-- 项目信息表 -->
-				<div class="xmb">
+			<div class="xmb">
 				<h2 class="xmtx">项目信息填写</h2>
 				<form action="" class="boxg">
 					<div class="mc">
@@ -99,10 +101,8 @@
 				<!-- 权限人员 -->
 			</div>
 		</div>
-			<!-- 点击联系我们的遮罩 -->
-		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark">
-			
-		</div>
+		<!-- 点击联系我们的遮罩 -->
+		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark"></div>
 	</div>
 </template>
 <script>
@@ -120,25 +120,24 @@ export default {
 			xianyinxuni: false,
 			hometop: true,
 			//总的等陆头部
-			zheaderxy:true,
-			input:"",
+			zheaderxy: true,
+			input: '',
 			value1: '',
-      value2: '',
-			input1:"",
-			textarea:"",
-			xmxl:require('../../assets/image/shang.png'),
-			lmore:require('../../assets/image/pmjtxia.png'),
-				// 联系我们
-			abouts:false
+			value2: '',
+			input1: '',
+			textarea: '',
+			xmxl: require('../../assets/image/shang.png'),
+			lmore: require('../../assets/image/pmjtxia.png'),
+			// 联系我们
+			abouts: false
 		};
 	},
-	components: { 
+	components: {
 		Newjian,
-		Xunilogo,
+		Xunilogo
 		// Zheader
 	},
 	created() {
-
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -155,34 +154,34 @@ export default {
 		this.$eventbus.$emit('shows');
 	},
 	mounted() {
-		this.$eventbus.$emit('cezhan4','xianmuxx');
+		this.$eventbus.$emit('cezhan4', 'xianmuxx');
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
 		// 点击联系我们
-		fnabout(){
-				this.$eventbus.$emit('abouts');
-				this.abouts = true
+		fnabout() {
+			this.$eventbus.$emit('abouts');
+			this.abouts = true;
 		},
 		// 点击联系之后出现的遮罩
-		fnaboutmark(){
+		fnaboutmark() {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
 		// 划过更多
-		fnmoin(){
-			this.lmore=require('../../assets/image/shang.png')
+		fnmoin() {
+			this.lmore = require('../../assets/image/shang.png');
 		},
 		// 移出更多
-		fnleave(){
-			this.lmore=require('../../assets/image/pmjtxia.png')
-			},
+		fnleave() {
+			this.lmore = require('../../assets/image/pmjtxia.png');
+		},
 		// 点击项目
-		fnxxxm(){
+		fnxxxm() {
 			this.$router.push('/Login');
 		},
 		// 点击社区
-		fnxxsq(){
+		fnxxsq() {
 			this.$router.push('/');
 		},
 		fns() {
@@ -191,8 +190,8 @@ export default {
 			this.$eventbus.$emit('showyin');
 		},
 		//填写项目
-		fntijiao(){
-			sessionStorage .removeItem('projectid');
+		fntijiao() {
+			sessionStorage.removeItem('projectid');
 			//点提交的时候跳转到权限页
 			if (!this.input) {
 				alert('项目名称不能为空');
@@ -207,10 +206,11 @@ export default {
 				this.qx = true;
 				this.quanxianbiao = true;
 				// // 新增项目
-				axios.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
+				axios
+					.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
 					.then(result => {
 						console.log(result.data);
-						this.$router.push("/newjzmodel")
+						this.$router.push('/newjzmodel');
 					});
 			}
 		}
@@ -219,47 +219,47 @@ export default {
 </script>
 
 <style>
-	/* 更多 */
+/* 更多 */
 .inmodelmore {
 	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
-	top:2.125rem  !important;
-	left:16.175rem !important;
+	top: 2.125rem !important;
+	left: 16.175rem !important;
 	border: none;
-	padding:0.1rem;
-	border-radius:0rem !important;
+	padding: 0.1rem;
+	border-radius: 0rem !important;
 }
-.popper__arrow{
-		border-width:0rem !important;
-		left:0 !important;
-		overflow:hidden;
-	}
-.moo {
-	width:4.75rem;
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.inmoo {
+	width: 4.75rem;
 	/* 		height: 195px; */
-		/* 	background: url(../../assets/image/mores.png); */
-			padding-left:0.1rem;
-			padding-right:0.25rem;
-			cursor: pointer;
+	/* 	background: url(../../assets/image/mores.png); */
+	padding-left: 0.1rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
 }
-.mores1 {
- 	width:4.65rem;
-		height:0.9rem;
-		border-bottom: 1px solid #999999;
-		text-align: left;
-		line-height:0.9rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
+.inmores1 {
+	width: 4.65rem;
+	height: 0.9rem;
+	border-bottom: 1px solid #999999;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
 	/* 	background:red; */
 }
-.moresb {
+.inmoresb {
 	border: 0;
-		text-align: left;
-		line-height:0.9rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
 	/* 	background:red; */
 }
 a {
@@ -271,8 +271,8 @@ a {
 	margin: 0;
 }
 .zongin {
-	width:60rem;
-	height:33.75rem;
+	width: 60rem;
+	height: 33.75rem;
 	/* 	background:green; */
 	/* background: url(../../assets/image/bjt.jpg);
 	background-repeat: no-repeat;
@@ -288,10 +288,10 @@ a {
 /* 主页top部分*/
 .hometopjzmin {
 	position: absolute;
-	top:0.9375rem;
-	left:6.9375rem;
+	top: 0.9375rem;
+	left: 6.9375rem;
 	/* background:red; */
-	line-height:1.78125rem;
+	line-height: 1.78125rem;
 }
 /* 左侧边栏 */
 .left {
@@ -308,8 +308,8 @@ a {
 	padding-right: 0px;
 }
 .lefttopjzm {
-	width:6.75rem;
-	height:1.875rem;
+	width: 6.75rem;
+	height: 1.875rem;
 	/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;
@@ -320,15 +320,15 @@ a {
 	color: #333333;
 }
 .xmimgin {
-	width:0.84375rem;
-	height:0.8125rem;
-	padding-left:2.5rem;
-	padding-top:0.0625rem;
+	width: 0.84375rem;
+	height: 0.8125rem;
+	padding-left: 2.5rem;
+	padding-top: 0.0625rem;
 }
 .xmin {
-	width:0.84375rem;
-	height:0.53125‬;
-	font-size:0.625rem;
+	width: 0.84375rem;
+	height: 0.53125‬;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
 	color: #2180ed;
@@ -338,16 +338,16 @@ a {
 }
 .sqimgin,
 .bjimgin {
-	width:0.84375rem;
+	width: 0.84375rem;
 	height: 0.8125rem;
 }
 .sqin {
-	width:1.25rem;
-	height:0.5625rem;
-	font-size:0.625rem;
+	width: 1.25rem;
+	height: 0.5625rem;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
-	padding-left:0.1875rem;
+	padding-left: 0.1875rem;
 	font-style: normal;
 }
 .moreimgin {
@@ -355,11 +355,11 @@ a {
 	height: 0.78125rem;
 }
 .morein {
-	width:1.21875rem;
-	height:0.59375rem;
-	font-size:0.625rem;
+	width: 1.21875rem;
+	height: 0.59375rem;
+	font-size: 0.625rem;
 	font-style: normal;
-	padding-left:0.15625rem;
+	padding-left: 0.15625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
 	color: rgba(51, 51, 51, 1);
@@ -379,65 +379,66 @@ i {
 	font-weight: 400;
 }
 .xmb {
-	width:50.6rem;
-	height:24.7rem;
+	width: 50.6rem;
+	height: 24.7rem;
 	background: rgba(255, 255, 255, 0.3);
 	position: absolute;
-	top:4.8rem;
-	left:7.8rem;
-	padding-top:2.1rem;
+	top: 4.8rem;
+	left: 7.8rem;
+	padding-top: 2.1rem;
 }
 /* 项目填写标题 */
 .xmtx {
-	width:18rem;
-	height:0.8rem;
-	font-size:0.625rem;
-/* 	background:red; */
+	width: 18rem;
+	height: 0.8rem;
+	font-size: 0.625rem;
+	/* 	background:red; */
 	font-style: none;
-	margin-left:16rem;
-	margin-bottom:1rem;
+	margin-left: 16rem;
+	margin-bottom: 1rem;
 }
-.mc1{
+.mc1 {
 	font-weight: 400;
-	font-size:0.4rem;
+	font-size: 0.4rem;
 	color: #333333;
 }
 .mc11 {
-	width:22.6rem;
-	height:0.8rem;
-	margin-bottom:0.8rem;
+	width: 22.6rem;
+	height: 0.8rem;
+	margin-bottom: 0.8rem;
 }
 .demonstration {
 	font-weight: 400;
-	font-size:0.4rem;
+	font-size: 0.4rem;
 	color: #333333;
 }
 .startdata,
 .enddata,
 .bzxx {
-	width:22.625rem;
-	height:0.9375rem;
-	margin-bottom:1.09375rem;
+	width: 22.625rem;
+	height: 0.9375rem;
+	margin-bottom: 1.09375rem;
 }
 .bz1 {
 	display: inline-block;
-	padding-bottom:0.6rem;
+	padding-bottom: 0.6rem;
 }
 .tj {
-	width:20.625rem;
-	height:1.40625rem;
-	margin-bottom:1.09375rem;
-	margin-top:6.25rem;
-	margin-left:2.8rem;
-	font-size:0.5rem;
+	width: 20.625rem;
+	height: 1.40625rem;
+	margin-bottom: 1.09375rem;
+	margin-top: 6.25rem;
+	margin-left: 2.8rem;
+	font-size: 0.5rem;
 	color: #ffffff;
 	font-weight: 400;
 }
-.el-date-editor.el-input, .el-date-editor.el-input__inner{
-	width:22.34375rem;
-	}
-.el-picker-panel__body{
-	width:22.3rem;
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+	width: 22.34375rem;
+}
+.el-picker-panel__body {
+	width: 22.3rem;
 }
 /* .el-picker-panel__content{
 	width:20.53125rem;
@@ -445,11 +446,10 @@ i {
 .el-date-picker{
 	width:19.96875rem;
 } */
-.el-date-picker .el-picker-panel__content{
-	width:21.34375rem !important;
+.el-date-picker .el-picker-panel__content {
+	width: 21.34375rem !important;
 }
-.el-date-picker{
-	width:22.28125rem !important;
+.el-date-picker {
+	width: 22.28125rem !important;
 }
 </style>
-
