@@ -20,7 +20,7 @@
 			<div class="hometopjzmper" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fnperxm">
+					<span class="el-dropdown-link" @click="fnperxm()">
 						<img class="xmimgper" src="../../assets/image/bluefz.png" alt="" />
 						<i class="xmper" ref="xmcol" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -32,7 +32,7 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnpersq">
+					<span class="el-dropdown-link" @click="fnpersq()">
 						<img class="sqimgper" src="../../assets/image/sq@2x.png" />
 						<i class="sqper" style="color: #333333;">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -42,7 +42,7 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin" @mouseleave="fnleave">
+					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin()" @mouseleave="fnleave()">
 						<img class="moreimgper" src="../../assets/image/more@2x.png" />
 						<i class="moreper">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -50,9 +50,9 @@
 						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="permodelmore">
-						<div class="permoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+						<div class="permoo" @mouseenter="fnmoin" @mouseleave="fnleave()">
 							<div class="permores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="permores1" @click="fnabout">联系我们</div>
+							<div class="permores1" @click="fnabout()">联系我们</div>
 							<div class="permoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
@@ -73,7 +73,7 @@
 					<li class="reyxh" v-for="(item, index) in qxarr" :key="index">
 						<div class="accountnub">
 							<span class="accountnubspan">账号 ：</span>
-							<el-input class="accountnubinp" v-model="accountnr" placeholder="请输入内容"></el-input>
+							<el-input v-model="accountnr" placeholder="请输入内容" class="accountnubinp"></el-input>
 						</div>
 						<div class="accountper">
 							<span class="accountperspan">账号权限 ：</span>
@@ -414,7 +414,7 @@ li {
 .accountnub {
 	width: 8.125rem;
 	height: 1.3rem;
-	/* background:peru; */
+	background:peru;
 	margin-left: 1.8rem;
 	display: flex;
 	justify-content: space-around;

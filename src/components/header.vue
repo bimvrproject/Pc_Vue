@@ -5,7 +5,7 @@
 		 	<div class="top-right">
 		 		<!-- 登录头像 -->
 		 		<el-dropdown class="imgzong" style="position:relative;">
-					<div>
+					<div @click="fnlogin()">
 						<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
 		 				<!-- <span class="logintop">登录</span> -->
 		 			<!-- <div class="dengl">{{message ? message : "登录"}}</div> -->
@@ -74,6 +74,16 @@
 			// fnls(){
 			// 	this.fndl = false
 			// }
+			fnlogin(){
+				alert(window.sessionStorage.getItem('token'))
+				if(	window.sessionStorage.getItem('token') != null){
+				   this.$router.push('/Login');
+					 
+				}else{
+						this.loginWindow = 'display:block';
+						alert(1)
+				}
+			}
 		},
      // props:["message"],
 		created(){
@@ -94,7 +104,7 @@
 	 top: 0;
 	 right:0.3rem;
 	/* background:red; */
-	z-index:30000;
+	z-index:300;
 	cursor:pointer;
 	}
 	.imgzong {
