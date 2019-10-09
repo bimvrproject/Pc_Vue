@@ -36,7 +36,7 @@ export default {
 	},
 	methods: {
 		fns() {
-			this.projectLists.push(0);
+			this.projectLists.unshift(0);
 		},
 		fnt(index) {
 			//点击当前创建页面的时候点开填写项目表，同时上边的创建项目消失

@@ -222,7 +222,7 @@
 			this.$eventbus.$emit('shows');
 			// 初始化展示模型
 			var id = this.$route.params.project_id;
-			localStorage.setItem('id', this.$route.params.project_id);
+			sessionStorage.setItem('id', this.$route.params.project_id);
 			if (id != '' && id != null && id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + id).then(result => {
 					console.log(result.data)
@@ -306,7 +306,7 @@
 			},
 			down() {
 				let mythis = this;
-				var id = localStorage.getItem("id");
+				var id = sessionStorage.getItem("id");
 				var lists = mythis.dataList;
 				this.$notify.info({
 					title: '消息',
@@ -315,7 +315,7 @@
 				for (var i = 0; i < lists.length; i++) {
 					var list = lists[i];
 					if (id == list.id) {
-						localStorage.setItem('exeid', list.id);
+						sessionStorage.setItem('exeid', list.id);
 						console.log(list.id)
 						this.$http.post(api.Download, qs.stringify({
 							modelid: id
@@ -343,7 +343,7 @@
 			},
 			openexe() {
 				let mythis = this;
-				var id = localStorage.getItem("id");
+				var id = sessionStorage.getItem("id");
 				this.$http.post(api.Openexe, qs.stringify({
 					id: id
 				})).then(function(response) {

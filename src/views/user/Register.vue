@@ -314,7 +314,7 @@ export default {
 			// }
 		},
 		fnxiangmu(){
-				if(	window.localStorage.getItem('token') != null){
+				if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
 					this.loginWindow = 'display:block';
@@ -325,7 +325,7 @@ export default {
 			this.comarr.push(0);
 		},
 		fnxnjz(){
-			if(	window.localStorage.getItem('token') != null){
+			if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
 					this.loginWindow = 'display:block';
@@ -395,7 +395,7 @@ export default {
 						this.phonename=result.msg;
 						this.panduanphone = true;
 					}else if(result.code==0){
-						window.localStorage.setItem('token',this.token);
+						window.sessionStorage.setItem('token',this.token);
 						//注册成功跳转页面
 						this.panduanphone = false;
 					this.loginWindow = 'display:none';

@@ -260,7 +260,7 @@
 			// Zheader
 		},
 		created() {
-			var prid = localStorage.getItem('projectid');
+			var prid = sessionStorage.getItem('projectid');
 			//绑定平面图纸
 			axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/1").then(result => {
 				console.log(result.data)
@@ -357,7 +357,7 @@
 				// this.wang = wang,
 				(this.showname = true), (this.showrename = false);
 				//设置localStroage值
-				localStorage.setItem('wang', this.wang);
+				sessionStorage.setItem('wang', this.wang);
 			},
 			cetuend() {
 				this.cetuxy = false;

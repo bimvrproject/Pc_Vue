@@ -67,7 +67,7 @@ export default {
 	},
 	methods: {
 		fntijiao() {
-			localStorage.removeItem('projectid');
+			sessionStorage .removeItem('projectid');
 			//点提交的时候跳转到权限页
 			if (!this.input) {
 				alert('项目名称不能为空');

@@ -276,8 +276,8 @@ export default {
 	},
 	created() {
 		// console.log(localStorage.getItem('wallss1'));
-		this.newjian = localStorage.getItem('wallss1')
-			? JSON.parse(localStorage.getItem('wallss1'))
+		this.newjian = sessionStorage .getItem('wallss1')
+			? JSON.parse(sessionStorage .getItem('wallss1'))
 			: [{ msg: 50, change: false }, { msg: 50, change: false }, { id: 2, msg: 50, change: false }, { msg: 50, change: false }];
 			// 建立建筑结构模型
 		this.$eventbus.$on('cezhan', ite => {
@@ -400,19 +400,19 @@ export default {
 			this.ceyinxx = true;
 		});
 		// 获取存储的值
-		localStorage.getItem('wallss1');
+		sessionStorage.getItem('wallss1');
 		//材质循环
 		this.material.push(0);
 	},
 	mounted() {},
 	methods: {
 		fnjian() {
-			var pro_id = localStorage.projectid;
+			var pro_id = sessionStorage.projectid;
 			this.$router.push({ name: '/newjzmodel', params: { project_modelid: pro_id } });
 		},
 		//管线综合
 		fnguan() {
-			var pro_id = localStorage.projectid;
+			var pro_id = sessionStorage.projectid;
 			this.$router.push({ name: 'gxmoxin', params: { pipemodelids: pro_id } });
 		},
 		fnshebei() {
@@ -433,7 +433,7 @@ export default {
 		// },
 		//建筑模型
 		fnmx1() {
-			var pro_id = localStorage.projectid;
+			var pro_id = sessionStorage.projectid;
 			this.$router.push({ name: '/newjzmodel', params: { project_modelid: pro_id } });
 		},
 		fntz1() {
@@ -444,7 +444,7 @@ export default {
 		},
 		//管线模型
 		fnmx2() {
-			var pro_id = localStorage.projectid;
+			var pro_id = sessionStorage.projectid;
 			this.$router.push({ name: 'gxmoxin', params: { pipemodelids: pro_id } });
 		},
 		fntz2() {
@@ -465,12 +465,12 @@ export default {
 		establish() {
 			// this.newjian.push(6);
 			this.newjian.push({ msg: 50, change: false });
-			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除信息
 		clear(index) {
 			this.newjian.splice(index, 1);
-			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除默认的第一个信息
 		// clear1() {
@@ -490,7 +490,7 @@ export default {
 		changewall1(index) {
 			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'change', false);
 			//设置localStroage值
-			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 点击信息标题
 		xxtitle() {

@@ -162,7 +162,7 @@
 		console.log(this.xianyinxuni)
 	},
 	mounted() {
-			if(window.localStorage.getItem("token") != null){
+			if(window.sessionStorage.getItem("token") != null){
 				this.loginWindow='display: none';
 				 //请求用户接口查询 用户信息
 				
@@ -229,7 +229,7 @@
       // 如果登录成功，存储token
       if (res.code == "0") {
         this.$store.commit("settoken", res.data.token);
-        window.localStorage.setItem("token", res.data.token);
+        window.sessionStorage.setItem("token", res.data.token);
 				// this.$router.push("/home");
 				this.loginWindow='display: none';
 				this.getUserByToken();

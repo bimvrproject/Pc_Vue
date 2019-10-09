@@ -45,10 +45,10 @@
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
 							</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
+					<el-dropdown-menu slot="dropdown" class="inmodelmore">
 						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
 								<div class="mores1" >
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 							</div>	
 							<div class="mores1" @click="fnabout">联系我们</div>
 							<div class="moresb">版本号: v 1.0.1</div>
@@ -190,34 +190,64 @@ export default {
 			// this.xianyinxuni = false;
 			this.$eventbus.$emit('showyin');
 		},
+		//填写项目
+		fntijiao(){
+			sessionStorage .removeItem('projectid');
+			//点提交的时候跳转到权限页
+			if (!this.input) {
+				alert('项目名称不能为空');
+			} else if (!this.value1) {
+				alert('开始时间不能为空');
+			} else if (!this.value2) {
+				alert('结束时间不能为空');
+			} else if (!this.input1) {
+				alert('项目地点不能为空');
+			} else {
+				this.biao = false;
+				this.qx = true;
+				this.quanxianbiao = true;
+				// // 新增项目
+				axios.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
+					.then(result => {
+						console.log(result.data);
+						this.$router.push("/newjzmodel")
+					});
+			}
+		}
 	}
 };
 </script>
 
 <style>
 	/* 更多 */
-.jzmodelmore {
-	background: rgba(225, 225, 225, 0.6);
+.inmodelmore {
+	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
 	top:2.125rem  !important;
-	left:15.175rem !important;
+	left:16.175rem !important;
 	border: none;
 	padding:0.1rem;
+	border-radius:0rem !important;
 }
+.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
+	}
 .moo {
-	width:3.75rem;
+	width:4.75rem;
 	/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
-			padding-left:0.2rem;
+			padding-left:0.1rem;
 			padding-right:0.25rem;
 			cursor: pointer;
 }
 .mores1 {
-	width:3.75rem;
+ 	width:4.65rem;
 		height:0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
-		line-height:0.7rem;
+		line-height:0.9rem;
 		color: #666666;
 		font-size:0.46rem;
 		font-weight: 500;

@@ -292,7 +292,7 @@ export default {
 		});
 	},
 	mounted() {
-		if (window.localStorage.getItem('token') != null) {
+		if (window.sessionStorage.getItem('token') != null) {
 			this.loginWindow = 'display: none';
 			//请求用户接口查询 用户信息
 
@@ -350,7 +350,7 @@ export default {
 		},
 		fndianji(){
 				
-				if(	window.localStorage.getItem('token') != null){
+				if(	window.sessionStorage.getItem('token') != null){
 				   this.$router.push('/Login');
 				}else{
 						this.loginWindow = 'display:block';
@@ -358,7 +358,7 @@ export default {
 				// this.loginWindow = 'display:block';
 		},
 		fnxnjz(){
-			if(	window.localStorage.getItem('token') != null){
+			if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
 					this.loginWindow = 'display:block';
@@ -443,7 +443,7 @@ export default {
 			}else{
 				this.$store.commit("settoken",this.token);
 				this.$store.commit("setPhone",this.username);
-				window.localStorage.setItem('token',this.token);
+				window.sessionStorage.setItem('token',this.token);
 				this.getUserByToken();
 				//注册成功跳转页面
 				this.panduan = false;
