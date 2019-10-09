@@ -29,7 +29,7 @@
 		 			 <!-- 手机号，vip级别，到期时间 -->
 		 			 <div class="svdrigh">
 		 				 <div style="display:flex;">
-		 					 <span class="svdone">15688999988</span><img src="../assets/image/vipg.png" alt="">
+		 					 <span class="svdone">{{$store.state.phone ? $store.state.phone : "未登录"}}</span><img src="../assets/image/vipg.png" alt="">
 		 				 </div> 
 		 				<!-- 到期时间 -->
 		 				<div class="comsj">
