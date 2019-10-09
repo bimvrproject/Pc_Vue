@@ -49,9 +49,9 @@
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
+					<el-dropdown-menu slot="dropdown" class="permodelmore">
 						<div class="moo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a></div>
+							<div class="mores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
 							<div class="mores1" @click="fnabout">联系我们</div>
 							<div class="moresb">版本号: v 1.0.1</div>
 						</div>
@@ -206,7 +206,7 @@ export default {
 
 <style>
 /* 更多 */
-.jzmodelmore {
+.permodelmore {
 	background: rgba(225, 225, 225, 0.6);
 	position: absolute;
 	top: 2.125rem !important;
