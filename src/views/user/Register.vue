@@ -1040,7 +1040,7 @@ export default {
 	margin-top:0.05rem;
 }
 .user input {
-	width:4.72rem;
+	width:4.69rem;
 	height:0.84rem;
 	float: left;
 	padding-left:0.3rem;

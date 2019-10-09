@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<ul class="animated fadeIn newjiantop" v-show="tian">
-			<li v-for="(item, index) in projectLists" :key="index" class="xmn">
+			<li v-for="(item, index) in projectLists" :key="index" class="xmn" @click="fnt(index)">
 				<div class="hqtp">
-					<img src="../../assets/image/shanchu@2x.png" class="delimg" @click="delproject(index)" />
-					<img :src="item.projectModelAddr" alt="" />
+					<span class="delimg"><img src="../../assets/image/shanchu@2x.png"  @click.stop="delproject(index)" /></span>
+					<img class="ttu" :src="item.projectModelAddr" alt="" />
 				</div>
-				<div class="xmtitle" @click="fnt(index)">
+				<div class="xmtitle">
 					<h4 class="xmmc">{{item.projectName}}</h4>
 					<span class="start">起始时间:{{ dateFormat(item.createTime) }}</span>
 					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span>
@@ -108,9 +108,9 @@ export default {
   width:59.9rem;
   height:4.8075rem;
   background: rgba(255, 255, 255, 0.2);
-  position: fixed;
+/* position: fixed;
   top:2.3rem;
-  left:0rem;
+  left:0rem; */
   overflow-x: auto;
 /* 	background:plum; */
 }
@@ -118,26 +118,25 @@ export default {
 .tianjia {
   list-style: none;
   width:4.6rem;
-  height:5.9375rem;
+  height:4.4rem;
   float: left;
   margin-left:0.37875rem;
-  margin-top:0.465rem;
+  margin-top:0.2rem;
  /* margin-bottom:0.2125rem; */
   background: url(../../assets/image/jia4@2x.png) no-repeat;
-  background-size:3.81875rem 3.825rem;
+  background-size:4.6rem 4.4rem;
 }
 .xmn{
   list-style: none;
   width:4.6rem;
-  height:4.2rem;
+  height:4.5rem;
   background: #ffffff;
   float: left;
   margin-left:0.37875rem;
-  margin-top:0.425rem;
-  /* margin-bottom: 10px; */
+  margin-top:0.15rem;
   padding-left: 0px;
   padding-right: 0px;
-/* 	background:red; */
+	/* background:red; */
 }
 /* 获取图片 */
 .hqtp {
@@ -146,8 +145,8 @@ export default {
   position: relative;
 	background:plum;
 }
-.hqtp img {
-  width:4.6rem;
+.ttu {
+ width:4.6rem;
   height: 100%;
 }
 /* 项目名称 */
@@ -169,6 +168,7 @@ export default {
   color: rgba(51, 51, 51, 1);
   line-height:0.6rem;
 	/* background:blue; */
+  text-align: center;
 }
 .start,.end {
   display:inline-block;
@@ -176,7 +176,7 @@ export default {
   height:0.4rem;
   font-size:0.3rem;
   text-align: center;
-  margin-bottom:0.1rem;
+  margin-bottom:0.05rem;
   /* padding-left:0.1rem; */
   font-weight: 400;
   color: rgba(153, 153, 153, 1);
@@ -185,12 +185,24 @@ export default {
 /* 	background:plum; */
 }
 /* 图片删除按钮 */
-.hqtp .delimg {
+ .delimg{
+	 width:0.6rem;
+	 height:0.8625rem;
+	 
+ }
+ .delimg img {
   width:0.3rem;
   height:0.3625rem;
   position: absolute;
-  top:0.3125rem;
-  right:0.2525rem;
+  top:0rem;
+  right:0rem;
   cursor: pointer;
+	background:rgba(225,225,225,.3);
+	padding:0.5rem;
+	/* padding-right:0.6rem;
+	padding-top:0.4rem;
+	padding-left:0.9rem;
+	padding-bottom:0.8rem; */
+	/* border-radius:0.1rem 0.1rem 0rem 1.2rem; */
 }
  </style>

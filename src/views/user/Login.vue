@@ -24,6 +24,9 @@
 							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
 						</i>
 					</span>
+			  	<el-dropdown-menu slot="dropdown" class="newxl">
+						<Newjian v-show="newxy"></Newjian>
+					</el-dropdown-menu>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
@@ -61,7 +64,7 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目 -->
-			<Newjian v-show="newxy"></Newjian>
+			<!-- <Newjian v-show="newxy"></Newjian> -->
 			<!-- 悬浮登录窗口 --结束 -->
 		</div>
 		<!-- 点击联系我们的遮罩 -->
@@ -292,36 +295,54 @@
 </script>
 
 <style>
+		.newxl{	
+	/* 	background: rgba(255, 255, 255, 0.2); */
+		width:0rem;
+		height:0rem;
+		padding:0 !important;
+		margin:0 !important;
+	}
+	.el-dropdown-menu{
+		position:absolute;
+		top:2.3rem !important;
+		left:0rem !important;
+		border:none !important;
+	}
+	.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
+	}
 	.lomore {
 		background: rgba(225, 225, 225, 0.6);
+		width:4.75rem;
+		/* background:red; */
 		position: absolute;
 		top: 1.825rem !important;
-		left: 15.175rem !important;
+		left: 16.175rem !important;
 		border: none;
 		padding: 0.1rem;
 	}
-
 	.moo {
-		width: 3.75rem;
+		width:4.75rem;
 		/* 		height: 195px; */
 		/* 	background: url(../../assets/image/mores.png); */
 		padding-left: 0.2rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
 	}
-
 	.mores1 {
-		width: 3.75rem;
+		width: 4.75rem;
 		height: 0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;
-		line-height: 0.9rem;
+		line-height:0.9rem;
 		color: #666666;
 		font-size: 0.46rem;
 		font-weight: 500;
-		/* 	background:red; */
+		/* background:red; */
+		padding-top:0.2rem;
 	}
-
 	.moresb {
 		border: 0;
 		text-align: left;
@@ -331,25 +352,20 @@
 		font-weight: 500;
 		/* 	background:red; */
 	}
-
 	a {
 		color: #333333;
 		text-decoration: none;
 	}
-
 	* {
 		padding: 0;
 		margin: 0;
 	}
-
 	body {
 		width: 100%;
 	}
-
 	html {
 		width: 100%;
 	}
-
 	.zonglogin {
 		width: 59.9375rem;
 		height: 33.65625rem;
@@ -359,13 +375,11 @@
 		background-size: 100% 100%;
 		position: relative;
 	}
-
 	.boxlo {
 		width: 216px;
 		height: 59px;
 		background: rgba(225, 225, 225, 0.1);
 	}
-
 	.poxlo {
 		width: 216px;
 		height: 60px;
