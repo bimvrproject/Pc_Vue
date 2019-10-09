@@ -44,7 +44,7 @@
 					<el-dropdown-menu slot="dropdown" class="lomorecom">
 						<div class="moocom" @mouseleave="fnleave">
 							<div class="mores1com" >
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;">帮助</a>
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 							</div>	
 							<div class="mores1com" @click="fnabout">联系我们</div>
 							<div class="moresbcom">版本号: v 1.0.1</div>
@@ -73,8 +73,8 @@
 				<!-- 输入验证码 -->
 				<div class="password">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2"/>
-					<span v-show="sendCode" @click="ObtainCode" style="width:2.30125rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
-					<span v-show="!sendCode" style="width:2.30125rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
+					<span v-show="sendCode" @click="ObtainCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
+					<span v-show="!sendCode" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
 				</div>
 				
 				<!-- 登录 -->
@@ -482,23 +482,30 @@ export default {
 
 <style>
 	.lomorecom {
-		background: rgba(225, 225, 225, 0.6);
+		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
 		top:2.125rem  !important;
-		left:14.975rem !important;
+		left:15.975rem !important;
 		border: none;
+		padding: 0.1rem;
+		border-radius:0rem !important;
+	}
+	.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
 	}
 	.moocom {
-		width:3.75rem;
+		width:4.75rem;
 		/* width: 183px;
 		height: 195px; */
 		/* background: url(../../assets/image/mores.png); */
-		padding-left:0.2rem;
+		padding-left:0.1rem;
 		padding-right:0.25rem;
 		cursor: pointer;
 	}
 	.mores1com {
-		width:3.75rem;
+		width:4.65rem;
 		height:0.9rem;
 		border-bottom: 1px solid #999999;
 		text-align: left;

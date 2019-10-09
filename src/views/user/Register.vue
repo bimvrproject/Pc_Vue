@@ -34,18 +34,20 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
-					<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
+					<span class="el-dropdown-link" @mouseenter="sqq()" style="position:relative;">
 						<img class="moreimgcom" :src="moretb" />
 						<i class="morecom" ref="gdcol">更多</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;"></i>
+					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+						<img :src="lmore" alt="" style="width: 100%;height: 100%;">
+					</i>
 					</span>
-					<el-dropdown-menu slot="dropdown" class="lomorecom">
-						<div class="moocom">
-							<a class="mores1com" href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;">帮助</a>
-							<div class="mores1com" @click="Preservation">保存设置</div>
-							<div class="mores1com" @click="xiugai">修改密码</div>
-							<div class="mores1com" @click="abouts">联系我们</div>
-							<div class="moresbcom">版本号: v 1.0.1</div>
+					<el-dropdown-menu slot="dropdown" class="remore">
+						<div class="remoo" @mouseleave="fnleave()">
+							<div class="remores1">
+								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+							</div>
+							<div class="remores1" @click="fnabout()">联系我们</div>
+							<div class="remoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -72,10 +74,10 @@
 					</div>
 					<!-- 输入验证码-->
 					<div class="code">
-						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" />
+						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6"/>
 						<!-- <div class="codefooter" @click="yzm">获取验证码</div> -->
-						<span v-show="sendCode" @click="ObtainCode" style="width:2.30125rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
-						<span v-show="!sendCode" style="width:2.30125rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
+						<span v-show="sendCode" @click="ObtainCode()" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
+						<span v-show="!sendCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
 					</div>
 					<!-- 注册 -->
 					<div class="reg-button" @click="login()"><span>完成注册</span></div>
@@ -204,6 +206,11 @@
 						<div class="comendright"></div>
 					</div>
 				</div>
+				  	<!-- 点击联系我们的遮罩 -->
+				  <div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);"
+				   v-show="abouts" @click="fnaboutmark()">
+				  
+				  </div>
 					</div>
 					<router-view></router-view>
 			</div>
@@ -246,13 +253,16 @@ export default {
 			yzword: false,
 			hometop:true,
 			xmtb: require('../../assets/image/sshouse.png'),
-			sqtb: require('../../assets/image/sq@2x.png'),
+			sqtb: require('../../assets/image/shequ.png'),
 			moretb: require('../../assets/image/more@2x.png'),
+		  lmore: require('../../assets/image/pmjtxia.png'),
 			sqcolor: 'color: #333333',
 			token:"",
 			//总的等陆头部
 			// zheaderxy:true,
 				comarr: [0,0],
+				// 联系我们
+				abouts: false
 		};
 	},
 	components: {
@@ -262,6 +272,20 @@ export default {
 		// Release
 	},
 	methods: {
+		// 移出更多
+		fnleave() {
+			this.lmore = require('../../assets/image/pmjtxia.png')
+		},
+		// 点击联系我们
+		fnabout() {
+			this.$eventbus.$emit('abouts');
+			this.abouts = true
+		},
+		// 点击联系之后出现的遮罩
+		fnaboutmark() {
+			this.$eventbus.$emit('aboutsbi');
+			this.abouts = false;
+		},
 	//一分钟倒计时
 		ObtainCode () {
 			axios.get(api.GetPhone+"?phone"+"="+this.phone1).then(result=>{
@@ -332,22 +356,22 @@ export default {
 			}
 			// this.loginWindow = 'display:block';
 		},
-		Preservation() {
-			this.$router.push('/baocun');
-		},
-		xiugai() {
-			this.$router.push('/xiugai');
-		},
-		abouts() {
-			this.$router.push('/about');
-		},
+		// Preservation() {
+		// 	this.$router.push('/baocun');
+		// },
+		// xiugai() {
+		// 	this.$router.push('/xiugai');
+		// },
+		// abouts() {
+		// 	this.$router.push('/about');
+		// },
 		sqq() {
-			// this.moretb = require('../../assets/image/moress.png');
-			// this.$refs.gdcol.style.color = '#2180ED';
 			this.xmtb = require('../../assets/image/sshouse.png');
+			this.xmxl = require('../../assets/image/pmjtxia.png');
 			this.$refs.xmcol.style.color = '#333333';
-			// this.sqtb = require('../../assets/image/sq@2x.png');
-			// this.sqcolor = 'color:#333333';
+			this.sqtb = require('../../assets/image/sq@2x.png');
+			this.sqcolor = 'color:#333333';
+			this.lmore = require('../../assets/image/shang.png');
 		},
 		fn5() {
 			this.$router.push('/');
@@ -418,40 +442,48 @@ export default {
 </script>
 
 <style>
-	.lomorecom {
-		background: rgba(225, 225, 225, 0.6);
+	.remore {
+		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
 		top:2.125rem  !important;
 		left:16.175rem !important;
 		border: none;
+		padding: 0.1rem;
+		border-radius:0rem !important;
 	}
-	.moocom {
-		/* width: 183px;
-		height: 195px; */
-		background: url(../../assets/image/mores.png);
-		padding-left:0.2rem;
-		padding-right:0.25rem;
-		cursor: pointer;
+	.popper__arrow{
+		border-width:0rem !important;
+		left:0 !important;
+		overflow:hidden;
 	}
-	.mores1com {
-		width:3.2rem;
-		height:0.7rem;
-		border-bottom: 1px solid #999999;
-		text-align: left;
-		line-height:0.7rem;
-		color: #666666;
-		font-size:0.3rem;
-		font-weight: 500;
-	/* 	background:red; */
+	.remoo {
+	width:4.75rem;
+	/* 		height: 195px; */
+	/* 	background: url(../../assets/image/mores.png); */
+	padding-left: 0.1rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
 	}
-	.moresbcom {
+	.remores1 {
+			width: 4.65rem;
+			height: 0.9rem;
+			border-bottom: 1px solid #999999;
+			text-align: left;
+			line-height:0.9rem;
+			color: #666666;
+			font-size: 0.46rem;
+			font-weight: 500;
+		/* 	background:red; */
+			padding-top:0.12rem;
+	}
+	.remoresb {
 		border: 0;
 		text-align: left;
-		line-height:0.7rem;
+		line-height: 0.9rem;
 		color: #666666;
-		font-size:0.3rem;
+		font-size: 0.46rem;
 		font-weight: 500;
-		/* background:red; */
+		/* 	background:red; */
 	}
 	a {
 		color: #333333;
