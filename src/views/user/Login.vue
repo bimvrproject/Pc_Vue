@@ -147,20 +147,6 @@
 				this.sqcolor = 'color:#333';
 			});
 		},
-		mounted() {
-			if (window.localStorage.getItem('token') != null) {
-				this.loginWindow = 'display: none';
-				//请求用户接口查询 用户信息
-
-				// .then(res => this.loginSuccess(res))
-				// .catch(err => this.requestFailed(err))
-				// .finally(() => {
-				// // state.loginBtn = false;
-				// });
-			} else {
-				this.loginWindow = '';
-			}
-		},
 		methods: {
 			// 点击联系我们
 			fnabout() {
@@ -175,11 +161,6 @@
 			fndianji() {
 				this.$router.push('/Login');
 			},
-			// fnxuni(){
-			// 	this.xianyinxuni = !this.xianyinxuni;
-			// 	this.xianyin = false;
-			// 	this.box1=!this.box1
-			// },
 			fns() {
 				this.xianyin = !this.xianyin;
 				// this.xianyinxuni = false;
@@ -220,76 +201,6 @@
 				this.$refs.gdcol.style.color = '#333333';
 				this.moretb = require('../../assets/image/more@2x.png');
 			},
-			// fnxuni(){
-			// 	this.xianyin = false;
-			// },
-			fn4() {
-				this.loginWindow = 'display:block';
-			},
-			fn3() {
-				this.$router.push('/Register');
-			},
-			fn1() {
-				var re = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|4|5|6|7|8|9])\d{8}$/;
-				if (!re.test(this.username)) {
-					this.panduan = true;
-				} else {
-					this.panduan = false;
-				}
-			},
-			fn2() {
-				var re = /^\w{6,12}$/;
-				if (!re.test(this.password)) {
-					this.panduan = true;
-				} else {
-					this.panduan = false;
-				}
-			},
-			// login() {
-			// 	if (this.username == '' || this.password == '') {
-			// 		this.panduan = true;
-			// 	} else {
-			// 		//请求登录接口
-			// 		this.$http
-			// 			.post(api.Login, qs.stringify({ username: this.username, password: this.password }))
-			// 			.then(res => this.loginSuccess(res))
-			// 			.catch(err => this.requestFailed(err))
-			// 			.finally(() => {});
-			// 		// 调用登录时返回的用户名
-			// 		this.$eventbus.$emit('changetitle', 'res.data.username');
-			// 	}
-			// },
-			// loginSuccess(res) {
-			// 	// 如果登录成功，存储token
-			// 	if (res.code == '0') {
-			// 		this.$store.commit('settoken', res.data.token);
-			// 		window.localStorage.setItem('token', res.data.token);
-			// 		// this.$router.push("/home");
-			// 		this.loginWindow = 'display: none';
-			// 		this.getUserByToken();
-			// 	} else {
-			// 		this.msg = res.msg;
-			// 		this.show = true;
-			// 		setTimeout(() => {
-			// 			this.show = false;
-			// 		}, 1200);
-			// 	}
-			// },
-			// requestFailed() {
-			// 	this.msg = '应用发生错误';
-			// 	this.show = true;
-			// },
-			// getUserByToken() {
-			// 	this.$http.post(api.GetUser).then(res => this.userHome(res));
-			// },
-			// userHome(res) {
-			// 	this.username = res.data.userName;
-			// 	console.log('this.userName   ' + this.userName);
-			// },
-			// 关闭login悬浮窗
-			closeLoginwindow() {
-				this.loginWindow = 'display:none';
-			}
 		}
 	};
 </script>
@@ -326,6 +237,7 @@
 		left: 16.175rem !important;
 		border: none;
 		padding: 0.1rem;
+		border-radius:0rem !important;
 	}
 	.moo {
 		width:4.75rem;
