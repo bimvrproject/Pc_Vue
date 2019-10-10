@@ -5,7 +5,7 @@
 		 	<div class="top-right">
 		 		<!-- 登录头像 -->
 		 		<el-dropdown class="imgzong" style="position:relative;">
-					<div  @click="logins">
+					<div  @click="logins" @mouseenter="logins">
 						<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
 		 				<!-- <span class="logintop">登录</span> -->
 		 			<!-- <div class="dengl">{{message ? message : "登录"}}</div> -->
