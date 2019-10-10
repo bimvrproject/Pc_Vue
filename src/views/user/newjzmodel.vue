@@ -80,17 +80,17 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/建筑结构/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;">
-				<span @click="fnjzmxxm" style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;">建筑结构</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
+			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;">
+				<span @click="fnjzmxxm" style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">建筑结构</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7025rem;">模型</span>
 				<el-tooltip class="item" effect="dark" content="下载到本地跟清晰" placement="top">
-					<el-button type="text" style="padding-left: 30px" @click="down()">下载到本地</el-button>
+					<el-button type="text" style="padding-left:0.9rem;float:left;line-height:0rem;" @click="down()">下载到本地</el-button>
 				</el-tooltip>
 				<el-tooltip class="item" effect="dark" content="打开模型" placement="top">
-					<el-button type="text" :disabled="disabled" style="padding-left: 20px" @click="openexe()">打开模型</el-button>
+					<el-button type="text" :disabled="disabled" style="padding-left:0.6rem;float:left;line-height:0rem;" @click="openexe()">打开模型</el-button>
 				</el-tooltip>
 			</div>
 			<!-- 中间图纸总体 -->
@@ -546,7 +546,6 @@
 		padding-top: 0.90625rem;
 		padding-right: 0px;
 	}
-
 	.lefttopjzm {
 		width: 6.75rem;
 		height: 1.875rem;
@@ -555,18 +554,15 @@
 		position: absolute;
 		top: 0px;
 	}
-
 	.el-dropdown-link {
 		cursor: pointer;
 	}
-
 	.xmimg {
 		width: 0.84375rem;
 		height: 0.8125rem;
 		padding-left: 2.5rem;
 		padding-top: 0.0625rem;
 	}
-
 	.xm {
 		width: 0.84375rem;
 		height: 0.53125‬;
@@ -578,13 +574,11 @@
 		padding-left: 0.15625rem;
 		line-height: 0.53125rem;
 	}
-
 	.sqimg,
 	.bjimg {
 		width: 0.84375rem;
 		height: 0.8125rem;
 	}
-
 	.sq {
 		width: 1.25rem;
 		height: 0.5625rem;
@@ -594,22 +588,19 @@
 		padding-left: 0.1875rem;
 		font-style: normal;
 	}
-
 	.bj {
 		width: 1.25rem;
 		height: 0.5625rem;
-		font-size: 0.625rem;
 		font-family: MicrosoftYaHei;
 		font-weight: 400;
 		padding-left: 0.1875rem;
 		font-style: normal;
+		font-size:0.625rem;
 	}
-
 	.moreimg {
 		width: 0.78125rem‬;
 		height: 0.78125rem;
 	}
-
 	.more {
 		width: 1.21875rem;
 		height: 0.59375rem;
@@ -620,16 +611,13 @@
 		font-weight: 400;
 		color: rgba(51, 51, 51, 1);
 	}
-
 	.el-dropdown-link2 {
 		cursor: pointer;
 		color: #2180ed;
 	}
-
 	.el-icon-arrow-down {
 		font-size: 20px;
 	}
-
 	/* 中间图纸部分 */
 	.modeldraw {
 		width: 15.625rem;
@@ -639,19 +627,16 @@
 		left: 25rem;
 		top: 9rem;
 	}
-
 	.modeldrawtop {
 		width: 12.84375rem;
 		height: 8.59375rem;
 		/* 	background:plum; */
 		margin-left: 1.4rem;
 	}
-
 	.modeldrawtop img {
 		width: 100%;
 		height: 100%;
 	}
-
 	.mdrawinghz {
 		width: 15.625rem;
 		height: 3rem;

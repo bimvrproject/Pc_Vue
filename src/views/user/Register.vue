@@ -25,7 +25,7 @@
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<span class="el-dropdown-link" @click="fncomenter()">
 						<img class="sqimgcom" :src="sqtb" />
-						<i class="sqcom" ref="sqcol" style="color: #2180ED;">社区</i>
+						<i class="sqcom" ref="sqcol" style="color:#2180ED;">社区</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
 					</span>
 				</el-dropdown>
@@ -867,9 +867,10 @@ export default {
 .logocom {
 	width: 3.65625rem;
 	height: 0.875rem;
-	/* padding-left: 1.8625rem; */
+	padding-left: 1.8625rem;
 	padding-top: 0.90625rem;
 	margin-left:0.5625rem;
+	float:left;
 /* 	background:red; */
 }
 .lefttopcom {

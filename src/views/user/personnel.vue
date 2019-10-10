@@ -60,11 +60,11 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">信息编辑</span>
-			</div>
+		<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
+			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">信息编辑</span>
+		</div>
 			<!-- 人员信息表 -->
 			<div class="renyuanxx">
 				<!-- 人员信息表标题 -->
@@ -72,18 +72,18 @@
 				<ul class="ryxxcenter">
 					<li class="reyxh" v-for="(item, index) in qxarr" :key="index">
 						<div class="accountnub">
-							<span class="accountnubspan">账号 ：</span>
+							<span class="accountnubspan">账号</span>
 							<el-input v-model="accountnr" placeholder="请输入内容" class="accountnubinp"></el-input>
 						</div>
 						<div class="accountper">
-							<span class="accountperspan">账号权限 ：</span>
+							<span class="accountperspan">账号权限</span>
 							<el-select v-model="value" clearable placeholder="请选择" class="accountpersel">
 								<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
 							</el-select>
 						</div>
 						<div class="accountdel" @click="fnqxdel(index)"></div>
 					</li>
-					<div class="njzhqx" @click="fnnjqx">
+					<div class="njzhqx" @click="fnnjqx" style="float:right;">
 						<img src="../../assets/image/j.png" alt="" />
 						<span>新建项目</span>
 					</div>
@@ -364,7 +364,7 @@ a {
 	/* background:plum; */
 	position: absolute;
 	top: 5.6rem;
-	right: 5rem;
+	right: 6.8rem;
 }
 /* 人员信息标题 */
 .ryxxtitle {
@@ -411,20 +411,23 @@ li {
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
 }
+/* 账号总体 */
 .accountnub {
-	width: 8.125rem;
-	height: 1.3rem;
-	background:peru;
+	/* width: 8.125rem;
+	height: 1.3rem; */
+	/* background:peru; */
 	margin-left: 1.8rem;
 	display: flex;
 	justify-content: space-around;
 }
+/* 账号权限总体 */
 .accountper {
-	width: 11.25rem;
-	height: 1.3rem;
-	/* background:blue; */
+	/* width: 11.25rem;
+	height: 1.3rem; */
+/* 	background:blue; */
 	margin-left: 2.5rem;
 	display: flex;
+	justify-content:space-around
 }
 .accountdel {
 	width: 0.6875rem;
@@ -445,9 +448,14 @@ li {
 	font-weight: 400;
 	color: rgba(51, 51, 51, 1);
 	line-height: 1.3rem;
+	background:url(../../assets/image/mh.png) no-repeat 1.2rem;
+	background-size:1rem 0.8rem;
 }
+/* 账号中的请输入内容 */
 .accountnubinp {
 	width: 6.1rem;
+	font-size:0.43rem;
+	
 }
 .accountperspan {
 	display: inline-block;
@@ -456,6 +464,8 @@ li {
 	/* 	background:green; */
 	font-size: 0.5625rem;
 	line-height: 1.3rem;
+	background:url(../../assets/image/mh.png) no-repeat 2.3rem;
+	background-size:1rem 0.8rem;
 }
 /* 账号权限 */
 .accountpersel {
@@ -464,23 +474,34 @@ li {
 }
 /* 新建项目 */
 .njzhqx {
-	width: 3.325rem;
-	height: 0.78125rem;
+	/* width: 3.825rem;
+	height: 0.78125rem; */
 	/* background:palegreen; */
-	margin-left: 21.3rem;
 	display: flex;
-	margin-top: 1.2rem;
+	/* margin-right:3.3rem; */
+	margin-top: 1.3rem;
+	margin-right:1.8rem;
 }
 .njzhqx img {
 	width: 0.75rem;
 	height: 0.75rem;
 }
 .njzhqx span {
-	width: 2.5875rem;
-	height: 0.59375rem;
+	/* width: 2.5875rem;
+	height: 0.59375rem; */
 	font-size: 0.5625rem;
+	/* display:inline-block; */
 	font-family: Microsoft YaHei;
 	font-weight: 400;
 	color: rgba(51, 51, 51, 1);
+	margin-left:0.2rem;
+	line-height:0.75rem;
+}
+.el-input__inner{
+	height:1.25rem;
+	}
+.el-input__icon{
+	width:0.78125rem;
+	line-height:1.25rem;
 }
 </style>

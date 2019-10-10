@@ -58,12 +58,12 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/设备监控/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">设备监控</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">模型</span>
+			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">设备监控</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
 			</div>
 			<!-- 设备表-->
 			<div style="position:absolute;top:5.625rem;right:0.8rem;width:50.3rem;">
@@ -79,7 +79,7 @@
 							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;height:1.375rem;display:inline-block;line-height:1.3rem;">设备地址</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -99,7 +99,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -119,7 +119,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -139,7 +139,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -159,27 +159,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
-							<td>
-								<div class="sbzt">
-									<div class="oneb">
-									<img class="imgb" src="../../assets/image/white.png" alt="" />
-										<span class="jb">警报</span>
-									</div>
-									<div class="oneb">
-										<img class="imgb" src="../../assets/image/yellow.png" alt="" />
-										<span class="jb">报警</span>
-									</div>
-									<div class="oneb">
-										<img class="imgb" src="../../assets/image/white.png" alt="" />
-										<span class="jb">正常</span>
-									</div>
-								</div>
-							</td>
-							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
-						</tr>
-						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -199,7 +179,27 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
+							<td>
+								<div class="sbzt">
+									<div class="oneb">
+									<img class="imgb" src="../../assets/image/white.png" alt="" />
+										<span class="jb">警报</span>
+									</div>
+									<div class="oneb">
+										<img class="imgb" src="../../assets/image/yellow.png" alt="" />
+										<span class="jb">报警</span>
+									</div>
+									<div class="oneb">
+										<img class="imgb" src="../../assets/image/white.png" alt="" />
+										<span class="jb">正常</span>
+									</div>
+								</div>
+							</td>
+							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
+						</tr>
+						<tr>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -219,7 +219,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -239,7 +239,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -259,7 +259,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -279,7 +279,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -299,7 +299,7 @@
 							<td><span class="dizhi">北京市 海淀区 中关村软件园 中兴通大厦</span></td>
 						</tr>
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;width:12.875rem;height:1.275rem;display:inline-block;">轴流风机</span></td>
+							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
 							<td>
 								<div class="sbzt">
 									<div class="oneb">
@@ -479,16 +479,23 @@ export default {
 </script>
 
 <style>
+	.el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon{
+		font-size:0.39rem !important;
+	}
 .el-input--mini .el-input__inner{
 	height:0.875rem;
 	line-height:0.875rem;
 }
+.el-pagination{
+	
+}
 .el-pagination .btn-prev{
 	padding-right:0.375rem;
-	margin-top:0.1rem;
+	margin-top:-0.3rem;
 }
 .el-pagination .btn-next{
 	margin-top:0.1rem;
+	margin-top:-0.3rem;
 }
 .el-pagination .btn-next, .el-pagination .btn-prev{
 	background-size:0.375rem;
@@ -496,7 +503,7 @@ export default {
 .el-pagination button,.el-pagination{
 	font-size:0.40625rem;
 	min-width:1.109375rem;
-	height:0.89rem;
+	height:1.9rem;
 	line-height:0.75rem;
 }
 .el-pagination__total{
@@ -510,7 +517,7 @@ export default {
 	font-size:0.40625rem;
 	min-width:1.109375rem;
 	height:0.875rem;
-	line-height:0.875rem;
+	line-height:1.2rem;
 }
 .el-pager{
 	margin-top:0.1rem;
@@ -521,7 +528,6 @@ export default {
 }
 .el-pagination__jump{
 	padding: 0.04375rem;
-
 }
 .sbjkmore {
 	background: rgba(225, 225, 225, 0.3);
@@ -735,7 +741,8 @@ margin-bottom:0.8rem;
 	display: inline-block;
 /* 	margin-right:0.1875rem; */
 	float: left;
-	padding-top:0.35625rem;
+	padding-top:0.45625rem;
+	/* background:red; */
 }
 .jb {
 	/* width:1.25rem;
