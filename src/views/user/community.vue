@@ -425,6 +425,7 @@ export default {
 				this.$store.commit("settoken",this.token);
 				this.$store.commit("setPhone",this.username);
 				window.sessionStorage.setItem('token',this.token);
+				window.sessionStorage.setItem('phone',this.username);
 				this.getUserByToken();
 				//注册成功跳转页面
 				this.panduan = false;
@@ -881,10 +882,9 @@ export default {
 .logocom {
 	width: 3.65625rem;
 	height: 0.875rem;
-	padding-left: 1.8625rem;
+	/* padding-left: 1.8625rem; */
 	padding-top: 0.90625rem;
 	margin-left:0.5625rem;
-	float:left;
 /* 	background:red; */
 }
 .lefttopcom {

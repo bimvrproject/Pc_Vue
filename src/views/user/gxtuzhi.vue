@@ -59,12 +59,12 @@
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 
-			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;line-height:0.6875rem;float:left;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;line-height:0.6875rem;float:left;">/</i>
-				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;line-height:0.7575rem;float:left;">管线综合</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;line-height:0.6875rem;float:left;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;line-height:0.7575rem;float:left;">图纸</span>
+			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
+				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">管线综合</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;">图纸</span>
 			</div>
 			<!-- 右侧图纸 -->
 			<div class="youtu" @click="cetubut" v-if="cetubuts"><img src="../../assets/image/tpzuohua.png" alt="" /></div>
@@ -96,9 +96,9 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="upgt">
-										<uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn>
+										<uploader-btn :directory="false" :single="true" class="upbtngt" :attrs="attrs"><span class="pltop"></span></uploader-btn>
 									</uploader-drop>
-									<uploader-list></uploader-list>
+									<!-- <uploader-list></uploader-list> -->
 								</uploader>
 							</div>
 						</div>
@@ -136,9 +136,9 @@
 									<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 										<!-- <uploader-unsupport></uploader-unsupport> -->
 										<uploader-drop class="upgt">
-											<uploader-btn :directory="true" :single="true" class="upbtngt"><span class="pltop"></span></uploader-btn>
+											<uploader-btn :directory="false" :single="true" class="upbtngt" :attrs="attrs"><span class="pltop"></span></uploader-btn>
 										</uploader-drop>
-										<uploader-list></uploader-list>
+										<!-- <uploader-list></uploader-list> -->
 									</uploader>
 								</div>
 							</div>
@@ -148,7 +148,7 @@
 			</div>
 
 			<!-- 图纸-->
-			<div class="gxtzdrawing">
+			<div class="gxtzdrawing" v-show="centerdra">
 				<!-- 图纸中部图片 -->
 				<div class="gxtzdrawingtop"><img src="../../assets/image/draw.png" alt="" /></div>
 				<!-- 图纸中的汉字 -->
@@ -161,8 +161,8 @@
 							<div>
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
-									<uploader-drop class="gxtzdrawdrop"><uploader-btn :directory="true" :single="true" class="gxtzdrawbtn">上传平面图纸</uploader-btn></uploader-drop>
-									<uploader-list></uploader-list>
+									<uploader-drop class="gxtzdrawdrop"><uploader-btn :directory="false" :single="true" class="gxtzdrawbtn" :attrs="attrs">上传平面图纸</uploader-btn></uploader-drop>
+									<uploader-list class="pingmiancss"></uploader-list>
 								</uploader>
 							</div>
 						</div>
@@ -173,8 +173,8 @@
 							<div>
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
-									<uploader-drop class="gxtzdrawdrop"><uploader-btn :directory="true" :single="true" class="gxtzdrawbtn">上传立面图纸</uploader-btn></uploader-drop>
-									<uploader-list></uploader-list>
+									<uploader-drop class="gxtzdrawdrop"><uploader-btn :directory="false" :single="true" class="gxtzdrawbtn" :attrs="attrs">上传立面图纸</uploader-btn></uploader-drop>
+									<uploader-list class="limiancss"></uploader-list>
 								</uploader>
 							</div>
 						</div>
@@ -195,6 +195,8 @@ import Xunilogo from './xunilogo';
 export default {
 	data() {
 		return {
+			//上传功能
+			centerdra:true,
 			updraw: true,
 			drawpicture: '',
 			title: '12312313122',
@@ -216,7 +218,17 @@ export default {
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts: false
+			abouts: false,
+			//上传限制
+			attrs: {
+				accept: '.zip, .jar, .war, .rar, .7z'
+			},
+			options: {
+				target: api.Uploadpipepingmian, //SpringBoot后台接收文件夹数据的接口
+				testChunks: false, //是否分片-不分片
+				chunkSize: '2048000000000'
+			},
+			
 		};
 	},
 	components: {
@@ -245,6 +257,10 @@ export default {
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		//上传成功事件
+		onFileSuccess(){
+			this.centerdra=false;
+		},
 		// 点击联系我们
 		fnabout() {
 			this.$eventbus.$emit('abouts');
@@ -323,10 +339,18 @@ export default {
 			this.lmore = require('../../assets/image/pmjtxia.png');
 		}
 	}
-};
+}
 </script>
 
 <style>
+	.pingmiancss{
+		left: -1.25rem;
+		width: 14.375rem;
+	}
+	.limiancss{
+		left: -7.8rem;
+		width: 14.375rem;
+	}
 .gxtzmore {
 	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
@@ -584,7 +608,7 @@ a {
 	margin-left: 0.25rem;
 	width: 3rem;
 	height: 1.2rem;
-	background: red;
+	/* background: red; */
 	text-align: left;
 	/* 	background:red; */
 }

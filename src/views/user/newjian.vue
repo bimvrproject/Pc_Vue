@@ -46,7 +46,7 @@ export default {
 				this.$eventbus.$emit('shows');
 			} else {
 				var id = this.projectLists[index].projectId;
-				localStorage.setItem('projectid', id);
+				sessionStorage.setItem('projectid', id);
 				this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
 				// this.$router.push("/newjzmodel")
 			}
@@ -58,9 +58,10 @@ export default {
 			 * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
 			 * */
 			var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
-			var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+			// var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 			// 拼接
-			return year + '年' + month + '月' + day + '日';
+			// return year + '年' + month + '月' + day + '日';
+			return year + '年' + month + '月';
 		},
 		delproject(index) {
 			var id = this.projectLists[index].projectId;
