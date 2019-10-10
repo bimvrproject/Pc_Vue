@@ -53,3 +53,27 @@
 </style>
 
  -->
+ <template>
+	 <div>
+		 <div class="block">
+    <span class="demonstration">月</span>
+    <el-date-picker
+      v-model="value2"
+      type="month"
+      placeholder="选择月">
+    </el-date-picker>
+  </div>
+	 </div>
+ </template>
+ <script>
+  export default {
+    data() {
+      return {
+        value1: '',
+        value2: '',
+        value3: '',
+        value4: ''
+      };
+    }
+  };
+</script>

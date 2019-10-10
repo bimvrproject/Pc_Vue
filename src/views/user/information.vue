@@ -60,10 +60,10 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/信息编辑/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;">/</i>
-				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;">信息编辑</span>
+			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">信息编辑</span>
 			</div>
 			<!-- 项目信息表 -->
 			<div class="xmb">
@@ -406,6 +406,7 @@ i {
 	width: 22.6rem;
 	height: 0.8rem;
 	margin-bottom: 0.8rem;
+/* 	background:red; */
 }
 .demonstration {
 	font-weight: 400;
@@ -432,6 +433,7 @@ i {
 	font-size: 0.5rem;
 	color: #ffffff;
 	font-weight: 400;
+	line-height:0.40625rem;
 }
 .el-date-editor.el-input,
 .el-date-editor.el-input__inner {
@@ -451,5 +453,13 @@ i {
 }
 .el-date-picker {
 	width: 22.28125rem !important;
+}
+/* 项目名称，开始时间，结束时间，项目地点 */
+.el-input__inner{
+	height:1.25rem;
+	}
+.el-input__icon{
+	width:0.78125rem;
+	line-height:1.25rem;
 }
 </style>

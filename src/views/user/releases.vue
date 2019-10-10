@@ -8,31 +8,31 @@
 					<div class="cenrgroup">
 						<!-- 图片 -->
 						<div class="fb-tp">
-							<div class="picture" @click="picture">
-								<img src="../../assets/image/tuimg.png" class="picimg" alt="" />
-								<span class="pictp" style="color:#FFFFFF;">图片</span>
+							<div class="picture" @click="picture()">
+								<img :src="fbtp" class="picimg" alt="" />
+								<span class="pictp" :style="tpcolor">图片</span>
 							</div>
 							<!-- 图片展开的拍照 -->
 							<div v-show="pzshow">
 								<div class="piczk">
-								<img src="../../assets/image/paizhao.png" class="picimgzk" alt="" />
-									<span class="picpz"  @click="paizhao">拍照</span>
+								<img :src="fbpzs" class="picimgzk" alt="" />
+									<span class="picpz" :style="fbpzscolor" @click="paizhao()">拍照</span>
 								</div>
 							</div>
 						</div>
 						<!-- 动画 -->
 						<div>
-							<div class="animation" @click="animation">
-								<img src="../../assets/image/dh.png" class="picimg1" alt="" />
-								<span class="pictp1" style="color:#FFFFFF;">动画</span>
+							<div class="animation" @click="animation()">
+								<img :src="fbdh" class="picimg1" alt="" />
+								<span class="pictp1" :style="fbdhcolor">动画</span>
 							</div>
 							<!-- 动画展开的拍照 -->
 							<div class="animationzk" v-show="animationzk">
 								<!-- 自由拍摄 -->
 								<div>
-									<div class="pzzk" @click="pzzk">
-										<img src="../../assets/image/zyps.png" class="pzzy" alt="" />
-										<span class="zyps">自由拍摄</span>
+									<div class="pzzk" @click="pzzk()">
+										<img :src="zyps" class="pzzy" alt="" />
+										<span class="zyps" :style="zypscolor">自由拍摄</span>
 									</div>
 									<!--拍摄-->
 									<div class="zypszi" v-show="zypszi">
@@ -43,9 +43,9 @@
 
 								<!-- 路径拍摄 -->
 								<div>
-									<div class="ljps" @click="ljps">
-										<img src="../../assets/image/ljps.png" class="ljpsimg" alt="" />
-										<span class="ljpszi">路径拍摄</span>
+									<div class="ljps" @click="ljps()">
+										<img :src="ljpstp" class="ljpsimg" alt="" />
+										<span class="ljpszi" :style="ljpstpcolor">路径拍摄</span>
 									</div>
 									<div v-show="lujin">
 										<!-- 选择文件夹 -->
@@ -94,19 +94,24 @@
 						<!-- 动画结束 -->
 						<!-- 清单 -->
 						<div>
-							<div class="list" @click="list">
-							<img src="../../assets/image/qingdan.png" class="listimg" alt="" />
-								<span class="lists">清单</span>
+							<div class="list" @click="list()">
+							<img :src="fbqd" class="listimg" alt="" />
+								<span class="lists" :style="fbqdcolor">清单</span>
 							</div>
 							<!-- 展开清单 -->
-							<div v-show="lists"><!-- 123121 --></div>
+							<div v-show="lists">
+								<div class="rele">
+									<img src="../../assets/image/feiji.png" class="releimg" alt="" />
+									<span class="reles">发布</span>
+								</div>
+							</div>
 						</div>
 						<!-- 清单结束 -->
 						<!-- 图纸开始 -->
 						<div>
-							<div class="Drawings" @click="fntuz">
-								<img src="../../assets/image/ttt.png" class="Drawingimg" alt="" />
-								<span class="Drawings1">图纸</span>
+							<div class="Drawings" @click="fntuz()">
+								<img :src="fbtz" class="Drawingimg" alt="" />
+								<span class="Drawings1" :style="fbtzcolor">图纸</span>
 							</div>
 							<!-- 图纸展开 -->
 							<div>
@@ -202,7 +207,35 @@ export default {
 		 // 展开平面图纸数组
 		 zkpmtzarr:[0,0,0,0,0],
 		 // 展开立面图纸数组
-		 zklmtzarr:[0]
+		 zklmtzarr:[0],
+		 // 发布图片
+		 fbtp:require('../../assets/image/tuimg.png'),
+		 // 图片字体颜色
+		 tpcolor:'color:#FFFFFF',
+		 // 发布动画
+		 fbdh:require('../../assets/image/dh.png'),
+		 // 发布动画字体颜色
+		 fbdhcolor:'color:#FFFFFF',
+		 // 发布清单
+		 fbqd:require('../../assets/image/qingdan.png'),
+		// 发布清单字体颜色
+		fbqdcolor:'color:#FFFFFF',
+		// 发布图纸
+		fbtz:require('../../assets/image/ttt.png'),
+		// 发布图纸字体颜色
+		fbtzcolor:'color:#FFFFFF',
+		// 发布图片中的拍照
+		fbpzs:require('../../assets/image/paizhao.png'),
+		// 发布图片中的拍照字体颜色
+		fbpzscolor:'color:#FFFFFF',
+		// 动画中的自由拍摄图片
+		zyps:require('../../assets/image/zyps.png'),
+		// 动画中的自由拍摄的字体颜色
+		zypscolor:'color:#FFFFFF',
+	  // 路径拍摄图片
+		ljpstp:require('../../assets/image/ljpss.png'),
+		//路径拍摄的字体颜色
+		ljpstpcolor:'color:#FFFFFF'
 		};
 	},
 	created() {},
@@ -210,6 +243,10 @@ export default {
 	methods: {
 		//拍照
 		paizhao(){
+			// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#2180ED',
 			html2canvas(document.body,{
 				// useCORS: true,		//保证跨域图片的显示
 				// logging: false,
@@ -233,6 +270,34 @@ export default {
 		},
 		//点击图片
 		picture() {
+			// 点击图片时候的颜色
+			this.fbtp = require('../../assets/image/tpblue.png'),
+			// 点击图片时候的字体颜色
+			this.tpcolor = 'color:#2180ED',
+			// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/paizhao.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#FFFFFF',
+			// 点击动画的时候图标
+			this.fbdh = require('../../assets/image/dh.png'),
+			//点击动画的时候动画字体颜色
+			this.fbdhcolor = 'color:#FFFFFF',
+			// 发布清单图片
+			this.fbqd = require('../../assets/image/qingdan.png'),
+			// 发布清单字体颜色
+			this.fbqdcolor = 'color:#FFFFFF',
+			// 图纸图片
+			this.fbtz = require('../../assets/image/ttt.png'),
+			// 图纸字体颜色
+			this.fbtzcolor = 'color:#FFFFFF',
+			// 自由拍摄图片
+			this.zyps = require('../../assets/image/zyps.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#FFFFFF',
+				// 路径拍摄的图片
+			this.ljpstp = require('../../assets/image/ljpss.png');
+			// 路径拍摄的字体颜色
+			this.ljpstpcolor = 'color:#FFFFFF',
 			//拍照显示
 			(this.pzshow = true),
 				//动画隐藏
@@ -260,10 +325,35 @@ export default {
 		},
 		// 点击自由拍摄控制拍摄显隐
 		pzzk() {
+			// 自由拍摄图片
+			this.zyps = require('../../assets/image/zypsblue.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#2180ED',
 			this.zypszi = true;
+			this.lujin = false;
 		},
 		//点击动画
 		animation() {
+			// 点击图片时候的颜色
+			this.fbtp = require('../../assets/image/tuimg.png'),
+			// 点击图片时候的字体颜色
+			this.tpcolor = 'color:#FFFFFF',
+				// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/paizhao.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#FFFFFF',
+			// 点击动画的时候图标
+			this.fbdh = require('../../assets/image/dhblue.png'),
+			//点击动画的时候动画字体颜色
+			this.fbdhcolor = 'color:#2180ED',
+			// 发布清单图片
+			this.fbqd = require('../../assets/image/qingdan.png'),
+			// 发布清单字体颜色
+			this.fbqdcolor = 'color:#FFFFFF',
+			// 图纸图片
+			this.fbtz = require('../../assets/image/ttt.png'),
+			// 图纸字体颜色
+			this.fbtzcolor = 'color:#FFFFFF',
 			//自由拍摄与路径拍摄显隐
 			(this.animationzk = true),
 				//图片中得拍照隐藏
@@ -289,12 +379,47 @@ export default {
 		previews() {
 			this.preview = true;
 		},
-		//
+		//路径拍摄
 		ljps() {
+			//路径拍摄显示
 			this.lujin = true;
+			//自由拍摄隐藏
+			this.zypszi = false;
+			// 路径拍摄的图片
+			this.ljpstp = require('../../assets/image/ljps.png');
+			// 路径拍摄的字体颜色
+			this.ljpstpcolor = 'color:#2180ED'
 		},
 		//点击清单
 		list() {
+				// 点击图片时候的颜色
+			this.fbtp = require('../../assets/image/tuimg.png'),
+			// 点击图片时候的字体颜色
+			this.tpcolor = 'color:#FFFFFF',
+				// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/paizhao.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#FFFFFF',
+			// 点击动画的时候图标
+			this.fbdh = require('../../assets/image/dh.png'),
+			//点击动画的时候动画字体颜色
+			this.fbdhcolor = 'color:#FFFFFF',
+			// 发布清单图片
+			this.fbqd = require('../../assets/image/fbqdblue.png'),
+			// 发布清单字体颜色
+			this.fbqdcolor = 'color:#2180ED',
+			// 图纸图片
+			this.fbtz = require('../../assets/image/ttt.png'),
+			// 图纸字体颜色
+			this.fbtzcolor = 'color:#FFFFFF',
+			// 自由拍摄图片
+			this.zyps = require('../../assets/image/zyps.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#FFFFFF',
+				// 路径拍摄的图片
+			this.ljpstp = require('../../assets/image/ljpss.png');
+			// 路径拍摄的字体颜色
+			this.ljpstpcolor = 'color:#FFFFFF',
 			//清单里边得内容出现
 			(this.lists = true),
 				//动画隐藏
@@ -340,6 +465,34 @@ export default {
 		},
 		//点击图纸
 		fntuz() {
+				// 点击图片时候的颜色
+			this.fbtp = require('../../assets/image/tuimg.png'),
+			// 点击图片时候的字体颜色
+			this.tpcolor = 'color:#FFFFFF',
+				// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/paizhao.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#FFFFFF',
+			// 点击动画的时候图标
+			this.fbdh = require('../../assets/image/dh.png'),
+			//点击动画的时候动画字体颜色 
+			this.fbdhcolor = 'color:#FFFFFF',
+			// 发布清单图片
+			this.fbqd = require('../../assets/image/qingdan.png'),
+			// 发布清单字体颜色
+			this.fbqdcolor = 'color:#FFFFFF',
+			// 图纸图片
+			this.fbtz = require('../../assets/image/fbtz.png'),
+			// 图纸字体颜色
+			this.fbtzcolor = 'color:#2180ED',
+			// 自由拍摄图片
+			this.zyps = require('../../assets/image/zyps.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#FFFFFF',
+				// 路径拍摄的图片
+			this.ljpstp = require('../../assets/image/ljpss.png');
+			// 路径拍摄的字体颜色
+			this.ljpstpcolor = 'color:#FFFFFF',
 			//文件夹出现
 			(this.fnwenjj = true),
 				//清单里边得内容出现
@@ -457,7 +610,7 @@ li {
 	font-size: 0.5rem;
 	font-family: PingFang SC;
 	font-weight: 500;
-	color: rgba(255, 255, 255, 1);
+	/* color: rgba(255, 255, 255, 1); */
 	float: left;
 	/* background:plum; */
 }
@@ -508,7 +661,7 @@ li {
 	font-size:0.5rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
-	color: rgba(255, 255, 255, 1);
+	/* color: rgba(255, 255, 255, 1); */
 	float: left;
 	margin-left:0.15625rem;
 }
@@ -555,7 +708,7 @@ li {
 	font-size:0.5rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
-	color: #ffffff;
+	/* color: #ffffff; */
 	float: left;
 	margin-left:0.2rem;
 }
@@ -686,7 +839,7 @@ li {
 	font-size:0.5625rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
-	color: rgba(255, 255, 255, 1);
+	/* color: rgba(255, 255, 255, 1); */
 	float: left;
 	margin-left:0.25rem;
 	line-height:0.625rem;
@@ -708,7 +861,7 @@ li {
 	font-size:0.5625rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
-	color: rgba(255, 255, 255, 1);
+	/* color: rgba(255, 255, 255, 1); */
 	float: left;
 	margin-left:0.25rem;
 	line-height:0.625rem;

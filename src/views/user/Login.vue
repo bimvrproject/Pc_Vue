@@ -17,7 +17,7 @@
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
 						<router-link to="/newjian">
-							<img class="xmimg" :src="xmtb" alt="" />
+							<img class="xmimg" src="../../assets/image/bluefz.png" alt="" />
 							<i class="xm" ref="xmcol">项目</i>
 						</router-link>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -167,23 +167,23 @@
 				// this.$eventbus.$emit('showyin');
 				// this.$router.push('/Login/newjian');
 				this.newxy = true
-				this.xmtb = require('../../assets/image/bluefz.png');
-				this.sqtb = require('../../assets/image/sq@2x.png');
-				this.moretb = require('../../assets/image/more@2x.png');
+				// this.xmtb = require('../../assets/image/bluefz.png');
+				// this.sqtb = require('../../assets/image/sq@2x.png');
+				// this.moretb = require('../../assets/image/more@2x.png');
 				this.lmore = require('../../assets/image/pmjtxia.png');
-				this.xmxl = require('../../assets/image/shang.png');
-				this.$refs.xmcol.style.color = '#2180ED';
-				this.sqcolor = 'color:#333333';
-				this.$refs.gdcol.style.color = '#333333';
+				// this.xmxl = require('../../assets/image/shang.png');
+				// this.$refs.xmcol.style.color = '#2180ED';
+				// this.sqcolor = 'color:#333333';
+				// this.$refs.gdcol.style.color = '#333333';
 			},
 			//划过社区
 			fnnew() {
 				this.newxy = false
 			},
 			sqq() {
-				this.xmtb = require('../../assets/image/sshouse.png');
-				this.xmxl = require('../../assets/image/pmjtxia.png');
-				this.$refs.xmcol.style.color = '#333333';
+				// this.xmtb = require('../../assets/image/sshouse.png');
+				// this.xmxl = require('../../assets/image/pmjtxia.png');
+				// this.$refs.xmcol.style.color = '#333333';
 				this.sqtb = require('../../assets/image/sq@2x.png');
 				this.sqcolor = 'color:#333333';
 				this.lmore = require('../../assets/image/shang.png');
@@ -192,14 +192,15 @@
 			fnleave() {
 				this.lmore = require('../../assets/image/pmjtxia.png')
 			},
+			//点击社区
 			fncomenter() {
 				this.$router.push('/');
-				this.sqtb = require('../../assets/image/shequ.png');
-				this.sqcolor = 'color:#2180ED';
-				this.$refs.xmcol.style.color = '#333333';
-				this.xmtb = require('../../assets/image/sshouse.png');
-				this.$refs.gdcol.style.color = '#333333';
-				this.moretb = require('../../assets/image/more@2x.png');
+				// this.sqtb = require('../../assets/image/shequ.png');
+				// this.sqcolor = 'color:#2180ED';
+				// this.$refs.xmcol.style.color = '#333333';
+				// this.xmtb = require('../../assets/image/sshouse.png');
+				// this.$refs.gdcol.style.color = '#333333';
+				// this.moretb = require('../../assets/image/more@2x.png');
 			},
 		}
 	};
@@ -317,7 +318,6 @@
 		float: left;
 		display: inline-block;
 	}
-
 	/* 保存 */
 	.save {
 		width: 48px;
@@ -361,12 +361,17 @@
 	.logo {
 		width: 3.65625rem;
 		height: 0.875rem;
-		/* padding-left: 1.8625rem; */
+		padding-left: 1.8625rem;
 		padding-top: 0.90625rem;
 		margin-left: 0.5625rem;
 		/* background:red; */
+		float:left;
 	}
-
+/* .left {
+	width:6.78125rem;
+	height:30.84375rem;
+	padding-right:0.3125rem;
+} */
 	.lefttop {
 		width: 6.75rem;
 		height: 1.875rem;
@@ -374,6 +379,7 @@
 			background: url(../../assets/image/homecebian8@2x.png); */
 		position: absolute;
 		top: 0px;
+		
 		/* background:red; */
 	}
 
@@ -394,7 +400,7 @@
 		font-size: 0.625rem;
 		font-family: MicrosoftYaHei;
 		font-weight: 400;
-			color: #333333;
+		color:#2180ED;
 		font-style: normal;
 		padding-left: 0.15625rem;
 		line-height: 0.53125rem;

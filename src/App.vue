@@ -13,7 +13,7 @@
   data(){
    return {
     zheaderxy:true,
-	aboutxy:false
+	  aboutxy:false
    }
   },
   //2.注册
