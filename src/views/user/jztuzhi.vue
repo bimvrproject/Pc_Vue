@@ -9,7 +9,7 @@
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 			</div>
 		</div>
-		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;border: 1px red solid;"
+		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;"
 		 v-if="pmph">
 		 <img :src="pmdrawpicture" alt="">
 		 </div>
@@ -98,9 +98,9 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="uplm">
-										<uploader-btn :directory="true" :single="true" class="upbtn"><span class="pltop"></span></uploader-btn>
+										<uploader-btn :directory="false" :single="true" class="upbtn" :attrs="attrs"><span class="pltop"></span></uploader-btn>
 									</uploader-drop>
-									<uploader-list></uploader-list>
+									<!-- <uploader-list></uploader-list> -->
 								</uploader>
 							</div>
 						</div>
@@ -122,7 +122,7 @@
 					<div class="pmzk" v-if="lmxy">
 						<!-- 新建项目 -->
 						<ul>
-							<li v-for="(item, index) in drawingarrlm" :key="index"  class="pmnew" style="position:relative;">
+							<li v-for="(item, index) in drawingarrlm" :key="index"  class="pmnew" style="position:relative;cursor: pointer;"  @click="drawdanjilimian(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
 								<span class="pmtz5">{{ item.drawName + (index + 1) }}</span>
 								<!-- <input v-model="wang5" v-show="showrename5" type="text" @blur="changename5" style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);" /> -->
@@ -130,12 +130,13 @@
 						</ul>
 							<div class="pm6">
 								<div>
-									<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
+									 <!-- @file-complete="onFileSuccess" -->
+									<uploader :file-status-text="statusText" :options="options">
 										<!-- <uploader-unsupport></uploader-unsupport> -->
 										<uploader-drop class="uplm">
-											<uploader-btn :directory="true" :single="true" class="upbtn"><span class="pltop"></span></uploader-btn>
+											<uploader-btn :directory="false" :single="true" class="upbtn" :attrs="attrs"><span class="pltop"></span></uploader-btn>
 										</uploader-drop>
-										<uploader-list></uploader-list>
+										<!-- <uploader-list></uploader-list> -->
 									</uploader>
 								</div>
 							</div>
@@ -159,12 +160,12 @@
 					<div class="drawpm">
 						<div>
 							<div>
-								<uploader :file-status-text="statusText" :options="options1">
+								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
 										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
 									</uploader-drop>
-									<uploader-list></uploader-list>
+									<uploader-list class="pingmiancss"></uploader-list>
 								</uploader>
 							</div>
 						</div>
@@ -174,12 +175,12 @@
 						<div>
 							<div>
 								<!--  @file-complete="onFileSuccess" -->
-								<uploader :file-status-text="statusText" :options="options2">
+								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
 										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
 									</uploader-drop>
-									<uploader-list></uploader-list>
+									<uploader-list class="limiancss"></uploader-list>
 								</uploader>
 							</div>
 						</div>
@@ -205,7 +206,6 @@
 				pmph:false,
 				// 中间初始样式
 				centerdra:true,
-				updraw: true,
 				pmdrawpicture: '',
 				panduan: false,
 				xianyin: false,
@@ -233,13 +233,8 @@
 					paused: '暂停中',
 					waiting: '等待中'
 				},
-				options1: {
-					target: api.Uploadbuildingdrawing, //SpringBoot后台接收文件夹数据的接口
-					testChunks: false, //是否分片-不分片
-					chunkSize: '2048000000000'
-				},
-				options2: {
-					target: api.Uploadbuildingdrawing, //SpringBoot后台接收文件夹数据的接口
+				options: {
+					target: api.UploadPicture, //SpringBoot后台接收文件夹数据的接口
 					testChunks: false, //是否分片-不分片
 					chunkSize: '2048000000000'
 				},
@@ -260,24 +255,28 @@
 			// Zheader
 		},
 		created() {
-			var prid = sessionStorage.getItem('projectid');
-			//绑定平面图纸
-			axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/1").then(result => {
-				console.log(result.data)
-				this.drawingarrpm = result.data;
-			});
-			//绑定立面图纸
-			axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/2").then(result => {
-				console.log(result.data)
-				this.drawingarrlm = result.data;
-			});
-			axios.get(api.getprojectids + '/' + prid).then(result => {
-				// console.log(result.data);
-				this.projectidsdrawingarr = result.data;
-				if (this.projectidsdrawingarr.length != 0) {
-					this.updraw = false;
-				}
-			});
+			var prid = this.$route.params.project_modelid;
+			if(prid!=null && prid!=undefined){
+				//该项目中是否有图纸 如果有则不显示上传图纸功能
+				axios.get(api.getprojectids + '/' + prid).then(result => {
+					this.pmph=true;
+					this.projectidsdrawingarr = result.data;
+					this.pmdrawpicture=addressurls.url+result.data[0].url
+					console.log(this.pmdrawpicture)
+					if (this.projectidsdrawingarr.length != 0) {
+						this.centerdra = false;
+					}
+				});
+				//绑定平面图纸
+				axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/1").then(result => {
+					this.drawingarrpm = result.data;
+				});
+				//绑定立面图纸
+				axios.get(api.Pcreddrawing + '/1' + '/' + prid + "/2").then(result => {
+					this.drawingarrlm = result.data;
+				});
+			}
+			
 			// console.log(localStorage.getItem('xnjztz'));
 			// console.log(localStorage.getItem('wallss1s'))
 			// this.arr = localStorage.getItem('wallss1s') ? JSON.parse(localStorage.getItem('wallss1s')) : [{msg:平面,change:false},{msg:50,change:false},{id:2,msg:50,change:false},{msg:50,change:false}],
@@ -301,6 +300,10 @@
 			this.$eventbus.$emit('hometop');
 		},
 		methods: {
+			//上传成功事件
+			onFileSuccess(){
+				this.centerdra = false;
+			},
 			// 点击联系我们
 			fnabout() {
 				this.$eventbus.$emit('abouts');
@@ -326,16 +329,22 @@
 				// this.inputdrawingarrpm=true;
 				// this.inputdrawingar=name;
 			},
-			//点击图纸名称显示图纸
+			//点击平面图纸名称显示图纸
 			drawdanji(index) {
-				alert(123)
 				this.pmph=true;
 				this.centerdra = false;
 				var drawid = this.drawingarrpm[index].resPictureId;
 				axios.get(api.SelectByPrimaryKey + '/' + drawid).then(result => {
-					console.log(result.data);
 					this.pmdrawpicture = addressurls.url + result.data.url;
-					console.log(this.pmdrawpicture)
+				});
+			},
+			//点击立面图纸名称显示图纸
+			drawdanjilimian(index){
+				this.pmph=true;
+				this.centerdra = false;
+				var drawid = this.drawingarrlm[index].resPictureId;
+				axios.get(api.SelectByPrimaryKey + '/' + drawid).then(result => {
+					this.pmdrawpicture = addressurls.url + result.data.url;
 				});
 			},
 			// 点击项目，跳转到login页
@@ -400,6 +409,14 @@
 </script>
 
 <style>
+	.pingmiancss{
+		left: -1.25rem;
+		width: 14.375rem;
+	}
+	.limiancss{
+		left: -7.8rem;
+		width: 14.375rem;
+	}
 	/* 更多 */
 	.jztzmore {
 		background: rgba(225, 225, 225, 0.3);

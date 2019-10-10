@@ -34,5 +34,6 @@ const api = {
 	GetList:version+"/file/getList", //我的下载
 	Openexe:version+"/file/openexe",//打开模型
 	Remove:version+"/file/remove",//删除模型
+	Uploadpipepingmian:version+"/Upload/uploadpipepingmian",		//上传管道zip图纸
 };
 export default api;

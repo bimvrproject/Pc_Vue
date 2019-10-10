@@ -399,15 +399,17 @@ export default {
 		//材质循环
 		this.material.push(0);
 	},
-	mounted() {},
+	mounted() {
+		
+	},
 	methods: {
 		fnjian() {
-			var pro_id = sessionStorage.projectid;
+			var pro_id =sessionStorage.getItem("projectid");
 			this.$router.push({ name: '/newjzmodel', params: { project_modelid: pro_id } });
 		},
 		//管线综合
 		fnguan() {
-			var pro_id = sessionStorage.projectid;
+			var pro_id =sessionStorage.getItem("projectid");
 			this.$router.push({ name: 'gxmoxin', params: { pipemodelids: pro_id } });
 		},
 		fnshebei() {
@@ -428,18 +430,20 @@ export default {
 		// },
 		//建筑模型
 		fnmx1() {
-			var pro_id = sessionStorage.projectid;
+			var pro_id = sessionStorage.getItem("projectid");
 			this.$router.push({ name: '/newjzmodel', params: { project_modelid: pro_id } });
 		},
+		//图纸
 		fntz1() {
-			this.$router.push('/jztuzhi');
+			var pro_id = sessionStorage.getItem("projectid");
+			this.$router.push({ name: 'jztuzhi', params: { project_modelid: pro_id } });
 		},
 		fncl1() {
 			this.$router.push('/jzcailiao');
 		},
 		//管线模型
 		fnmx2() {
-			var pro_id = sessionStorage.projectid;
+			var pro_id =sessionStorage.getItem("projectid");
 			this.$router.push({ name: 'gxmoxin', params: { pipemodelids: pro_id } });
 		},
 		fntz2() {

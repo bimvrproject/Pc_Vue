@@ -5,7 +5,7 @@
 		 	<div class="top-right">
 		 		<!-- 登录头像 -->
 		 		<el-dropdown class="imgzong" style="position:relative;">
-					<div  @click="logins" @mouseenter="logins">
+					<div  @click="logins" @mouseenter="loginss">
 						<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
 		 				<!-- <span class="logintop">登录</span> -->
 		 			<!-- <div class="dengl">{{message ? message : "登录"}}</div> -->
@@ -65,28 +65,32 @@
 			return{
 				fndl:true,
 				// 登录下拉的显隐
-				headerxy:false
+				headerxy:false,
 			}
 		},
 		methods:{
+			loginss(){
+				if(window.sessionStorage.getItem('token') !== null){
+					this.headerxy = true
+				}else{
+					this.headerxy = false
+				}
+			},
 			logins(){
 				if(window.sessionStorage.getItem('token') !== null){
 					this.$eventbus.$emit('loginherfal')
-					this.headerxy = true
 				}else{
 					this.$eventbus.$emit('loginhertru')
-					this.headerxy = false
 				}
 			},
 			outlogin(){
 				this.$router.push("/");
 				sessionStorage.clear();
-				
-				alert(123)
+				this.$forceUpdate();
 			}
 		},
 		created(){
-		
+			
 		},
 		mounted(){
 			

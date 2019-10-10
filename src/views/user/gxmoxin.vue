@@ -75,7 +75,7 @@
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
 			</div>
 			<!-- 中间图纸总体 -->
-			<div class="gxmxdraw">
+			<div class="gxmxdraw" v-show="fileshow">
 			  <!-- 中间图纸的图片 -->
 				<div class="gxmxdrawtop">
 					<img src="../../assets/image/mdraw.png" alt="">
@@ -89,7 +89,7 @@
 					 <div>
 							<uploader :file-status-text="statusText" :options="options"  @file-complete="onFileSuccess">
 							<!-- <uploader-unsupport></uploader-unsupport> -->
-							<uploader-drop class="gxmxdrawdrop"><uploader-btn :directory="true" :single="true" class="gxmxdrawdbtn">上传管线模型</uploader-btn></uploader-drop>
+							<uploader-drop class="gxmxdrawdrop"><uploader-btn :directory="false" :single="true" class="gxmxdrawdbtn" :attrs="attrs">上传管线模型</uploader-btn></uploader-drop>
 								<uploader-list></uploader-list>
 						</uploader>
 					</div>
@@ -143,10 +143,13 @@ import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
+import addressurls from '@/api/ip.js';
 // import Zheader from './header';
 export default {
 	data() {
 		return {
+			//显示上传的功能按钮
+			fileshow:true,
 			title:"18306846355",
 			model: '',
 			projectmodel: '',
@@ -182,7 +185,11 @@ export default {
 			// 发布下拉
 			nmfb:require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts:false
+			abouts:false,
+			//上传文件的类型限制
+			attrs: {
+				accept: '.zip, .jar, .war, .rar, .7z'
+			},
 		};
 	},
 	components: {
@@ -205,18 +212,22 @@ export default {
 					this.xianyinxuni = true
 				}
 		});
-		//服务器IP
-		var addressurls = 'http://36.112.65.110';
-		var pipemodelid = this.$route.params.pipemodelids;
+		
+		var pipemodelid = sessionStorage.getItem("projectid");
 		if (pipemodelid != '' && pipemodelid != null && pipemodelid != undefined) {
 			axios.get(api.ShowModel + '/2' + '/' + pipemodelid).then(result => {
-				if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
+				if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
+					"" && result.data.url != undefined || result.data.projectId != undefined) {
 					this.fileshow = false;
 				}
-				this.model = result.data.url;
-				this.projectmodel = addressurls + this.model;
+				if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
+					this.fileshow = false;
+					this.model = result.data.url;
+					this.projectmodel = addressurls.url + this.model;
+				}
 			});
 		}
+		
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -292,9 +303,8 @@ export default {
 		},
 		//上传管道模型保存到数据库
 		onFileSuccess: function() {
-			axios.post(api.ShowPipe).then(result => {
-				console.log('----------' + result.data);
-			});
+			axios.post(api.ShowPipe).then(result => {});
+			this.fileshow = false;
 		},
 		fn4() {
 			this.loginWindow = 'display:block';

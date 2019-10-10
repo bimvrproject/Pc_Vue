@@ -425,6 +425,7 @@ export default {
 				this.$store.commit("settoken",this.token);
 				this.$store.commit("setPhone",this.username);
 				window.sessionStorage.setItem('token',this.token);
+				window.sessionStorage.setItem('phone',this.username);
 				this.getUserByToken();
 				//注册成功跳转页面
 				this.panduan = false;

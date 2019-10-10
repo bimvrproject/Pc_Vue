@@ -220,21 +220,21 @@
 				this.xianyin = true;
 			});
 			this.$eventbus.$emit('shows');
+			
 			// 初始化展示模型
 			var id = this.$route.params.project_id;
-			sessionStorage.setItem('id', this.$route.params.project_id);
 			if (id != '' && id != null && id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + id).then(result => {
-					console.log(result.data)
+					console.log(result.data.modelId+"+++")
 					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
 						"" && result.data.url != undefined || result.data.projectId != undefined) {
 						this.fileshow = false;
 					}
 					if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
 						this.fileshow = false;
+						this.model = result.data.url;
+						this.projectmodel = addressurls.url + this.model;
 					}
-					this.model = result.data.url;
-					this.projectmodel = addressurls.url + this.model;
 				});
 			}
 			// 点击建筑结构 和模型展示模型
@@ -247,9 +247,9 @@
 					}
 					if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
 						this.fileshow = false;
+						this.model = result.data.url;
+						this.projectmodel = addressurls.url + this.model;
 					}
-					this.model = result.data.url;
-					this.projectmodel = addressurls.url + this.model;
 				});
 			}
 
@@ -380,6 +380,7 @@
 			//上传建筑模型保存到数据库
 			onFileSuccess: function() {
 				axios.post(api.addBuildModel).then(result => {});
+				this.fileshow = false;
 			},
 			// fnxuni(){
 			// 	this.xianyin = false;

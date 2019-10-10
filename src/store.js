@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: "",
-	phone:""
+    token:sessionStorage.getItem("token") || "",
+	phone:sessionStorage.getItem("phone") || ""
   },
   mutations: {
 	  setPhone(state,phone){
