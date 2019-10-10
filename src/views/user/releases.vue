@@ -16,7 +16,7 @@
 							<div v-show="pzshow">
 								<div class="piczk">
 								<img src="../../assets/image/paizhao.png" class="picimgzk" alt="" />
-									<span class="picpz">拍照</span>
+									<span class="picpz"  @click="paizhao">拍照</span>
 								</div>
 							</div>
 						</div>
@@ -171,6 +171,7 @@
 	</div>
 </template>
 <script>
+	import html2canvas from 'html2canvas'
 export default {
 	data() {
 		return {
@@ -207,6 +208,22 @@ export default {
 	created() {},
 	mounted() {},
 	methods: {
+		//拍照
+		paizhao(){
+			html2canvas(document.body,{
+				// useCORS: true,		//保证跨域图片的显示
+				// logging: false,
+				width:window.screen.availWidth,		
+				height:window.screen.availHeight,
+				windowWidth:document.body.scrollWidth,
+				windowHeight:document.body.scrollHeight,
+				x:0,
+				y:window.pageYOffset
+			}).then(canvas=>{
+				// document.body.appendChild(canvas);
+				console.log(canvas.toDataURL())
+			});
+		},
 		//点击平面图纸中的具体某一个平面图纸
 		fnzkpm(index){
 			this.pmtzxunhuan = true

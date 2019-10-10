@@ -5,14 +5,14 @@
 		 	<div class="top-right">
 		 		<!-- 登录头像 -->
 		 		<el-dropdown class="imgzong" style="position:relative;">
-					<div @click="fnlogin()">
+					<div  @click="logins">
 						<img  class="logintopimg1" src="../assets/image/userimg@2x.png" alt="" />
 		 				<!-- <span class="logintop">登录</span> -->
 		 			<!-- <div class="dengl">{{message ? message : "登录"}}</div> -->
-					<div class="dengl">{{$store.state.phone ? $store.state.phone : "登录"}}</div>
+					<div  id="dengl">{{$store.state.phone ? $store.state.phone : "登录"}}</div>
 					</div>	
-					<el-dropdown-menu slot="dropdown" class="hhh">
-							 	 <div class="dlzong">
+					<el-dropdown-menu slot="dropdown" class="hhh" >
+							 	 <div class="dlzong" v-show="headerxy">
 								 		 <!-- top -->
 								 		 <div class="dltop">
 								 			 <!-- 头像图片 -->
@@ -38,7 +38,7 @@
 								 		  <!-- lineone -->
 								 		 <img src="../assets/image/line.png" style="width:6.46875rem;height:0.0625rem;float:left;margin-left:0.45rem;" alt="">
 								 		 <!-- 退出 -->
-								 		 <div class="dllave">
+								 		 <div class="dllave" @click="outlogin">
 								 			 退出
 								 		 </div>
 						</div>
@@ -63,35 +63,33 @@
 	export default{
 		data(){
 			return{
-				// a:""
-			fndl:true
+				fndl:true,
+				// 登录下拉的显隐
+				headerxy:false
 			}
 		},
 		methods:{
-			// fnss(){
-			// 	this.fndl = true
-			// },
-			// fnls(){
-			// 	this.fndl = false
-			// }
-			fnlogin(){
-				alert(window.sessionStorage.getItem('token'))
-				if(	window.sessionStorage.getItem('token') != null){
-				   this.$router.push('/Login');
-					 
+			logins(){
+				if(window.sessionStorage.getItem('token') !== null){
+					this.$eventbus.$emit('loginherfal')
+					this.headerxy = true
 				}else{
-						this.loginWindow = 'display:block';
-						alert(1)
+					this.$eventbus.$emit('loginhertru')
+					this.headerxy = false
 				}
+			},
+			outlogin(){
+				this.$router.push("/");
+				sessionStorage.clear();
+				
+				alert(123)
 			}
 		},
-     // props:["message"],
 		created(){
 		
 		},
 		mounted(){
-			// this.$eventbus.$emit('logins')
-			// alert(logins)
+			
 		}
 	}
 </script>
@@ -104,7 +102,7 @@
 	 top: 0;
 	 right:0.3rem;
 	/* background:red; */
-	z-index:300;
+	z-index:30000;
 	cursor:pointer;
 	}
 	.imgzong {
@@ -115,7 +113,7 @@
 		padding-top:0.125rem;
 		line-height:0.78125rem;
 	}
-	.dengl {
+	#dengl {
 		width:2.8rem;
 		height:0.6628rem;
 	/* 	background:skyblue; */

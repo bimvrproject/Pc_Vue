@@ -56,9 +56,9 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 				<!-- 悬浮登录窗口 --开始 -->
-			<div id="popContainer" :style="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
+			<div id="popContainer" v-show="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
 					<!-- 登录 -->
-	<div class="login" :style="loginWindow">
+	<div class="login" v-show="loginWindow">
 				<!-- <div style="width: 100%;height: 40px;background-image: url(../../assets/image/dingbutiao.png);"> -->
 				<div class="close">
 					<img src="../../assets/image/close.png" @click="closeLoginwindow" />
@@ -239,7 +239,7 @@ export default {
 			phonename:"手机号不正确",		//输入不正确友好提示
 			comarr: [0,0],
 			password: '',
-			loginWindow: '',
+			loginWindow: true,
 			checked: '',
 			panduan: false,
 			xianyin: false,
@@ -267,6 +267,12 @@ export default {
 		// Release
 	},
 	created() {
+		this.$eventbus.$on('loginhertru', () => {
+			this.loginWindow = true;
+		});
+		this.$eventbus.$on('loginherfal', () => {
+			this.loginWindow = false;
+		});
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -293,16 +299,9 @@ export default {
 	},
 	mounted() {
 		if (window.sessionStorage.getItem('token') != null) {
-			this.loginWindow = 'display: none';
-			//请求用户接口查询 用户信息
-
-			// .then(res => this.loginSuccess(res))
-			// .catch(err => this.requestFailed(err))
-			// .finally(() => {
-			// // state.loginBtn = false;
-			// });
+			this.loginWindow = false;
 		} else {
-			this.loginWindow = '';
+			this.loginWindow = true;
 		}
 	},
 	methods: {
@@ -342,9 +341,6 @@ export default {
 			})
 		 
 		},
-		// fngd(){
-		// 	this.loginWindow = 'display:block';
-		// },
 			fncom() {
 			this.comarr.push(0);
 		},
@@ -353,27 +349,18 @@ export default {
 				if(	window.sessionStorage.getItem('token') != null){
 				   this.$router.push('/Login');
 				}else{
-						this.loginWindow = 'display:block';
+						this.loginWindow = true;
 				}
-				// this.loginWindow = 'display:block';
+				
 		},
 		fnxnjz(){
 			if(	window.sessionStorage.getItem('token') != null){
 			   this.$router.push('/Login');
 			}else{
-					this.loginWindow = 'display:block';
+					this.loginWindow =  true;
 			}
-			// this.loginWindow = 'display:block';
+			
 		},
-		// Preservation() {
-		// 	this.$router.push('/baocun');
-		// },
-		// xiugai() {
-		// 	this.$router.push('/xiugai');
-		// },
-		// abouts() {
-		// 	this.$router.push('/about');
-		// },
 		// 移入更多
 		sqq() {
 			// this.moretb = require('../../assets/image/moress.png');
@@ -397,12 +384,6 @@ export default {
 			this.$refs.gdcol.style.color = '#333333';
 			this.moretb = require('../../assets/image/more@2x.png');
 		},
-		// fnxuni(){
-		// 	this.xianyin = false;
-		// },
-		// fn4() {
-		// 	this.loginWindow = 'display:block';
-		// },
 		fn3() {
 			this.$router.push('/Register');
 		},
@@ -448,7 +429,7 @@ export default {
 				//注册成功跳转页面
 				this.panduan = false;
 				// alert("跳转页面")
-				this.loginWindow = 'display:none';
+				this.loginWindow = false;
 				// alert(this.username)
 					// window.localStorage.setItem('userpho',this.username);
 				// this.a = this.username;
@@ -474,7 +455,7 @@ export default {
 		},
 		// 关闭login悬浮窗
 		closeLoginwindow() {
-			this.loginWindow = 'display:none';
+			this.loginWindow = false;
 		}
 	}
 };
