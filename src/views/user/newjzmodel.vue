@@ -61,7 +61,7 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
-					<span class="el-dropdown-link">
+					<span class="el-dropdown-link" @mouseenter="fnmoin()">
 						<img class="moreimg" src="../../assets/image/more@2x.png" />
 						<i class="more">更多</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -70,7 +70,7 @@
 						</i>
 					</span>
 					<el-dropdown-menu slot="dropdown" class="jzmodelmore">
-						<div class="jzmodelmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
+						<div class="jzmodelmoo" @mouseenter="fnmoin()" @mouseleave="fnleave">
 							<div class="jzmodelmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
 							<div class="jzmodelmores1" @click="fnabout">联系我们</div>
 							<div class="jzmodelmoresb">版本号: v 1.0.1</div>
@@ -86,12 +86,12 @@
 				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.7575rem;">建筑结构</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
-				<el-tooltip class="item" effect="dark" content="下载到本地跟清晰" placement="top">
+				<!-- <el-tooltip class="item" effect="dark" content="下载到本地跟清晰" placement="top">
 					<el-button type="text" style="padding-left:0.9rem;float:left;line-height:0rem;padding-top:0.32rem;color:#2180ED;font-weight:530;font-size:0.45rem;" @click="down()">下载到本地</el-button>
 				</el-tooltip>
 				<el-tooltip class="item" effect="dark" content="打开模型" placement="top">
 					<el-button type="text" :disabled="disabled" style="padding-left:0.6rem;float:left;line-height:0rem;padding-top:0.32rem;color:#2180ED;font-weight:530;font-size:0.45rem;" @click="openexe()">打开模型</el-button>
-				</el-tooltip>
+				</el-tooltip> -->
 			</div>
 			<!-- 中间图纸总体 -->
 			<div class="modeldraw" v-show="fileshow">
@@ -220,9 +220,10 @@
 				this.xianyin = true;
 			});
 			this.$eventbus.$emit('shows');
-			
+
 			// 初始化展示模型
 			var id = this.$route.params.project_id;
+			console.log(id)
 			if (id != '' && id != null && id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + id).then(result => {
 					console.log(result.data.modelId+"+++")
@@ -239,6 +240,7 @@
 			}
 			// 点击建筑结构 和模型展示模型
 			var pro_id = this.$route.params.project_modelid;
+			sessionStorage.setItem("proid",pro_id)
 			if (pro_id != '' && pro_id != null && pro_id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + pro_id).then(result => {
 					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
@@ -306,7 +308,8 @@
 			},
 			down() {
 				let mythis = this;
-				var id = sessionStorage.getItem("id");
+				var id = sessionStorage.getItem("projectid");
+				console.log(id)
 				var lists = mythis.dataList;
 				this.$notify.info({
 					title: '消息',
@@ -314,6 +317,7 @@
 				});
 				for (var i = 0; i < lists.length; i++) {
 					var list = lists[i];
+					console.log(list)
 					if (id == list.id) {
 						sessionStorage.setItem('exeid', list.id);
 						console.log(list.id)
@@ -332,18 +336,12 @@
 								message: '下载失败' + console.log(error)
 							});
 						})
-					} else {
-						this.$notify({
-							title: '警告',
-							message: '暂时没有开放，等待管理员上传！',
-							type: 'warning'
-						});
 					}
 				};
 			},
 			openexe() {
 				let mythis = this;
-				var id = sessionStorage.getItem("id");
+				var id = sessionStorage.getItem("exeid");
 				this.$http.post(api.Openexe, qs.stringify({
 					id: id
 				})).then(function(response) {
