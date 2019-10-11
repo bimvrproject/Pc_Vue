@@ -2,9 +2,9 @@
 	<div>
 		<ul class="animated fadeIn newjiantop" v-show="tian">
 			<li @click="fns" class="tianjia"></li>
-			<li v-for="(item, index) in projectLists" :key="index" class="xmn" @click="fnt(index)">
+			<li v-for="(item, index) in projectLists" :key="index" class="xmn"  @click="fnt(index)">
 				<div class="hqtp">
-					<span class="delimg"><img src="../../assets/image/shanchu@2x.png"  @click.stop="delproject(index)" /></span>
+					<span class="delimg"><img src="../../assets/image/shanchu@2x.png" :style="delcolor" @click.stop="delproject(index)" @mouseenter.stop="fndelhg()" @mouseleave="fndelco()"/></span>
 					<img class="ttu" :src="item.projectModelAddr" alt="" />
 				</div>
 				<div class="xmtitle">
@@ -28,13 +28,23 @@ export default {
 			projectLists: [],
 			xmxinayin: false,
 			xianyin: false,
-			tian: true
+			tian: true,
+			// 删除按钮部分的背景色
+			delcolor:"",
 		};
 	},
 	components: {
 		Newxm
 	},
 	methods: {
+		// 划过删除按钮
+		fndelhg(){
+			this.delcolor = "background:rgba(225,225,225,.3)"
+		},
+		// 划出删除按钮
+		fndelco(){
+			this.delcolor = ""
+		},
 		fns() {
 			this.projectLists.unshift(0);
 		},
@@ -107,7 +117,8 @@ export default {
 <style scoped>
 .newjiantop {
   width:59.9rem;
-  /* height:4.8075rem; */
+	min-height:5.8075rem;
+  max-height:11.115rem;
   background: rgba(255, 255, 255, 0.2);
 /* position: fixed;
   top:2.3rem;
@@ -122,7 +133,7 @@ export default {
   height:4.4rem;
   float: left;
   margin-left:0.37875rem;
-  margin-top:0.2rem;
+  margin-top:0.7rem;
  /* margin-bottom:0.2125rem; */
   background: url(../../assets/image/jia4@2x.png) no-repeat;
   background-size:4.6rem 4.4rem;
@@ -134,10 +145,29 @@ export default {
   background: #ffffff;
   float: left;
   margin-left:0.32rem;
-  margin-top:0.15rem;
+  margin-top:0.7rem;
   padding-left: 0px;
   padding-right: 0px;
 	/* background:red; */
+}
+.xmn:hover{
+	width:5rem;
+	height:4.8rem;
+	margin-left:0.18rem;
+	margin-top:0.55rem;
+}
+.xmn:hover .ttu{
+	width:5rem;
+}
+.xmn:hover .hqtp{
+	width:5rem;
+	height:2.5rem;
+}
+.xmn:hover .xmtitle{
+	width:5rem;
+	height:2.2rem;
+	text-align:center;
+	font-size:0.55rem;
 }
 /* 获取图片 */
 .hqtp {
@@ -148,17 +178,17 @@ export default {
 }
 .ttu {
  width:4.6rem;
-  height: 100%;
+ height: 100%;
 }
 /* 项目名称 */
 .xmtitle {
   cursor: pointer;
   width:4.6rem;
-  height:1.8rem;
+  height:2.1rem;
   font-size:0.5rem;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
-/* 	background:red; */
+	/* background:red; */
 }
 .xmmc {
   width:4.6rem;
@@ -189,7 +219,6 @@ export default {
  .delimg{
 	 width:0.6rem;
 	 height:0.8625rem;
-	 
  }
  .delimg img {
   width:0.3rem;
@@ -198,8 +227,8 @@ export default {
   top:0rem;
   right:0rem;
   cursor: pointer;
-	background:rgba(225,225,225,.3);
-	padding:0.3rem;
+	/* background:rgba(225,225,225,.3); */
+	padding:0.28rem;
 	/* padding-right:0.6rem;
 	padding-top:0.4rem;
 	padding-left:0.9rem;

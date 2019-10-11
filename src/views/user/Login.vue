@@ -16,10 +16,10 @@
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
-						<router-link to="/newjian">
+					<!-- 	<router-link to="/newjian"> -->
 							<img class="xmimg" src="../../assets/image/bluefz.png" alt="" />
 							<i class="xm" ref="xmcol">项目</i>
-						</router-link>
+						<!-- </router-link> -->
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
 						</i>
@@ -159,7 +159,8 @@
 				this.abouts = false;
 			},
 			fndianji() {
-				this.$router.push('/Login');
+				// this.$router.push('/Login');
+				this.$router.go(0)
 			},
 			fns() {
 				this.xianyin = !this.xianyin;
@@ -171,7 +172,7 @@
 				// this.sqtb = require('../../assets/image/sq@2x.png');
 				// this.moretb = require('../../assets/image/more@2x.png');
 				this.lmore = require('../../assets/image/pmjtxia.png');
-				// this.xmxl = require('../../assets/image/shang.png');
+				this.xmxl = require('../../assets/image/shang.png');
 				// this.$refs.xmcol.style.color = '#2180ED';
 				// this.sqcolor = 'color:#333333';
 				// this.$refs.gdcol.style.color = '#333333';
@@ -361,7 +362,7 @@
 	.logo {
 		width: 3.65625rem;
 		height: 0.875rem;
-		padding-left: 1.8625rem;
+		padding-left: 1.1825rem;
 		padding-top: 0.90625rem;
 		margin-left: 0.5625rem;
 		/* background:red; */
@@ -375,11 +376,10 @@
 	.lefttop {
 		width: 6.75rem;
 		height: 1.875rem;
-		/* 	background-color:green;
-			background: url(../../assets/image/homecebian8@2x.png); */
+		/* 	background-color:green; */
+		/* 	background: url(../../assets/image/homecebian8@2x.png); */
 		position: absolute;
 		top: 0px;
-		
 		/* background:red; */
 	}
 

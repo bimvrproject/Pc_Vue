@@ -516,9 +516,11 @@ export default {
 	}
 	body {
 		width:100%;
+		height:100%;
 	}
 	html {
 		width:100%;
+		height:100%;
 	}
 .community {
 	width:57.43375rem;
@@ -882,14 +884,16 @@ export default {
 .logocom {
 	width: 3.65625rem;
 	height: 0.875rem;
-	/* padding-left: 1.8625rem; */
+	padding-left: 1.1825rem;
 	padding-top: 0.90625rem;
 	margin-left:0.5625rem;
 /* 	background:red; */
+    float:left;
 }
 .lefttopcom {
 	width:6.75rem;
 	height:1.875rem;
+/* 	background:plum; */
 	/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;
@@ -1016,17 +1020,22 @@ export default {
 }
 /* 登录 */
 .login {
-	width:12.34375rem;
-	height:12.34375rem;
-	position: absolute;
+	width:555px;
+	height:555px;
+	/* position: absolute;
 	z-index: 50;
 	top:10.5rem;
-	left:22.3125rem;
+	left:22.3125rem; */
+	position:absolute;
+	left:0rem;right:0rem;
+	top:0rem;bottom:0rem;
+	margin:auto;
+	z-index:50;
 /* 	margin-top: -228px;
 	margin-left: -550px; */
 	background-color: white;
 	background: url(../../assets/image/beijing@2x.png) no-repeat;
-	background-size: 12.34375rem 12.34375rem;
+	background-size: 555px 555px;
 }
 #popContainer {
 	width:59.9375rem;
@@ -1126,6 +1135,7 @@ export default {
 	line-height:0.82rem;
 	display: inline-block;
 	float:left;
+	background:red;
 }
 /* 登录按钮 */
 .Logon-button {

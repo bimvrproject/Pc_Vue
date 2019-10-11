@@ -55,25 +55,44 @@
  -->
  <template>
 	 <div>
-		 <div class="block">
-    <span class="demonstration">月</span>
-    <el-date-picker
-      v-model="value2"
-      type="month"
-      placeholder="选择月">
-    </el-date-picker>
-  </div>
+		 <img id="newImage" alt="100x100" src="__PUBLIC__/img/1.jpg" class="img-circle" width="100px" height="100px" >
+		 <input id="image" type='file' name='myFile' size='15' @change="aa(this)"/>
+			<button class="picpz"  @click="paizhao()">拍照</button>
+			<!-- 这个是本地的 -->
+			<img src="../../assets/image/3@2x.png" />
+			<!-- 这个是服务器的 -->
+			<iframe src="http://36.112.65.110:8080/project/1/model/model-360%E5%85%A8%E6%99%AF/model.html" controls="controls"></iframe>
+			<!-- <img id="aaa"  src="http://36.112.65.110:8080/project/1/drawing/2/1/disan.png"> -->
 	 </div>
  </template>
  <script>
+	 import html2canvas from 'html2canvas'
   export default {
     data() {
       return {
-        value1: '',
-        value2: '',
-        value3: '',
-        value4: ''
       };
-    }
+    },
+	methods: {
+			//拍照
+		paizhao(){
+			// 图片中的拍照图片
+			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
+			// 图片中的拍照的字体颜色
+			this.fbpzscolor = 'color:#2180ED',
+			// document.getElementById("aaa")
+			html2canvas(document.getElementById("aaa"),{
+				allowTaint: true,
+				useCORS: true,		//保证跨域图片的显示
+			}).then(canvas=>{
+				// document.body.appendChild(canvas);
+				console.log(canvas.toDataURL())
+			});
+		},
+		aa(imgFile){
+			alert(123)
+			console.log(window.URL.createObjectURL(imgFile.files[0]))
+			document.getElementById("newImage").src = window.URL.createObjectURL(imgFile.files[0]);
+		}
+	}
   };
 </script>
