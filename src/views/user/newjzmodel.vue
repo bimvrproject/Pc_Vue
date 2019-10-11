@@ -80,7 +80,7 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/建筑结构/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;">
+			<div style="height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;">
 				<span @click="fnjzmxxm" style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.7575rem;">建筑结构</span>
