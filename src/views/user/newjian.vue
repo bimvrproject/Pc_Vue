@@ -92,12 +92,11 @@ export default {
 						});
 					});
 			}
-		
+
 		}
 	},
 	created() {
 		axios.get(api.BindingProject).then(result => {
-			console.log(result.data+"反思");
 			this.projectLists = result.data.projectList;
 		});
 	}
@@ -189,7 +188,7 @@ export default {
  .delimg{
 	 width:0.6rem;
 	 height:0.8625rem;
-	 
+
  }
  .delimg img {
   width:0.3rem;
