@@ -308,7 +308,7 @@
 			},
 			down() {
 				let mythis = this;
-				var id = sessionStorage.getItem("proid");
+				var id = sessionStorage.getItem("projectid");
 				console.log(id)
 				var lists = mythis.dataList;
 				this.$notify.info({
