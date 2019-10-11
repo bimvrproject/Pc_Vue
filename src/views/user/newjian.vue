@@ -218,10 +218,6 @@ export default {
  .delimg{
 	 width:0.6rem;
 	 height:0.8625rem;
-<<<<<<< HEAD
-=======
-
->>>>>>> c31671a09aa74ea8b6a449110eb88f67e99e7268
  }
  .delimg img {
   width:0.3rem;
