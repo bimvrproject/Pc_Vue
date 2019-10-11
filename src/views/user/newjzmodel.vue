@@ -80,17 +80,17 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/建筑结构/图纸 -->
-			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.53125rem;left:8.21875rem;text-align:left;">
-				<span @click="fnjzmxxm" style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;">新建项目</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;">建筑结构</span>
-				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;">/</i>
-				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;">模型</span>
+			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;">
+				<span @click="fnjzmxxm" style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span @click="fnjzmxs" style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.7575rem;">建筑结构</span>
+				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
+				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
 				<el-tooltip class="item" effect="dark" content="下载到本地跟清晰" placement="top">
-					<el-button type="text" style="padding-left: 30px" @click="down()">下载到本地</el-button>
+					<el-button type="text" style="padding-left:0.9rem;float:left;line-height:0rem;padding-top:0.32rem;color:#2180ED;font-weight:530;font-size:0.45rem;" @click="down()">下载到本地</el-button>
 				</el-tooltip>
 				<el-tooltip class="item" effect="dark" content="打开模型" placement="top">
-					<el-button type="text" :disabled="disabled" style="padding-left: 20px" @click="openexe()">打开模型</el-button>
+					<el-button type="text" :disabled="disabled" style="padding-left:0.6rem;float:left;line-height:0rem;padding-top:0.32rem;color:#2180ED;font-weight:530;font-size:0.45rem;" @click="openexe()">打开模型</el-button>
 				</el-tooltip>
 			</div>
 			<!-- 中间图纸总体 -->
