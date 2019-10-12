@@ -42,13 +42,12 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
-					<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
+					<span class="el-dropdown-link abcd" @mouseenter="sqq" style="position:relative;">
 						<img class="moreimg" :src="moretb" />
 						<i class="more" ref="gdcol">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
 						</i>
-					</span>
 					<el-dropdown-menu slot="dropdown" class="lomore">
 						<div class="moo" @mouseleave="fnleave">
 							<div class="mores1">
@@ -58,6 +57,7 @@
 							<div class="moresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
+				</span>
 				</el-dropdown>
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
@@ -159,8 +159,8 @@
 				this.abouts = false;
 			},
 			fndianji() {
-				// this.$router.push('/Login');
-				this.$router.go(0)
+				this.$router.push('/Login');
+				// this.$router.go(0)
 			},
 			fns() {
 				this.xianyin = !this.xianyin;
@@ -172,7 +172,7 @@
 				// this.sqtb = require('../../assets/image/sq@2x.png');
 				// this.moretb = require('../../assets/image/more@2x.png');
 				this.lmore = require('../../assets/image/pmjtxia.png');
-				this.xmxl = require('../../assets/image/shang.png');
+				// this.xmxl = require('../../assets/image/shang.png');
 				// this.$refs.xmcol.style.color = '#2180ED';
 				// this.sqcolor = 'color:#333333';
 				// this.$refs.gdcol.style.color = '#333333';
@@ -252,7 +252,7 @@
 	.mores1 {
 		width: 4.65rem;
 		height: 0.9rem;
-		border-bottom: 1px solid #999999;
+		border-bottom: 1px solid rgba(0,0,0,.2);
 		text-align: left;
 		line-height:0.9rem;
 		color: #666666;

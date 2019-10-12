@@ -347,12 +347,12 @@ export default {
 		// 划过更多
 		fnmoin(){
 			this.lmore=require('../../assets/image/shang.png');
-			this.nmfb = require('../../assets/image/pmjtxia.png');
-			this.nmbj = require('../../assets/image/pmjtxia.png');
-		  this.bjcolor = 'color:#333333';
-			this.bjtu = require('../../assets/image/bianji.png');
-			this.fbcolor = 'color:#333333';
-			this.fbtu = require('../../assets/image/bianji.png');
+			// this.nmfb = require('../../assets/image/pmjtxia.png');
+			// this.nmbj = require('../../assets/image/pmjtxia.png');
+		 //  this.bjcolor = 'color:#333333';
+			// this.bjtu = require('../../assets/image/bianji.png');
+			// this.fbcolor = 'color:#333333';
+			// this.fbtu = require('../../assets/image/bianji.png');
 		},
 		// 移出更多
 		fnleave(){
@@ -433,7 +433,7 @@ export default {
 .mores1gx {
 	width:4.65rem;
 	height:0.9rem;
-	border-bottom: 1px solid #999999;
+	border-bottom: 1px solid rgba(0,0,0,.2);
 	text-align: left;
 	line-height:0.9rem;
 	color: #666666;

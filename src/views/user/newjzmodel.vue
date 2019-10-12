@@ -220,9 +220,10 @@
 				this.xianyin = true;
 			});
 			this.$eventbus.$emit('shows');
-			
+
 			// 初始化展示模型
 			var id = this.$route.params.project_id;
+			console.log(id)
 			if (id != '' && id != null && id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + id).then(result => {
 					console.log(result.data.modelId+"+++")
@@ -239,6 +240,7 @@
 			}
 			// 点击建筑结构 和模型展示模型
 			var pro_id = this.$route.params.project_modelid;
+			sessionStorage.setItem("proid",pro_id)
 			if (pro_id != '' && pro_id != null && pro_id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + pro_id).then(result => {
 					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
@@ -306,7 +308,8 @@
 			},
 			down() {
 				let mythis = this;
-				var id = sessionStorage.getItem("id");
+				var id = sessionStorage.getItem("projectid");
+				console.log(id)
 				var lists = mythis.dataList;
 				this.$notify.info({
 					title: '消息',
@@ -314,6 +317,7 @@
 				});
 				for (var i = 0; i < lists.length; i++) {
 					var list = lists[i];
+					console.log(list)
 					if (id == list.id) {
 						sessionStorage.setItem('exeid', list.id);
 						console.log(list.id)
@@ -332,18 +336,12 @@
 								message: '下载失败' + console.log(error)
 							});
 						})
-					} else {
-						this.$notify({
-							title: '警告',
-							message: '暂时没有开放，等待管理员上传！',
-							type: 'warning'
-						});
 					}
 				};
 			},
 			openexe() {
 				let mythis = this;
-				var id = sessionStorage.getItem("id");
+				var id = sessionStorage.getItem("exeid");
 				this.$http.post(api.Openexe, qs.stringify({
 					id: id
 				})).then(function(response) {

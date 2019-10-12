@@ -516,11 +516,9 @@ export default {
 	}
 	body {
 		width:100%;
-		height:100%;
 	}
 	html {
 		width:100%;
-		height:100%;
 	}
 .community {
 	width:57.43375rem;
@@ -1020,22 +1018,17 @@ export default {
 }
 /* 登录 */
 .login {
-	width:555px;
-	height:555px;
-	/* position: absolute;
+	width:12.34375rem;
+	height:12.34375rem;
+	position: absolute;
 	z-index: 50;
 	top:10.5rem;
-	left:22.3125rem; */
-	position:absolute;
-	left:0rem;right:0rem;
-	top:0rem;bottom:0rem;
-	margin:auto;
-	z-index:50;
+	left:22.3125rem;
 /* 	margin-top: -228px;
 	margin-left: -550px; */
 	background-color: white;
 	background: url(../../assets/image/beijing@2x.png) no-repeat;
-	background-size: 555px 555px;
+	background-size: 12.34375rem 12.34375rem;
 }
 #popContainer {
 	width:59.9375rem;
@@ -1135,7 +1128,6 @@ export default {
 	line-height:0.82rem;
 	display: inline-block;
 	float:left;
-	background:red;
 }
 /* 登录按钮 */
 .Logon-button {

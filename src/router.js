@@ -185,6 +185,14 @@ export default new Router({
 			},
 			component: () => import("./views/user//personnel.vue")
 		},
+		{
+			path: "/edit",
+			name: "/edit",
+			meta: {
+				// requireAuth: true
+			},
+			component: () => import("./views/user/edit.vue")
+		},
 	]
 	
 });
