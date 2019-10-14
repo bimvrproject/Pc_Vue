@@ -176,7 +176,9 @@
 	</div>
 </template>
 <script>
-	import html2canvas from 'html2canvas'
+	// import html2canvas from 'html2canvas';
+	import api from '@/api/api.js';
+  import axios from 'axios';
 export default {
 	data() {
 		return {
@@ -258,19 +260,9 @@ export default {
 			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 			// 图片中的拍照的字体颜色
 			this.fbpzscolor = 'color:#2180ED',
-			html2canvas(document.body,{
-				// useCORS: true,		//保证跨域图片的显示
-				// logging: false,
-				width:window.screen.availWidth,		
-				height:window.screen.availHeight,
-				windowWidth:document.body.scrollWidth,
-				windowHeight:document.body.scrollHeight,
-				x:0,
-				y:window.pageYOffset
-			}).then(canvas=>{
-				// document.body.appendChild(canvas);
-				console.log(canvas.toDataURL())
-			});
+		axios.get(api.OpenCmd).then(result=>{
+    console.log(result.data)
+   })
 		},
 		//点击平面图纸中的具体某一个平面图纸
 		fnpmtzxh(i){
