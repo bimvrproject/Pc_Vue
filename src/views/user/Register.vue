@@ -68,13 +68,13 @@
 					<!-- 验证码是否正确 -->
 					<span class="yanzhengma" v-if="yzm">验证码不正确</span>
 					<!-- 输入手机号 -->
-					<div class="user">
+					<div class="userR">
 					<span  class="userimg">86+</span>
 						<img class="fenge" src="../../assets/image/juxing11@2x.png" alt="" />
 						<input type="text" v-model="phone1" placeholder="请输入手机号"  @blur="fn"/>
 					</div>
 					<!-- 输入验证码-->
-					<div class="code">
+					<div class="code" style="display:flex;">
 						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6"/>
 						<!-- <div class="codefooter" @click="yzm">获取验证码</div> -->
 						<span v-show="sendCode" @click="ObtainCode()" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
@@ -1048,7 +1048,7 @@ export default {
 	height: 100%;
 }
 /* 请输入手机号 */
-.user {
+.userR {
 	width:6.05125rem;
 	height:0.836rem;
 	position: absolute;
@@ -1078,7 +1078,7 @@ export default {
 	float: left;
 	margin-top:0.05rem;
 }
-.user input {
+.userR input {
 	width:4.69rem;
 	height:0.84rem;
 	float: left;

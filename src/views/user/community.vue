@@ -71,7 +71,7 @@
 					<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" />
 				</div>
 				<!-- 输入验证码 -->
-				<div class="password">
+				<div class="password" style="display:flex;">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2"/>
 					<span v-show="sendCode" @click="ObtainCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
 					<span v-show="!sendCode" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
@@ -1101,6 +1101,7 @@ export default {
 	border: none;
 	line-height:1.25rem;
 	display: inline-block;
+	/* background:red; */
 }
 .yanzheng {
 	display: block;
