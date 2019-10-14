@@ -29,9 +29,9 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnjzclsq">
-						<img class="sqimg" src="../../assets/image/sq@2x.png" />
-						<i class="sq" style="color:#333333">社区</i>
+					<span class="el-dropdown-link" @click="fnjzclsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimg" :src="hsq"/>
+						<i class="sq" :style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
 					</span>
 				</el-dropdown>
@@ -123,6 +123,9 @@ export default {
 			},
 				//总的等陆头部
 			// zheaderxy:true
+			// 社区默认状态
+			hsq:require('../../assets/image/sq@2x.png'),
+			hsqcolor:"color:#333333"
 		};
 	},
 	components: {
@@ -184,7 +187,17 @@ export default {
 	// 点击社区
 	fnjzclsq(){
 		this.$router.push('/');
-	}
+	},
+	// 移入社区的时候
+	fnhsq(){
+		this.hsq = require('../../assets/image/shequ.png')
+		this.hsqcolor = "color:#2180ED"
+	},
+	// 移出社区的时候
+	fnhsqlev(){
+		this.hsq = require('../../assets/image/sq@2x.png'),
+		this.hsqcolor = "color:#333333"
+		}
 	}
 };
 </script>

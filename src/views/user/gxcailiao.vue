@@ -28,9 +28,9 @@
 				<!-- 	下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fngxclsq">
-						<img class="sqimggxcl" src="../../assets/image/sq@2x.png" />
-						<i class="sqgxcl" style="color:#333333;">社区</i>
+					<span class="el-dropdown-link" @click="fngxclsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimggxcl" :src="hsq"/>
+						<i class="sqgxcl" :style="hsqcolor">社区</i>
 					</span>
 				</el-dropdown>
 				<!-- 	下拉菜单---社区--结束
@@ -124,7 +124,10 @@ export default {
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts: false
+			abouts: false,
+			// 社区默认状态
+			hsq:require('../../assets/image/sq@2x.png'),
+			hsqcolor:"color:#333333"
 		};
 	},
 	components: {
@@ -224,7 +227,17 @@ export default {
 			this.fbtu = require('../../assets/image/bjblue.png');
 			this.bjtu = require('../../assets/image/bianji.png');
 			(this.release = true), (this.xianyinxuni = false), (this.bjcolor = 'color:#333333');
-		}
+		},
+		// 移入社区的时候
+		fnhsq(){
+			this.hsq = require('../../assets/image/shequ.png')
+			this.hsqcolor = "color:#2180ED"
+		},
+		// 移出社区的时候
+		fnhsqlev(){
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333"
+			}
 	}
 };
 </script>

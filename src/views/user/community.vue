@@ -14,7 +14,7 @@
 			<div class="hometoplocom" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link"  @click="fndianji">
+					<span class="el-dropdown-link"  @click="fndianji()">
 							<img class="xmimgcom" :src="xmtb" alt="" />
 							<i class="xmcom" ref="xmcol">项目</i>
 					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;"></i>
@@ -345,7 +345,6 @@ export default {
 			this.comarr.push(0);
 		},
 		fndianji(){
-
 				if(	window.sessionStorage.getItem('token') != null){
 				   this.$router.push('/Login');
 				}else{
@@ -457,7 +456,7 @@ export default {
 		// 关闭login悬浮窗
 		closeLoginwindow() {
 			this.loginWindow = false;
-		}
+		},
 	}
 };
 </script>

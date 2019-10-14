@@ -129,7 +129,7 @@
 											</div>
 										</li>
 										<li style="width:5.75rem;height:0.78125rem;margin-top:0.9375rem;margin-bottom:1.5625rem;">
-											<span style="display:inline-block;width:0.65625rem;height:0.71875rem;float:right;" @click="establish">
+											<span style="display:inline-block;width:0.65625rem;height:0.71875rem;float:right;" @click="establish()">
 												<img src="../../assets/image/jjjj.png" alt="" style="width:100%;height:100%;" />
 											</span>
 										</li>
@@ -249,9 +249,10 @@ export default {
 	},
 	created() {
 		// console.log(localStorage.getItem('wallss1'));
-		this.newjian = sessionStorage .getItem('wallss1')
-			? JSON.parse(sessionStorage .getItem('wallss1'))
-			: [{ msg:50,msgs:'墙体厚度', change: false ,changes:false}, { msg: 50,msgs:'墙体厚度', change: false ,changes:false}, { id: 2, msg: 50,msgs:'墙体厚度', change: false,changes:false }, { msg: 50, msgs:'墙体厚度',change: false,changes:false }];
+		this.newjian = localStorage .getItem('wallss1')
+			? JSON.parse(localStorage .getItem('wallss1'))
+			: [{ msg:50,msgs:'墙体厚度', change: false ,changes:false}, { msg: 50,msgs:'墙体厚度', change: false ,changes:false}, { id: 2, msg: 50,msgs:'墙体厚度', change: false,changes:false }, 
+			{ msg: 50, msgs:'墙体厚度',change: false,changes:false }];
 			// 建立建筑结构模型
 		this.$eventbus.$on('cezhan', ite => {
 			// console.log(ite, 'a');
@@ -373,7 +374,7 @@ export default {
 			this.ceyinxx = true;
 		});
 		// 获取存储的值
-		sessionStorage.getItem('wallss1');
+		localStorage.getItem('wallss1');
 		//材质循环
 		this.material.push(0);
 	},
@@ -439,15 +440,16 @@ export default {
 		ce1() {
 			this.$router.push('/Login');
 		},
+		// 点击编辑新建项目
 		establish() {
 			// this.newjian.push(6);
 			this.newjian.push({ msg: 50,msgs:"墙体厚度", change: false ,changes:false });
-			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除信息
 		clear(index) {
 			this.newjian.splice(index, 1);
-			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除默认的第一个信息
 		// clear1() {
@@ -469,17 +471,17 @@ export default {
 			this.$set(this.newjian[index], 'changes', true);
 			(this.wall1 = false), (this.walls1 = true);
 		},
-		//聚焦的时候
+		//失焦的时候
 		changewall1(index) {
 			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'change', false);
 			//设置localStroage值
-			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		//聚焦的时候
 		changewall2(index) {
 			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'changes', false);
 			//设置localStroage值
-			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
+			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 点击信息标题
 		xxtitle() {

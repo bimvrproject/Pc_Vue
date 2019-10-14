@@ -32,9 +32,9 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnjztzsq">
-						<img class="sqimgjztz" src="../../assets/image/sq@2x.png" />
-						<i class="sqjztz" style="color: #333333;">社区</i>
+					<span class="el-dropdown-link" @click="fnjztzsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimgjztz" :src="hsq" />
+						<i class="sqjztz":style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
 					</span>
 				</el-dropdown>
@@ -247,6 +247,9 @@
 				fontdrawingarrpm:true,//平面图纸字体
 				inputdrawingarrpm:false, //平面图纸input框
 				inputdrawingar:"",//平面图纸input框字体
+				// 社区默认状态
+				hsq:require('../../assets/image/sq@2x.png'),
+				hsqcolor:"color:#333333"
 			};
 		},
 		components: {
@@ -403,7 +406,17 @@
 			},
 			abouts4() {
 				this.$router.push('/about');
-			}
+			},
+			// 移入社区的时候
+			fnhsq(){
+				this.hsq = require('../../assets/image/shequ.png')
+				this.hsqcolor = "color:#2180ED"
+			},
+			// 移出社区的时候
+			fnhsqlev(){
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333"
+				}
 		}
 	};
 </script>

@@ -26,21 +26,21 @@
 				<!-- 下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fngxmxsq">
-						<img class="sqimggm" src="../../assets/image/sq@2x.png" />
-						<i class="sqgm" style="color:#333333;">社区</i>
+					<span class="el-dropdown-link" @click="fngxmxsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimggm" :src="hsq"/>
+						<i class="sqgm" :style="hsqcolor">社区</i>
 						<i class="el-icon-arrow-down el-icon--right"></i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="ceyins">
+					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" @mouseleave="fnhbjlev()">
 						<img class="bjimggm" :src="bjtu" />
 						<i class="bjgm" :style="bjcolor">编辑</i>
 					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmbj" alt="" style="width: 100%;height: 100%;"></i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnfabug">
+					<span class="el-dropdown-link" @click="fnfabug()" @mouseenter="fnhfb()" @mouseleave="fnhfblev()">
 						<img class="bjimggm" :src="fbtu" />
 						<i class="bjgm" :style="fbcolor">发布</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmfb" alt="" style="width: 100%;height: 100%;"></i>
@@ -70,7 +70,7 @@
 			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
 			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;" @click="fnjzmx">新建项目</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
-			<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.7575rem;"  @click="fnjzmx">管线综合</span>
+			<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.7575rem;"  @click="fnjzmx()">管线综合</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 			<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
 		</div>
@@ -102,36 +102,25 @@
 		</div>
 				<!-- 图片展示轮播图 -->
 		 <!-- Swiper -->
-		 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
-		   <div class="swiper-wrapper">
-			 <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t4.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/disan.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/diyi.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t1.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t2.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t3.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t5.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div>
-		   </div>
-		   <div class="swiper-button-next swiper-button-white"></div>
-		   <div class="swiper-button-prev swiper-button-white"></div>
-		 </div>
-		<div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;background:#EEEEEE;position:absolute;top:25.7rem;left:7rem;">
-		   <div class="swiper-wrapper">
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t4.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/u91_02.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/disan.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/diyi.png" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t1.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t2.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t3.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t5.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
-		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div>
-		   </div>
-		 </div>
+   <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+      <div class="swiper-wrapper"  v-show="swiperxy">
+   	   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
+   			<img src="../../assets/image/t4.jpg" alt="">
+   				<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
+   					 @click.stop="fnggx(index)">
+   				</span>
+   	  </div>
+      </div>
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+   <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
+      <div class="swiper-wrapper" v-show="swiperbottomgx" >
+        <div class="swiper-slide swiper-slidebottom" @click="fnswipersgx()" v-for="(item, index) in newarrs" :key="index"><img src="../../assets/image/t4.jpg" alt=""></div>
+
+      </div>
+    </div>
+
 	</div>
 </template>
 <script>
@@ -190,6 +179,16 @@ export default {
 			attrs: {
 				accept: '.zip, .jar, .war, .rar, .7z'
 			},
+			newarrs:[0,0,0,0,0],
+			// swiper上边部分
+			swiperxy:false,
+			// 轮播下边隐藏
+			swiperbottomgx:false,
+			//轮播下边的最大背景图的显隐
+			swipersbj:"background:rgba(225,225,225,0)",
+			// 社区默认状态
+			hsq:require('../../assets/image/sq@2x.png'),
+			hsqcolor:"color:#333333"
 		};
 	},
 	components: {
@@ -199,6 +198,17 @@ export default {
 		// Zheader
 	},
 	created() {
+		// 创建点击发布的时候轮播图出现
+			this.$eventbus.$on('fbswipersgx', () => {
+			this.swiperbottomgx = true;
+			this.	swipersbj = 'background:#EEEEEE'
+		});
+		// 创建点击发布的时候轮播图消失
+			this.$eventbus.$on('fbswiperssgx', () => {
+			this.swiperbottomgx = false;
+			this.swiperxy = false;
+			this.	swipersbj = 'background:rgba(225,225,225,0)'
+		});
 			this.$eventbus.$on('ceyinfb', ite => {
 			if(ite == "fabu"){
 				this.release = true;
@@ -266,11 +276,20 @@ export default {
 		});
 	},
 	methods: {
+		// 点击swiper头上的关闭
+		fnggx(index){
+			this.swiperxy = false
+			},
+		//点击swiper下边的
+		fnswipersgx(){
+			this.swiperxy = true
+		},
 		// 点击新建项目
 		 fnjzmx(){
 			// this.$eventbus.$emit('cezhan', 'moxin');
 			 	this.$eventbus.$emit('ceyindj', 'xinjianmoxin');
 				this.$eventbus.$emit('ceyinfb','xjxm');
+				this.$eventbus.$emit('fbswiperssgx');
 				this.fbtu = require('../../assets/image/fbnav.png');
 				this.bjtu = require('../../assets/image/bianji.png');
 				this.bjcolor = 'color:#333333';
@@ -281,6 +300,7 @@ export default {
 			// this.$router.push('/newjzmodel');
 			 	this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
 				this.$eventbus.$emit('ceyinfb','jzjg');
+				this.$eventbus.$emit('fbswiperssgx');
 				this.fbtu = require('../../assets/image/fbnav.png');
 				this.bjtu = require('../../assets/image/bianji.png');
 				this.bjcolor = 'color:#333333';
@@ -320,10 +340,11 @@ export default {
 		fngxmxsq(){
 			this.$router.push('/');
 		},
-		// 调用隐藏建筑模型,管线综合,设备监控
+		// 点击编辑的时候调用隐藏建筑模型,管线综合,设备监控
 		ceyins() {
 			this.$eventbus.$emit('ceyin');
 			this.$eventbus.$emit('ceyinxxs');
+			this.$eventbus.$emit('fbswiperssgx');
 			this.bjtu = require('../../assets/image/bjblue.png');
 			this.bjcolor = 'color:#2180ED';
 			this.release = false;
@@ -343,6 +364,8 @@ export default {
 			this.nmfb = require('../../assets/image/shang.png');
 			this.nmbj = require('../../assets/image/pmjtxia.png');
 			this.lmore = require('../../assets/image/pmjtxia.png');
+				// 调用点击发布的时候轮播显示
+			this.$eventbus.$emit('fbswipersgx');
 		},
 		// 划过更多
 		fnmoin(){
@@ -358,6 +381,36 @@ export default {
 		fnleave(){
 			this.lmore=require('../../assets/image/pmjtxia.png')
 			},
+		// 移入社区的时候
+		fnhsq(){
+			this.hsq = require('../../assets/image/shequ.png')
+			this.hsqcolor = "color:#2180ED"
+		},
+		// 移出社区的时候
+		fnhsqlev(){
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333"
+			},
+		// 移入编辑
+		fnhbj(){
+			this.bjtu = require('../../assets/image/bjblue.png');
+			this.bjcolor = 'color:#2180ED'
+			},
+		// 移出编辑
+		fnhbjlev(){
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333'
+		},
+		// 移入发布
+		fnhfb(){
+			this.fbtu = require('../../assets/image/fbblue.png');
+			this.fbcolor = 'color:#2180ED'
+		},
+		// 移出发布
+		fnhfblev(){
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333'
+		}
 	}
 };
 </script>

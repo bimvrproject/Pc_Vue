@@ -31,7 +31,7 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew">
+					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew()" @mouseleave="fnhsqlev()">
 						<img class="sqimg" :src="sqtb" />
 						<i class="sq" ref="sqcol" :style="sqcolor">社区</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -179,8 +179,15 @@
 			},
 			//划过社区
 			fnnew() {
-				this.newxy = false
+				this.newxy = false;
+				this.sqtb = require('../../assets/image/shequ.png')
+				this.sqcolor = "color:#2180ED"
 			},
+			// 移出社区的时候
+			fnhsqlev(){
+				this.sqtb = require('../../assets/image/sq@2x.png'),
+				this.sqcolor = "color:#333333"
+				},
 			sqq() {
 				// this.xmtb = require('../../assets/image/sshouse.png');
 				// this.xmxl = require('../../assets/image/pmjtxia.png');

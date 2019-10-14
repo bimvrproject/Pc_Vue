@@ -8,7 +8,7 @@ import axios from "axios";
 import setAxios from "@/utils/setAxios";
 import './eventbus.js';
 import './assets/css/animate.min.css';
-import './assets/font/css/font-awesome.min.css'
+import './assets/font/css/font-awesome.min.css';
 
 import Router from 'vue-router'
 const routerPush = Router.prototype.push

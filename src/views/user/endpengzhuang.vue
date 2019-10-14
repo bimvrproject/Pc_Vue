@@ -29,9 +29,9 @@
 				<!-- 下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnendsq()">
-						<img class="sqimgend" src="../../assets/image/sq@2x.png" />
-						<i class="sqend" style="color:#333333;">社区</i>
+					<span class="el-dropdown-link" @click="fnendsq()"  @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimgend" :src="hsq"/>
+						<i class="sqend" :style="hsqcolor">社区</i>
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束
@@ -57,9 +57,9 @@
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 		<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;" @click="fnjzmx" >新建项目</span>
+			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
-			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;"  @click="fnjzmx">管线综合</span>
+			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">管线综合</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 			<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
 		</div>
@@ -100,7 +100,10 @@ export default {
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts: false
+			abouts: false,
+				// 社区默认状态
+			hsq:require('../../assets/image/sq@2x.png'),
+			hsqcolor:"color:#333333"
 		};
 	},
 	components: {
@@ -179,7 +182,17 @@ export default {
 		},
 		end() {
 			this.$router.push('/endpengzhuang');
-		}
+		},
+			// 移入社区的时候
+		fnhsq(){
+			this.hsq = require('../../assets/image/shequ.png')
+			this.hsqcolor = "color:#2180ED"
+		},
+		// 移出社区的时候
+		fnhsqlev(){
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333"
+			}
 	}
 };
 </script>

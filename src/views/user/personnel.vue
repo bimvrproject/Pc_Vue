@@ -32,9 +32,9 @@
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnpersq()">
-						<img class="sqimgper" src="../../assets/image/sq@2x.png" />
-						<i class="sqper" style="color: #333333;">社区</i>
+					<span class="el-dropdown-link" @click="fnpersq()"  @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimgper" :src="hsq"/>
+						<i class="sqper" :style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
 					</span>
 				</el-dropdown>
@@ -70,7 +70,7 @@
 				<!-- 人员信息表标题 -->
 				<div class="ryxxtitle">人员信息填写</div>
 				<ul class="ryxxcenter">
-					<li class="reyxh" v-for="(item, index) in qxarr" :key="index">
+					<li class="reyxh" v-for="(item,index) in qxarr" :key="index">
 						<div class="accountnub">
 							<span class="accountnubspan">账号</span>
 							<input v-model="qxarr[index].msgss" placeholder="请输入内容" class="accountnubinp" @blur="changewall3(index)"></input>
@@ -78,12 +78,18 @@
 						<div class="accountper">
 							<span class="accountperspan">账号权限</span>
 							<el-select v-model="item.value" clearable placeholder="请选择" class="accountpersel">
-								<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+								<el-option v-for="(item) in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
 							</el-select>
+						 <!-- <select class="info-select" style="width:6rem;height:1.3rem;line-height:1.3rem;font-size:0.4rem;border:1px solid gainsboro;border-radius:4px;padding-left:0.1rem;">
+							 <option value0="" class="changqx">请选择权限</option>
+						   <option value1="权限一">权限一</option>
+						   <option value2 ="权限二">权限二</option>
+					 	   <option value3="权限三">权限三</option>
+						 </select> -->
 						</div>
 						<div class="accountdel" @click="fnqxdel(index)"></div>
 					</li>
-					<div class="njzhqx" @click="fnnjqx" style="float:right;">
+					<div class="njzhqx" @click="fnnjqx()" style="float:right;">
 						<img src="../../assets/image/j.png" alt="" />
 						<span>新建项目</span>
 					</div>
@@ -132,7 +138,10 @@ export default {
 			qxarr: [],
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
-			abouts: false
+			abouts: false,
+			// 社区默认状态
+			hsq:require('../../assets/image/sq@2x.png'),
+			hsqcolor:"color:#333333"
 		};
 	},
 	components: {
@@ -142,8 +151,8 @@ export default {
 	},
 	created() {
 		// 人员信息填写中的账号
-		this.qxarr = sessionStorage .getItem('wallss1ss')
-			? JSON.parse(sessionStorage .getItem('wallss1ss'))
+		this.qxarr = localStorage .getItem('wallss1ss')
+			? JSON.parse(localStorage .getItem('wallss1ss'))
 			: [{ msgss:''}, { msgss:''}, {msgss:''}, 
 			{ msgss:''}];
 		this.$eventbus.$on('shows', () => {
@@ -172,7 +181,8 @@ export default {
 		//人员信息中的账号失焦事件
 		changewall3(index){
 				//设置localStroage值
-			sessionStorage.setItem('wallss1ss', JSON.stringify(this.qxarr));
+			 this.$set(this.qxarr[index]);
+			localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr));
 		},
 		// 点击联系我们
 		fnabout() {
@@ -198,7 +208,8 @@ export default {
 		},
 		// 点击权限的新建项目
 		fnnjqx() {
-			this.qxarr.push(0);
+			this.qxarr.push({ msgss:''});
+			localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr))
 		},
 		// 点击项目
 		fnperxm() {
@@ -212,7 +223,17 @@ export default {
 			this.xianyin = !this.xianyin;
 			// this.xianyinxuni = false;
 			this.$eventbus.$emit('showyin');
-		}
+		},
+			// 移入社区的时候
+		fnhsq(){
+			this.hsq = require('../../assets/image/shequ.png')
+			this.hsqcolor = "color:#2180ED"
+		},
+		// 移出社区的时候
+		fnhsqlev(){
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333"
+			}
 	}
 };
 </script>
@@ -417,9 +438,9 @@ li {
 	list-style: none;
 }
 .reyxh {
-	width: 26rem;
+	width: 25rem;
 	height: 1.3rem;
-	/* 	background:paleturquoise; */
+	/* background:paleturquoise; */
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
@@ -437,16 +458,17 @@ li {
 .accountper {
 	/* width: 11.25rem;
 	height: 1.3rem; */
-/* 	background:blue; */
-	margin-left: 2.5rem;
+	/* background:blue; */
+	margin-left:2.6rem;
 	display: flex;
 	justify-content:space-around
 }
+/* 删除按钮 */
 .accountdel {
 	width: 0.6875rem;
 	height: 0.78125rem;
 	/* background:green; */
-	margin-right: 0.65rem;
+	margin-right: 0.25rem;
 	margin-top: 0.3rem;
 	background: url(../../assets/image/lajit.png) no-repeat;
 	background-size: 0.6875rem 0.78125rem;
@@ -521,4 +543,19 @@ li {
 	width:0.78125rem;
 	line-height:1.25rem;
 }
+select::-ms-expand { display: none; }          
+         .info-select{
+    /*        width: 12%;
+            margin-left: 64%; */
+            border: none;
+            outline: none;
+						color:#333333; 
+            /*将默认的select选择框样式清除*/
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+            -ms-appearance:none;
+           /*在选择框的最右侧中间显示小箭头图片*/
+          /* background: url(../img/arrow.png) no-repeat scroll right center transparent; */          
+         }
 </style>
