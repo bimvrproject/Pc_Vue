@@ -125,7 +125,7 @@
 															style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
 														/>
 													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;" @click="clear(index)" alt="">
+													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear(index)" alt="">
 											</div>
 										</li>
 										<li style="width:5.75rem;height:0.78125rem;margin-top:0.9375rem;margin-bottom:1.5625rem;">

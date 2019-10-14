@@ -102,7 +102,7 @@
 		</div>
 				<!-- 图片展示轮播图 -->
 		 <!-- Swiper -->
-		 <!-- <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+		 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
 		   <div class="swiper-wrapper">
 			 <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t4.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
@@ -131,7 +131,7 @@
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div>
 		   </div>
-		 </div> -->
+		 </div>
 	</div>
 </template>
 <script>
