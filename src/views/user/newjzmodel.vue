@@ -121,10 +121,44 @@
 		<!-- 点击联系我们的遮罩 -->
 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);z-index: 600000;"
 		 v-show="abouts" @click="fnaboutmark"></div>
-	</div>
+		 		<!-- 图片展示轮播图 -->
+		  <!-- Swiper -->
+		  <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+		    <div class="swiper-wrapper">
+		 	 <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t4.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/disan.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/diyi.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t1.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t2.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t3.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t5.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div>
+		    </div>
+		    <div class="swiper-button-next swiper-button-white"></div>
+		    <div class="swiper-button-prev swiper-button-white"></div>
+		  </div>
+		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;background:#EEEEEE;position:absolute;top:25.7rem;left:7rem;">
+		    <div class="swiper-wrapper">
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t4.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/u91_02.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/disan.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/diyi.png" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t1.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t2.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t3.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t5.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div>
+		    </div>
+		  </div>
+		 
 	</div>
 </template>
 <script>
+	import Swiper from 'swiper';
+	import 'swiper/dist/css/swiper.min.css'
 	import api from '@/api/api.js';
 	import qs from 'qs';
 	import Newjian from './newjian';
@@ -273,6 +307,23 @@
 		mounted() {
 			this.$eventbus.$emit('cezhan', 'moxin');
 			this.$eventbus.$emit('hometop');
+			 var galleryThumbs = new Swiper('.gallery-thumbs', {
+			  spaceBetween: 10,
+			  slidesPerView:8,
+			  freeMode: true,
+			  watchSlidesVisibility: true,
+			  watchSlidesProgress: true,
+			});
+			 new Swiper('.gallery-top', {
+			  spaceBetween: 10,
+			  navigation: {
+			    nextEl: '.swiper-button-next',
+			    prevEl: '.swiper-button-prev',
+			  },
+			  thumbs: {
+			    swiper: galleryThumbs
+			  }
+			});
 		},
 		methods: {
 			// 点击新建项目
@@ -698,5 +749,50 @@
 		border: none !important;
 		color: #ffffff !important;
 		padding: 0.03125rem 0.25rem !important;
+	}
+	
+	.swiper-slidetop {
+		background: paleturquoise;
+		width: 47.46875rem;
+		height: 20.21875rem;
+	}
+	.swiper-slidetop img {
+		width: 47.46875rem;
+		height: 20.21875rem;
+	}
+	.swiper-slidebottom {
+		width: 10rem;
+		height: 6rem;
+		/* background:red; */
+		margin-right: 0.5rem;
+	}
+	.swiper-slidebottom img {
+		width: 6rem;
+		height: 6rem;
+	}
+	.swiper-container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.swiper-slide {
+		background-size: cover;
+		background-position: center;
+	}
+	.gallery-top {
+		width: 45.86875rem;
+		height: 25.21875rem;
+	}
+	.gallery-thumbs {
+		box-sizing: border-box;
+		padding: 0.8rem 0;
+		/*  padding: 20px 0; */
+	}
+	.gallery-thumbs .swiper-slide {
+		/* width: 25%;
+	      height: 100%; */
+		opacity: 0.8;
+	}
+	.gallery-thumbs .swiper-slide-thumb-active {
+		opacity: 1;
 	}
 </style>

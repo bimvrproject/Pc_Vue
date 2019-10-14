@@ -50,9 +50,9 @@
 									<div v-show="lujin">
 										<!-- 选择文件夹 -->
 										<div class="wjj">
-											<img src="../../assets/image/fbwjj.png" class="wjjimg" alt="" />
+											<img :src="ljpswjj" class="wjjimg" alt="" />
 											<!-- 给选择文件夹一个按钮，然后往后端发送请求，让后端返回存入数据库的所有图纸 -->
-											<span class="chawjj" @click="Folder">选择文件夹</span>
+											<span class="chawjj" @click="Folder()">选择文件夹</span>
 											<img src="../../assets/image/fbxl.png" class="xlwjj" alt="" />
 										</div>
 										<!-- 后端获取回来的数据进行循环渲染 -->
@@ -117,8 +117,8 @@
 							<div>
 								<!-- 文件夹 -->
 								<div v-show="fnwenjj">
-									<div class="fdraw" @click="fnwenjianjia">
-									<img src="../../assets/image/fbwjj.png" class="fdrawimg" alt="" />
+									<div class="fdraw" @click="fnwenjianjia()">
+									<img :src="xzwjj" class="fdrawimg" alt="" />
 										<span class="fdraws">选择文件夹</span>
 										<img src="../../assets/image/fbxl.png" class="fdraws1" alt="" />
 									</div>
@@ -126,25 +126,25 @@
 									<div v-show="tzwjjzk">
 										<!-- 平面图纸 -->
 										<div>
-											<div class="pmloader" @click="fnfbpm">
-												<img src="../../assets/image/fbwjj.png" class="pmloaderimg" alt="" />
+											<div class="pmloader" @click="fnfbpm()">
+												<img :src="pmtuh" class="pmloaderimg" alt="" />
 												<span class="pmloaders">平面图纸</span>
 												<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
 											</div>
 											<!-- 展开平面图纸 -->
 											<ul v-show="fbzkpm">
-												<li  v-for="(item, index) in zkpmtzarr" :key="index" class="zkpmloader" @click="fnzkpm(index)">
+												<li  v-for="(item, index) in zkpmtzarr" :key="index" class="zkpmloader" @click="fnpmtzxh(index)" :class="{checked:dgarr.includes(index)}">
 													<img src="../../assets/image/ttt.png" class="zkpmloaderimg" alt="" /></span>
-													<span class="zkpmloaders" @click="fnpmtzxh">平面图纸1</span>
+													<span class="zkpmloaders">平面图纸1</span>
 													<img src="../../assets/image/dxk.png" class="zkpmloaderimg1" alt="" />
-													<img src="../../assets/image/dui.png" class="zkpmloaderimg11"  alt="" />
+												<!-- 	<img src="../../assets/image/dui.png" class="zkpmloaderimg11" :class="{tzloop:item.tzloop}" alt="" /> -->
 												</li>
 											</ul>
 										</div>
 										<!-- 立面图纸 -->
 										<div>
-											<div class="pmloader" @click="fnlmtz">
-												<img src="../../assets/image/fbwjj.png" class="pmloaderimg" alt="" />
+											<div class="pmloader" @click="fnlmtz()">
+												<img :src="lmtuh" class="pmloaderimg" alt="" />
 												<span class="pmloaders">立面图纸</span>
 											<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
 											</div>
@@ -154,7 +154,7 @@
 												<img src="../../assets/image/ttt.png" class="zkpmloaderimg" alt="" />
 													<span class="zkpmloaders">立面图纸1</span>
 													<img src="../../assets/image/dxk.png" class="zkpmloaderimg1" alt="" />
-											 	<img class="zkpmloaderimg11" src="../../assets/image/dui.png" v-show="pmtzxunhuan" alt="" />
+											<!-- 	<img class="zkpmloaderimg11" src="../../assets/image/dui.png" alt="" /> -->
 												</li>
 											</ul>
 										</div>
@@ -176,26 +176,39 @@
 	</div>
 </template>
 <script>
-	import html2canvas from 'html2canvas'
+	// import html2canvas from 'html2canvas';
+	import api from '@/api/api.js';
+  import axios from 'axios';
 export default {
 	data() {
 		return {
+			// 选择文件夹时的图片初始状态
+		  xzwjj:require('../../assets/image/wjhezhu.png'),
+			//图纸中的选择文件夹中的平面图纸
+			pmtuh:require('../../assets/image/wjhezhu.png'),
+			// 图纸中的选择文件夹中的立面图纸
+			lmtuh:require('../../assets/image/wjhezhu.png'),
+			chooseNum:true,
 			//拍照显隐
 			pzshow: false,
 			// 自由拍摄显隐
-			zypszi: false,
+			zypszi: true,
 			//点击动画显隐
 			animationzk: false,
 			// 点击路径拍摄文件夹时控制图纸显隐
 			Plane: false,
+			// 路径拍摄中的选择文件夹的图片
+			ljpswjj:require('../../assets/image/wjhezhu.png'),
 			//点击预览时控制预览中的内容
 			preview: false,
 			//点击路径拍摄控制路径拍摄的显隐
 			lujin: false,
 			//点击清单控制清单的显隐
 			lists: false,
-			// 平面图纸循环
-			pmtzxunhuan: false,
+			// 对勾对勾对勾数组
+			dgarr:[],
+			//平面图纸循环中的对号
+      isTzloop:true,
 			//平面展开图
 			fbzkpm: false,
 			//立面展开图
@@ -229,9 +242,9 @@ export default {
 		// 发布图片中的拍照字体颜色
 		fbpzscolor:'color:#FFFFFF',
 		// 动画中的自由拍摄图片
-		zyps:require('../../assets/image/zyps.png'),
+		zyps:require('../../assets/image/zypsblue.png'),
 		// 动画中的自由拍摄的字体颜色
-		zypscolor:'color:#FFFFFF',
+		zypscolor:'color:#2180ED',
 	  // 路径拍摄图片
 		ljpstp:require('../../assets/image/ljpss.png'),
 		//路径拍摄的字体颜色
@@ -247,24 +260,21 @@ export default {
 			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 			// 图片中的拍照的字体颜色
 			this.fbpzscolor = 'color:#2180ED',
-			html2canvas(document.body,{
-				// useCORS: true,		//保证跨域图片的显示
-				// logging: false,
-				width:window.screen.availWidth,		
-				height:window.screen.availHeight,
-				windowWidth:document.body.scrollWidth,
-				windowHeight:document.body.scrollHeight,
-				x:0,
-				y:window.pageYOffset
-			}).then(canvas=>{
-				// document.body.appendChild(canvas);
-				console.log(canvas.toDataURL())
-			});
+		axios.get(api.OpenCmd).then(result=>{
+    console.log(result.data)
+   })
 		},
 		//点击平面图纸中的具体某一个平面图纸
-		fnzkpm(index){
-			this.pmtzxunhuan = true
-			},
+		fnpmtzxh(i){
+		if(this.dgarr.includes(i)){
+			//includes()方法判断是否包含某一元素,返回true或false表示是否包含元素，对NaN一样有效
+			//filter()方法用于把Array的某些元素过滤掉，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素：生成新的数组
+			this.dgarr=this.dgarr.filter(function (ele){return ele != i;});
+		}else{
+			this.dgarr.push(i)
+		}
+		
+	},
 		ce1() {
 			this.$router.push('/');
 		},
@@ -298,6 +308,14 @@ export default {
 			this.ljpstp = require('../../assets/image/ljpss.png');
 			// 路径拍摄的字体颜色
 			this.ljpstpcolor = 'color:#FFFFFF',
+			// 图纸中的选择文件夹的图纸
+			this.xzwjj = require('../../assets/image/wjhezhu.png');
+			// 点击时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png');
+			// 点击时平面图纸的图片
+			this.pmtuh = require('../../assets/image/wjhezhu.png');
+			// 路径拍摄中的文件夹
+			this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 			//拍照显示
 			(this.pzshow = true),
 				//动画隐藏
@@ -321,7 +339,7 @@ export default {
 				//立面展开图
 				(this.zklmtz = false),
 				//图纸文件夹展开
-				(this.tzwjjzk = false);
+				(this.tzwjjzk = false)
 		},
 		// 点击自由拍摄控制拍摄显隐
 		pzzk() {
@@ -329,8 +347,21 @@ export default {
 			this.zyps = require('../../assets/image/zypsblue.png'),
 			// 自由拍摄字体颜色
 			this.zypscolor = 'color:#2180ED',
+			// 路径拍摄的图片
+			this.ljpstp = require('../../assets/image/ljpss.png');
+			// 路径拍摄的字体颜色
+			this.ljpstpcolor = 'color:#FFFFFF';
 			this.zypszi = true;
 			this.lujin = false;
+			// 图纸中的选择文件夹的图纸
+			this.xzwjj = require('../../assets/image/wjhezhu.png');
+			// 点击时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png');
+			// 点击时平面图纸的图片
+			this.pmtuh = require('../../assets/image/wjhezhu.png');
+			this.Plane = false;
+			// 路径拍摄中的文件夹
+			this.ljpswjj = require('../../assets/image/wjhezhu.png')
 		},
 		//点击动画
 		animation() {
@@ -354,6 +385,20 @@ export default {
 			this.fbtz = require('../../assets/image/ttt.png'),
 			// 图纸字体颜色
 			this.fbtzcolor = 'color:#FFFFFF',
+			// 自由拍摄图片
+			this.zyps = require('../../assets/image/zypsblue.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#2180ED',
+			// 图纸中的选择文件夹的图纸
+			this.xzwjj = require('../../assets/image/wjhezhu.png');
+			// 点击时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png');
+			// 点击时平面图纸的图片
+			this.pmtuh = require('../../assets/image/wjhezhu.png');
+			// 路径拍摄中的文件夹
+			this.ljpswjj = require('../../assets/image/wjhezhu.png'),
+			//自由拍摄显示
+			this.zypszi = true,
 			//自由拍摄与路径拍摄显隐
 			(this.animationzk = true),
 				//图片中得拍照隐藏
@@ -371,9 +416,11 @@ export default {
 				//图纸文件夹展开
 				(this.tzwjjzk = false);
 		},
-		//点击文件夹
+		//点击动画中的路径拍摄的选择文件夹
 		Folder() {
 			this.Plane = true;
+			// 点击动画中的路径拍摄的文件夹的图片
+			this.ljpswjj = require('../../assets/image/fbwjj.png')
 		},
 		//点击预览
 		previews() {
@@ -388,7 +435,17 @@ export default {
 			// 路径拍摄的图片
 			this.ljpstp = require('../../assets/image/ljps.png');
 			// 路径拍摄的字体颜色
-			this.ljpstpcolor = 'color:#2180ED'
+			this.ljpstpcolor = 'color:#2180ED';
+				// 自由拍摄图片
+			this.zyps = require('../../assets/image/zyps.png'),
+			// 自由拍摄字体颜色
+			this.zypscolor = 'color:#FFFFFF';
+			// 图纸中的选择文件夹的图纸
+			this.xzwjj = require('../../assets/image/wjhezhu.png');
+			// 点击时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png');
+			// 点击时平面图纸的图片
+			this.pmtuh = require('../../assets/image/wjhezhu.png')
 		},
 		//点击清单
 		list() {
@@ -420,6 +477,14 @@ export default {
 			this.ljpstp = require('../../assets/image/ljpss.png');
 			// 路径拍摄的字体颜色
 			this.ljpstpcolor = 'color:#FFFFFF',
+			// 图纸中的选择文件夹的图纸
+			this.xzwjj = require('../../assets/image/wjhezhu.png');
+			// 点击时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png');
+			// 点击时平面图纸的图片
+			this.pmtuh = require('../../assets/image/wjhezhu.png');
+			// 路径拍摄中的文件夹
+			this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 			//清单里边得内容出现
 			(this.lists = true),
 				//动画隐藏
@@ -447,21 +512,32 @@ export default {
 				//图纸文件夹展开
 				(this.tzwjjzk = false);
 		},
-		//点击具体某一个展开得平面图纸，显示一个对勾
-		fnpmtzxh() {
-			this.pmtzxunhuan = true;
-		},
 		//点击平面图纸让展开
 		fnfbpm() {
+			// 平面展开
 			this.fbzkpm = true;
+			// 立面展开
+			this.zklmtz = false;
+			// 点击平面时的图片
+		  this.pmtuh = require('../../assets/image/fbwjj.png');
+			// 点击平面时立面的图片
+			this.lmtuh = require('../../assets/image/wjhezhu.png')
 		},
 		//点击立面图纸让展开
 		fnlmtz() {
+			// 立面图纸展开
 			this.zklmtz = true;
+			// 平面合住
+			this.fbzkpm = false;
+			// 立面图纸展开时的图片
+			this.lmtuh = require('../../assets/image/fbwjj.png');
+			// 点击立面图纸时平面图纸的图片
+		 this.pmtuh = require('../../assets/image/wjhezhu.png');
 		},
 		//点击图纸中得文件夹
 		fnwenjianjia() {
 			this.tzwjjzk = true;
+			this.xzwjj = require('../../assets/image/fbwjj.png')	
 		},
 		//点击图纸
 		fntuz() {
@@ -491,6 +567,8 @@ export default {
 			this.zypscolor = 'color:#FFFFFF',
 				// 路径拍摄的图片
 			this.ljpstp = require('../../assets/image/ljpss.png');
+			// 路径拍摄中的文件夹
+			this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 			// 路径拍摄的字体颜色
 			this.ljpstpcolor = 'color:#FFFFFF',
 			//文件夹出现
@@ -508,11 +586,16 @@ export default {
 				//图片中得拍照隐藏
 				(this.pzshow = false);
 		}
-	}
-};
+	},
+}
 </script>
 
 <style scoped>
+	/* 图纸中的对勾 */
+	.checked{
+		background:url(../../assets/image/dui.png) no-repeat 5.75rem 0.05rem;
+		background-size:0.8rem 0.5rem;
+	}
 /* 发布侧边栏轮廓 */
 .logoxn {
 	width:6.78125rem;
@@ -971,6 +1054,7 @@ li {
 	position: absolute;
 	left:5.8125rem;
 	top:0.15625rem;
+	/* display:none; */
 }
 /* 图纸中的发布 */
 .rele {
