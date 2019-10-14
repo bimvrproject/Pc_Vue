@@ -92,31 +92,40 @@
 							</div>
 							<!-- 信息展开 -->
 							<div v-show="xinxizhanshi">
-								<span style="width:5.75rem;height:0.625rem;font-size:0.5rem;display:inline-block;padding-left:0.5rem;color:#FFFFFF;margin-top:0.46875rem;">
+								<span style="width:5.75rem;height:0.325rem;font-size:0.5rem;display:inline-block;padding-left:0.5rem;color:#FFFFFF;margin-top:0.46875rem;">
 									<i style="float:left;font-style: normal;">墙</i>
 								</span>
-								<span style="width:5.375rem;height:0.03125rem‬;display:inline-block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.15625rem;"></span>
+								<span style="width:5.375rem;height:0.03125rem‬;display:inline-block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.625rem;margin-bottom:0.3rem;"></span>
 								<!-- 创建新的墙的厚度 -->
 								<div>
 									<ul>
 										<li v-for="(item, index) in newjian" :key="index">
-											<div style="width:5.98rem;height:0.625rem;margin-bottom:0.25rem;">
-												<span @dblclick="fnwall1(index)" style="position: relative;display:inline-block;">
+											<div style="width:5.98rem;height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;justify-content:space-around">
 													<!-- item.change 代表input-->
-													<i style="font-style: normal;color:rgba(225,225,225,1);font-weight:400;float:left;font-size:0.5rem;display:inline-block;">
-														<i style="font-style:normal;display:inline-block;font-size:0.5rem;width:2.5625rem;">墙的厚度 :</i>
-														<i v-show="!item.change" style="font-style:normal;display:inline-block;width:1.375rem;">{{ item.msg }}cm</i>
+													<!-- <i style="font-style: normal;color:rgba(225,225,225,1);font-weight:400;float:left;font-size:0.5rem;display:inline-block;"> -->
+														<i
+														@dblclick="fnwall2(index)"
+														style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
+														position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;"
+														>{{item.msgs}}:</i>
+														<input 
+														v-model="newjian[index].msgs"
+														@blur="changewall2(index)"
+														v-show="item.changes"
+														type="text"
+														style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.7rem;"
+														/>
+														<i v-show="!item.change" @dblclick="fnwall1(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
+														font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;">{{ item.msg }}</i>
 														<input
 															v-model="newjian[index].msg"
 															type="text"
 															@blur="changewall1(index)"
 															v-show="item.change"
-															style="width:1.53125rem;height:0.75rem;background:rgba(225,225,225,.3);font-size:0.5rem;"
+															style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
 														/>
 													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-left:0.3125rem;" @click="clear(index)"alt="">
-												
-												</span>
+													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear(index)" alt="">
 											</div>
 										</li>
 										<li style="width:5.75rem;height:0.78125rem;margin-top:0.9375rem;margin-bottom:1.5625rem;">
@@ -136,10 +145,10 @@
 							</div>
 							<!-- 材质展开 -->
 							<div v-show="czzhankai">
-								<div style="width:6.78128rem;height:26.8125rem;overflow:hidden;">
+								<div style="width:6.86rem;height:26.8125rem;overflow:hidden;">
 									<ul style="width:6.875rem;height:26.675rem;overflow:auto;padding-right:200000px;" ref="ele">
-										<li v-for="(item, index) in material" :key="index" class="obj1" @mouseenter="entrmodel1(index)" @mouseleave="leavemodel1(index)">
-											<div style="width:7.03125rem;height:6.34375rem;background:#FFFFFF;position:absolute;right:-7.84375rem;top:7.15625rem;" v-if="show1">
+										<li v-for="(item, index) in material" :key="index" class="obj1" @mouseenter="entrmodel1(index)">
+											<div class="czxlzong" :class="{czong:index==isCzong}" @mouseleave="leavemodel1(index)">
 												<div style="float:left;position:absolute;top:0.15625rem;left:0.75rem;">
 													<img src="../../assets/image/dyellow.png" alt="" style="width:3.15625rem;height:2.875rem;" @mouseenter="fnyellow" />
 												</div>
@@ -166,38 +175,6 @@
 												<img src="../../assets/image/bigblue.png" alt="" style="3.28125rem;height:2.8125rem;position:absolute;top:3.5rem;left:3.25rem;z-index:1;" v-show="bigblue" />
 											</div>
 										</li>
-										<!-- <li class="obj1" @mouseenter="entrmodel2" @mouseleave="leavemodel2">
-											<div style="width:225px;height:203px;background:#FFFFFF;position:absolute;right:-251PX;top:301px;" v-if="show2">
-												<div style="float:left;position:absolute;top:5px;left:24px;">
-													<img src="../../assets/image/dyellow.png" alt="" style="width:101px;height:92px;" @mouseenter="fnyellow" />
-												</div>
-												<img src="../../assets/image/bigyellow.png" alt="" style="width:105px;height:98px;position:absolute;top:-1px;left:21px;z-index:1;" v-show="bigyel" />
-												<div style="float:left;position:absolute;top:5px;left:106px;">
-													<img src="../../assets/image/dgreen.png" alt="" style="width:101px;height:92px;" @mouseenter="fngreen" />
-												</div>
-												<img src="../../assets/image/biggreen.png" alt="" style="width:105px;height:98px;position:absolute;top:1px;left:103px;z-index:1;" v-show="biggren" />
-												<div style="float:left;position:absolute;top:51px;left:12px;">
-													<img src="../../assets/image/dju.png" alt="" style="width:76px;height:114px;" @mouseenter="fngju" />
-												</div>
-												<img src="../../assets/image/bigju.png" alt="" style="width:78px;height:118px;position:absolute;top:40px;left:9px;z-index:1;" v-show="bigju1" />
-												<div style="float:left;position:absolute;top:52px;left:144px;">
-													<img src="../../assets/image/dqianblue.png" alt="" style="width:76px;height:114px;" @mouseenter="fnqianbu" />
-												</div>
-												<img src="../../assets/image/bigqianblue.png" alt="" style="width:73px;height:118px;position:absolute;top:40px;left:146px;z-index:1;" v-show="bigqian" />
-												<div style="float:left;position:absolute;top:121px;left:25px;">
-													<img src="../../assets/image/dred.png" alt="" style="width:101px;height:91px;" @mouseenter="fnred" />
-												</div>
-												<img src="../../assets/image/bigred.png" alt="" style="width:105px;height:90px;position:absolute;top:112px;left:22px;z-index:1;" v-show="bigred" />
-												<div style="float:left;position:absolute;top:120px;left:106px;">
-													<img src="../../assets/image/dblue.png" alt="" style="width:101px;height:92px;" @mouseenter="fnblue" />
-												</div>
-												<img src="../../assets/image/bigblue.png" alt="" style="width:105px;height:90px;position:absolute;top:112px;left:104px;z-index:1;" v-show="bigblue" />
-											</div>
-										</li> -->
-										<!-- <li class="obj1"></li>
-										<li class="obj1"></li>
-										<li class="obj1"></li>
-										<li class="obj1"></li> -->
 									</ul>
 								</div>
 							</div>
@@ -266,14 +243,15 @@ export default {
 			wall1: true,
 			// walls1:false
 			//材质循环
-			material:[0,0,0,0]
+			material:[0,0,0,0],
+			isCzong:true
 		};
 	},
 	created() {
 		// console.log(localStorage.getItem('wallss1'));
 		this.newjian = sessionStorage .getItem('wallss1')
 			? JSON.parse(sessionStorage .getItem('wallss1'))
-			: [{ msg: 50, change: false }, { msg: 50, change: false }, { id: 2, msg: 50, change: false }, { msg: 50, change: false }];
+			: [{ msg:50,msgs:'墙体厚度', change: false ,changes:false}, { msg: 50,msgs:'墙体厚度', change: false ,changes:false}, { id: 2, msg: 50,msgs:'墙体厚度', change: false,changes:false }, { msg: 50, msgs:'墙体厚度',change: false,changes:false }];
 			// 建立建筑结构模型
 		this.$eventbus.$on('cezhan', ite => {
 			// console.log(ite, 'a');
@@ -463,7 +441,7 @@ export default {
 		},
 		establish() {
 			// this.newjian.push(6);
-			this.newjian.push({ msg: 50, change: false });
+			this.newjian.push({ msg: 50,msgs:"墙体厚度", change: false ,changes:false });
 			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除信息
@@ -485,9 +463,21 @@ export default {
 			this.$set(this.newjian[index], 'change', true);
 			(this.wall1 = false), (this.walls1 = true);
 		},
+		// 墙体厚度修改
+		fnwall2(index) {
+			// console.log(index);
+			this.$set(this.newjian[index], 'changes', true);
+			(this.wall1 = false), (this.walls1 = true);
+		},
 		//聚焦的时候
 		changewall1(index) {
 			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'change', false);
+			//设置localStroage值
+			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
+		},
+		//聚焦的时候
+		changewall2(index) {
+			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'changes', false);
 			//设置localStroage值
 			sessionStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
@@ -536,15 +526,22 @@ export default {
 		},
 		// 移入材质第一个
 		entrmodel1(index) {
-			(this.show1 = true)
+			// (this.show1 = true)
+			this.isCzong = index
 		},
 		// 移入材质第二个
 		// entrmodel2(index) {
 		// 	(this.show2 = true), (this.show1 = false);
 		// },
 		// 鼠标移出事件
-		leavemodel1() {
-			(this.bigblue = false), (this.bigred = false), (this.bigyel = false), (this.bigju1 = false), (this.biggren = false), (this.bigqian = false);
+		leavemodel1(index) {
+			(this.bigblue = false),
+			(this.bigred = false),
+			(this.bigyel = false), 
+			(this.bigju1 = false),
+		  (this.biggren = false), 
+			(this.bigqian = false);
+			this.isCzong = null
 		},
 		// 鼠标移出第二个事件
 		// leavemodel2() {
@@ -560,6 +557,18 @@ export default {
 	height:1080px;
 	background:green;
 } */
+.czxlzong{
+	width:7.03125rem;
+	height:6.34375rem;
+	background:#FFFFFF;
+	position:absolute;
+	right:-7.84375rem;
+	top:7.15625rem;
+	display:none;
+}
+.czong{
+	display:block;
+}
 .obj1 {
 	width:6.875rem;
 	height:5.53125rem;

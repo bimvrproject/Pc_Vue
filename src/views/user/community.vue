@@ -30,7 +30,7 @@
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
-			
+
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
@@ -45,7 +45,7 @@
 						<div class="moocom" @mouseleave="fnleave">
 							<div class="mores1com" >
 								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-							</div>	
+							</div>
 							<div class="mores1com" @click="fnabout">联系我们</div>
 							<div class="moresbcom">版本号: v 1.0.1</div>
 						</div>
@@ -76,7 +76,7 @@
 					<span v-show="sendCode" @click="ObtainCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
 					<span v-show="!sendCode" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
 				</div>
-				
+
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -212,7 +212,7 @@
 		</div>
 		<!-- 点击联系我们的遮罩 -->
 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark">
-			
+
 		</div>
 		<router-view></router-view>
 	</div>
@@ -339,19 +339,19 @@ export default {
 					})
 				}
 			})
-		 
+
 		},
 			fncom() {
 			this.comarr.push(0);
 		},
 		fndianji(){
-				
+
 				if(	window.sessionStorage.getItem('token') != null){
 				   this.$router.push('/Login');
 				}else{
 						this.loginWindow = true;
 				}
-				
+
 		},
 		fnxnjz(){
 			if(	window.sessionStorage.getItem('token') != null){
@@ -359,7 +359,7 @@ export default {
 			}else{
 					this.loginWindow =  true;
 			}
-			
+
 		},
 		// 移入更多
 		sqq() {
@@ -522,7 +522,8 @@ export default {
 	}
 .community {
 	width:57.43375rem;
-	height:29.06rem;
+	/*height:29.06rem;*/
+	height: 29.06rem;overflow-y: scroll;
 	/* background: red; */
 	background: #ffffff;
 	position: absolute;
@@ -532,6 +533,10 @@ export default {
 	overflow-x:hidden;
 /* 	background:red; */
 }
+
+	.community::-webkit-scrollbar {
+		display:none
+	}
 /* 社区头部 */
 .conmunitytop {
 	width:56.9rem;
@@ -710,7 +715,7 @@ export default {
 	/* background:red; */
 	text-align: right;
 	padding-right:0.625rem;
-	padding-top:0.15625rem; 
+	padding-top:0.15625rem;
 	font-size:0.375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 300;
@@ -882,14 +887,16 @@ export default {
 .logocom {
 	width: 3.65625rem;
 	height: 0.875rem;
-	/* padding-left: 1.8625rem; */
+	padding-left: 1.1825rem;
 	padding-top: 0.90625rem;
 	margin-left:0.5625rem;
 /* 	background:red; */
+    float:left;
 }
 .lefttopcom {
 	width:6.75rem;
 	height:1.875rem;
+/* 	background:plum; */
 	/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;

@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<ul class="animated fadeIn newjiantop" v-show="tian">
-			<li @click="fns" class="tianjia"></li>
+			<li @click="fns" class="tianjia" @mouseenter="fnnnn()"></li>
 			<li v-for="(item, index) in projectLists" :key="index" class="xmn"  @click="fnt(index)">
 				<div class="hqtp">
-					<span class="delimg"><img src="../../assets/image/shanchu@2x.png" :style="delcolor" @click.stop="delproject(index)" @mouseenter.stop="fndelhg()" @mouseleave="fndelco()"/></span>
+					<span class="delimg"><img src="../../assets/image/shanchu@2x.png" :class="{active:index==isActive}" @click.stop="delproject(index)" @mouseenter.stop="fndelhg(index)" @mouseleave="fndelco()"/></span>
 					<img class="ttu" :src="item.projectModelAddr" alt="" />
 				</div>
 				<div class="xmtitle">
@@ -30,7 +30,7 @@ export default {
 			xianyin: false,
 			tian: true,
 			// 删除按钮部分的背景色
-			delcolor:"",
+			isActive:true
 		};
 	},
 	components: {
@@ -38,12 +38,16 @@ export default {
 	},
 	methods: {
 		// 划过删除按钮
-		fndelhg(){
-			this.delcolor = "background:rgba(225,225,225,.3)"
+		fndelhg(index){
+			this.isActive = index;
+			// alert(this.abc)
 		},
 		// 划出删除按钮
 		fndelco(){
-			this.delcolor = ""
+			this.isActive = null;
+		},
+		fnnnn(){
+			this.isActive = null;
 		},
 		fns() {
 			this.projectLists.unshift(0);
@@ -114,18 +118,22 @@ export default {
 </script>
 
 <style scoped>
+	.active{
+		background:rgba(225,225,225,0.5);
+	}
 .newjiantop {
   width:59.9rem;
 	min-height:5.8075rem;
   max-height:11.115rem;
   background: rgba(255, 255, 255, 0.2);
+	display:flex;
+	flex-wrap:wrap;
 /* position: fixed;
   top:2.3rem;
   left:0rem; */
   overflow-x: auto;
-/* 	background:plum; */
+/* 	background:red; */
 }
-
 .tianjia {
   list-style: none;
   width:4.6rem;
@@ -148,19 +156,24 @@ export default {
   padding-left: 0px;
   padding-right: 0px;
 	/* background:red; */
+	margin-bottom:0rem; 
 }
 .xmn:hover{
 	width:5rem;
 	height:4.8rem;
 	margin-left:0.18rem;
 	margin-top:0.55rem;
+	box-shadow:rgb(0, 0, 0,.2) 0px 6px 8px -3px;
+/* 	transition:0.2s; */
 }
 .xmn:hover .ttu{
 	width:5rem;
+/* 	transition:0.2s; */
 }
 .xmn:hover .hqtp{
 	width:5rem;
 	height:2.5rem;
+	/* transition:0.2s; */
 }
 .xmn:hover .xmtitle{
 	width:5rem;
@@ -177,7 +190,7 @@ export default {
 }
 .ttu {
  width:4.6rem;
- height: 100%;
+ height:100%;
 }
 /* 项目名称 */
 .xmtitle {
@@ -187,6 +200,7 @@ export default {
   font-size:0.5rem;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
+	text-align:center;
 	/* background:red; */
 }
 .xmmc {

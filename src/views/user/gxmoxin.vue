@@ -102,7 +102,7 @@
 		</div>
 				<!-- 图片展示轮播图 -->
 		 <!-- Swiper -->
-		 <!-- <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+		 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
 		   <div class="swiper-wrapper">
 			 <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t4.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
@@ -131,7 +131,7 @@
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
 		     <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div>
 		   </div>
-		 </div> -->
+		 </div>
 	</div>
 </template>
 <script>
@@ -347,12 +347,12 @@ export default {
 		// 划过更多
 		fnmoin(){
 			this.lmore=require('../../assets/image/shang.png');
-			this.nmfb = require('../../assets/image/pmjtxia.png');
-			this.nmbj = require('../../assets/image/pmjtxia.png');
-		  this.bjcolor = 'color:#333333';
-			this.bjtu = require('../../assets/image/bianji.png');
-			this.fbcolor = 'color:#333333';
-			this.fbtu = require('../../assets/image/bianji.png');
+			// this.nmfb = require('../../assets/image/pmjtxia.png');
+			// this.nmbj = require('../../assets/image/pmjtxia.png');
+		 //  this.bjcolor = 'color:#333333';
+			// this.bjtu = require('../../assets/image/bianji.png');
+			// this.fbcolor = 'color:#333333';
+			// this.fbtu = require('../../assets/image/bianji.png');
 		},
 		// 移出更多
 		fnleave(){
@@ -433,7 +433,7 @@ export default {
 .mores1gx {
 	width:4.65rem;
 	height:0.9rem;
-	border-bottom: 1px solid #999999;
+	border-bottom: 1px solid rgba(0,0,0,.2);
 	text-align: left;
 	line-height:0.9rem;
 	color: #666666;

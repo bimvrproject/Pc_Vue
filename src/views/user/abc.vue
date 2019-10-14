@@ -57,6 +57,21 @@
 	 <!-- <canvas  style="width: 200px;height: 300px;"id="aaa">您的浏览器不支持 -->
 	<!-- <div> -->
 		<!-- <input type="text"><button>按钮</button>
+<<<<<<< HEAD
+=======
+		 <img id="newImage" alt="100x100" src="__PUBLIC__/img/1.jpg" class="img-circle" width="100px" height="100px" >
+		 <input id="image" type='file' name='myFile' size='15' @change="aa(this)"/>
+			<button class="picpz"  @click="paizhao()">拍照</button> -->
+			<!-- 这个是本地的 -->
+			<!-- <img src="../../assets/image/3@2x.png" /> -->
+			<!-- 这个是服务器的 -->
+			<!-- <iframe src="http://36.112.65.110:8080/project/1/model/model-360%E5%85%A8%E6%99%AF/model.html" controls="controls"></iframe> -->
+			<!-- <img id="aaa"  src="http://36.112.65.110:8080/project/1/drawing/2/1/disan.png"> -->
+	 <!-- </div> -->
+	 <!-- </canvas> -->
+	 <canvas width ="300" height="200" class='canvas'>您浏览器不支持canvas!</canvas>
+	 <div>
+>>>>>>> 3292f39260e97eab2b5b933f96c63fb6aa82507d
 		 <img id="newImage" alt="100x100" src="__PUBLIC__/img/1.jpg" class="img-circle" width="100px" height="100px" >
 		 <input id="image" type='file' name='myFile' size='15' @change="aa(this)"/>
 			<button class="picpz"  @click="paizhao()">拍照</button> -->

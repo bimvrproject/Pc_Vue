@@ -74,9 +74,9 @@
 				<div class="sbbiao">
 					<table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;height:1.375rem;display:inline-block;line-height:1.3rem;">设备名称</span></td>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:19.976rem;height:1.375rem;display:inline-block;line-height:1.3rem;">设备状态</span></td>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;height:1.375rem;display:inline-block;line-height:1.3rem;">设备地址</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;display:inline-block;line-height:1.3rem;">设备名称</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:19.976rem;display:inline-block;line-height:1.3rem;">设备状态</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;display:inline-block;line-height:1.3rem;">设备地址</span></td>
 						</tr>
 						<tr>
 							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
@@ -331,7 +331,7 @@
 						</span>
 						<div class="yeshu" v-if="yeshu">
 							<span>第1页</span>
-							<span>第2页</span>
+							<span>第2页</span>  
 							<span>第3页</span>
 							<span>第4页</span>
 							<span>第5页</span>
@@ -344,15 +344,14 @@
 					</div>
 				</div>
 			</div> -->
-			  <div style="position:absolute;top:30.6rem;left:26rem;">
+			  <div style="position:absolute;top:30.6rem;right:1.8rem;">
 						<el-pagination
 							@size-change="handleSizeChange"
 							@current-change="handleCurrentChange"
 							:current-page="currentPage4"
-							:page-sizes="[100, 200, 300, 400]"
-							:page-size="100"
+							:page-size="12"
 							layout="total, sizes, prev, pager, next, jumper"
-							:total="400">
+							:total="48">
 						</el-pagination>
        </div>
 		</div>
@@ -479,7 +478,7 @@ export default {
 </script>
 
 <style>
-	.el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon{
+	/* .el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon{
 		font-size:0.39rem !important;
 	}
 .el-input--mini .el-input__inner{
@@ -528,6 +527,9 @@ export default {
 }
 .el-pagination__jump{
 	padding: 0.04375rem;
+} */
+.el-scrollbar__view .el-select-dropdown__list{
+	display:none;
 }
 .sbjkmore {
 	background: rgba(225, 225, 225, 0.3);
@@ -682,9 +684,9 @@ a {
 }
 /* 表格 */
 .shebeitop {
-	width:49.2rem;
+	width:49.4rem;
 	height:1.5rem;
-/* 	background:red; */
+	/* background:red; */
 margin-bottom:0.8rem;
 }
 .sbsc {
@@ -694,6 +696,7 @@ margin-bottom:0.8rem;
 	background: #2180ed;
 	float: right;
 	margin-top:0.3125rem;
+	margin-right:0.3rem;
 	line-height:1.40625rem;
 	font-size:0.625rem;
 	color:#FFFFFF

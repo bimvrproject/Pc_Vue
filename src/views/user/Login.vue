@@ -16,10 +16,10 @@
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
-						<router-link to="/newjian">
+					<!-- 	<router-link to="/newjian"> -->
 							<img class="xmimg" src="../../assets/image/bluefz.png" alt="" />
 							<i class="xm" ref="xmcol">项目</i>
-						</router-link>
+						<!-- </router-link> -->
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
 						</i>
@@ -42,13 +42,12 @@
 				<!-- 下拉菜单---更多 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
-					<span class="el-dropdown-link" @mouseenter="sqq" style="position:relative;">
+					<span class="el-dropdown-link abcd" @mouseenter="sqq" style="position:relative;">
 						<img class="moreimg" :src="moretb" />
 						<i class="more" ref="gdcol">更多</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
 						</i>
-					</span>
 					<el-dropdown-menu slot="dropdown" class="lomore">
 						<div class="moo" @mouseleave="fnleave">
 							<div class="mores1">
@@ -58,6 +57,7 @@
 							<div class="moresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
+				</span>
 				</el-dropdown>
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
@@ -160,6 +160,7 @@
 			},
 			fndianji() {
 				this.$router.push('/Login');
+				// this.$router.go(0)
 			},
 			fns() {
 				this.xianyin = !this.xianyin;
@@ -251,7 +252,7 @@
 	.mores1 {
 		width: 4.65rem;
 		height: 0.9rem;
-		border-bottom: 1px solid #999999;
+		border-bottom: 1px solid rgba(0,0,0,.2);
 		text-align: left;
 		line-height:0.9rem;
 		color: #666666;
@@ -361,7 +362,7 @@
 	.logo {
 		width: 3.65625rem;
 		height: 0.875rem;
-		padding-left: 1.8625rem;
+		padding-left: 1.1825rem;
 		padding-top: 0.90625rem;
 		margin-left: 0.5625rem;
 		/* background:red; */
@@ -375,11 +376,10 @@
 	.lefttop {
 		width: 6.75rem;
 		height: 1.875rem;
-		/* 	background-color:green;
-			background: url(../../assets/image/homecebian8@2x.png); */
+		/* 	background-color:green; */
+		/* 	background: url(../../assets/image/homecebian8@2x.png); */
 		position: absolute;
 		top: 0px;
-		
 		/* background:red; */
 	}
 

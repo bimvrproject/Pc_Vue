@@ -73,11 +73,11 @@
 					<li class="reyxh" v-for="(item, index) in qxarr" :key="index">
 						<div class="accountnub">
 							<span class="accountnubspan">账号</span>
-							<el-input v-model="accountnr" placeholder="请输入内容" class="accountnubinp"></el-input>
+							<input v-model="qxarr[index].msgss" placeholder="请输入内容" class="accountnubinp" @blur="changewall3(index)"></input>
 						</div>
 						<div class="accountper">
 							<span class="accountperspan">账号权限</span>
-							<el-select v-model="value" clearable placeholder="请选择" class="accountpersel">
+							<el-select v-model="item.value" clearable placeholder="请选择" class="accountpersel">
 								<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
 							</el-select>
 						</div>
@@ -129,7 +129,7 @@ export default {
 				}
 			],
 			value: '',
-			qxarr: [0, 0, 0, 0, 0, 0, 0],
+			qxarr: [],
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false
@@ -141,6 +141,11 @@ export default {
 		// Zheader
 	},
 	created() {
+		// 人员信息填写中的账号
+		this.qxarr = sessionStorage .getItem('wallss1ss')
+			? JSON.parse(sessionStorage .getItem('wallss1ss'))
+			: [{ msgss:''}, { msgss:''}, {msgss:''}, 
+			{ msgss:''}];
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -161,6 +166,14 @@ export default {
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		// fnns(index){
+		// 	alert(index)
+		// },
+		//人员信息中的账号失焦事件
+		changewall3(index){
+				//设置localStroage值
+			sessionStorage.setItem('wallss1ss', JSON.stringify(this.qxarr));
+		},
 		// 点击联系我们
 		fnabout() {
 			this.$eventbus.$emit('abouts');
@@ -454,8 +467,12 @@ li {
 /* 账号中的请输入内容 */
 .accountnubinp {
 	width: 6.1rem;
+	height:1.18rem;
 	font-size:0.43rem;
-	
+	border-radius:4px;
+	border:#E8E7EB solid 1px;
+	font-size:0.48rem;
+	line-height:1.2rem;
 }
 .accountperspan {
 	display: inline-block;
