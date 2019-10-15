@@ -396,10 +396,14 @@ export default {
 		},
 		// 信息编辑
 		fnxxbj(){
-		  this.$router.push("/information")
+			var pro_id =sessionStorage.getItem("projectid");
+			this.$router.push({ name: '/information', params: { project_id: pro_id } });
+		  // this.$router.push("/information")
 		},
 			fnxmxx(){
-				 this.$router.push("/information")
+				var pro_id =sessionStorage.getItem("projectid");
+				this.$router.push({ name: '/information', params: { project_id: pro_id } });
+				 // this.$router.push("/information")
 			},
 		fnryxx(){
 			this.$router.push("/personnel")

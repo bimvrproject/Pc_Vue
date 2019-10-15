@@ -299,7 +299,6 @@
 			}
 			// 点击建筑结构 和模型展示模型
 			var pro_id = this.$route.params.project_modelid;
-			sessionStorage.setItem("proid",pro_id)
 			if (pro_id != '' && pro_id != null && pro_id != undefined) {
 				axios.get(api.ShowModel + '/1' + '/' + pro_id).then(result => {
 					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=

@@ -163,7 +163,7 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
-										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
+										<uploader-btn :directory="true" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
 									</uploader-drop>
 									<uploader-list class="pingmiancss"></uploader-list>
 								</uploader>
@@ -178,7 +178,7 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
-										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
+										<uploader-btn :directory="true" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
 									</uploader-drop>
 									<uploader-list class="limiancss"></uploader-list>
 								</uploader>
@@ -242,7 +242,7 @@
 				// zheaderxy: true,
 				//上传限制
 				attrs: {
-					accept: '.zip, .jar, .war, .rar, .7z'
+					accept: '.dwg'
 				},
 				fontdrawingarrpm:true,//平面图纸字体
 				inputdrawingarrpm:false, //平面图纸input框

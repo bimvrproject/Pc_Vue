@@ -141,6 +141,8 @@ export default {
 		// Zheader
 	},
 	created() {
+		var pro_id = this.$route.params.project_id;
+		alert(pro_id)
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -194,7 +196,9 @@ export default {
 		},
 		//填写项目
 		fntijiao() {
-			sessionStorage.removeItem('projectid');
+			var pro_id = this.$route.params.project_id;
+			alert(pro_id)
+			
 			//点提交的时候跳转到权限页
 			if (!this.input) {
 				alert('项目名称不能为空');
@@ -209,13 +213,19 @@ export default {
 				this.qx = true;
 				this.quanxianbiao = true;
 				// // 新增项目
-				axios
-					.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
+				axios.post(api.AddProject, { 
+					projectName: this.input,
+					startTime: this.value1, 
+					endTime: this.value2, 
+					projectAddress: this.input1, 
+					projectContent: this.textarea,
+					projectId: pro_id})
 					.then(result => {
 						console.log(result.data);
 						this.$router.push('/newjzmodel');
 					});
 			}
+			sessionStorage.removeItem('projectid');
 		},
 			// 移入社区的时候
 		fnhsq(){

@@ -84,8 +84,8 @@
 				}
 			},
 			outlogin(){
-				this.$router.push("/");
 				sessionStorage.clear();
+				this.$router.push("/");
 				this.$forceUpdate();
 			}
 		},

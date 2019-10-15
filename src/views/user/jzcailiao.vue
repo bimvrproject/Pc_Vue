@@ -77,7 +77,7 @@
 						<!-- 上传按钮-->
 				<div class="jzcldrawbtn">
 					 <div>
-							<uploader :file-status-text="statusText" :options="options"  @file-complete="onFileSuccess">
+						<uploader :file-status-text="statusText" :options="options"  @file-complete="onFileSuccess">
 							<!-- <uploader-unsupport></uploader-unsupport> -->
 							<uploader-drop class="jzcldrawdrop"><uploader-btn :directory="true" :single="true" class="jzcldrawbtn">上传材料清单</uploader-btn></uploader-drop>
 								<uploader-list class="yangshi"></uploader-list>
