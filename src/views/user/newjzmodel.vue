@@ -123,27 +123,27 @@
 		 v-show="abouts" @click="fnaboutmark"></div>
 		 		<!-- 图片展示轮播图 -->
 		  <!-- Swiper -->
-		  <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
-		    <div class="swiper-wrapper"  v-show="swiperxy">
-		 	   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
-					 <img src="../../assets/image/t4.jpg" alt="">
-					 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
-						 @click.stop="fng(index)">
-					 </span>
-					 </div>
-		     <!-- <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/disan.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/diyi.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t1.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t2.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t3.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t5.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div> -->
-		    </div>
-		    <div class="swiper-button-next swiper-button-white"></div>
-		    <div class="swiper-button-prev swiper-button-white"></div>
-		  </div>
+				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
+				  <div class="swiper-wrapper"  v-show="swiperxy">
+				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
+						 <img src="../../assets/image/t4.jpg" alt="">
+						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
+							 @click.stop="fng(index)">
+						 </span>
+						 </div>
+				   <!-- <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/disan.png" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/diyi.png" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t1.jpg" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t2.jpg" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t3.jpg" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t5.jpg" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
+				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div> -->
+				  </div>
+				  <div class="swiper-button-next swiper-button-white"></div>
+				  <div class="swiper-button-prev swiper-button-white"></div>
+				</div>
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
 		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index"><img src="../../assets/image/t4.jpg" alt=""></div>
@@ -226,7 +226,8 @@
 				swipersbj:"background:rgba(225,225,225,0)",
 				// 社区默认状态
 				hsq:require('../../assets/image/sq@2x.png'),
-				hsqcolor:"color:#333333"
+				hsqcolor:"color:#333333",
+				topswper:true
 			};
 		},
 		components: {
@@ -239,12 +240,14 @@
 			// 创建点击发布的时候轮播图出现
 				this.$eventbus.$on('fbswipers', () => {
 				this.swiperbottom = true;
+				this.topswper = true;
 				this.	swipersbj = 'background:#EEEEEE'
 			});
 			// 创建点击发布的时候轮播图消失
 				this.$eventbus.$on('fbswiperss', () => {
 				this.swiperbottom = false;
 				this.swiperxy = false;
+				this.topswper = false,
 				this.	swipersbj = 'background:rgba(225,225,225,0)'
 			});
 			this.$eventbus.$on('ceyinfb', ite => {
@@ -330,6 +333,7 @@
 			})
 		},
 		mounted() {
+			this.$eventbus.$emit('fbswiperss');
 			this.$eventbus.$emit('cezhan', 'moxin');
 			this.$eventbus.$emit('hometop');
 			 var galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -353,11 +357,13 @@
 		methods: {
 			// 点击swiper头上的关闭
 			fng(index){
-				this.swiperxy = false
+				this.swiperxy = false,
+				this.topswper = true
 			},
 			// 点击swiper下边的
 			fnswipers(){
-				this.swiperxy = true
+				this.swiperxy = true,
+				this.topswper = true
 				},
 			// 点击新建项目
 			fnjzmxxm() {

@@ -102,7 +102,7 @@
 		</div>
 				<!-- 图片展示轮播图 -->
 		 <!-- Swiper -->
-   <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;">
+   <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
       <div class="swiper-wrapper"  v-show="swiperxy">
    	   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
    			<img src="../../assets/image/t4.jpg" alt="">
@@ -188,7 +188,8 @@ export default {
 			swipersbj:"background:rgba(225,225,225,0)",
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
-			hsqcolor:"color:#333333"
+			hsqcolor:"color:#333333",
+			topswper:true
 		};
 	},
 	components: {
@@ -201,12 +202,14 @@ export default {
 		// 创建点击发布的时候轮播图出现
 			this.$eventbus.$on('fbswipersgx', () => {
 			this.swiperbottomgx = true;
+			this.topswper = true;
 			this.	swipersbj = 'background:#EEEEEE'
 		});
 		// 创建点击发布的时候轮播图消失
 			this.$eventbus.$on('fbswiperssgx', () => {
 			this.swiperbottomgx = false;
 			this.swiperxy = false;
+			this.topswper = false,
 			this.	swipersbj = 'background:rgba(225,225,225,0)'
 		});
 			this.$eventbus.$on('ceyinfb', ite => {
@@ -255,6 +258,7 @@ export default {
 		//管线模型
 	},
 	mounted() {
+		this.$eventbus.$emit('fbswiperssgx');
 		this.$eventbus.$emit('cezhan2', 'moxin');
 		this.$eventbus.$emit('hometop');
 		 var galleryThumbs = new Swiper('.gallery-thumbs', {

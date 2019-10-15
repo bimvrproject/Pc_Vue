@@ -128,9 +128,9 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 	display:flex;
 	flex-wrap:wrap;
-/* position: fixed;
+position: fixed;
   top:2.3rem;
-  left:0rem; */
+  left:0rem;
   overflow-x: auto;
 /* 	background:red; */
 }
