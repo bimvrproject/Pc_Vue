@@ -50,27 +50,20 @@ export default {
 			this.isActive = null;
 		},
 		fns() {
-			axios.post(api.Addprojects).then(result=>{
-				console.log(result.data)
-				this.projectLists.unshift(0);
-			})
+			this.projectLists.unshift(0);
 		},
 		fnt(index) {
 			//点击当前创建页面的时候点开填写项目表，同时上边的创建项目消失
-			// if (this.projectLists[index].projectId == undefined) {
-			// 	var id = this.projectLists[index].projectId;
-			// 	this.xmxinayin = true;
-			// 	this.$router.push("/information");
-			// 	this.$eventbus.$emit('shows');
-			// } else {
-			// 	var id = this.projectLists[index].projectId;
-			// 	sessionStorage.setItem('projectid', id);
-			// 	this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
-			// 	// this.$router.push("/newjzmodel")
-			// }
-			var id = this.projectLists[index].projectId;
-			sessionStorage.setItem('projectid', id);
-			this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
+			if (this.projectLists[index].projectId == undefined) {
+				this.xmxinayin = true;
+				this.$router.push("/information");
+				this.$eventbus.$emit('shows');
+			} else {
+				var id = this.projectLists[index].projectId;
+				sessionStorage.setItem('projectid', id);
+				this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
+				// this.$router.push("/newjzmodel")
+			}
 		},
 		dateFormat: function(time) {
 			var date = new Date(time);
@@ -93,7 +86,8 @@ export default {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
-				}).then(() => {
+				})
+					.then(() => {
 						// var id = this.projectLists[index].projectId;
 						if (id != '' && id != null && id != undefined) {
 							axios.delete(api.DeleteProject + '/' + id).then(reulst => {
@@ -134,9 +128,9 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 	display:flex;
 	flex-wrap:wrap;
-/* position: fixed;
+position: fixed;
   top:2.3rem;
-  left:0rem; */
+  left:0rem;
   overflow-x: auto;
 /* 	background:red; */
 }
