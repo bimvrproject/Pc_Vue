@@ -12,14 +12,21 @@
 			<!-- 右侧登录标识 -->
 			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
-			<div class="hometoplo" v-show="hometop">
+			<div class="hometoplo" v-show="hometop" style="background:;">
 				<!-- 下拉菜单---项目 -->
-				<el-dropdown style="float: left;margin-left:-1.4rem;">
+				<div  class="xmtop">
+					<img  src="../../assets/image/bluefz.png" alt="" style="width:0.5rem;height:0.5rem;width: 0.84375rem;
+		height: 0.8125rem;margin-right:0.16rem;float:left;">首页<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.4);font-size:0.9rem;display:inline-block;vertical-align: middle;margin-left:0.1rem;"></i>
+		<div class="newxmtop">
+			<Newjian></Newjian>
+		</div>
+				</div>
+				<!-- <el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
-					<!-- 	<router-link to="/newjian"> -->
+						<router-link to="/newjian">
 							<img class="xmimg" src="../../assets/image/bluefz.png" alt="" />
 							<i class="xm" ref="xmcol">项目</i>
-						<!-- </router-link> -->
+						</router-link>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
 						</i>
@@ -27,7 +34,7 @@
 			  	<el-dropdown-menu slot="dropdown" class="newxl">
 						<Newjian v-show="newxy"></Newjian>
 					</el-dropdown-menu>
-				</el-dropdown>
+				</el-dropdown> -->
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
@@ -215,6 +222,36 @@
 </script>
 
 <style>
+	/* 划过项目 */
+ .xmtop:hover .newxmtop{
+	 display:block;
+ }
+ .xmtop:hover .shouye{
+	 transform:rotate(180deg);
+ }
+ .xmtop{
+	 position:relative;
+	 float: left;margin-left:-1.4rem;font-size: 0.625rem;
+	 font-family: MicrosoftYaHei;
+	 font-weight: 400;
+	 color:#2180ED;
+	 font-style: normal;
+	 line-height: 0.93125rem;
+	/* background-color:red; */
+	 width: 2.9375rem;
+	 height: 0.63125rem‬;
+	 margin-top:0.380rem;
+	 margin-left:0.9rem;
+	 text-align:left;
+	 cursor:pointer;
+ }
+ .newxmtop{
+	 display:none;
+	 margin-top:0.5rem;
+	 /* position:absolute;
+	 left:-7.78rem; */
+	/* top:1.4rem; */
+ }
 		.newxl{	
 	/* 	background: rgba(255, 255, 255, 0.2); */
 		width:0rem;
@@ -403,7 +440,7 @@
 
 	.xm {
 		width: 0.84375rem;
-		height: 0.53125‬;
+		height: 0.53125rem‬;
 		font-size: 0.625rem;
 		font-family: MicrosoftYaHei;
 		font-weight: 400;
