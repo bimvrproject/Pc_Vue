@@ -162,14 +162,6 @@ export default new Router({
 			component: () => import("./views/user//newjzmodel.vue")
 		},
 		{
-			path: "/abc",
-			name: "/abc",
-			meta: {
-				// requireAuth: true
-			},
-			component: () => import("./views/user//abc.vue")
-		},
-		{
 			path: "/information",
 			name: "/information",
 			meta: {
