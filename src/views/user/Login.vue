@@ -41,7 +41,7 @@
 					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew()" @mouseleave="fnhsqlev()">
 						<img class="sqimg" :src="sqtb" />
 						<i class="sq" ref="sqcol" :style="sqcolor">社区</i>
-						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
+						
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
