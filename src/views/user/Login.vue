@@ -12,66 +12,43 @@
 			<!-- 右侧登录标识 -->
 			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
-			<div class="hometoplo" v-show="hometop" style="background:;">
+			<div class="hometoplo" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<div  class="xmtop">
-					<img  src="../../assets/image/bluefz.png" alt="" style="width:0.5rem;height:0.5rem;width: 0.84375rem;
-		height: 0.8125rem;margin-right:0.16rem;float:left;">首页<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.4);font-size:0.9rem;display:inline-block;vertical-align: middle;margin-left:0.1rem;"></i>
-		<div class="newxmtop">
-			<Newjian></Newjian>
-		</div>
-				</div>
-				<!-- <el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @mouseenter="fns()" @click="fndianji">
-						<router-link to="/newjian">
-							<img class="xmimg" src="../../assets/image/bluefz.png" alt="" />
-							<i class="xm" ref="xmcol">项目</i>
-						</router-link>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="xmxl" alt="" style="width: 100%;height: 100%;">
-						</i>
-					</span>
-			  	<el-dropdown-menu slot="dropdown" class="newxl">
-						<Newjian v-show="newxy"></Newjian>
-					</el-dropdown-menu>
-				</el-dropdown> -->
+					<img  src="../../assets/image/bluefz.png" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+		         <span style="color:#2180ED;vertical-align:bottom;">项目</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;
+						 display:inline-block;vertical-align: middle;margin-left:0.16rem;"></i>
+	     	  <div class="newxmtop">
+			       <Newjian></Newjian>
+		     </div>
+			</div>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew()" @mouseleave="fnhsqlev()">
 						<img class="sqimg" :src="sqtb" />
 						<i class="sq" ref="sqcol" :style="sqcolor">社区</i>
-						
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
-
 				<!-- 下拉菜单---更多 -->
-				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
-					<span class="el-dropdown-link abcd" @mouseenter="sqq" style="position:relative;">
-						<img class="moreimg" :src="moretb" />
-						<i class="more" ref="gdcol">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
-						</i>
-					<el-dropdown-menu slot="dropdown" class="lomore">
-						<div class="moo" @mouseleave="fnleave">
-							<div class="mores1">
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-							</div>
-							<div class="mores1" @click="fnabout">联系我们</div>
-							<div class="moresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</span>
-				</el-dropdown>
+				<div class="moretop" style="height: 0.93125rem‬;" @mouseenter="fnmor()" @mouseleave="fnmorlev()">
+					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					   <span class="hgmore">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;">
+						 </i>
+						 <div class="moo" style="margin-top:0.1rem;">
+						 	<div class="mores1">
+						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+						 	</div>
+						 	<div class="mores1" @click="fnabout">联系我们</div>
+						 	<div class="moresb">版本号: v 1.0.1</div>
+						 </div>
+				</div>
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
-			<!-- 新建项目 -->
-			<!-- <Newjian v-show="newxy"></Newjian> -->
 			<!-- 悬浮登录窗口 --结束 -->
 		</div>
 		<!-- 点击联系我们的遮罩 -->
@@ -119,7 +96,7 @@
 				//总的等陆头部
 				// zheaderxy:true
 				// 联系我们
-				abouts: false
+				abouts: false,
 			};
 		},
 		components: {
@@ -165,25 +142,26 @@
 				this.$eventbus.$emit('aboutsbi');
 				this.abouts = false;
 			},
-			fndianji() {
-				this.$router.push('/Login');
-				// this.$router.go(0)
-			},
-			fns() {
-				this.xianyin = !this.xianyin;
-				// this.xianyinxuni = false;
-				// this.$eventbus.$emit('showyin');
-				// this.$router.push('/Login/newjian');
-				this.newxy = true
-				// this.xmtb = require('../../assets/image/bluefz.png');
-				// this.sqtb = require('../../assets/image/sq@2x.png');
-				// this.moretb = require('../../assets/image/more@2x.png');
-				this.lmore = require('../../assets/image/pmjtxia.png');
-				// this.xmxl = require('../../assets/image/shang.png');
-				// this.$refs.xmcol.style.color = '#2180ED';
-				// this.sqcolor = 'color:#333333';
-				// this.$refs.gdcol.style.color = '#333333';
-			},
+			// 点击项目
+			// fndianji() {
+			// 	this.$router.push('/Login');
+			// 	// this.$router.go(0)
+			// },
+			// fns() {
+			// 	this.xianyin = !this.xianyin;
+			// 	// this.xianyinxuni = false;
+			// 	// this.$eventbus.$emit('showyin');
+			// 	// this.$router.push('/Login/newjian');
+			// 	// this.newxy = true
+			// 	// this.xmtb = require('../../assets/image/bluefz.png');
+			// 	// this.sqtb = require('../../assets/image/sq@2x.png');
+			// 	// this.moretb = require('../../assets/image/more@2x.png');
+			// 	// this.lmore = require('../../assets/image/pmjtxia.png');
+			// 	// this.xmxl = require('../../assets/image/shang.png');
+			// 	// this.$refs.xmcol.style.color = '#2180ED';
+			// 	// this.sqcolor = 'color:#333333';
+			// 	// this.$refs.gdcol.style.color = '#333333';
+			// },
 			//划过社区
 			fnnew() {
 				this.newxy = false;
@@ -195,17 +173,13 @@
 				this.sqtb = require('../../assets/image/sq@2x.png'),
 				this.sqcolor = "color:#333333"
 				},
-			sqq() {
-				// this.xmtb = require('../../assets/image/sshouse.png');
-				// this.xmxl = require('../../assets/image/pmjtxia.png');
-				// this.$refs.xmcol.style.color = '#333333';
-				this.sqtb = require('../../assets/image/sq@2x.png');
-				this.sqcolor = 'color:#333333';
-				this.lmore = require('../../assets/image/shang.png');
-			},
+			// 移入
+			 fnmor(){
+				 this.moretb = require('../../assets/image/moress.png')	 
+			 },
 			// 移出更多
-			fnleave() {
-				this.lmore = require('../../assets/image/pmjtxia.png')
+			fnmorlev(){
+				 this.moretb = require('../../assets/image/more@2x.png')	 
 			},
 			//点击社区
 			fncomenter() {
@@ -226,31 +200,61 @@
  .xmtop:hover .newxmtop{
 	 display:block;
  }
+ /* 划过更多 */
+ .moretop:hover .moo{
+	  display:block;
+ }
+ .moretop:hover .hgmore{
+	 color:#2180ED
+ }
+ .moretop:hover .shouye{
+ 	 transform:rotate(180deg);
+ }
  .xmtop:hover .shouye{
 	 transform:rotate(180deg);
  }
  .xmtop{
 	 position:relative;
-	 float: left;margin-left:-1.4rem;font-size: 0.625rem;
+	 float: left;
+	/* margin-left:-1.4rem; */
+	 font-size: 0.625rem;
 	 font-family: MicrosoftYaHei;
 	 font-weight: 400;
-	 color:#2180ED;
 	 font-style: normal;
 	 line-height: 0.93125rem;
 	/* background-color:red; */
-	 width: 2.9375rem;
+	/* width: 2.9375rem; */
 	 height: 0.63125rem‬;
 	 margin-top:0.380rem;
 	 margin-left:0.9rem;
 	 text-align:left;
 	 cursor:pointer;
+	 margin-right:0.03rem;
  }
  .newxmtop{
 	 display:none;
 	 margin-top:0.5rem;
-	 /* position:absolute;
-	 left:-7.78rem; */
-	/* top:1.4rem; */
+	 margin-left:-8.2rem;
+	/* position:absolute;
+	 left:-7.78rem;
+	top:1.4rem; */
+ }
+ /* 社区总 */
+ .moretop{
+	 position:relative;
+	  float: left;
+	  margin-left:-1.4rem;
+	  font-size: 0.625rem;
+	  font-family: MicrosoftYaHei;
+	  font-weight: 400;
+	 /* color:#2180ED; */
+	  font-style: normal;
+	  line-height: 0.93125rem;
+	 /* background-color:red; */
+	  margin-top:0.380rem;
+	  margin-left:1.68rem;
+	  text-align:left;
+	  cursor:pointer;
  }
 		.newxl{	
 	/* 	background: rgba(255, 255, 255, 0.2); */
@@ -287,11 +291,16 @@
 	}
 	.moo {
 		width:4.75rem;
-		/* 		height: 195px; */
-		/* 	background: url(../../assets/image/mores.png); */
-		padding-left: 0.1rem;
+		/* height: 195px; */
+	/* 	background: url(../../assets/image/mores.png); */
+	  background:rgba(225,225,225,.2);
+		padding-left: 0.2rem;
 		padding-right: 0.25rem;
 		cursor: pointer;
+		display:none;
+	}
+	.hgmore{
+		color:#333333;
 	}
 	.mores1 {
 		width: 4.65rem;
@@ -396,8 +405,8 @@
 		/* width:46.875rem;
 	height:1.78125rem; */
 		position: absolute;
-		top: 0.6375rem;
-		left: 6.9375rem;
+		top: 0.6rem;
+		left:7.3rem;
 		/* background:red; */
 		line-height: 1.78125rem;
 	}

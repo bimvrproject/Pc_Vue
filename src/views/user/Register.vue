@@ -11,13 +11,15 @@
 			<!-- 右侧登录标识 -->
 			 <!-- <Zheader v-show="zheaderxy"></Zheader> -->
 					<!-- 右侧top部分 -->
-			<div class="hometoplocom" v-show="hometop">
+			<div class="hometoplocomR" v-show="hometop" style="z-index:20;">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fnxiangmu">
-							<img class="xmimgcom" :src="xmtb" alt="" />
-							<i class="xmcom" ref="xmcol">项目</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;"></i>
+					<span class="el-dropdown-link" @click="fnxiangmu" @mouseenter="fnhxmR()" @mouseleave="fnhxmlevR()">
+							<img class="xmimgcomR" :src="xmtb" alt="" style="vertical-align:middle;margin-bottom:0.6rem;"/>
+							<i class="xmcomR" ref="xmcol" :style="xmcolorh">项目</i>
+					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+						<img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;">
+					</i>
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
@@ -32,8 +34,20 @@
 				<!-- 下拉菜单---社区--结束 -->
 			
 				<!-- 下拉菜单---更多 -->
-				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> <-->
+				<div class="moretopcomR" @mouseenter="fnmorR()" @mouseleave="fnmorlevR()">
+					<img :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					   <span class="hgmorecomR">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;">
+						 </i>
+						  <div class="moocomR" style="margin-top:0.1rem;">
+						 	<div class="mores1comR">
+						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+						 	</div>
+						 	<div class="mores1comR" @click="fnabout">联系我们</div>
+						 	<div class="moresbcomR">版本号: v 1.0.1</div>
+						 </div>
+				</div>
+				<!-- <el-dropdown style="float: left;margin-left:1.5rem;">
 					<span class="el-dropdown-link" @mouseenter="sqq()" style="position:relative;">
 						<img class="moreimgcom" :src="moretb" />
 						<i class="morecom" ref="gdcol">更多</i>
@@ -50,7 +64,7 @@
 							<div class="remoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
-				</el-dropdown>
+				</el-dropdown> -->
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
 				<!-- 下拉菜单---更多--结束 -->
@@ -268,7 +282,8 @@ export default {
 			// zheaderxy:true,
 				comarr: [0,0],
 				// 联系我们
-				abouts: false
+				abouts: false,
+				xmcolorh:"color:#333333"
 		};
 	},
 	components: {
@@ -284,13 +299,27 @@ export default {
 		});
 	},
 	methods: {
+		// 移入项目
+		fnhxmR(){
+			this.xmtb = require('../../assets/image/bluefz.png');
+			this. xmcolorh = 'color:#2180ED'
+		},
+		// 移出项目
+		fnhxmlevR(){
+			this.xmtb =require('../../assets/image/sshouse.png');
+			this.xmcolorh = 'color:#333333'
+		},
 		//立即登录
 		fn3(){
 			this.$router.push("/")
 		},
+		// 移入更多
+		fnmorR(){
+		this.moretb = require('../../assets/image/moress.png');
+		},
 		// 移出更多
-		fnleave() {
-			this.lmore = require('../../assets/image/pmjtxia.png')
+		fnmorlevR(){
+			this.moretb = require('../../assets/image/more@2x.png');
 		},
 		// 点击联系我们
 		fnabout() {
@@ -448,6 +477,66 @@ export default {
 </script>
 
 <style>
+	 /* 划过更多 */
+	.moretopcomR:hover .moocomR{
+		  display:block;
+	}
+	.moretopcomR:hover .hgmorecomR{
+		 color:#2180ED
+	}
+	.moretopcomR:hover .shouye{
+		 transform:rotate(180deg);
+	}
+	.moretopcomR{
+		position:relative;
+		 float: left;
+		 margin-left:-1.4rem;
+		 font-size: 0.625rem;
+		 font-family: MicrosoftYaHei;
+		 font-weight: 400;
+		/* color:#2180ED; */
+		 font-style: normal;
+		 line-height: 0.93125rem;
+		/* background-color:red; */
+		 margin-top:0.370rem;
+		 margin-left:1.6rem;
+		 text-align:left;
+		 cursor:pointer;
+	}
+	.hgmorecomR{
+		color:#333333;
+	}
+	.moocomR{
+		width:4.75rem;
+		/* width: 183px;
+		height: 195px; */
+		/* background: url(../../assets/image/mores.png); */
+		background:rgba(225,225,225,.2);
+		padding-left:0.2rem;
+		padding-right:0.25rem;
+		cursor: pointer;
+		display:none;
+	}
+	.mores1comR{
+		width:4.65rem;
+			height:0.9rem;
+			border-bottom: 1px solid #999999;
+			text-align: left;
+			line-height:1rem;
+			color: #666666;
+			font-size:0.46rem;
+			font-weight: 500;
+		/* 	background:red; */
+	}
+	.moresbcomR {
+		border: 0;
+		text-align: left;
+		line-height:0.9rem;
+		color: #666666;
+		font-size:0.46rem;
+		font-weight: 500;
+		/* background:red; */
+	}
 	.remore {
 		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
@@ -867,7 +956,7 @@ export default {
 .logocom {
 	width: 3.65625rem;
 	height: 0.875rem;
-	padding-left: 1.8625rem;
+	padding-left: 1.1825rem;
 	padding-top: 0.90625rem;
 	margin-left:0.5625rem;
 	float:left;
@@ -944,25 +1033,26 @@ export default {
 	padding-top:0.15625rem;
 }
 /* 主页top部分*/
-.hometoplocom {
+.hometoplocomR {
 /* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
 	top:0.6375rem;
-	left:6.9375rem;
+	left:7.2rem;
 	/* background:red; */
 	line-height:1.78125rem;
 }
 .el-dropdown-link {
 	cursor: pointer;
 }
-.xmimgcom {
+.xmimgcomR {
 	width:0.84375rem;
 	height:0.8125rem;
 	padding-left:2.5rem;
-	padding-top:0.0625rem;
+	padding-top:0rem;
+	margin-top:0.2rem;
 }
-.xmcom {
+.xmcomR {
 	width:0.84375rem;
 	height:0.53125‬;
 	font-size:0.625rem;
@@ -971,7 +1061,9 @@ export default {
 /* 	color: #2180ed; */
 	font-style: normal;
 	padding-left: 0.15625rem;
-	line-height: 0.53125rem;
+	line-height: 0.33125rem;
+	vertical-align:auto;
+	padding-bottom:0.1rem;
 }
 .sqimgcom {
 	width:0.84375rem;

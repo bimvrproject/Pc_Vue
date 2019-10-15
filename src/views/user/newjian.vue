@@ -7,10 +7,13 @@
 					<span class="delimg"><img src="../../assets/image/shanchu@2x.png" :class="{active:index==isActive}" @click.stop="delproject(index)" @mouseenter.stop="fndelhg(index)" @mouseleave="fndelco()"/></span>
 					<img class="ttu" :src="item.projectModelAddr" alt="" />
 				</div>
-				<div class="xmtitle">
-					<h4 class="xmmc">{{item.projectName}}</h4>
+				<div class="xmtitle" style="display:flex;flex-direction: column;justify-content: center;">
+				<!-- 	<h4 class="xmmc" style="background:red;">{{item.projectName}}</h4>
 					<span class="start">起始时间:{{ dateFormat(item.createTime) }}</span>
-					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span>
+					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span> -->
+					<span  class="xmccs">新建项目</span>
+					<span class="starts">起始时间:{{ dateFormat(item.createTime) }}</span>
+					<span class="ends">竣工时间:{{ dateFormat(item.endTime) }}</span>
 				</div>
 			</li>
 		</ul>
@@ -128,9 +131,9 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 	display:flex;
 	flex-wrap:wrap;
-position: fixed;
-  top:2.3rem;
-  left:0rem;
+ position:absolute;
+ /* top:2.3rem; */
+ /* left:-3rem; */
   overflow-x: auto;
 /* 	background:red; */
 }
@@ -180,6 +183,16 @@ position: fixed;
 	height:2.2rem;
 	text-align:center;
 	font-size:0.55rem;
+	/* background:plum; */
+}
+.xmn:hover .xmccs{
+	width:5rem;
+}
+.xmn:hover .starts{
+	width:5rem;
+}
+.xmn:hover .ends{
+	width:5rem;
 }
 /* 获取图片 */
 .hqtp {
@@ -190,43 +203,80 @@ position: fixed;
 }
 .ttu {
  width:4.6rem;
- height:100%;
+height:100%;
 }
 /* 项目名称 */
 .xmtitle {
   cursor: pointer;
   width:4.6rem;
-  height:2.1rem;
+ /* height:2.1rem; */
   font-size:0.5rem;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
 	text-align:center;
 	/* background:red; */
+/* 	background:blue; */
+/* 	display:flex;
+	justify-content: center;
+	flex-direction: column; */
+}
+.xmccs{
+	 height:0.8rem;
+	 width:4.6rem;
+	/* background:greenyellow; */
+	 display:inline-block;
+	 font-size:0.52rem;
+	font-style: normal;
+	font-weight: 400;
+	color: rgba(51, 51, 51, 1);
 }
 .xmmc {
-  width:4.6rem;
+ /* width:4.6rem; */
   height:0.7rem;
   font-size:0.52rem;
   font-style: normal;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
-  line-height:0.6rem;
+ line-height:0.6rem;
 	/* background:blue; */
   text-align: center;
 }
+.starts{
+	height:0.6rem;
+	width:4.6rem;
+/* 	background:blue; */
+	display:inline-block;
+	 font-size:0.3rem;
+	text-align: center;
+	font-weight: 400;
+	color: rgba(153, 153, 153, 1);
+	font-family: Microsoft YaHei;
+}
+.ends{
+	height:0.6rem;width:4.6rem;
+	/* background:greenyellow; */
+	display:inline-block; font-size:0.3rem;
+	 text-align: center;
+	 font-weight: 400;
+	 color: rgba(153, 153, 153, 1);
+	 font-family: Microsoft YaHei;
+}
 .start,.end {
   display:inline-block;
-  width:4.6rem;
-  height:0.4rem;
+/*  width:4.6rem; */
+  height:0.6rem;
+	line-height:0.4rem;
   font-size:0.3rem;
   text-align: center;
-  margin-bottom:0.05rem;
+ /* margin-bottom:0.05rem; */
   /* padding-left:0.1rem; */
   font-weight: 400;
   color: rgba(153, 153, 153, 1);
   font-family: Microsoft YaHei;
   padding:0rem !important;
-/* 	background:plum; */
+	background:green;
+
+	/* float:left; */
 }
 /* 图片删除按钮 */
  .delimg{

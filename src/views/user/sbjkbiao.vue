@@ -19,9 +19,14 @@
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fnsbjkxm()">
 						<img class="xmimg" src="../../assets/image/bluefz.png" />
-						<i class="xm" style="color: #2180ED;">项目</i>
-						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;"></i>
+						<span class="xm">项目</span>
+						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						vertical-align: middle;margin-left:0.16rem;">
+						</i>
+						<!-- <i class="xm" style="color: #2180ED;">项目</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;">
+						</i> -->
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -36,8 +41,20 @@
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
-				<el-dropdown style="float: left; margin-left:1.5rem;">
-				<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
+				<div class="moretopcomsbjk" style="height:0.93125rem;" @mouseenter="fnmorsbjk()" @mouseleave="fnmorlevsbjk()">
+					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					   <span class="hgmorecomsbjk">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;">
+						 </i>
+						  <div class="moocomsbjk" style="margin-top:0.1rem;">
+						 	<div class="mores1comsbjk">
+						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+						 	</div>
+						 	<div class="mores1comsbjk" @click="fnabout">联系我们</div>
+						 	<div class="moresbcomsbjk">版本号: v 1.0.1</div>
+						 </div>
+				</div>
+				<!-- <el-dropdown style="float: left; margin-left:1.5rem;">
 				<span class="el-dropdown-link" @mouseenter="fnmoin">
 					<img class="moreimggxjk" src="../../assets/image/more@2x.png" />
 					<i class="moregxjk">更多</i>
@@ -54,7 +71,7 @@
 						<div class="sbjkmoresb">版本号: v 1.0.1</div>
 					</div>
 				</el-dropdown-menu>
-			</el-dropdown>
+			</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/设备监控/图纸 -->
@@ -66,17 +83,17 @@
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;margin-left:0.15625rem;float:left;line-height:0.7575rem;">模型</span>
 			</div>
 			<!-- 设备表-->
-			<div style="position:absolute;top:5.625rem;right:0.8rem;width:50.3rem;">
-				<div class="shebeitop">
-					<span class="sbzj">增加</span>
-					<span class="sbsc">删除</span>
-				</div>
+			<div class="shebeitop">
+				<span class="sbzj">增加</span>
+				<span class="sbsc">删除</span>
+			</div>
+			<div style="position:absolute;top:5.9rem;right:0.8rem;width:50.3rem;">
 				<div class="sbbiao">
 					<table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
 						<tr>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;display:inline-block;line-height:1.3rem;">设备名称</span></td>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:19.976rem;display:inline-block;line-height:1.3rem;">设备状态</span></td>
-							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;display:inline-block;line-height:1.3rem;">设备地址</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;height:1.6rem;display:inline-block;line-height:1.6rem;background:rgba(220,220,220,.4);">设备名称</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:19.976rem;height:1.6rem;display:inline-block;line-height:1.6rem;background:rgba(220,220,220,.4);">设备状态</span></td>
+							<td><span style="font-size:0.625rem;font-weight:bold;width:14.38375rem;height:1.6rem;display:inline-block;line-height:1.6rem;background:rgba(220,220,220,.4);">设备地址</span></td>
 						</tr>
 						<tr>
 							<td><span style="font-size:0.625rem;font-weight:400;color:#444444;display:inline-block;">轴流风机</span></td>
@@ -386,7 +403,8 @@ export default {
 			abouts:false,
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
-			hsqcolor:"color:#333333"	
+			hsqcolor:"color:#333333",
+			moretb: require('../../assets/image/more@2x.png')	
 		};
 	},
 	components: {
@@ -424,14 +442,14 @@ export default {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
-		// 划过更多
-		fnmoin(){
-			this.lmore=require('../../assets/image/shang.png')
+			// 划过更多
+		fnmorsbjk(){
+			this.moretb = require('../../assets/image/moress.png');
 		},
 		// 移出更多
-		fnleave(){
-			this.lmore=require('../../assets/image/pmjtxia.png')
-			},
+		 fnmorlevsbjk(){
+			 this.moretb = require('../../assets/image/more@2x.png');
+		},
 		//点击项目 
 		fnsbjkxm(){
 			this.$router.push('/Login');
@@ -541,6 +559,65 @@ export default {
 .el-pagination__jump{
 	padding: 0.04375rem;
 } */
+.moretopcomsbjk{
+	position:relative;
+	 float: left;
+	 margin-left:-1.4rem;
+	 font-size: 0.625rem;
+	 font-family: MicrosoftYaHei;
+	 font-weight: 400;
+	/* color:#2180ED; */
+	 font-style: normal;
+	 line-height: 0.93125rem;
+	/* background-color:red; */
+	 margin-top:0.380rem;
+	 margin-left:1.62rem;
+	 text-align:left;
+	 cursor:pointer;
+}
+.hgmorecomsbjk{
+	color:#333333;
+}
+.moocomsbjk{
+	width:4.75rem;
+	/* width: 183px;
+	height: 195px; */
+	/* background: url(../../assets/image/mores.png); */
+	background:rgba(225,225,225,.2);
+	padding-left:0.2rem;
+	padding-right:0.25rem;
+	cursor: pointer;
+	display:none;
+}
+.mores1comsbjk{
+	width:4.65rem;
+		height:0.9rem;
+		border-bottom: 1px solid #999999;
+		text-align: left;
+		line-height:1rem;
+		color: #666666;
+		font-size:0.46rem;
+		font-weight: 500;
+	/* 	background:red; */
+}
+.moresbcomsbjk{
+		border: 0;
+		text-align: left;
+		line-height:0.9rem;
+		color: #666666;
+		font-size:0.46rem;
+		font-weight: 500;
+		/* background:red; */
+	}
+	.moretopcomsbjk:hover .moocomsbjk{
+		  display:block;
+	}
+	.moretopcomsbjk:hover .hgmorecomsbjk{
+		 color:#2180ED
+	}
+	.moretopcomsbjk:hover .shouye{
+		 transform:rotate(180deg);
+	}
 .el-scrollbar__view .el-select-dropdown__list{
 	display:none;
 }
@@ -612,8 +689,8 @@ a {
 	/* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
-	top:0.9375rem;
-	left:6.9375rem;
+	top:0.6275rem;
+	left:7.2rem;
 /* 	background:red; */
 	line-height:1.78125rem;
 }
@@ -697,10 +774,14 @@ a {
 }
 /* 表格 */
 .shebeitop {
-	width:49.4rem;
+	/* width:49.4rem; */
 	height:1.5rem;
+	position:absolute;
+	right:1.8rem;
+	top:3.6rem;
+	/* background:plum; */
 	/* background:red; */
-margin-bottom:0.8rem;
+ /* margin-bottom:0.8rem; */
 }
 .sbsc {
 	display: inline-block;
