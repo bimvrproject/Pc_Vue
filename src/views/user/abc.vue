@@ -53,3 +53,36 @@
 </style>
 
  -->
+<template>
+	<div>
+		<div class="a">
+			首页
+			<div class="b">
+				45613213
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+</template>
+<script>
+	
+</script>
+<style>
+	.a{
+		width:200px;
+		height:60px;
+		background:red;
+	}
+	.b{
+		width:600px;
+		height:300px;
+		background:plum;
+		display:none;
+	}
+	.a:hover .b{
+		display:block;
+	}
+</style>

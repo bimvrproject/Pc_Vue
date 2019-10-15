@@ -93,7 +93,7 @@
 							<!-- 信息展开 -->
 							<div v-show="xinxizhanshi">
 								<span style="width:5.75rem;height:0.325rem;font-size:0.5rem;display:inline-block;padding-left:0.5rem;color:#FFFFFF;margin-top:0.46875rem;">
-									<i style="float:left;font-style: normal;">墙</i>
+									<i style="float:left;font-style:normal;color:#FFFFFF;">墙</i>
 								</span>
 								<span style="width:5.375rem;height:0.03125rem‬;display:inline-block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.625rem;margin-bottom:0.3rem;"></span>
 								<!-- 创建新的墙的厚度 -->
@@ -116,7 +116,7 @@
 														style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.7rem;"
 														/>
 														<i v-show="!item.change" @dblclick="fnwall1(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-														font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;">{{ item.msg }}</i>
+														font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">{{ item.msg }}</i>
 														<input
 															v-model="newjian[index].msg"
 															type="text"
