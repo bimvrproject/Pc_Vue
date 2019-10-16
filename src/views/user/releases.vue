@@ -365,6 +365,10 @@ export default {
 		},
 		//点击动画
 		animation() {
+				// this.$eventbus.$emit('fbswipersfree');
+				// this.$eventbus.$emit('fbswipers');
+			// 点击动画得时候图纸中得内容消失
+				this.$eventbus.$emit('fbswiperss');
 			// 点击图片时候的颜色
 			this.fbtp = require('../../assets/image/tuimg.png'),
 			// 点击图片时候的字体颜色

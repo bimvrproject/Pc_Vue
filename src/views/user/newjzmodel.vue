@@ -143,7 +143,7 @@
 				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
 				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div> -->
 				  </div>
-				  <div class="swiper-button-next swiper-button-white"></div>
+				  <div class="swiper-button-next swiper-button-white "></div>
 				  <div class="swiper-button-prev swiper-button-white"></div>
 				</div>
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
@@ -159,25 +159,19 @@
 							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
 								发布
 							</span>
-							<span class="fqq" @click.stop="fnallswper()" :style="fbswperall">
+							<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
 								 全选
 							</span>
-							<span class="fqq" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+							<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
 							   取消选择
 							</span>
 						</div>
 						</div>
-		      <!-- <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/u91_02.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/disan.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/diyi.png" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t1.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t2.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t3.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t5.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t6.jpg" alt=""></div>
-		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/t7.jpg" alt=""></div> -->
 		    </div>
-		  </div>		 
+				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
+       <div class="swiper-button-next backs" v-show="backs"></div> -->
+		  </div>	
+			<!-- <Free v-show="frees"></Free> -->
 	</div>
 </template>
 <script>
@@ -189,13 +183,17 @@
 	import Xunilogo from './xunilogo';
 	import axios from 'axios';
 	import Releases from './releases';
+	import Free from './free';
 	import addressurls from '@/api/ip.js';
 	import $ from 'jquery'
-	// $(function(){
-	// 	$(".fqq").click(function(){
- //    $(".vvv").addClass('.checkeds');
- //  });
-	// })
+	$(function(){
+		$(".quanxuan").click(function(){
+    $(".vvv").addClass('checkeds');
+  });
+	$(".qx").click(function(){
+	  $(".vvv").removeClass('checkeds');
+	});
+	})
 	// import Zheader from './header';
 	export default {
 		data() {
@@ -248,7 +246,7 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-				newarrs:[0,0,0,0,0,0,0,0,0],
+				newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -265,21 +263,32 @@
 				// 轮播中的发布的背景色
 				fbswper:"background:rgba(225,225,225,0)",
 				fbswperall:"background:rgba(225,225,225,0)",
-				fbswperqxchang:"background:rgba(225,225,225,0)"
+				fbswperqxchang:"background:rgba(225,225,225,0)",
+				goss:false,
+				backs:false,
+				// 动画中自由拍摄组件得显隐
+				// frees:false
 			};
 		},
 		components: {
 			Newjian,
 			Xunilogo,
 			Releases,
+			// Free
 			// Zheader
 		},
 		created() {
+			// 创建点击动画得时候轮播图出现
+		   // 	this.$eventbus.$on('fbswipersfree', () => {
+		   // this.frees = true
+		   // });
 			// 创建点击发布的时候轮播图出现
 				this.$eventbus.$on('fbswipers', () => {
 				this.swiperbottom = true;
 				this.topswper = true;
-				this.	swipersbj = 'background:#EEEEEE'
+				this.	swipersbj = 'background:#EEEEEE';
+				this.goss = true;
+				this.backs = true
 			});
 			// 创建点击发布的时候轮播图消失
 				this.$eventbus.$on('fbswiperss', () => {
@@ -287,6 +296,8 @@
 				this.swiperxy = false;
 				this.topswper = false,
 				this.	swipersbj = 'background:rgba(225,225,225,0)'
+				this.goos = false;
+				this.backs = false
 			});
 			this.$eventbus.$on('ceyinfb', ite => {
 				if (ite == "fabu") {
@@ -377,6 +388,10 @@
 			 var galleryThumbs = new Swiper('.gallery-thumbs', {
 			  spaceBetween: 10,
 			  slidesPerView:8,
+				 navigation: {
+				  nextEl: '.swiper-button-next',
+				  prevEl: '.swiper-button-prev',
+				},
 			  freeMode: true,
 			  watchSlidesVisibility: true,
 			  watchSlidesProgress: true,
@@ -398,6 +413,9 @@
 				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
 				this.fbswperall = "background:rgba(225,225,225,0);"
 				this.fbswper = "background:rgba(225,225,225,0);"
+				 sessionStorage.removeItem("relea");
+				 sessionStorage.removeItem("releaone");
+				// alert("取消")
 				// sessionStorage.removeItem("relea");
 				// sessionStorage.removeItem("releaone");
 				// if(this.dgarrs.includes(i)){
@@ -414,6 +432,11 @@
 				this.fbswperall = "background:rgba(37,175,178,0.4);"
 				this.fbswper = "background:rgba(225,225,225,0);"
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
+				this.dgarrs.length = this.newarrs.length;
+				if(this.dgarrs.length = this.newarrs,length){
+					alert(1)
+				}
+				// alert(this.dgarrs.length)
 			   // this.dgarrs = true
 				// if(this.dgarrs.includes(i)){
 				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
@@ -444,6 +467,7 @@
 				if(this.dgarrs.includes(i)){
 					this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 					sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
+					console.log(this.dgarrs)
 					// alert(1)
 				}else{
 					this.dgarrs.push(i);
@@ -474,6 +498,8 @@
 				this.bjtu = require('../../assets/image/bianji.png');
 				this.bjcolor = 'color:#333333';
 				this.fbcolor = 'color:#333333';
+				this.goos = false;
+				this.backs = false
 			},
 			// 点击建筑模型路径
 			fnjzmxs() {
@@ -487,11 +513,15 @@
 				this.bjtu = require('../../assets/image/bianji.png');
 				this.bjcolor = 'color:#333333';
 				this.fbcolor = 'color:#333333';
+				this.goos = false;
+				this.backs = false
 			},
 			// 点击联系我们
 			fnabout() {
 				this.$eventbus.$emit('abouts');
 				this.abouts = true;
+					this.goos = false;
+				this.backs = false
 			},
 			// 点击联系之后出现的遮罩
 			fnaboutmark() {
@@ -596,6 +626,8 @@
 				this.lmore = require('../../assets/image/pmjtxia.png');
 				this.nmbj = require('../../assets/image/shang.png');
 				this.nmfb = require('../../assets/image/pmjtxia.png');
+					this.goos = false;
+				this.backs = false
 			},
 			//点击发布
 			fnfabu() {
@@ -619,18 +651,26 @@
 				this.fbcolor = 'color:#333333'
 				this.hsq = require('../../assets/image/sq@2x.png'),
 				this.hsqcolor = "color:#333333";
+					this.goos = false;
+				this.backs = false
 			},
 			// 移出更多
 			fnmorlevnj(){
 				 this.moretb = require('../../assets/image/more@2x.png');
+				 	this.goos = false;
+				 this.backs = false
 			},
 			//点击项目
 			xmfn() {
 				this.$router.push('/Login');
+					this.goos = false;
+				this.backs = false
 			},
 			//点击社区
 			fnsqtit() {
 				this.$router.push('/');
+					this.goos = false;
+				this.backs = false
 			},
 			// 移入社区的时候
 			fnhsq(){
@@ -641,12 +681,16 @@
 				this.bjcolor = 'color:#333333';
 				this.fbtu = require('../../assets/image/fbnav.png');
 				this.fbcolor = 'color:#333333'
+					this.goos = false;
+				this.backs = false
 			},
 			// 移出社区的时候
 			fnhsqlev(){
 				this.hsq = require('../../assets/image/sq@2x.png'),
-				this.hsqcolor = "color:#333333"
-				},
+				this.hsqcolor = "color:#333333";
+					this.goos = false;
+				this.backs = false				
+			 },
 			// 移入编辑
 			fnhbj(){
 				this.bjtu = require('../../assets/image/bjblue.png');
@@ -656,11 +700,15 @@
 				this.hsq = require('../../assets/image/sq@2x.png'),
 				this.hsqcolor = "color:#333333";
 				this.moretb = require('../../assets/image/more@2x.png');
+					this.goos = false;
+				this.backs = false
 				},
 			// 移出编辑
 			fnhbjlev(){
 				this.bjtu = require('../../assets/image/bianji.png'),
 				this.bjcolor = 'color:#333333'
+				this.goos = false;
+				this.backs = false
 			},
 			// 移入发布
 			fnhfb(){
@@ -682,6 +730,26 @@
 </script>
 
 <style>
+	.gos{
+		width:1.5rem;
+		height:6rem;
+		position:absolute;
+		top:1.5rem;
+		left:0rem;
+		background:url(../../assets/image/tpzh.png) no-repeat;
+		background-size:1.5rem 6rem;
+		background-color:rgba(225,225,225,.2);
+	}
+	.backs{
+		width:1.5rem;
+		height:6rem;
+		position:absolute;
+		top:1.5rem;
+		right:0rem;
+		background:url(../../assets/image/tpyh.png) no-repeat;
+		background-size:1.5rem 6rem;
+		background-color:rgba(225,225,225,.2);
+	}
 	.activefb{
 		display:block;
 	}
