@@ -171,7 +171,7 @@
 				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
        <div class="swiper-button-next backs" v-show="backs"></div> -->
 		  </div>	
-			<!-- <Free v-show="frees"></Free> -->
+			<Free v-show="frees"></Free>
 	</div>
 </template>
 <script>
@@ -267,14 +267,14 @@
 				goss:false,
 				backs:false,
 				// 动画中自由拍摄组件得显隐
-				// frees:false
+				frees:true
 			};
 		},
 		components: {
 			Newjian,
 			Xunilogo,
 			Releases,
-			// Free
+			Free
 			// Zheader
 		},
 		created() {
