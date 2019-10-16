@@ -1215,4 +1215,10 @@ export default {
 	font-style: normal;
 	cursor: pointer;
 }
+input::-webkit-input-placeholder {
+       /* placeholder颜色  */
+       color: #aab2bd;
+       /* placeholder字体大小  */
+       font-size:0.4rem;
+    }
 </style>
