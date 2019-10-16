@@ -35,7 +35,9 @@ const api = {
 	Openexe:version+"/file/openexe",//打开模型
 	Remove:version+"/file/remove",//删除模型
 	Uploadpipepingmian:version+"/Upload/uploadpipepingmian",		//上传管道zip图纸
-	OpenCmd:version+"/model/OpenCmd",
-	Addprojects:version+"/pcproject/addprojects"
+	OpenCmd:version+"/model/OpenCmd",		//模型快照
+	Addprojects:version+"/pcproject/addprojects",	//点击+号增加项目id
+	Uploadjzprice:version+"/Upload/uploadjzprice",	//上传建筑图纸
+	Uploadgxprice:version+"/Upload/uploadgxprice"	//上传管道图纸
 };
 export default api;

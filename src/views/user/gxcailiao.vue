@@ -89,8 +89,8 @@
 					<div>
 						<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 							<!-- <uploader-unsupport></uploader-unsupport> -->
-							<uploader-drop class="gxcldrawdrop"><uploader-btn :directory="true" :single="true" class="gxcldrawbtn">上传材料清单</uploader-btn></uploader-drop>
-							<uploader-list></uploader-list>
+							<uploader-drop class="gxcldrawdrop"><uploader-btn :directory="false" :single="true" class="gxcldrawbtn" :attrs="attrs">上传材料清单</uploader-btn></uploader-drop>
+							<uploader-list class="gxyangshi"></uploader-list>
 						</uploader>
 					</div>
 				</div>
@@ -120,7 +120,7 @@ export default {
 			hometop: true,
 			// fileshow: true,
 			options: {
-				target: api.Uploadpipes, //SpringBoot后台接收文件夹数据的接口
+				target: api.Uploadgxprice, //SpringBoot后台接收文件夹数据的接口
 				testChunks: false, //是否分片-不分片
 				chunkSize: '2048000000'
 			},
@@ -145,7 +145,11 @@ export default {
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
-			moretb: require('../../assets/image/more@2x.png')
+			moretb: require('../../assets/image/more@2x.png'),
+			//上传文件的类型限制
+			attrs: {
+				accept: ' .xls, .xlsx'
+			},
 		};
 	},
 	components: {
@@ -552,4 +556,8 @@ html {
 	color: #ffffff !important;
 	padding: 0.03125rem 0.25rem !important;
 }
+ .gxyangshi{
+ 	left: 1rem;
+ 	width: 14.375rem;
+ }
 </style>
