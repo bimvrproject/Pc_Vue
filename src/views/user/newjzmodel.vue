@@ -148,7 +148,25 @@
 				</div>
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
-		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index"><img src="../../assets/image/t4.jpg" alt=""></div>
+		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
+						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
+					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
+						 @click.stop="fnxz(index)">
+						</span>
+						<img src="../../assets/image/t4.jpg" alt="">
+						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
+						<div class="xbz" v-show="aaaaaa === index">
+							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
+								发布
+							</span>
+							<span class="fqq" @click.stop="fnallswper()" :style="fbswperall">
+								 全选
+							</span>
+							<span class="fqq" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+							   取消选择
+							</span>
+						</div>
+						</div>
 		      <!-- <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/u91_02.png" alt=""></div>
 		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/disan.png" alt=""></div>
 		      <div class="swiper-slide swiper-slidebottom"><img src="../../assets/image/diyi.png" alt=""></div>
@@ -172,10 +190,21 @@
 	import axios from 'axios';
 	import Releases from './releases';
 	import addressurls from '@/api/ip.js';
+	import $ from 'jquery'
+	// $(function(){
+	// 	$(".fqq").click(function(){
+ //    $(".vvv").addClass('.checkeds');
+ //  });
+	// })
 	// import Zheader from './header';
 	export default {
 		data() {
 			return {
+				sdsds:false,
+				aaaaaa:-1,
+				dddd:false,
+				// 发布轮播图中最下边鼠标右击事件控制的显隐
+				isActivefb:true,
 				title: "18306846355",
 				model: '',
 				panduan: false,
@@ -219,7 +248,7 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-				newarrs:[0,0,0,0,0],
+				newarrs:[0,0,0,0,0,0,0,0,0],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -230,7 +259,13 @@
 				hsq:require('../../assets/image/sq@2x.png'),
 				hsqcolor:"color:#333333",
 				topswper:true,
-				moretb: require('../../assets/image/more@2x.png')
+				moretb: require('../../assets/image/more@2x.png'),
+				// 对勾的数组
+				dgarrs:[],
+				// 轮播中的发布的背景色
+				fbswper:"background:rgba(225,225,225,0)",
+				fbswperall:"background:rgba(225,225,225,0)",
+				fbswperqxchang:"background:rgba(225,225,225,0)"
 			};
 		},
 		components: {
@@ -358,6 +393,64 @@
 			});
 		},
 		methods: {
+			// 点击轮播中的取消选择
+			fnqxchangswper(){
+				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
+				this.fbswperall = "background:rgba(225,225,225,0);"
+				this.fbswper = "background:rgba(225,225,225,0);"
+				// sessionStorage.removeItem("relea");
+				// sessionStorage.removeItem("releaone");
+				// if(this.dgarrs.includes(i)){
+				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
+				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
+				// 
+				// }else{
+				// 	this.dgarrs.push(i);
+				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
+				// }
+			},
+			// 点击轮播中的全选
+			fnallswper(index){
+				this.fbswperall = "background:rgba(37,175,178,0.4);"
+				this.fbswper = "background:rgba(225,225,225,0);"
+				this.fbswperqxchang = "background:rgba(225,225,225,0);"
+			   // this.dgarrs = true
+				// if(this.dgarrs.includes(i)){
+				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
+				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
+				// }else{
+				// 	this.dgarrs.push(i);
+				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
+				// }
+				// this.sdsds = true
+				// alert(this.dgarrs.length)
+			},
+			// 点击轮播中的发布
+			fnfbswper(index){
+				this.fbswper = "background:rgba(37,175,178,0.4);"
+				this.fbswperall = "background:rgba(225,225,225,0);"
+				this.fbswperqxchang = "background:rgba(225,225,225,0);"
+				// alert(index)
+			},
+			// 鼠标右击
+			fnyouji(index){
+				// this.isActivefb = index
+				// alert(this.isActivefb)
+				this.aaaaaa = index
+			},
+			// 选择对勾
+			fnxz(i){
+				 // alert(i)
+				if(this.dgarrs.includes(i)){
+					this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
+					sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
+					// alert(1)
+				}else{
+					this.dgarrs.push(i);
+					sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
+				}
+				
+			},
 			// 点击swiper头上的关闭
 			fng(index){
 				this.swiperxy = false,
@@ -366,7 +459,9 @@
 			// 点击swiper下边的
 			fnswipers(){
 				this.swiperxy = true,
-				this.topswper = true
+				this.topswper = true,
+				this.aaaaaa = null
+				// this.dddd = false
 				},
 			// 点击新建项目
 			fnjzmxxm() {
@@ -587,6 +682,35 @@
 </script>
 
 <style>
+	.activefb{
+		display:block;
+	}
+	.fqq{
+		height:0.7rem;
+		font-size:0.4375rem;
+		text-align:left;
+		padding-left:0.4rem;
+		color:rgba(51,51,51,1);
+		font-family:Microsoft YaHei;
+		 font-weight:400;
+	}
+	.xbz{
+		width:5.999rem;
+		height:2.34375rem;
+		position:absolute;
+		bottom:0rem;
+		left:0.16rem;
+		display:flex;
+		flex-direction: column;
+		cursor:pointer;
+		background:rgba(225,225,225,.7);
+		/* display:none; */
+	}
+	.checkeds{
+		background:url(../../assets/image/bluedui.png) no-repeat 0.07rem 0.03rem;
+		background-size:0.8rem 0.8rem;
+		z-index:20000;
+	}
 	.moretopcomnj{
 		position:relative;
 		 float: left;
