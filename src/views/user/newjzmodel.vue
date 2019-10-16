@@ -150,7 +150,7 @@
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
 		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
 						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
+					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}"
 						 @click.stop="fnxz(index)">
 						</span>
 						<img src="../../assets/image/t4.jpg" alt="">
@@ -170,8 +170,8 @@
 		    </div>
 				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
        <div class="swiper-button-next backs" v-show="backs"></div> -->
-		  </div>	
-			<Free v-show="frees"></Free>
+		  </div>
+<!--			<Free v-show="frees"></Free>-->
 	</div>
 </template>
 <script>
@@ -183,7 +183,7 @@
 	import Xunilogo from './xunilogo';
 	import axios from 'axios';
 	import Releases from './releases';
-	import Free from './free';
+	// import Free from './free';
 	import addressurls from '@/api/ip.js';
 	import $ from 'jquery'
 	$(function(){
@@ -274,7 +274,7 @@
 			Newjian,
 			Xunilogo,
 			Releases,
-			Free
+			// Free
 			// Zheader
 		},
 		created() {
@@ -421,7 +421,7 @@
 				// if(this.dgarrs.includes(i)){
 				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-				// 
+				//
 				// }else{
 				// 	this.dgarrs.push(i);
 				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
@@ -473,7 +473,7 @@
 					this.dgarrs.push(i);
 					sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
 				}
-				
+
 			},
 			// 点击swiper头上的关闭
 			fng(index){
@@ -689,7 +689,7 @@
 				this.hsq = require('../../assets/image/sq@2x.png'),
 				this.hsqcolor = "color:#333333";
 					this.goos = false;
-				this.backs = false				
+				this.backs = false
 			 },
 			// 移入编辑
 			fnhbj(){
@@ -838,7 +838,7 @@
 	.moretopcomnj:hover .shouye{
 		 transform:rotate(180deg);
 	}
-	
+
 	.jzmodelmore {
 		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
@@ -1097,7 +1097,7 @@
 		color: #ffffff !important;
 		padding: 0.03125rem 0.25rem !important;
 	}
-	
+
 	.swiper-slidetop {
 		background: paleturquoise;
 		width: 47.46875rem;
