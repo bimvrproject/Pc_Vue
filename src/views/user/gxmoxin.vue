@@ -18,29 +18,37 @@
 				<el-dropdown style="float: left; margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fngxmxxm">
 						<img class="xmimggm" src="../../assets/image/bluefz.png" />
-						<i class="xmgm" style="color:#2180ED">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;"></i>
+						<span class="xmgm">项目</span>
+						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						vertical-align: middle;margin-left:0.16rem;">
+						</i>
+					<!-- 	<i class="xmgm" style="color:#2180ED">项目</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;">
+						</i> -->
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fngxmxsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+				<!-- 	@mouseleave="fnhsqlev()" -->
+					<span class="el-dropdown-link" @click="fngxmxsq" @mouseenter="fnhsq()">
 						<img class="sqimggm" :src="hsq"/>
 						<i class="sqgm" :style="hsqcolor">社区</i>
-						<i class="el-icon-arrow-down el-icon--right"></i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" @mouseleave="fnhbjlev()">
+				<!-- 	@mouseleave="fnhbjlev()" -->
+					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" >
 						<img class="bjimggm" :src="bjtu" />
 						<i class="bjgm" :style="bjcolor">编辑</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmbj" alt="" style="width: 100%;height: 100%;"></i>
+					  <i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmbj" alt="" style="width: 100%;height: 100%;"></i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnfabug()" @mouseenter="fnhfb()" @mouseleave="fnhfblev()">
+					 <!-- @mouseleave="fnhfblev()" -->
+					<span class="el-dropdown-link" @click="fnfabug()" @mouseenter="fnhfb()">
 						<img class="bjimggm" :src="fbtu" />
 						<i class="bjgm" :style="fbcolor">发布</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmfb" alt="" style="width: 100%;height: 100%;"></i>
@@ -48,7 +56,21 @@
 				</el-dropdown>
 			<!-- 	下拉菜单---社区--结束
 				下拉菜单---更多 -->
-				<el-dropdown style="float: left; margin-left:1.5rem;">
+			<!-- 	@mouseleave="fnmorlevgxmx()" -->
+				<div class="moretopcomgxmx" style="height:0.93125rem;" @mouseenter="fnmorgxmx()">
+					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					   <span class="hgmorecomgxmx">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;">
+						 </i>
+						  <div class="moocomgxmx" style="margin-top:0.1rem;">
+						 	<div class="mores1comgxmx">
+						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+						 	</div>
+						 	<div class="mores1comgxmx" @click="fnabout">联系我们</div>
+						 	<div class="moresbcomgxmx">版本号: v 1.0.1</div>
+						 </div>
+				</div>
+				<!-- <el-dropdown style="float: left; margin-left:1.5rem;">
 					<span class="el-dropdown-link" @mouseenter="fnmoin">
 						<img class="moreimggm" src="../../assets/image/more@2x.png" />
 						<i class="moregm">更多</i>
@@ -63,7 +85,7 @@
 						<div class="moresbgx">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
-				</el-dropdown>
+				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
@@ -189,7 +211,8 @@ export default {
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
-			topswper:true
+			topswper:true,
+			moretb: require('../../assets/image/more@2x.png')
 		};
 	},
 	components: {
@@ -372,33 +395,43 @@ export default {
 			this.$eventbus.$emit('fbswipersgx');
 		},
 		// 划过更多
-		fnmoin(){
-			this.lmore=require('../../assets/image/shang.png');
-			// this.nmfb = require('../../assets/image/pmjtxia.png');
-			// this.nmbj = require('../../assets/image/pmjtxia.png');
-		 //  this.bjcolor = 'color:#333333';
-			// this.bjtu = require('../../assets/image/bianji.png');
-			// this.fbcolor = 'color:#333333';
-			// this.fbtu = require('../../assets/image/bianji.png');
+		fnmorgxmx(){
+			this.moretb = require('../../assets/image/moress.png');
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333'
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
 		},
 		// 移出更多
-		fnleave(){
-			this.lmore=require('../../assets/image/pmjtxia.png')
-			},
+		 fnmorlevgxmx(){
+			 this.moretb = require('../../assets/image/more@2x.png');
+		},
 		// 移入社区的时候
 		fnhsq(){
 			this.hsq = require('../../assets/image/shequ.png')
-			this.hsqcolor = "color:#2180ED"
+			this.hsqcolor = "color:#2180ED";
+			this.moretb = require('../../assets/image/more@2x.png');
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333'
 		},
 		// 移出社区的时候
 		fnhsqlev(){
 			this.hsq = require('../../assets/image/sq@2x.png'),
-			this.hsqcolor = "color:#333333"
+			this.hsqcolor = "color:#333333";
 			},
 		// 移入编辑
 		fnhbj(){
 			this.bjtu = require('../../assets/image/bjblue.png');
-			this.bjcolor = 'color:#2180ED'
+			this.bjcolor = 'color:#2180ED';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333';
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
+			this.moretb = require('../../assets/image/more@2x.png');
 			},
 		// 移出编辑
 		fnhbjlev(){
@@ -408,7 +441,12 @@ export default {
 		// 移入发布
 		fnhfb(){
 			this.fbtu = require('../../assets/image/fbblue.png');
-			this.fbcolor = 'color:#2180ED'
+			this.fbcolor = 'color:#2180ED';
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
+			this.moretb = require('../../assets/image/more@2x.png');
 		},
 		// 移出发布
 		fnhfblev(){
@@ -420,6 +458,67 @@ export default {
 </script>
 
 <style>
+	/* 更多 */
+	.moretopcomgxmx{
+		position:relative;
+		 float: left;
+		 margin-left:-1.4rem;
+		 font-size: 0.625rem;
+		 font-family: MicrosoftYaHei;
+		 font-weight: 400;
+		/* color:#2180ED; */
+		 font-style: normal;
+		 line-height: 0.93125rem;
+		/* background-color:red; */
+		 margin-top:0.380rem;
+		 margin-left:1.62rem;
+		 text-align:left;
+		 cursor:pointer;
+	}
+	.hgmorecomgxmx{
+		color:#333333;
+	}
+	.moocomgxmx{
+		width:4.75rem;
+		/* width: 183px;
+		height: 195px; */
+		/* background: url(../../assets/image/mores.png); */
+		background:rgba(225,225,225,.2);
+		padding-left:0.2rem;
+		padding-right:0.25rem;
+		cursor: pointer;
+		display:none;
+	}
+	.mores1comgxmx{
+		width:4.65rem;
+			height:0.9rem;
+			border-bottom: 1px solid #999999;
+			text-align: left;
+			line-height:1rem;
+			color: #666666;
+			font-size:0.46rem;
+			font-weight: 500;
+		/* 	background:red; */
+	}
+	.moresbcomgxmx{
+			border: 0;
+			text-align: left;
+			line-height:0.9rem;
+			color: #666666;
+			font-size:0.46rem;
+			font-weight: 500;
+			/* background:red; */
+		}
+		.moretopcomgxmx:hover .moocomgxmx{
+			  display:block;
+		}
+		.moretopcomgxmx:hover .hgmorecomgxmx{
+			 color:#2180ED
+		}
+		.moretopcomgxmx:hover .shouye{
+			 transform:rotate(180deg);
+		}
+		
 	/* tou */
 	.swiper-slidetop {
 		background: paleturquoise;
@@ -548,8 +647,8 @@ html {
 	/* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
-	top:0.9375rem;
-	left:6.9375rem;
+	top:0.6275rem;
+	left:7.2rem;
 	/* background:red; */
 	line-height:1.78125rem;
 }

@@ -19,11 +19,14 @@
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fntwoxm">
 						<img class="xmimgtwo" src="../../assets/image/bluefz.png" />
-						<i class="xmtwo" style="color: #2180ED;">项目</i>
-						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
+						  <span class="xmtwo">项目</span>
+						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						vertical-align: middle;margin-left:0.16rem;">
+						</i>
+					<!-- 	<i class="xmtwo" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;" />
-						</i>
+						</i> -->
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -38,8 +41,20 @@
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
-				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<!-- <img src="../../assets/image/sshouse.png" style="width: 20px;height: auto;" /> -->
+				<div class="moretopcomtwo" style="height:0.93125rem;" @mouseenter="fnmortwo()" @mouseleave="fnmorlevtwo()">
+					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					   <span class="hgmorecomtwo">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;">
+						 </i>
+						  <div class="moocomtwo" style="margin-top:0.1rem;">
+						 	<div class="mores1comtwo">
+						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
+						 	</div>
+						 	<div class="mores1comtwo" @click="fnabout">联系我们</div>
+						 	<div class="moresbcomtwo">版本号: v 1.0.1</div>
+						 </div>
+				</div>
+			<!-- 	<el-dropdown style="float: left; margin-left:1.5rem;">
 					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin" @mouseleave="fnleave">
 						<img class="moreimgtwo" src="../../assets/image/more@2x.png" />
 						<i class="moretwo">更多</i>
@@ -54,7 +69,7 @@
 							<div class="twomoresb">版本号: v 1.0.1</div>
 						</div>
 					</el-dropdown-menu>
-				</el-dropdown>
+				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
@@ -97,7 +112,8 @@ export default {
 			abouts: false,
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
-			hsqcolor:"color:#333333"
+			hsqcolor:"color:#333333",
+			moretb: require('../../assets/image/more@2x.png')
 		};
 	},
 	components: {
@@ -145,8 +161,12 @@ export default {
 			this.abouts = false;
 		},
 		// 划过更多
-		fnmoin() {
-			this.lmore = require('../../assets/image/shang.png');
+		fnmortwo(){
+			this.moretb = require('../../assets/image/moress.png');
+		},
+		// 移出更多
+		 fnmorlevtwo(){
+			 this.moretb = require('../../assets/image/more@2x.png');
 		},
 		// 移出社区
 		fnleave() {
@@ -193,6 +213,65 @@ export default {
 
 <style>
 /* 更多 */
+.moretopcomtwo{
+	position:relative;
+	 float: left;
+	 margin-left:-1.4rem;
+	 font-size: 0.625rem;
+	 font-family: MicrosoftYaHei;
+	 font-weight: 400;
+	/* color:#2180ED; */
+	 font-style: normal;
+	 line-height: 0.93125rem;
+	/* background-color:red; */
+	 margin-top:0.380rem;
+	 margin-left:1.62rem;
+	 text-align:left;
+	 cursor:pointer;
+}
+.hgmorecomtwo{
+	color:#333333;
+}
+.moocomtwo{
+	width:4.75rem;
+	/* width: 183px;
+	height: 195px; */
+	/* background: url(../../assets/image/mores.png); */
+	background:rgba(225,225,225,.2);
+	padding-left:0.2rem;
+	padding-right:0.25rem;
+	cursor: pointer;
+	display:none;
+}
+.mores1comtwo{
+	width:4.65rem;
+		height:0.9rem;
+		border-bottom: 1px solid #999999;
+		text-align: left;
+		line-height:1rem;
+		color: #666666;
+		font-size:0.46rem;
+		font-weight: 500;
+	/* 	background:red; */
+}
+.moresbcomtwo{
+		border: 0;
+		text-align: left;
+		line-height:0.9rem;
+		color: #666666;
+		font-size:0.46rem;
+		font-weight: 500;
+		/* background:red; */
+	}
+	.moretopcomtwo:hover .moocomtwo{
+		  display:block;
+	}
+	.moretopcomtwo:hover .hgmorecomtwo{
+		 color:#2180ED
+	}
+	.moretopcomtwo:hover .shouye{
+		 transform:rotate(180deg);
+	}
 .twomore {
 	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
@@ -262,8 +341,8 @@ a {
 	/* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
-	top: 0.9375rem;
-	left: 6.9375rem;
+	top:0.6275rem;
+	left:7.2rem;
 	/* background:red; */
 	line-height: 1.78125rem;
 }

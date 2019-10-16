@@ -18,7 +18,7 @@
 									模型
 								</div>
 								<div class="tuzhi1" @click="fntz1" :style="tz1">
-									<i class="tuzhiimg1"><img :src="tztb1" alt="" /></i>
+									<i class="tuzhiimg1"><img :src="tztb1" alt="" style="vertical-align: bottom;"/></i>
 									图纸
 								</div>
 								<div class="cailiao1" @click="fncl1" :style="cl1">
@@ -39,7 +39,7 @@
 									模型
 								</div>
 								<div class="tuzhi2" @click="fntz2" :style="tz2">
-									<i class="tuzhiimg2"><img :src="tztb2" alt="" /></i>
+									<i class="tuzhiimg2"><img :src="tztb2" alt="" style="vertical-align: bottom;"/></i>
 									图纸
 								</div>
 								<div class="cailiao2" @click="fncl2" :style="cl2">
@@ -672,13 +672,13 @@ li {
 {
 	width:3.5625rem;
 	height:0.9375rem;
-	/* background:plum; */
+/* 	background:plum; */
 	padding-top:0.5625rem;
 	font-size:0.5rem;
 }
 .moxinimg1 {
-	width:0.625rem;
-	height:0.65625rem;
+	width:0.54rem;
+	height:0.63rem;
 	display: inline-block;
 	/* background: url(../../assets/image/moxin.png) no-repeat; */
 	/* background-size: 22px 22px;
@@ -690,8 +690,8 @@ li {
 	height: 100%;
 }
 .tuzhiimg1 {
-	width:0.625rem;
-	height:0.59375rem;
+	width:0.54rem;
+	height:0.63rem;
 	display: inline-block;
 	/* 	background: url(../../assets/image/tz@2x.png) no-repeat; */
 	/* background-size: 22px 22px;
@@ -703,8 +703,8 @@ li {
 	height: 100%;
 }
 .cailiaoimg1 {
-	width:0.625rem;
-	height:0.59375rem;
+	width:0.55rem;
+	height:0.63rem;
 	display: inline-block;
 	/* 	background: url(../../assets/image/cl@2x.png) no-repeat; */
 	/* background-size: 22px 22px;
@@ -738,7 +738,7 @@ li {
 	font-size:0.5rem;
 }
 .moxinimg2 {
-	width:0.625rem;
+	width:0.54rem;
 	height:0.59375rem;
 	display: inline-block;
 	/* 	background: url(../../assets/image/moxin.png) no-repeat; */
@@ -751,8 +751,8 @@ li {
 	height: 100%;
 }
 .tuzhiimg2 {
-	width:0.625rem;
-	height:0.59375rem;
+	width:0.54rem;
+	height:0.63rem;
 	display: inline-block;
 	/* background: url(../../assets/image/tz@2x.png) no-repeat; */
 	/* background-size: 22px 22px;
@@ -764,8 +764,8 @@ li {
 	height: 100%;
 }
 .cailiaoimg2 {
-	width:0.625rem;
-	height:0.59375rem;
+	width:0.55rem;
+	height:0.63rem;
 	display: inline-block;
 	/* background: url(../../assets/image/cl@2x.png) no-repeat; */
 	/* background-size: 22px 22px;
@@ -777,8 +777,8 @@ li {
 	height: 100%;
 }
 .pengzhuang2 {
-	width:0.625rem;
-	height:0.59375rem;
+	width:0.55rem;
+	height:0.63rem;
 	display: inline-block;
 	/* background: url(../../assets/image/pz.png) no-repeat; */
 	/* background-size: 22px 22px;
