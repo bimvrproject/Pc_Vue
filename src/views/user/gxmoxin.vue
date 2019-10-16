@@ -32,20 +32,23 @@
 				<!-- 下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fngxmxsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+				<!-- 	@mouseleave="fnhsqlev()" -->
+					<span class="el-dropdown-link" @click="fngxmxsq" @mouseenter="fnhsq()">
 						<img class="sqimggm" :src="hsq"/>
 						<i class="sqgm" :style="hsqcolor">社区</i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" @mouseleave="fnhbjlev()">
+				<!-- 	@mouseleave="fnhbjlev()" -->
+					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" >
 						<img class="bjimggm" :src="bjtu" />
 						<i class="bjgm" :style="bjcolor">编辑</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmbj" alt="" style="width: 100%;height: 100%;"></i>
+					  <i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmbj" alt="" style="width: 100%;height: 100%;"></i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnfabug()" @mouseenter="fnhfb()" @mouseleave="fnhfblev()">
+					 <!-- @mouseleave="fnhfblev()" -->
+					<span class="el-dropdown-link" @click="fnfabug()" @mouseenter="fnhfb()">
 						<img class="bjimggm" :src="fbtu" />
 						<i class="bjgm" :style="fbcolor">发布</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmfb" alt="" style="width: 100%;height: 100%;"></i>
@@ -53,7 +56,8 @@
 				</el-dropdown>
 			<!-- 	下拉菜单---社区--结束
 				下拉菜单---更多 -->
-				<div class="moretopcomgxmx" style="height:0.93125rem;" @mouseenter="fnmorgxmx()" @mouseleave="fnmorlevgxmx()">
+			<!-- 	@mouseleave="fnmorlevgxmx()" -->
+				<div class="moretopcomgxmx" style="height:0.93125rem;" @mouseenter="fnmorgxmx()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
 					   <span class="hgmorecomgxmx">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
 						 vertical-align: middle;margin-left:0.16rem;">
@@ -393,6 +397,12 @@ export default {
 		// 划过更多
 		fnmorgxmx(){
 			this.moretb = require('../../assets/image/moress.png');
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333'
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
 		},
 		// 移出更多
 		 fnmorlevgxmx(){
@@ -401,17 +411,27 @@ export default {
 		// 移入社区的时候
 		fnhsq(){
 			this.hsq = require('../../assets/image/shequ.png')
-			this.hsqcolor = "color:#2180ED"
+			this.hsqcolor = "color:#2180ED";
+			this.moretb = require('../../assets/image/more@2x.png');
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333'
 		},
 		// 移出社区的时候
 		fnhsqlev(){
 			this.hsq = require('../../assets/image/sq@2x.png'),
-			this.hsqcolor = "color:#333333"
+			this.hsqcolor = "color:#333333";
 			},
 		// 移入编辑
 		fnhbj(){
 			this.bjtu = require('../../assets/image/bjblue.png');
-			this.bjcolor = 'color:#2180ED'
+			this.bjcolor = 'color:#2180ED';
+			this.fbtu = require('../../assets/image/fbnav.png');
+			this.fbcolor = 'color:#333333';
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
+			this.moretb = require('../../assets/image/more@2x.png');
 			},
 		// 移出编辑
 		fnhbjlev(){
@@ -421,7 +441,12 @@ export default {
 		// 移入发布
 		fnhfb(){
 			this.fbtu = require('../../assets/image/fbblue.png');
-			this.fbcolor = 'color:#2180ED'
+			this.fbcolor = 'color:#2180ED';
+			this.bjtu = require('../../assets/image/bianji.png'),
+			this.bjcolor = 'color:#333333';
+			this.hsq = require('../../assets/image/sq@2x.png'),
+			this.hsqcolor = "color:#333333";
+			this.moretb = require('../../assets/image/more@2x.png');
 		},
 		// 移出发布
 		fnhfblev(){

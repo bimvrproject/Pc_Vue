@@ -11,7 +11,7 @@
 				<!-- 	<h4 class="xmmc" style="background:red;">{{item.projectName}}</h4>
 					<span class="start">起始时间:{{ dateFormat(item.createTime) }}</span>
 					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span> -->
-					<span  class="xmccs">新建项目</span>
+					<span  class="xmccs">{{item.projectName}}</span>
 					<span class="starts">起始时间:{{ dateFormat(item.createTime) }}</span>
 					<span class="ends">竣工时间:{{ dateFormat(item.endTime) }}</span>
 				</div>
