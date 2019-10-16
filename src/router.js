@@ -185,6 +185,14 @@ export default new Router({
 			},
 			component: () => import("./views/user/edit.vue")
 		},
+		// {
+		// 	path: "/free",
+		// 	name: "/free",
+		// 	meta: {
+		// 		
+		// 	},
+		// 	component: () => import("./views/user/free.vue")
+		// },
 	]
 	
 });
