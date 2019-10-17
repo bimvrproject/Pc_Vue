@@ -35,7 +35,7 @@
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 				<!-- 	@mouseleave="fnhsqlev()" -->
-					<span class="el-dropdown-link" @click="fnsqtit">
+					<span class="el-dropdown-link" @click="fnsqtit" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()" >
 						<img class="sqimg" :src="hsq" />
 						<i class="sq" :style="hsqcolor">社区</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -43,7 +43,7 @@
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhbjlev()" -->
-					<span class="el-dropdown-link" @click="ceyins()">
+					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()" >
 						<img class="bjimg" :src="bjtu" />
 						<i class="bj" :style="bjcolor">编辑</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -54,7 +54,7 @@
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhfblev()" -->
-					<span class="el-dropdown-link" @click="fnfabu()">
+					<span class="el-dropdown-link" @click="fnfabu()"  @mouseenter="fnhfb()">
 						<img class="bjimg" :src="fbtu" />
 						<i class="bj" :style="fbcolor">发布</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -258,6 +258,7 @@
 				backs:false,
 				// 动画中自由拍摄组件得显隐
 				frees:true,
+				// 轮播中的大图的左右按钮
 				qianjin:false,
 				houtui:false
 			};
@@ -671,58 +672,58 @@
 				this.backs = false
 			},
 			// 移入社区的时候
-			// fnhsq(){
-			// 	this.hsq = require('../../assets/image/shequ.png')
-			// 	this.hsqcolor = "color:#2180ED";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// 	this.bjtu = require('../../assets/image/bianji.png'),
-			// 	this.bjcolor = 'color:#333333';
-			// 	this.fbtu = require('../../assets/image/fbnav.png');
-			// 	this.fbcolor = 'color:#333333'
-			// 		this.goos = false;
-			// 	this.backs = false
-			// },
+			fnhsq(){
+				this.hsq = require('../../assets/image/shequ.png')
+				this.hsqcolor = "color:#2180ED";
+				this.moretb = require('../../assets/image/more@2x.png');
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333';
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333'
+					this.goos = false;
+				this.backs = false
+			},
 			// 移出社区的时候
-			// fnhsqlev(){
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 		this.goos = false;
-			// 	this.backs = false				
-			//  },
+			fnhsqlev(){
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+					this.goos = false;
+				this.backs = false				
+			 },
 			// 移入编辑
-			// fnhbj(){
-			// 	this.bjtu = require('../../assets/image/bjblue.png');
-			// 	this.bjcolor = 'color:#2180ED';
-			// 	this.fbtu = require('../../assets/image/fbnav.png');
-			// 	this.fbcolor = 'color:#333333';
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// 		this.goos = false;
-			// 	this.backs = false
-			// 	},
+			fnhbj(){
+				this.bjtu = require('../../assets/image/bjblue.png');
+				this.bjcolor = 'color:#2180ED';
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333';
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+				this.moretb = require('../../assets/image/more@2x.png');
+					this.goos = false;
+				this.backs = false
+				},
 			// 移出编辑
-			// fnhbjlev(){
-			// 	this.bjtu = require('../../assets/image/bianji.png'),
-			// 	this.bjcolor = 'color:#333333'
-			// 	this.goos = false;
-			// 	this.backs = false
-			// },
+			fnhbjlev(){
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333'
+				this.goos = false;
+				this.backs = false
+			},
 			// 移入发布
-			// fnhfb(){
-			// 	this.fbtu = require('../../assets/image/fbblue.png');
-			// 	this.fbcolor = 'color:#2180ED';
-			// 	this.bjtu = require('../../assets/image/bianji.png'),
-			// 	this.bjcolor = 'color:#333333';
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// },
+			fnhfb(){
+				this.fbtu = require('../../assets/image/fbblue.png');
+				this.fbcolor = 'color:#2180ED';
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333';
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+				this.moretb = require('../../assets/image/more@2x.png');
+			},
 			// 移出发布
-			// fnhfblev(){
-			// 	this.fbtu = require('../../assets/image/fbnav.png');
-			// 	this.fbcolor = 'color:#333333'
-			// }
+			fnhfblev(){
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333'
+			}
 		}
 	};
 </script>
