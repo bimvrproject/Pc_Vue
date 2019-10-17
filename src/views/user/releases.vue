@@ -365,6 +365,9 @@ export default {
 		},
 		//点击动画
 		animation() {
+			// this.$router.push('/donghua')
+			// this.$eventbus.$emit('cgcg');
+			// this.$eventbus.$emit('fbswiperss');
 			// alert(131)
 				// this.$eventbus.$emit('fbswipersfree');
 				// this.$eventbus.$emit('fbswipers');
