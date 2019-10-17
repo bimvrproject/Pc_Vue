@@ -176,9 +176,9 @@ export default {
 		//初始化显示exceltohtml
 		axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
 			if(result.data!=null){
+				this.jzchialiaoshow=false;
 				axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
 					this.urladdress=result.data;
-					this.jzchialiaoshow=false;
 				})
 			}
 		})

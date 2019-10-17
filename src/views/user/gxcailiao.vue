@@ -189,11 +189,11 @@ export default {
 		this.$eventbus.$emit('shows');
 		//初始化显示exceltohtml
 		var projectid=sessionStorage.getItem("projectid");
-		axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+		axios.get(api.Addressurl+"/"+projectid+"/"+2).then(result=>{
 			if(result.data!=null){
+				this.gzchialiaoshow=false;
 				axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
 					this.urladdress=result.data;
-					this.gzchialiaoshow=false;
 				})
 			}
 		})
@@ -206,7 +206,7 @@ export default {
 		//上传成功后的事件 显示exceltohtml
 		onFileSuccess(){
 			var projectid=sessionStorage.getItem("projectid");
-			axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+			axios.get(api.Addressurl+"/"+projectid+"/"+2).then(result=>{
 				if(result.data!=null){
 					axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
 						this.urladdress=result.data;
