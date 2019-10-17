@@ -14,7 +14,6 @@
 				</div>
 			</li>
 		</ul>
-   <!-- <Newxm v-show="xmxinayin"></Newxm> -->
   </div>
 </template>
 <script>

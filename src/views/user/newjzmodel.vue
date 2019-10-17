@@ -147,7 +147,6 @@
 				  <div class="swiper-button-next swiper-button-white "></div>
 				  <div class="swiper-button-prev swiper-button-white"></div>
 				</div>
-
 						 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" v-show="ggg">
 					   <div class="swiper-wrapper" v-show="swiperbottom" >
 					     <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
@@ -432,7 +431,7 @@
 				// if(this.dgarrs.includes(i)){
 				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-				// 
+				//
 				// }else{
 				// 	this.dgarrs.push(i);
 				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
@@ -484,7 +483,7 @@
 					this.dgarrs.push(i);
 					sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
 				}
-				
+
 			},
 			// 点击swiper头上的关闭
 			fng(index){
@@ -700,7 +699,7 @@
 				this.hsq = require('../../assets/image/sq@2x.png'),
 				this.hsqcolor = "color:#333333";
 					this.goos = false;
-				this.backs = false				
+				this.backs = false
 			 },
 			// 移入编辑
 			fnhbj(){
@@ -849,7 +848,7 @@
 	.moretopcomnj:hover .shouye{
 		 transform:rotate(180deg);
 	}
-	
+
 	.jzmodelmore {
 		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
@@ -1108,7 +1107,7 @@
 		color: #ffffff !important;
 		padding: 0.03125rem 0.25rem !important;
 	}
-	
+
 	.swiper-slidetop {
 		background: paleturquoise;
 		width: 47.46875rem;

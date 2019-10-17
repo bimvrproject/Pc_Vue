@@ -33,7 +33,8 @@ export default {
 			xianyin: false,
 			tian: true,
 			// 删除按钮部分的背景色
-			isActive:true
+			isActive:true,
+			projectListsss:[]
 		};
 	},
 	components: {
@@ -53,20 +54,30 @@ export default {
 			this.isActive = null;
 		},
 		fns() {
-			this.projectLists.unshift(0);
+			axios.post(api.Addprojects).then(result=>{
+				console.log(result.data)
+				this.projectLists.unshift(0);
+				axios.get(api.BindingProject).then(result => {
+					this.projectLists = result.data.projectList;
+				});
+			})
 		},
 		fnt(index) {
 			//点击当前创建页面的时候点开填写项目表，同时上边的创建项目消失
-			if (this.projectLists[index].projectId == undefined) {
-				this.xmxinayin = true;
-				this.$router.push("/information");
-				this.$eventbus.$emit('shows');
-			} else {
-				var id = this.projectLists[index].projectId;
-				sessionStorage.setItem('projectid', id);
-				this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
-				// this.$router.push("/newjzmodel")
-			}
+			// if (this.projectLists[index].projectId == undefined) {
+			// 	var id = this.projectLists[index].projectId;
+			// 	this.xmxinayin = true;
+			// 	this.$router.push("/information");
+			// 	this.$eventbus.$emit('shows');
+			// } else {
+			// 	var id = this.projectLists[index].projectId;
+			// 	sessionStorage.setItem('projectid', id);
+			// 	this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
+			// 	// this.$router.push("/newjzmodel")
+			// }
+			var id = this.projectLists[index].projectId;
+			sessionStorage.setItem('projectid', id);
+			this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
 		},
 		dateFormat: function(time) {
 			var date = new Date(time);

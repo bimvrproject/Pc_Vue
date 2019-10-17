@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="zonggxcl"><iframe :src="projectmodel" frameborder="0" style="width:100%;height:100%;"></iframe></div>
+		<div class="zonggxcl"><iframe :src="urladdress" frameborder="0" style="width:75%;height:100%;"></iframe></div>
 		<div class="lefttopjzm">
 			<div class="leftjzm">
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
@@ -79,7 +79,7 @@
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;line-height:0.7575rem;float:left;">材料</span>
 			</div>
 			<!-- 中间部分上传 -->
-			<div class="gxcldraw">
+			<div class="gxcldraw" v-show="gzchialiaoshow">
 				<!-- 中间图纸的图片 -->
 				<div class="gxcldrawtop"><img src="../../assets/image/clsc.png" alt="" /></div>
 				<!-- 中间上传图纸的汉字 -->
@@ -107,10 +107,13 @@ import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
+import addressurls from '@/api/ip.js';
 // import Zheader from './header';
 export default {
 	data() {
 		return {
+			urladdress:"", //exceltohtml的地址
+			gzchialiaoshow:true, //显示上传功能
 			title: '18306846355',
 			model: '',
 			projectmodel: '',
@@ -159,18 +162,17 @@ export default {
 		Releases
 	},
 	created() {
-		//服务器IP
-		var addressurls = 'http://36.112.65.110';
-		var pipemodelid = this.$route.params.pipemodelids;
-		if (pipemodelid != '' && pipemodelid != null && pipemodelid != undefined) {
-			axios.get(api.ShowModel + '/2' + '/' + pipemodelid).then(result => {
-				if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
-					this.fileshow = false;
-				}
-				this.model = result.data.url;
-				this.projectmodel = addressurls + this.model;
-			});
-		}
+		// var pipemodelid = this.$route.params.pipemodelids;
+		// if (pipemodelid != '' && pipemodelid != null && pipemodelid != undefined) {
+		// 	axios.get(api.ShowModel + '/2' + '/' + pipemodelid).then(result => {
+		// 		if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
+		// 			this.fileshow = false;
+		// 		}
+		// 		this.model = result.data.url;
+		// 		console.log(this.model+"//-")
+		// 		this.projectmodel = addressurls.url + this.model;
+		// 	});
+		// }
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -185,13 +187,34 @@ export default {
 			this.xianyin = true;
 		});
 		this.$eventbus.$emit('shows');
-		//管线模型
+		//初始化显示exceltohtml
+		var projectid=sessionStorage.getItem("projectid");
+		axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+			if(result.data!=null){
+				axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
+					this.urladdress=result.data;
+					this.gzchialiaoshow=false;
+				})
+			}
+		})
 	},
 	mounted() {
 		this.$eventbus.$emit('cezhan2', 'cailiao');
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		//上传成功后的事件 显示exceltohtml
+		onFileSuccess(){
+			var projectid=sessionStorage.getItem("projectid");
+			axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+				if(result.data!=null){
+					axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
+						this.urladdress=result.data;
+						this.gzchialiaoshow=false;
+					})
+				}
+			})
+		},
 		// 点击联系我们
 		fnabout() {
 			this.$eventbus.$emit('abouts');
@@ -226,12 +249,12 @@ export default {
 		fn4() {
 			this.loginWindow = 'display:block';
 		},
-		//上传管道模型保存到数据库
-		onFileSuccess: function() {
-			axios.post(api.ShowPipe).then(result => {
-				console.log('----------' + result.data);
-			});
-		},
+		// //上传管道模型保存到数据库
+		// onFileSuccess: function() {
+		// 	axios.post(api.ShowPipe).then(result => {
+		// 		console.log('----------' + result.data);
+		// 	});
+		// },
 		// 调用隐藏建筑模型,管线综合,设备监控
 		ceyins() {
 			this.$eventbus.$emit('ceyin');
