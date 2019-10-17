@@ -125,8 +125,7 @@
 		 v-show="abouts" @click="fnaboutmark"></div>
 		 		<!-- 图片展示轮播图 -->
 		  <!-- Swiper -->
-			<!-- 	<Free v-show="frees"></Free> -->
-				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;height:20.5rem;" v-show="topswper">
+				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
 				  <div class="swiper-wrapper"  v-show="swiperxy">
 				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
 						 <img src="../../assets/image/t4.jpg" alt="">
@@ -134,44 +133,36 @@
 							 @click.stop="fng(index)">
 						 </span>
 						 </div>
-				   <!-- <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/u91_02.png" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/disan.png" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/diyi.png" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t1.jpg" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t2.jpg" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t3.jpg" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t5.jpg" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t6.jpg" alt=""></div>
-				    <div class="swiper-slide swiper-slidetop"><img src="../../assets/image/t7.jpg" alt=""></div> -->
 				  </div>
-				  <div class="swiper-button-next swiper-button-white "></div>
-				  <div class="swiper-button-prev swiper-button-white"></div>
+				  <div class="swiper-button-next swiper-button-white " v-show="qianjin"></div>
+				  <div class="swiper-button-prev swiper-button-white" v-show="houtui"></div>
 				</div>
-						 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" v-show="ggg">
-					   <div class="swiper-wrapper" v-show="swiperbottom" >
-					     <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
-											<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-										display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
-											 @click.stop="fnxz(index)">
-											</span>
-											<img src="../../assets/image/t4.jpg" alt="">
-											<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
-											<div class="xbz" v-show="aaaaaa === index">
-												<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
-													发布
-												</span>
-												<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
-													 全选
-												</span>
-												<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
-												   取消选择
-												</span>
-											</div>
-											</div>
-					   </div>
-									<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
-					  <div class="swiper-button-next backs" v-show="backs"></div> -->
-					 </div>	
+		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
+		    <div class="swiper-wrapper" v-show="swiperbottom" >
+		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
+						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
+					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
+						 @click.stop="fnxz(index)">
+						</span>
+						<img src="../../assets/image/t4.jpg" alt="">
+						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
+						<div class="xbz" v-show="aaaaaa === index">
+							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
+								发布
+							</span>
+							<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
+								 全选
+							</span>
+							<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+							   取消选择
+							</span>
+						</div>
+						</div>
+		    </div>
+				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
+       <div class="swiper-button-next backs" v-show="backs"></div> -->
+		  </div>	
+		
 	</div>
 </template>
 <script>
@@ -183,7 +174,6 @@
 	import Xunilogo from './xunilogo';
 	import axios from 'axios';
 	import Releases from './releases';
-	// import Free from './free';
 	import addressurls from '@/api/ip.js';
 	import $ from 'jquery'
 	$(function(){
@@ -198,9 +188,7 @@
 	export default {
 		data() {
 			return {
-				ggg:true,
-				abc:false,
-    		sdsds:false,
+				sdsds:false,
 				aaaaaa:-1,
 				dddd:false,
 				// 发布轮播图中最下边鼠标右击事件控制的显隐
@@ -253,7 +241,6 @@
 				swiperxy:false,
 				// 轮播下边隐藏
 				swiperbottom:false,
-				xbswiperbtom:false,
 				//轮播下边的最大背景图的显隐
 				swipersbj:"background:rgba(225,225,225,0)",
 				// 社区默认状态
@@ -270,15 +257,15 @@
 				goss:false,
 				backs:false,
 				// 动画中自由拍摄组件得显隐
-				frees:true
+				frees:true,
+				qianjin:false,
+				houtui:false
 			};
 		},
 		components: {
 			Newjian,
 			Xunilogo,
 			Releases,
-			// Free
-			// Zheader
 		},
 		created() {
 			// 创建点击动画得时候轮播图出现
@@ -288,23 +275,23 @@
 			// 创建点击发布的时候轮播图出现
 				this.$eventbus.$on('fbswipers', () => {
 				this.swiperbottom = true;
-				this.xbswiperbtom = true;
 				this.topswper = true;
-				this.ggg = true;
 				this.	swipersbj = 'background:#EEEEEE';
 				this.goss = true;
-				this.backs = true
+				this.backs = true;
+				// this.qianjin = true;
+				// this.houtui = true;
 			});
 			// 创建点击发布的时候轮播图消失
 				this.$eventbus.$on('fbswiperss', () => {
 				this.swiperbottom = false;
-				this.xbswiperbtom = false;
 				this.swiperxy = false;
 				this.topswper = false,
-				this.ggg = false;
 				this.	swipersbj = 'background:rgba(225,225,225,0)'
 				this.goos = false;
-				this.backs = false
+				this.backs = false;
+				this.houtui = false;
+				this.qinajin = false
 			});
 			this.$eventbus.$on('ceyinfb', ite => {
 				if (ite == "fabu") {
@@ -403,7 +390,7 @@
 			  watchSlidesVisibility: true,
 			  watchSlidesProgress: true,
 			});
-			var galleryThumbss= new Swiper('.gallery-top', {
+			 new Swiper('.gallery-top', {
 			  spaceBetween: 10,
 			  navigation: {
 			    nextEl: '.swiper-button-next',
@@ -415,9 +402,6 @@
 			});
 		},
 		methods: {
-			fnfff(){
-				alert(1)
-			},
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
 				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
@@ -431,7 +415,7 @@
 				// if(this.dgarrs.includes(i)){
 				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-				//
+				// 
 				// }else{
 				// 	this.dgarrs.push(i);
 				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
@@ -483,18 +467,22 @@
 					this.dgarrs.push(i);
 					sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
 				}
-
+				
 			},
 			// 点击swiper头上的关闭
 			fng(index){
 				this.swiperxy = false,
-				this.topswper = true
+				this.topswper = true;
+				this.qianjin = false;
+				this.houtui = false
 			},
 			// 点击swiper下边的
 			fnswipers(){
 				this.swiperxy = true,
 				this.topswper = true,
-				this.aaaaaa = null
+				this.aaaaaa = null;
+				this.qianjin = true;
+				this.houtui = true
 				// this.dddd = false
 				},
 			// 点击新建项目
@@ -699,7 +687,7 @@
 				this.hsq = require('../../assets/image/sq@2x.png'),
 				this.hsqcolor = "color:#333333";
 					this.goos = false;
-				this.backs = false
+				this.backs = false				
 			 },
 			// 移入编辑
 			fnhbj(){
@@ -848,7 +836,7 @@
 	.moretopcomnj:hover .shouye{
 		 transform:rotate(180deg);
 	}
-
+	
 	.jzmodelmore {
 		background: rgba(225, 225, 225, 0.3);
 		position: absolute;
@@ -916,7 +904,7 @@
 	.zongjm {
 		width: 59.9375rem;
 		height: 33.65625rem;
-		/* background:green; */
+		background:green;
 		/* background: url(../../assets/image/bjt.jpg);
 	background-repeat: no-repeat;
 	background-size:100% 100%; */
@@ -1107,7 +1095,7 @@
 		color: #ffffff !important;
 		padding: 0.03125rem 0.25rem !important;
 	}
-
+	
 	.swiper-slidetop {
 		background: paleturquoise;
 		width: 47.46875rem;

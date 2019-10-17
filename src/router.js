@@ -186,13 +186,12 @@ export default new Router({
 			component: () => import("./views/user/edit.vue")
 		},
 		// {
-		// 	path: "/free",
-		// 	name: "/free",
+		// 	path: "/donghua",
+		// 	name: "/donghua",
 		// 	meta: {
 		// 		
 		// 	},
-		// 	component: () => import("./views/user/free.vue")
+		// 	component: () => import("./views/user/donghua.vue")
 		// },
 	]
-	
 });
