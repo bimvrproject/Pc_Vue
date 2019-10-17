@@ -203,7 +203,7 @@ export default {
 			},
 			newarrs:[0,0,0,0,0],
 			// swiper上边部分
-			swiperxy:false,
+			swiperxy:true,
 			// 轮播下边隐藏
 			swiperbottomgx:false,
 			//轮播下边的最大背景图的显隐
@@ -281,7 +281,7 @@ export default {
 		//管线模型
 	},
 	mounted() {
-		this.$eventbus.$emit('fbswiperssgx');
+		this.$eventbus.$emit('fbswipersgx');
 		this.$eventbus.$emit('cezhan2', 'moxin');
 		this.$eventbus.$emit('hometop');
 		 var galleryThumbs = new Swiper('.gallery-thumbs', {
