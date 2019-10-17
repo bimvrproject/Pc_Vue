@@ -127,8 +127,8 @@
 		  <!-- Swiper -->
 				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
 				  <div class="swiper-wrapper"  v-show="swiperxy">
-				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
-						 <img src="../../assets/image/t4.jpg" alt="">
+				   <div class="swiper-slide swiper-slidetop" v-for="(item1, index) in Printscreenimages" :key="index" style="position:relative;">
+						 <img src="" alt="">
 						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 							 @click.stop="fng(index)">
 						 </span>
@@ -139,12 +139,12 @@
 				</div>
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
-		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
+		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item2, index) in Printscreenimages" :key="index" @contextmenu.prevent="fnyouji(index)">
 						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
 					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
 						 @click.stop="fnxz(index)">
 						</span>
-						<img src="../../assets/image/t4.jpg" alt="">
+						<img src="" alt="">
 						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 						<div class="xbz" v-show="aaaaaa === index">
 							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
@@ -236,7 +236,7 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-				newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -259,7 +259,9 @@
 				// 动画中自由拍摄组件得显隐
 				frees:true,
 				qianjin:false,
-				houtui:false
+				houtui:false,
+				Printscreen:[],		//接收截图的图片
+				Printscreenimages:[],	//接收截图的图片
 			};
 		},
 		components: {
@@ -268,6 +270,7 @@
 			Releases,
 		},
 		created() {
+			
 			// 创建点击动画得时候轮播图出现
 		   	this.$eventbus.$on('fbswipersfree', () => {
 		   this.frees = true
@@ -327,11 +330,10 @@
 			this.$eventbus.$emit('shows');
 
 			// 初始化展示模型
-			var id = this.$route.params.project_id;
-			console.log(id)
-			if (id != '' && id != null && id != undefined) {
-				axios.get(api.ShowModel + '/1' + '/' + id).then(result => {
-					console.log(result.data.modelId+"+++")
+			//建筑模型的id
+			var projectidss=sessionStorage.getItem("projectid");
+			if (projectidss != '' && projectidss != null && projectidss != undefined) {
+				axios.get(api.ShowModel + '/1' + '/' + projectidss).then(result => {
 					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
 						"" && result.data.url != undefined || result.data.projectId != undefined) {
 						this.fileshow = false;
@@ -342,35 +344,46 @@
 						this.projectmodel = addressurls.url + this.model;
 					}
 				});
+				//绑定截图的照片
+				axios.get(api.SelectPrintscreen+"/"+projectidss).then(result => {
+					
+					for(var i=0;i<result.data.printscreenslist.length;i++){
+						this.Printscreen = result.data.printscreenslist[i].images;
+						this.Printscreenimages="http://192.168.6.152:8080/" + this.Printscreen;
+						console.log(this.Printscreenimages)
+					}
+					
+				})
 			}
 			// 点击建筑结构 和模型展示模型
-			var pro_id = this.$route.params.project_modelid;
-			sessionStorage.setItem("proid",pro_id)
-			if (pro_id != '' && pro_id != null && pro_id != undefined) {
-				axios.get(api.ShowModel + '/1' + '/' + pro_id).then(result => {
-					if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
-						"" && result.data.url != undefined || result.data.projectId != undefined) {
-						this.fileshow = false;
-					}
-					if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
-						this.fileshow = false;
-						this.model = result.data.url;
-						this.projectmodel = addressurls.url + this.model;
-					}
-				});
-			}
+			// var pro_id = this.$route.params.project_modelid;
+			// alert(pro_id)
+			// sessionStorage.setItem("proid",pro_id)
+			// if (projectidss != '' && projectidss != null && projectidss != undefined) {
+			// 	axios.get(api.ShowModel + '/1' + '/' + projectidss).then(result => {
+			// 		if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
+			// 			"" && result.data.url != undefined || result.data.projectId != undefined) {
+			// 			this.fileshow = false;
+			// 		}
+			// 		if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
+			// 			this.fileshow = false;
+			// 			this.model = result.data.url;
+			// 			this.projectmodel = addressurls.url + this.model;
+			// 		}
+			// 	});
+			// }
 
 			let mythis = this;
 			this.$http.get(api.GetAllList).then(function(response) {
 				mythis.dataList = response;
-				console.log(this.dataList);
+				// console.log(this.dataList);
 			}).catch(function(err) {
 				console.log(err)
 			})
 
 			this.$http.get(api.GetList).then(function(response) {
 				mythis.exeList = response;
-				console.log(mythis.exeList);
+				// console.log(mythis.exeList);
 			}).catch(function(err) {
 				console.log(err)
 			})
@@ -428,7 +441,6 @@
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
 				this.dgarrs.length = this.newarrs.length;
 				if(this.dgarrs.length = this.newarrs,length){
-					alert(1)
 				}
 				// alert(this.dgarrs.length)
 			   // this.dgarrs = true

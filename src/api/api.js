@@ -41,5 +41,6 @@ const api = {
 	Uploadgxprice:version+"/Upload/uploadgxprice"	,//上传管道图纸
 	Exceltohtml:version+"/excel/exceltohtml",		//展示excel清单
 	Addressurl:version+"/excel/addressurl",//查询清单的模型id项目id和登录人展示清单的位置
+	SelectPrintscreen:version+"/model/selectPrintscreen",		//查询截图表展示到页面
 };
 export default api;
