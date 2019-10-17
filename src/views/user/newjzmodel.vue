@@ -125,7 +125,8 @@
 		 v-show="abouts" @click="fnaboutmark"></div>
 		 		<!-- 图片展示轮播图 -->
 		  <!-- Swiper -->
-				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
+			<!-- 	<Free v-show="frees"></Free> -->
+				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;height:20.5rem;" v-show="topswper">
 				  <div class="swiper-wrapper"  v-show="swiperxy">
 				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
 						 <img src="../../assets/image/t4.jpg" alt="">
@@ -146,32 +147,32 @@
 				  <div class="swiper-button-next swiper-button-white "></div>
 				  <div class="swiper-button-prev swiper-button-white"></div>
 				</div>
-		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
-		    <div class="swiper-wrapper" v-show="swiperbottom" >
-		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
-						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
-						 @click.stop="fnxz(index)">
-						</span>
-						<img src="../../assets/image/t4.jpg" alt="">
-						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
-						<div class="xbz" v-show="aaaaaa === index">
-							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
-								发布
-							</span>
-							<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
-								 全选
-							</span>
-							<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
-							   取消选择
-							</span>
-						</div>
-						</div>
-		    </div>
-				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
-       <div class="swiper-button-next backs" v-show="backs"></div> -->
-		  </div>	
-			<Free v-show="frees"></Free>
+
+						 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" v-show="ggg">
+					   <div class="swiper-wrapper" v-show="swiperbottom" >
+					     <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
+											<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
+										display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
+											 @click.stop="fnxz(index)">
+											</span>
+											<img src="../../assets/image/t4.jpg" alt="">
+											<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
+											<div class="xbz" v-show="aaaaaa === index">
+												<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
+													发布
+												</span>
+												<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
+													 全选
+												</span>
+												<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+												   取消选择
+												</span>
+											</div>
+											</div>
+					   </div>
+									<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
+					  <div class="swiper-button-next backs" v-show="backs"></div> -->
+					 </div>	
 	</div>
 </template>
 <script>
@@ -183,7 +184,7 @@
 	import Xunilogo from './xunilogo';
 	import axios from 'axios';
 	import Releases from './releases';
-	import Free from './free';
+	// import Free from './free';
 	import addressurls from '@/api/ip.js';
 	import $ from 'jquery'
 	$(function(){
@@ -198,7 +199,9 @@
 	export default {
 		data() {
 			return {
-				sdsds:false,
+				ggg:true,
+				abc:false,
+    		sdsds:false,
 				aaaaaa:-1,
 				dddd:false,
 				// 发布轮播图中最下边鼠标右击事件控制的显隐
@@ -251,6 +254,7 @@
 				swiperxy:false,
 				// 轮播下边隐藏
 				swiperbottom:false,
+				xbswiperbtom:false,
 				//轮播下边的最大背景图的显隐
 				swipersbj:"background:rgba(225,225,225,0)",
 				// 社区默认状态
@@ -274,18 +278,20 @@
 			Newjian,
 			Xunilogo,
 			Releases,
-			Free
+			// Free
 			// Zheader
 		},
 		created() {
 			// 创建点击动画得时候轮播图出现
-		   // 	this.$eventbus.$on('fbswipersfree', () => {
-		   // this.frees = true
-		   // });
+		   	this.$eventbus.$on('fbswipersfree', () => {
+		   this.frees = true
+		   });
 			// 创建点击发布的时候轮播图出现
 				this.$eventbus.$on('fbswipers', () => {
 				this.swiperbottom = true;
+				this.xbswiperbtom = true;
 				this.topswper = true;
+				this.ggg = true;
 				this.	swipersbj = 'background:#EEEEEE';
 				this.goss = true;
 				this.backs = true
@@ -293,8 +299,10 @@
 			// 创建点击发布的时候轮播图消失
 				this.$eventbus.$on('fbswiperss', () => {
 				this.swiperbottom = false;
+				this.xbswiperbtom = false;
 				this.swiperxy = false;
 				this.topswper = false,
+				this.ggg = false;
 				this.	swipersbj = 'background:rgba(225,225,225,0)'
 				this.goos = false;
 				this.backs = false
@@ -396,7 +404,7 @@
 			  watchSlidesVisibility: true,
 			  watchSlidesProgress: true,
 			});
-			 new Swiper('.gallery-top', {
+			var galleryThumbss= new Swiper('.gallery-top', {
 			  spaceBetween: 10,
 			  navigation: {
 			    nextEl: '.swiper-button-next',
@@ -408,6 +416,9 @@
 			});
 		},
 		methods: {
+			fnfff(){
+				alert(1)
+			},
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
 				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"

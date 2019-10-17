@@ -365,6 +365,7 @@ export default {
 		},
 		//点击动画
 		animation() {
+			// alert(131)
 				// this.$eventbus.$emit('fbswipersfree');
 				// this.$eventbus.$emit('fbswipers');
 			// 点击动画得时候图纸中得内容消失
