@@ -33,7 +33,8 @@ export default {
 			xianyin: false,
 			tian: true,
 			// 删除按钮部分的背景色
-			isActive:true
+			isActive:true,
+			projectListsss:[]
 		};
 	},
 	components: {
@@ -56,6 +57,9 @@ export default {
 			axios.post(api.Addprojects).then(result=>{
 				console.log(result.data)
 				this.projectLists.unshift(0);
+				axios.get(api.BindingProject).then(result => {
+					this.projectLists = result.data.projectList;
+				});
 			})
 		},
 		fnt(index) {

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="zongjc">
-			<!-- <iframe src="https://www.baidu.com/s?tn=news&rtt=1&bsst=1&wd=%E9%A6%99%E6%B8%AF&cl=2&origin=ps" frameborder="0" style="width:100%;height:100%;"></iframe> -->
+			<iframe :src="urladdress" frameborder="0" style="width:75%;height:100%;"></iframe>
 		</div>
 		<div class="lefttopjzm">
 			<div class="leftjzm">
@@ -81,7 +81,7 @@
 				<span style="color:#2180ED;font-size:0.5rem;font-weight:500;margin-left:0.15625rem;float:left;line-height:0.7575rem;">材料</span>
 			</div>
 			<!-- 中间部分上传 -->
-			<div class="jzcldraw">
+			<div class="jzcldraw" v-show="jzchialiaoshow">
 				<!-- 中间图纸的图片 -->
 				<div class="jzcldrawtop">
 					<img src="../../assets/image/clsc.png" alt="">
@@ -110,6 +110,7 @@
 </template>
 <script>
 import api from '@/api/api.js';
+import axios from 'axios';
 import qs from 'qs';
 import Newjian from './newjian';
 import Xunilogo from './xunilogo';
@@ -117,6 +118,8 @@ import Xunilogo from './xunilogo';
 export default {
 	data() {
 		return {
+			urladdress:"", //exceltohtml的地址
+			jzchialiaoshow:true,		//显示上传功能
 			title: '12312313122',
 			panduan: false,
 			xianyin: false,
@@ -155,6 +158,7 @@ export default {
 		// Zheader
 	},
 	created() {
+		var projectid=sessionStorage.getItem("projectid");
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
@@ -169,12 +173,34 @@ export default {
 			this.xianyin = true;
 		});
 		this.$eventbus.$emit('shows');
+		//初始化显示exceltohtml
+		axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+			if(result.data!=null){
+				axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
+					this.urladdress=result.data;
+					this.jzchialiaoshow=false;
+				})
+			}
+		})
+		
 	},
 	mounted() {
 		this.$eventbus.$emit('cezhan', 'cailiao');
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		//上传成功后的事件 显示exceltohtml
+		onFileSuccess(){
+			var projectid=sessionStorage.getItem("projectid");
+			axios.get(api.Addressurl+"/"+projectid+"/"+1).then(result=>{
+				if(result.data!=null){
+					axios.get(api.Exceltohtml+'?addressurl='+result.data.url).then(result=>{
+						this.urladdress=result.data;
+						this.jzchialiaoshow=false;
+					})
+				}
+			})
+		},
 		// 点击联系我们
 		fnabout() {
 			this.$eventbus.$emit('abouts');
