@@ -128,6 +128,7 @@
 				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
 				  <div class="swiper-wrapper"  v-show="swiperxy">
 				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
+						<!-- "http://192.168.6.152:8080/" -->
 						 <img :src="'http://192.168.6.152:8080/'+item.images" alt="">
 						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 							 @click.stop="fng(index)">
@@ -178,13 +179,11 @@
 	import $ from 'jquery'
 	$(function(){
 		$(".quanxuan").click(function(){
-			alert("全选")
-			$(".vvv").addClass('checkeds');
-		});
-		$(".qx").click(function(){
-		alert("取消")
-		  $(".vvv").removeClass('checkeds');
-		});
+    $(".vvv").addClass('checkeds');
+  });
+	$(".qx").click(function(){
+	  $(".vvv").removeClass('checkeds');
+	});
 	})
 	// import Zheader from './header';
 	export default {
@@ -238,7 +237,6 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-				// newarrs:[0,0,0,0,0,0],
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 				// swiper上边部分
 				swiperxy:false,
@@ -432,7 +430,6 @@
 			},
 			// 点击轮播中的全选
 			fnallswper(index){
-				alert(123)
 				this.fbswperall = "background:rgba(37,175,178,0.4);"
 				this.fbswper = "background:rgba(225,225,225,0);"
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
