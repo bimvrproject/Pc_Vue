@@ -236,7 +236,7 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-				newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+				newarrs:[0,0,0,0,0,0],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏

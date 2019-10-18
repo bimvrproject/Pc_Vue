@@ -3,23 +3,23 @@
 		<div>
 			<div class="lefttopcom">
 				<div class="left" style="cursor:pointer;">
-					<img class="logocom" src="../../assets/image/jinghekeji.png" @click="fnxnjz"/>
+					<img class="logocom" src="../../assets/image/jinghekeji.png" @click="fnxnjz" />
 					<Xunilogo v-show="xianyinxuni"></Xunilogo>
 				</div>
 			</div>
-				<!-- 除去侧边栏的剩余部分 -->
+			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
-			 <!-- <Zheader v-show="zheaderxy"></Zheader> -->
+			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
 			<div class="hometoplocom" v-show="hometop" style="z-index:20;">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link"  @click="fndianji()" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
-							<img class="xmimgcom" :src="xmtb" alt="" style="vertical-align:middle;margin-bottom:0.6rem;"/>
-							<i class="xmcom" ref="xmcol" :style="xmcolorh">项目</i>
-					<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-						<img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;">
-					</i>
+					<span class="el-dropdown-link" @click="fndianji()" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
+						<img class="xmimgcom" :src="xmtb" alt="" style="vertical-align:middle;margin-bottom:0.6rem;" />
+						<i class="xmcom" ref="xmcol" :style="xmcolorh">项目</i>
+						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/pmjtxia.png" alt="" style="width: 100%;height: 100%;" />
+						</i>
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
@@ -34,42 +34,50 @@
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcom" style="height:0.93125rem;" @mouseenter="fnmorcom()" @mouseleave="fnmorlevcom()">
-					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecom">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
-						  <div class="moocom" style="margin-top:0.1rem;">
-						 	<div class="mores1com">
-						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-						 	</div>
-						 	<div class="mores1com" @click="fnabout">联系我们</div>
-						 	<div class="moresbcom">版本号: v 1.0.1</div>
-						 </div>
+					<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" />
+					<span class="hgmorecom">更多</span>
+					<i
+						class="fa fa-angle-down shouye"
+						style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
+						 vertical-align: middle;margin-left:0.16rem;"
+					></i>
+					<div class="moocom" style="margin-top:0.1rem;">
+						<div class="mores1com"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+						<div class="mores1com" @click="fnabout">联系我们</div>
+						<div class="moresbcom">版本号: v 1.0.1</div>
+					</div>
 				</div>
 				<!-- 更多下拉 -->
 				<!-- <More v-show="more"></More> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
-				<!-- 悬浮登录窗口 --开始 -->
+			<!-- 悬浮登录窗口 --开始 -->
 			<div id="popContainer" v-show="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
-					<!-- 登录 -->
-	<div class="login" v-show="loginWindow">
+			<!-- 登录 -->
+			<div class="login" v-show="loginWindow">
 				<!-- <div style="width: 100%;height: 40px;background-image: url(../../assets/image/dingbutiao.png);"> -->
-				<div class="close">
-					<img src="../../assets/image/close.png" @click="closeLoginwindow" />
-				</div>
+				<div class="close"><img src="../../assets/image/close.png" @click="closeLoginwindow" /></div>
 				<div class="loginlogo"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
 				<!-- 验证账号密码是否正确 -->
-				<span class="yanzheng" v-if="panduan">{{phonename}}</span>
+				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
 				<!-- 输入用户名 -->
-				<div class="user">
-					<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" />
-				</div>
+				<div class="user"><input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" /></div>
 				<!-- 输入验证码 -->
 				<div class="password" style="display:flex;">
-					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2"/>
-					<span v-show="sendCode" @click="ObtainCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
-					<span v-show="!sendCode" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
+					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" />
+					<span
+						v-show="sendCode"
+						@click="ObtainCode"
+						style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;"
+					>
+						获取验证码
+					</span>
+					<span
+						v-show="!sendCode"
+						style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;"
+					>
+						{{ authTime }} 秒后获取
+					</span>
 				</div>
 
 				<!-- 登录 -->
@@ -80,159 +88,169 @@
 					<i class="login-reg" @click="fn3">马上注册</i>
 				</div>
 			</div>
-			 	<!-- 社区部分 -->
-			 <div>
-			 	<div class="community">
-			 		<!-- 社区头部 -->
-			 		<div class="conmunitytop">
-			 			<!-- 社区头部左侧线 -->
-			 			<div class="conmunitytopleft"></div>
-			 			<!-- 社区头部中间汉字 -->
-			 			<div class="conmunitytopchi">为你推荐</div>
-			 			<!-- 社区头部右侧线 -->
-			 			<div class="conmunitytopright"></div>
-			 		</div>
-			 		<!-- 社区main -->
-			 		<div class="communitymain" v-for="(item, index) in comarr" :key="index">
-			 			<!-- 第一排 -->
-			 			<div class="communitymain1">
-			 				<div class="community11"><img src="../../assets/image/diyi.png" alt="" /></div>
-			 				<div class="community12">
-			 					<!-- 第一排第二个框的第一个 -->
-			 					<div class="community12-1">
-			 						<div class="com12-1title">
-			 							<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com12-line"></div>
-			 						<div class="com12-1titlemin"><span>京止阁</span></div>
-			 						<div class="com12-1zan"><span>200点赞</span></div>
-			 						<div class="from12">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 					<!-- 第一排第二个框的第二个 -->
-			 					<div class="community12-2">
-			 						<div class="com22-1title">
-			 							<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com22-line"></div>
-			 						<div class="com22-1titlemin"><span>室内</span></div>
-			 						<div class="com22-1zan"><span>200点赞</span></div>
-			 						<div class="from22">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 				</div>
-			 				<div class="community13"><img src="../../assets/image/disan.png" alt="" /></div>
-			 				<div class="community14"><img src="../../assets/image/diyi.png" alt="" /></div>
-			 				<div class="community15">
-			 					<div class="community12-1">
-			 						<div class="com12-1title">
-			 							<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com12-line"></div>
-			 						<div class="com12-1titlemin"><span>京止阁</span></div>
-			 						<div class="com12-1zan"><span>200点赞</span></div>
-			 						<div class="from12">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 				</div>
-			 			</div>
-			 			<!-- 第二排 -->
-			 			<div class="communitymain2">
-			 				<div class="community21">
-			 					<div class="community12-2">
-			 						<div class="com22-1title">
-			 							<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com22-line"></div>
-			 						<div class="com22-1titlemin"><span>室内</span></div>
-			 						<div class="com22-1zan"><span>200点赞</span></div>
-			 						<div class="from22">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 				</div>
-			 				<div class="community22"><img src="../../assets/image/disan.png" alt="" /></div>
-			 				<div class="community23"><img src="../../assets/image/diyi.png" alt="" /></div>
-			 				<div class="community24">
-			 					<!-- 第二排第三个框的第一个 -->
-			 					<div class="community12-1">
-			 						<div class="com12-1title">
-			 							<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com12-line"></div>
-			 						<div class="com12-1titlemin"><span>京止阁</span></div>
-			 						<div class="com12-1zan"><span>200点赞</span></div>
-			 						<div class="from12">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 					<!-- 第二排第二个框的第二个 -->
-			 					<div class="community12-2">
-			 						<div class="com22-1title">
-			 							<h2  style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">建筑结构</h2>
-			 						</div>
-			 						<div class="com22-line"></div>
-			 						<div class="com22-1titlemin"><span>室内</span></div>
-			 						<div class="com22-1zan"><span>200点赞</span></div>
-			 						<div class="from22">
-			 							来自
-			 							<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
-			 						</div>
-			 					</div>
-			 				</div>
-			 				<div class="community25"><img src="../../assets/image/disan.png" alt="" /></div>
-			 			</div>
-			 		</div>
-			 		<!-- 社区尾部 -->
-			 		<div></div>
-			 	</div>
-			 	<!-- 社区尾部 -->
-			 	<div class="comend">
-			 		<!-- 尾部左边 -->
-			 		<div class="comendleft"></div>
-			 		<!-- 尾部中间按钮 -->
-			 		<div class="comendbtn" @click="fncom">查看更多</div>
-			 		<!-- 尾部右边 -->
-			 		<div class="comendright"></div>
-			 	</div>
-			 </div>
+			<!-- 社区部分 -->
+			<div>
+				<div class="community">
+					<!-- 社区头部 -->
+					<div class="conmunitytop">
+						<!-- 社区头部左侧线 -->
+						<div class="conmunitytopleft"></div>
+						<!-- 社区头部中间汉字 -->
+						<div class="conmunitytopchi">为你推荐</div>
+						<!-- 社区头部右侧线 -->
+						<div class="conmunitytopright"></div>
+					</div>
+					<!-- 社区main -->
+					<div class="communitymain" v-for="(item, index) in comarr" :key="index">
+						<!-- 第一排 -->
+						<div class="communitymain1">
+							<div class="community11"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community12">
+								<!-- 第一排第二个框的第一个 -->
+								<div class="community12-1">
+									<div class="com12-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com12-line"></div>
+									<div class="com12-1titlemin"><span>京止阁</span></div>
+									<div class="com12-1zan"><span>200点赞</span></div>
+									<div class="from12">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+								<!-- 第一排第二个框的第二个 -->
+								<div class="community12-2">
+									<div class="com22-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com22-line"></div>
+									<div class="com22-1titlemin"><span>室内</span></div>
+									<div class="com22-1zan"><span>200点赞</span></div>
+									<div class="from22">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+							<div class="community13"><img src="../../assets/image/disan.png" alt="" /></div>
+							<div class="community14"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community15">
+								<div class="community12-1">
+									<div class="com12-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com12-line"></div>
+									<div class="com12-1titlemin"><span>京止阁</span></div>
+									<div class="com12-1zan"><span>200点赞</span></div>
+									<div class="from12">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 第二排 -->
+						<div class="communitymain2">
+							<div class="community21">
+								<div class="community12-2">
+									<div class="com22-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com22-line"></div>
+									<div class="com22-1titlemin"><span>室内</span></div>
+									<div class="com22-1zan"><span>200点赞</span></div>
+									<div class="from22">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+							<div class="community22"><img src="../../assets/image/disan.png" alt="" /></div>
+							<div class="community23"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community24">
+								<!-- 第二排第三个框的第一个 -->
+								<div class="community12-1">
+									<div class="com12-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com12-line"></div>
+									<div class="com12-1titlemin"><span>京止阁</span></div>
+									<div class="com12-1zan"><span>200点赞</span></div>
+									<div class="from12">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+								<!-- 第二排第二个框的第二个 -->
+								<div class="community12-2">
+									<div class="com22-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com22-line"></div>
+									<div class="com22-1titlemin"><span>室内</span></div>
+									<div class="com22-1zan"><span>200点赞</span></div>
+									<div class="from22">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+							<div class="community25"><img src="../../assets/image/disan.png" alt="" /></div>
+						</div>
+					</div>
+					<!-- 社区尾部 -->
+					<div></div>
+				</div>
+				<!-- 社区尾部 -->
+				<div class="comend">
+					<!-- 尾部左边 -->
+					<div class="comendleft"></div>
+					<!-- 尾部中间按钮 -->
+					<div class="comendbtn" @click="fncom">查看更多</div>
+					<!-- 尾部右边 -->
+					<div class="comendright"></div>
+				</div>
+			</div>
 		</div>
 		<!-- 点击联系我们的遮罩 -->
-		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark">
-
-		</div>
+		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);" v-show="abouts" @click="fnaboutmark"></div>
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-	/*eslint-disable*/
+/*eslint-disable*/
 import api from '@/api/api.js';
 import axios from 'axios';
 import qs from 'qs';
 import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import More from './more';
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex';
 // import Zheader from './header';
 // import Release from './release';
 export default {
 	data() {
 		return {
 			// a:null,
-			username:"",
+			username: '',
 			sendCode: true, // 控制发送验证码按钮显示
 			authTime: 0, // 倒计时
-			phonename:"手机号不正确",		//输入不正确友好提示
-			comarr: [0,0],
+			phonename: '手机号不正确', //输入不正确友好提示
+			comarr: [0, 0],
 			password: '',
 			loginWindow: true,
 			checked: '',
@@ -249,16 +267,16 @@ export default {
 			release: false,
 			//总的等陆头部
 			// zheaderxy:true,
-				token:"",
-		   lmore:require('../../assets/image/pmjtxia.png'),
-		   // 联系我们
-		   abouts:false,
-			 xmcolorh:"color:#333333"
+			token: '',
+			lmore: require('../../assets/image/pmjtxia.png'),
+			// 联系我们
+			abouts: false,
+			xmcolorh: 'color:#333333'
 		};
 	},
 	components: {
 		Newjian,
-		Xunilogo,
+		Xunilogo
 		// Zheader
 		// Release
 	},
@@ -302,78 +320,75 @@ export default {
 	},
 	methods: {
 		// 划过项目
-		fnhxm(){
+		fnhxm() {
 			this.xmtb = require('../../assets/image/bluefz.png');
-			this. xmcolorh = 'color:#2180ED'
+			this.xmcolorh = 'color:#2180ED';
 		},
 		// 划出项目
-		fnhxmlev(){
-		this.xmtb =require('../../assets/image/sshouse.png');
-		this.xmcolorh = 'color:#333333'
+		fnhxmlev() {
+			this.xmtb = require('../../assets/image/sshouse.png');
+			this.xmcolorh = 'color:#333333';
 		},
 		// 点击联系我们
-		fnabout(){
-				this.$eventbus.$emit('abouts');
-				this.abouts = true
+		fnabout() {
+			this.$eventbus.$emit('abouts');
+			this.abouts = true;
 		},
 		// 点击联系之后出现的遮罩
-		fnaboutmark(){
+		fnaboutmark() {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
-			//一分钟倒计时
-		ObtainCode () {
-			axios.get(api.GetPhone+"?phone"+"="+this.username).then(result=>{
-				if(result.data==undefined){
-					this.phonename="您未注册，请注册！";
+		//一分钟倒计时
+		ObtainCode() {
+			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+				if (result.data == undefined) {
+					this.phonename = '您未注册，请注册！';
 					this.panduan = true;
-				}else{
-					axios.get(api.Login+"?mobile="+this.username).then(result=>{
-						this.token=result.data.token;
+				} else {
+					axios.get(api.Login + '?mobile=' + this.username).then(result => {
+						this.token = result.data.token;
 						// this.$store.commit("settoken",this.token);
 						// alert(this.username)
 						// this.$store.commit("setphone",this.username);
-						this.sendCode = false  // 控制显示隐藏
-						this.authTime = 59
+						this.sendCode = false; // 控制显示隐藏
+						this.authTime = 59;
 						let timeInt = setInterval(() => {
-						  this.authTime--
-						  if (this.authTime <= 0) {
-						    this.sendCode = true
-						    window.clearInterval(timeInt)
-						  }
-						}, 1000)
-					})
+							this.authTime--;
+							if (this.authTime <= 0) {
+								this.sendCode = true;
+								window.clearInterval(timeInt);
+							}
+						}, 1000);
+					});
 				}
-			})
-
+			});
 		},
-			fncom() {
+		fncom() {
 			this.comarr.push(0);
 		},
-		fndianji(){
-				if(	window.sessionStorage.getItem('token') != null){
-				   this.$router.push('/Login');
-				}else{
-						this.loginWindow = true;
-				}
-
-		},
-		fnxnjz(){
-			if(	window.sessionStorage.getItem('token') != null){
-			   this.$router.push('/Login');
-			}else{
-					this.loginWindow =  true;
+		fndianji() {
+			if (window.sessionStorage.getItem('token') != null) {
+				this.$router.push('/Login');
+			} else {
+				this.loginWindow = true;
 			}
-
+		},
+		fnxnjz() {
+			if (window.sessionStorage.getItem('token') != null) {
+				this.$router.push('/Login');
+			} else {
+				this.loginWindow = true;
+			}
 		},
 		// 移入更多
-		fnmorcom(){
-			 this.moretb = require('../../assets/image/moress.png');
+		fnmorcom() {
+			this.moretb = require('../../assets/image/moress.png');
 		},
 		// 移出更多
-   fnmorlevcom(){
-   	 this.moretb = require('../../assets/image/more@2x.png');
-   },
+		fnmorlevcom() {
+			this.moretb = require('../../assets/image/more@2x.png');
+		},
 
 		fncomenter() {
 			this.$router.push('/');
@@ -394,12 +409,12 @@ export default {
 			} else {
 				this.panduan = false;
 			}
-			axios.get(api.GetPhone+"?phone"+"="+this.username).then(result=>{
-				if(result.data==undefined){
-					this.phonename="您未注册，请注册！";
+			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+				if (result.data == undefined) {
+					this.phonename = '您未注册，请注册！';
 					this.panduan = true;
 				}
-			})
+			});
 		},
 		fn2() {
 			var re = /^\w{6,12}$/;
@@ -410,38 +425,38 @@ export default {
 			}
 		},
 		login() {
-			if(this.username==null || this.username==""){
-				this.phonename="手机号不能为空";
+			if (this.username == null || this.username == '') {
+				this.phonename = '手机号不能为空';
 				this.panduan = true;
-			}else{
-				axios.get(api.LogincheckSmsCode+"?smsCode="+this.password+"&phone="+this.username).then(res => this.loginSuccess(res))
+			} else {
+				axios.get(api.LogincheckSmsCode + '?smsCode=' + this.password + '&phone=' + this.username).then(res => this.loginSuccess(res));
 			}
 		},
 		loginSuccess(res) {
-			if(res.code!=0){
-				this.phonename=res.msg;
+			if (res.code != 0) {
+				this.phonename = res.msg;
 				this.panduan = true;
-			}else{
-				this.$store.commit("settoken",this.token);
-				this.$store.commit("setPhone",this.username);
-				window.sessionStorage.setItem('token',this.token);
-				window.sessionStorage.setItem('phone',this.username);
+			} else {
+				this.$store.commit('settoken', this.token);
+				this.$store.commit('setPhone', this.username);
+				window.sessionStorage.setItem('token', this.token);
+				window.sessionStorage.setItem('phone', this.username);
 				this.getUserByToken();
 				//注册成功跳转页面
 				this.panduan = false;
 				// alert("跳转页面")
 				this.loginWindow = false;
 				// alert(this.username)
-					// window.localStorage.setItem('userpho',this.username);
+				// window.localStorage.setItem('userpho',this.username);
 				// this.a = this.username;
 			}
 		},
-		getUserByToken(){
+		getUserByToken() {
 			this.$http.post(api.GetUser).then(res => this.userHome(res));
 		},
-		userHome(res){
-				this.username = res.data.userName;
-				console.log("this.userName"+this.userName);
+		userHome(res) {
+			this.username = res.data.userName;
+			console.log('this.userName' + this.userName);
 		},
 		requestFailed() {
 			this.msg = '应用发生错误';
@@ -457,176 +472,177 @@ export default {
 		// 关闭login悬浮窗
 		closeLoginwindow() {
 			this.loginWindow = false;
-		},
+		}
 	}
 };
 </script>
 
 <style>
-	.moretopcom{
-		position:relative;
-		 float: left;
-		 margin-left:-1.4rem;
-		 font-size: 0.625rem;
-		 font-family: MicrosoftYaHei;
-		 font-weight: 400;
-		/* color:#2180ED; */
-		 font-style: normal;
-		 line-height: 0.93125rem;
-		/* background-color:red; */
-		 margin-top:0.380rem;
-		 margin-left:1.6rem;
-		 text-align:left;
-		 cursor:pointer;
-	}
-	.hgmorecom{
-		color:#333333;
-	}
-	 /* 划过更多 */
-	.moretopcom:hover .moocom{
-		  display:block;
-	}
-	.moretopcom:hover .hgmorecom{
-		 color:#2180ED
-	}
-	.moretopcom:hover .shouye{
-		 transform:rotate(180deg);
-	}
-	.lomorecom {
-		background: rgba(225, 225, 225, 0.3);
-		position: absolute;
-		top:2.125rem  !important;
-		left:15.975rem !important;
-		border: none;
-		padding: 0.1rem;
-		border-radius:0rem !important;
-	}
-	.popper__arrow{
-		border-width:0rem !important;
-		left:0 !important;
-		overflow:hidden;
-	}
-	.moocom {
-		width:4.75rem;
-		/* width: 183px;
+.moretopcom {
+	position: relative;
+	float: left;
+	margin-left: -1.4rem;
+	font-size: 0.625rem;
+	font-family: MicrosoftYaHei;
+	font-weight: 400;
+	/* color:#2180ED; */
+	font-style: normal;
+	line-height: 0.93125rem;
+	/* background-color:red; */
+	margin-top: 0.38rem;
+	margin-left: 1.6rem;
+	text-align: left;
+	cursor: pointer;
+}
+.hgmorecom {
+	color: #333333;
+}
+/* 划过更多 */
+.moretopcom:hover .moocom {
+	display: block;
+}
+.moretopcom:hover .hgmorecom {
+	color: #2180ed;
+}
+.moretopcom:hover .shouye {
+	transform: rotate(180deg);
+}
+.lomorecom {
+	background: rgba(225, 225, 225, 0.3);
+	position: absolute;
+	top: 2.125rem !important;
+	left: 15.975rem !important;
+	border: none;
+	padding: 0.1rem;
+	border-radius: 0rem !important;
+}
+.popper__arrow {
+	border-width: 0rem !important;
+	left: 0 !important;
+	overflow: hidden;
+}
+.moocom {
+	width: 4.75rem;
+	/* width: 183px;
 		height: 195px; */
-		/* background: url(../../assets/image/mores.png); */
-		background:rgba(225,225,225,.2);
-		padding-left:0.2rem;
-		padding-right:0.25rem;
-		cursor: pointer;
-		display:none;
-	}
-	.mores1com {
-		width:4.65rem;
-		height:0.9rem;
-		border-bottom: 1px solid #999999;
-		text-align: left;
-		line-height:1rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
+	/* background: url(../../assets/image/mores.png); */
+	background: rgba(225, 225, 225, 0.2);
+	padding-left: 0.2rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
+	display: none;
+}
+.mores1com {
+	width: 4.65rem;
+	height: 0.9rem;
+	border-bottom: 1px solid #999999;
+	text-align: left;
+	line-height: 1rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
 	/* 	background:red; */
-	}
-	.moresbcom {
-		border: 0;
-		text-align: left;
-		line-height:0.9rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
-		/* background:red; */
-	}
-	a {
-		color: #333333;
-		text-decoration: none;
-	}
-	* {
-		padding: 0;
-		margin: 0;
-	}
-	body {
-		width:100%;
-	}
-	html {
-		width:100%;
-	}
+}
+.moresbcom {
+	border: 0;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
+	/* background:red; */
+}
+a {
+	color: #333333;
+	text-decoration: none;
+}
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	width: 100%;
+}
+html {
+	width: 100%;
+}
 .community {
-	width:57.43375rem;
+	width: 57.43375rem;
 	/*height:29.06rem;*/
-	height: 29.06rem;overflow-y: scroll;
+	height: 29.06rem;
+	overflow-y: scroll;
 	/* background: red; */
 	background: #ffffff;
 	position: absolute;
-	top:3.28125rem;
-	left:1.5625rem;
+	top: 3.28125rem;
+	left: 1.5625rem;
 	overflow-y: auto;
-	overflow-x:hidden;
-/* 	background:red; */
+	overflow-x: hidden;
+	/* 	background:red; */
 }
 
-	.community::-webkit-scrollbar {
-		display:none
-	}
+.community::-webkit-scrollbar {
+	display: none;
+}
 /* 社区头部 */
 .conmunitytop {
-	width:56.9rem;
-	height:0.59375rem;
-	margin-bottom:0.625rem;
+	width: 56.9rem;
+	height: 0.59375rem;
+	margin-bottom: 0.625rem;
 	/* background:plum; */
 }
 .conmunitytopleft {
-	width:25.28125rem;
-	height:0.03125rem;
+	width: 25.28125rem;
+	height: 0.03125rem;
 	background: url(../../assets/image/sqxian.png) no-repeat;
-	background-size:25.28125rem 0.03125rem;
+	background-size: 25.28125rem 0.03125rem;
 	float: left;
-	margin-top:0.3125rem;
+	margin-top: 0.3125rem;
 	/* background-color:blue; */
 }
 .conmunitytopchi {
-	width:6.3125rem;
-	height:0.59375rem;
+	width: 6.3125rem;
+	height: 0.59375rem;
 	float: left;
-	line-height:0.59375rem;
-	font-size:0.625rem;
+	line-height: 0.59375rem;
+	font-size: 0.625rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
 	color: rgba(153, 153, 153, 1);
 	/* background:plum; */
 }
 .conmunitytopright {
-	width:25.28125rem;
-	height:0.03125rem;
+	width: 25.28125rem;
+	height: 0.03125rem;
 	background: url(../../assets/image/sqxian.png) no-repeat;
-	background-size:25.28125rem 0.03125rem;
+	background-size: 25.28125rem 0.03125rem;
 	float: left;
-	margin-top:0.3125rem;
-/* 	background-color:blue; */
+	margin-top: 0.3125rem;
+	/* 	background-color:blue; */
 }
 /* 社区main */
 .communitymain {
-	width:56.875rem;
+	width: 56.875rem;
 	/* height:930px; */
 	/* background: plum; */
 }
 .communitymain1,
 .communitymain2 {
-	width:56.875rem;
-	height:11.125rem;
+	width: 56.875rem;
+	height: 11.125rem;
 	background: #ffffff;
 	float: left;
 }
 .communitymain1 {
-	margin-bottom:0.15625rem;
+	margin-bottom: 0.15625rem;
 }
 .communitymain2 {
-	margin-bottom:0.15625rem;
+	margin-bottom: 0.15625rem;
 }
 .community11,
 .community14 {
-	width:11.125rem;
-	height:11.125rem;
+	width: 11.125rem;
+	height: 11.125rem;
 	/* background:blue; */
 	float: left;
 }
@@ -637,8 +653,8 @@ export default {
 }
 .community12,
 .community15 {
-	width:11.625rem;
-	height:11.125rem;
+	width: 11.625rem;
+	height: 11.125rem;
 	/* 	background:blue; */
 	float: left;
 }
@@ -646,11 +662,11 @@ export default {
 	background: rgba(250, 250, 250, 1);
 }
 .community13 {
-	width:11.125rem;
-	height:11.125rem;
+	width: 11.125rem;
+	height: 11.125rem;
 	/* background:blue; */
 	float: left;
-	margin-right:0.25rem;
+	margin-right: 0.25rem;
 }
 .community13 img {
 	width: 100%;
@@ -658,189 +674,189 @@ export default {
 }
 /* 第二个框上部分内容 */
 .community12-1 {
-	width:11.4375rem;
-	height:5.40625rem;
+	width: 11.4375rem;
+	height: 5.40625rem;
 	/* background:#FFFFFF; */
 	background: rgba(250, 250, 250, 1);
-	margin-bottom:0.3125;
+	margin-bottom: 0.3125;
 }
 .com12-1title {
-	width:10.8125rem;
-	height:1.5625rem;
+	width: 10.8125rem;
+	height: 1.5625rem;
 	/* 	background:plum; */
 	text-align: left;
-	line-height:1.875rem;
-	padding-left:0.625rem;
+	line-height: 1.875rem;
+	padding-left: 0.625rem;
 }
 .com12-line {
-	width:5.5rem;
-	height:0.0625rem;
+	width: 5.5rem;
+	height: 0.0625rem;
 	background: lightgrey;
-	margin-left:0.625rem;
+	margin-left: 0.625rem;
 }
 .community12-2 {
-	width:11.4375rem;
-	height:5.40625rem;
+	width: 11.4375rem;
+	height: 5.40625rem;
 	/* background:red; */
 	float: right;
 }
 .com12-1titlemin {
-	width:10.8125rem;
-	height:1.09375rem;
+	width: 10.8125rem;
+	height: 1.09375rem;
 	/* background:plum; */
 	text-align: left;
-	line-height:1.71875rem;
-	padding-left:0.625rem;
-	font-size:0.625rem;
+	line-height: 1.71875rem;
+	padding-left: 0.625rem;
+	font-size: 0.625rem;
 	font-weight: 400;
 	font-family: Microsoft YaHei;
 	color: rgba(51, 51, 51, 1);
 }
 .com12-1zan {
-	width:10.8125rem;
-	height:0.9375rem;
+	width: 10.8125rem;
+	height: 0.9375rem;
 	/* 	background:red; */
 	text-align: left;
-	padding-left:0.625rem;
-	padding-top:0.15625rem;
-	font-size:0.375rem;
+	padding-left: 0.625rem;
+	padding-top: 0.15625rem;
+	font-size: 0.375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 300;
 	color: rgba(153, 153, 153, 1);
 }
 .from12 {
-	width:10.8125rem;
-	height:1.5625rem;
+	width: 10.8125rem;
+	height: 1.5625rem;
 	/* 	background:plum; */
 	text-align: left;
-	padding-left:0.625rem;
-	font-size:0.4375rem;
+	padding-left: 0.625rem;
+	font-size: 0.4375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
-	line-height:1.5625rem;
+	line-height: 1.5625rem;
 }
 /* 第二个框下部分内容 */
 .community12-2 {
-	width:11.4375rem;
-	height:5.40625rem;
+	width: 11.4375rem;
+	height: 5.40625rem;
 	/* 	background:#FFFFFF; */
 	background: rgba(250, 250, 250, 1);
-	margin-bottom:0.3125rem;
+	margin-bottom: 0.3125rem;
 }
 .from22 {
-	width:10.8125rem;
-	height:1.5625rem;
-	padding-right:0.625rem;
+	width: 10.8125rem;
+	height: 1.5625rem;
+	padding-right: 0.625rem;
 	/* background:plum; */
 	text-align: right;
-	font-size:0.4375rem;
+	font-size: 0.4375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
-	line-height:1.5625rem;
+	line-height: 1.5625rem;
 }
 .com22-1zan {
-	width:10.8125rem;
-	height:0.9375rem;
+	width: 10.8125rem;
+	height: 0.9375rem;
 	/* background:red; */
 	text-align: right;
-	padding-right:0.625rem;
-	padding-top:0.15625rem;
-	font-size:0.375rem;
+	padding-right: 0.625rem;
+	padding-top: 0.15625rem;
+	font-size: 0.375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 300;
 	color: rgba(153, 153, 153, 1);
 }
 .com22-1titlemin {
-	width:10.8125rem;
-	height:1.09375rem;
+	width: 10.8125rem;
+	height: 1.09375rem;
 	/* 	background:plum; */
 	text-align: right;
-	line-height:1.71875rem;
-	padding-right:0.625rem;
-	font-size:0.625rem;
+	line-height: 1.71875rem;
+	padding-right: 0.625rem;
+	font-size: 0.625rem;
 	font-weight: 400;
 	font-family: Microsoft YaHei;
 	color: rgba(51, 51, 51, 1);
 }
 .com22-1title {
-	width:11.4375rem;
-	height:1.5625rem;
+	width: 11.4375rem;
+	height: 1.5625rem;
 	/* 	background:plum; */
-	line-height:1.875rem;
-	padding-left:4.625rem;
+	line-height: 1.875rem;
+	padding-left: 4.625rem;
 	text-align: right;
 }
 .com22-line {
-	width:5.5rem;
-	height:0.03125rem;
+	width: 5.5rem;
+	height: 0.03125rem;
 	background: lightgrey;
-	margin-left:5.3125rem;
+	margin-left: 5.3125rem;
 }
 /* 第二排 */
 .community21 {
-	width:11.75rem;
-	height:11.125rem;
+	width: 11.75rem;
+	height: 11.125rem;
 	background: rgba(250, 250, 250, 1);
 	/* background: plum; */
 	float: left;
 }
 .community12-2 {
-	width:11.4375rem;
-	height:5.40625rem;
+	width: 11.4375rem;
+	height: 5.40625rem;
 	/* 	background:#FFFFFF; */
 	background: rgba(250, 250, 250, 1);
-	margin-bottom:0.3125rem;
+	margin-bottom: 0.3125rem;
 }
 .from22 {
-	width:10.8125rem;
-	height:1.5625rem;
-	padding-right:0.625rem;
+	width: 10.8125rem;
+	height: 1.5625rem;
+	padding-right: 0.625rem;
 	/* background:plum; */
 	text-align: right;
-	font-size:0.4375rem;
+	font-size: 0.4375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
-	line-height:1.5625rem;
+	line-height: 1.5625rem;
 }
 .com22-1zan {
-	width:10.8125rem;
-	height:0.9375rem;
+	width: 10.8125rem;
+	height: 0.9375rem;
 	/* background:red; */
 	text-align: right;
-	padding-right:0.625rem;
-	padding-top:0.15625rem;
-	font-size:0.375rem;
+	padding-right: 0.625rem;
+	padding-top: 0.15625rem;
+	font-size: 0.375rem;
 	font-family: Microsoft YaHei;
 	font-weight: 300;
 	color: rgba(153, 153, 153, 1);
 }
 .com22-1titlemin {
-	width:10.8125rem;
-	height:1.09375rem;
+	width: 10.8125rem;
+	height: 1.09375rem;
 	/* 	background:plum; */
 	text-align: right;
-	line-height:1.71875rem;
-	padding-right:0.625rem;
-	font-size:0.625rem;
+	line-height: 1.71875rem;
+	padding-right: 0.625rem;
+	font-size: 0.625rem;
 	font-weight: 400;
 	font-family: Microsoft YaHei;
 	color: rgba(51, 51, 51, 1);
 }
 .com22-1title {
-	width:11.4375rem;
-	height:1.5625rem;
+	width: 11.4375rem;
+	height: 1.5625rem;
 	/* 	background:plum; */
-	line-height:1.875rem;
-	padding-left:4.625rem;
+	line-height: 1.875rem;
+	padding-left: 4.625rem;
 	text-align: right;
 }
 /* 第二排第二个框 */
 .community22 {
-	width:11.125rem;
-	height:11.125rem;
+	width: 11.125rem;
+	height: 11.125rem;
 	/* background: black; */
 	float: left;
 }
@@ -849,8 +865,8 @@ export default {
 	height: 100%;
 }
 .community23 {
-	width:11.125rem;
-	height:11.125rem;
+	width: 11.125rem;
+	height: 11.125rem;
 	/* background: blue; */
 	float: left;
 }
@@ -860,13 +876,13 @@ export default {
 }
 /* 第二排第三个框 */
 .community24 {
-	width:11.75rem;
-	height:11.125rem;
+	width: 11.75rem;
+	height: 11.125rem;
 	float: left;
 }
 .community25 {
-	width:11.125rem;
-	height:11.125rem;
+	width: 11.125rem;
+	height: 11.125rem;
 	float: left;
 	background: black;
 }
@@ -876,43 +892,43 @@ export default {
 }
 /* 社区尾部 */
 .comend {
-	width:57.3925rem;
-	height:1.21875rem;
+	width: 57.3925rem;
+	height: 1.21875rem;
 	background: #ffffff;
 	position: absolute;
-  top:32.09375rem;
-	left:1.56375rem;
+	top: 32.09375rem;
+	left: 1.56375rem;
 	/* background:red; */
 }
 /* 社区尾部左边 */
 .comendleft {
-	width:19.09375rem;
-	height:0.0625rem;
-	border-top:0.03125rem solid gainsboro;
+	width: 19.09375rem;
+	height: 0.0625rem;
+	border-top: 0.03125rem solid gainsboro;
 	float: left;
-	margin-top:0.625rem;
+	margin-top: 0.625rem;
 }
 /* 社区中间按钮 */
 .comendbtn {
-	width:14.9375rem;
-	height:1.21875rem;
+	width: 14.9375rem;
+	height: 1.21875rem;
 	background: rgba(247, 247, 247, 1);
 	float: left;
-	margin-left:2.03125rem;
-	margin-right:2.03125rem;
-	font-size:0.625rem;
+	margin-left: 2.03125rem;
+	margin-right: 2.03125rem;
+	font-size: 0.625rem;
 	font-family: PingFang SC;
 	font-weight: 500;
 	color: rgba(153, 153, 153, 1);
-	line-height:1.21875rem;
+	line-height: 1.21875rem;
 	cursor: pointer;
 }
 .comendright {
-	width:19.09375rem;
-	height:0.0625rem;
+	width: 19.09375rem;
+	height: 0.0625rem;
 	border-top: 0.03125rem solid gainsboro;
 	float: left;
-	margin-top:0.625rem;
+	margin-top: 0.625rem;
 }
 
 .logocom {
@@ -920,14 +936,14 @@ export default {
 	height: 0.875rem;
 	padding-left: 1.1825rem;
 	padding-top: 0.90625rem;
-	margin-left:0.5625rem;
-/* 	background:red; */
-    float:left;
+	margin-left: 0.5625rem;
+	/* 	background:red; */
+	float: left;
 }
 .lefttopcom {
-	width:6.75rem;
-	height:1.875rem;
-/* 	background:plum; */
+	width: 6.75rem;
+	height: 1.875rem;
+	/* 	background:plum; */
 	/* 	background-color:green;
 			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;
@@ -937,110 +953,112 @@ export default {
 
 /*登录右上角的登录 */
 .top-rightcom {
- height:0.90625rem;
+	height: 0.90625rem;
 }
 .login-parentcom {
- height:0.90625rem;
- position: absolute;
- top: 0;
- right:0.3rem;
- background:red;
+	height: 0.90625rem;
+	position: absolute;
+	top: 0;
+	right: 0.3rem;
+	background: red;
 }
-.imgzongcom{
-	width:4.5rem;
-	height:0.78125rem;
+.imgzongcom {
+	width: 4.5rem;
+	height: 0.78125rem;
 	/* background:green; */
 	float: left;
-	padding-top:0.125rem;
-	line-height:0.78125rem;
+	padding-top: 0.125rem;
+	line-height: 0.78125rem;
 }
 .dengcom {
-	width:3.3rem;
-	height:0.6628rem;
-	background:skyblue;
+	width: 3.3rem;
+	height: 0.6628rem;
+	background: skyblue;
 	float: left;
-	margin-left:0.125rem;
-	font-size:0.4375rem;
+	margin-left: 0.125rem;
+	font-size: 0.4375rem;
 	color: #2180ed;
-	line-height:0.8125rem;
+	line-height: 0.8125rem;
 }
 .guanbi-toprigcom {
-	width:3.75rem;
-	height:0.90625rem;
+	width: 3.75rem;
+	height: 0.90625rem;
 	float: left;
 }
 .toprig11com,
 .toprig33com {
-	display:inline-block;
+	display: inline-block;
 	width: 1.125rem;
-	height:0.84375rem;
+	height: 0.84375rem;
 	float: left;
 }
 .toprig22com {
-	display:inline-block;
+	display: inline-block;
 	width: 1.125rem;
-	height:0.84375rem;
-	float:left;
+	height: 0.84375rem;
+	float: left;
 }
-.toprig11com img,.toprig22com img,.toprig33com img{
-	width:100%;
-	height:100%;
+.toprig11com img,
+.toprig22com img,
+.toprig33com img {
+	width: 100%;
+	height: 100%;
 }
 .logintopimgcom {
-	width:0.625rem;
-	height:0.5625rem;
+	width: 0.625rem;
+	height: 0.5625rem;
 	display: inline-block;
 	float: left;
-	background:red;
-	line-height:0.90625rem;
-	padding-top:0.15625rem;
+	background: red;
+	line-height: 0.90625rem;
+	padding-top: 0.15625rem;
 }
 /* 主页top部分*/
 .hometoplocom {
-/* width:46.875rem;
+	/* width:46.875rem;
 	height:1.78125rem; */
 	position: absolute;
-	top:0.6175rem;
-	left:7.2rem;
+	top: 0.6175rem;
+	left: 7.2rem;
 	/* background:red; */
-	line-height:1.78125rem;
+	line-height: 1.78125rem;
 }
 .el-dropdown-link {
 	cursor: pointer;
 }
 .xmimgcom {
-	width:0.84375rem;
-	height:0.8125rem;
-	padding-left:2.5rem;
-	padding-top:0.025rem;
+	width: 0.84375rem;
+	height: 0.8125rem;
+	padding-left: 2.5rem;
+	padding-top: 0.025rem;
 	/* background:red; */
-	margin-top:0.2rem;
+	margin-top: 0.2rem;
 }
 .xmcom {
-	width:0.84375rem;
-	height:0.53125‬;
-	font-size:0.625rem;
+	width: 0.84375rem;
+	height: 0.53125‬;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
-/* 	color: #2180ed; */
+	/* 	color: #2180ed; */
 	font-style: normal;
 	padding-left: 0.15625rem;
 	line-height: 0.33125rem;
-	vertical-align:auto;
-	padding-bottom:0.1rem;
+	vertical-align: auto;
+	padding-bottom: 0.1rem;
 	/* background:red; */
 }
 .sqimgcom {
-	width:0.84375rem;
+	width: 0.84375rem;
 	height: 0.8125rem;
 }
 .sqcom {
-	width:1.25rem;
-	height:0.5625rem;
-	font-size:0.625rem;
+	width: 1.25rem;
+	height: 0.5625rem;
+	font-size: 0.625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
-	padding-left:0.1875rem;
+	padding-left: 0.1875rem;
 	font-style: normal;
 }
 .moreimgcom {
@@ -1048,32 +1066,32 @@ export default {
 	height: 0.78125rem;
 }
 .morecom {
-	width:1.21875rem;
-	height:0.59375rem;
-	font-size:0.625rem;
+	width: 1.21875rem;
+	height: 0.59375rem;
+	font-size: 0.625rem;
 	font-style: normal;
-	padding-left:0.15625rem;
+	padding-left: 0.15625rem;
 	font-family: MicrosoftYaHei;
 	font-weight: 400;
 	color: rgba(51, 51, 51, 1);
 }
 /* 登录 */
 .login {
-	width:12.34375rem;
-	height:12.34375rem;
+	width: 15.64375rem;
+	height: 15.64375rem;
 	position: absolute;
 	z-index: 50;
-	top:10.5rem;
-	left:22.3125rem;
-/* 	margin-top: -228px;
+	top: 10.5rem;
+	left: 22.3125rem;
+	/* 	margin-top: -228px;
 	margin-left: -550px; */
 	background-color: white;
 	background: url(../../assets/image/beijing@2x.png) no-repeat;
-	background-size: 12.34375rem 12.34375rem;
+	background-size: 15.64375rem 15.64375rem;
 }
 #popContainer {
-	width:59.9375rem;
-	height:33.65625rem;
+	width: 59.9375rem;
+	height: 33.65625rem;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -1099,44 +1117,44 @@ export default {
 	float: left;
 }
 .close {
-	width:0.445rem;
-	height:0.445rem;
+	width: 0.445rem;
+	height: 0.445rem;
 	/* background: linear-gradient(180deg, rgba(255, 255, 255, 0.2)); */
 	border-radius: 2px;
 	position: absolute;
 	right: -1.2625rem;
 }
 .close img {
-	width:0.445rem;
-	height:0.445rem;
+	width: 0.445rem;
+	height: 0.445rem;
 }
 .loginlogo {
-	width:3.53125rem;
-	height:0.85625rem;
+	width: 4.53125rem;
+	height: 1.25625rem;
 	position: absolute;
-	left:4.256rem;
-	top:2.7062rem;
+	left: 5.456rem;
+	top: 2.7062rem;
 }
 .loginlogo img {
 	width: 100%;
 	height: 100%;
 }
 .user {
-	width:6.03125rem;
-	height:0.838rem;
+	width: 6.03125rem;
+	height: 0.838rem;
 	position: absolute;
-	top:4.625rem;
-	right:3.2rem;
+	top: 4.625rem;
+	right: 3.2rem;
 	background: #ffffff;
-/* 	background:red; */
+	/* 	background:red; */
 }
-.userinput{
-	width:5.7rem;
-	height:0.838rem;
+.userinput {
+	width: 5.7rem;
+	height: 0.838rem;
 	float: left;
-	padding-left:0.3rem;
+	padding-left: 0.3rem;
 	border: none;
-	line-height:1.25rem;
+	line-height: 1.25rem;
 	display: inline-block;
 	/* background:red; */
 }
@@ -1144,81 +1162,81 @@ export default {
 	display: block;
 	/* width:3.0rem;
 	height:0.5rem; */
-	font-size:0.3rem;
+	font-size: 0.3rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: red;
 	position: absolute;
-	left:4.6rem;
-	top:3.9rem;
+	left: 4.6rem;
+	top: 3.9rem;
 }
 .password {
-	width:6rem;
-	height:0.82rem;
+	width: 6rem;
+	height: 0.82rem;
 	position: absolute;
-	top:6.19rem;
-	right:3.2rem;
+	top: 6.19rem;
+	right: 3.2rem;
 	background: #ffffff;
 	/* background:red; */
 }
 .password input {
-	width:3.4rem;
-	height:0.82rem;
+	width: 3.4rem;
+	height: 0.82rem;
 	/* float: left; */
-	padding-left:0.25rem;
+	padding-left: 0.25rem;
 	border: none;
-	line-height:0.82rem;
+	line-height: 0.82rem;
 	display: inline-block;
-	float:left;
+	float: left;
 }
 /* 登录按钮 */
 .Logon-button {
-	width:5.279rem;
-	height:0.8017rem;
+	width: 5.279rem;
+	height: 0.8017rem;
 	position: absolute;
-	top:7.7rem;
-	left:3.3875rem;
+	top: 7.7rem;
+	left: 3.3875rem;
 	background: url(../../assets/image/juxing3@2x.png);
-	background-size:5.279rem 0.8017rem;
+	background-size: 5.279rem 0.8017rem;
 	cursor: pointer;
-	font-size:0.3933rem;
+	font-size: 0.3933rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: #ffffff;
 	text-align: center;
-	line-height:0.8017rem;
+	line-height: 0.8017rem;
 }
 /* 还没有账号？马上注册 */
 .login-footer {
-	width:4.0375rem;
-	height:0.625rem;
-	font-size:0.375rem;
+	width: 4.0375rem;
+	height: 0.625rem;
+	font-size: 0.375rem;
 	position: absolute;
-	top:8.725rem;
+	top: 8.725rem;
 	/* left:4.3rem; */
-	right:4.3rem;
+	right: 4.3rem;
 }
 .noreg {
 	font-family: MicrosoftYaHei;
-	display:inline-block;
+	display: inline-block;
 	font-weight: 400;
 	font-style: normal;
-	font-size:0.375rem;
+	font-size: 0.375rem;
 	color: rgba(51, 51, 51, 1);
 }
 .login-reg {
 	color: #2180ed;
 	font-family: MicrosoftYaHei;
-	display:inline-block;
+	display: inline-block;
 	font-weight: 400;
-	font-size:0.333rem;
+	font-size: 0.333rem;
 	font-style: normal;
 	cursor: pointer;
 }
 input::-webkit-input-placeholder {
-       /* placeholder颜色  */
-       color: #aab2bd;
-       /* placeholder字体大小  */
-       font-size:0.4rem;
-    }
+	/* placeholder颜色  */
+	color: #aab2bd;
+	/* placeholder字体大小  */
+	font-size: 0.4rem;
+}
 </style>
