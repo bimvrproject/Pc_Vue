@@ -238,11 +238,8 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-<<<<<<< HEAD
-				newarrs:[0,0,0,0,0,0],
-=======
+				// newarrs:[0,0,0,0,0,0],
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
->>>>>>> 4b88ba992018a3b30ea700d25eb73fd9d9992307
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏

@@ -63,18 +63,18 @@
 				<!-- 输入用户名 -->
 				<div class="user"><input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" /></div>
 				<!-- 输入验证码 -->
-				<div class="password" style="display:flex;">
-					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" />
+				<div class="password" style="display:flex;justify-content: space-between;">
+					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
 					<span
 						v-show="sendCode"
 						@click="ObtainCode"
-						style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;"
+						style="display:inline-block;width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);float:right;line-height:1.01rem;cursor:pointer;"
 					>
 						获取验证码
 					</span>
 					<span
 						v-show="!sendCode"
-						style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;"
+						style="width:3.13rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:1.01rem;cursor:pointer;"
 					>
 						{{ authTime }} 秒后获取
 					</span>
@@ -1129,11 +1129,11 @@ html {
 	height: 0.445rem;
 }
 .loginlogo {
-	width: 4.53125rem;
-	height: 1.25625rem;
+	width: 4.33125rem;
+	height: 1.15625rem;
 	position: absolute;
-	left: 5.456rem;
-	top: 2.7062rem;
+	left: 5.656rem;
+	top: 3.3062rem;
 }
 .loginlogo img {
 	width: 100%;
@@ -1141,80 +1141,89 @@ html {
 }
 .user {
 	width: 6.03125rem;
-	height: 0.838rem;
+/* 	height: 0.838rem; */
 	position: absolute;
-	top: 4.625rem;
-	right: 3.2rem;
+	top: 5.525rem;
+	right:5.9rem;
 	background: #ffffff;
 	/* 	background:red; */
 }
 .userinput {
-	width: 5.7rem;
-	height: 0.838rem;
+	width:8rem;
+	height: 1.01rem;
 	float: left;
 	padding-left: 0.3rem;
 	border: none;
 	line-height: 1.25rem;
 	display: inline-block;
 	/* background:red; */
+	font-size:0.45rem;
+	color:#999999;
 }
 .yanzheng {
 	display: block;
-	/* width:3.0rem;
+	/* width:4rem;
 	height:0.5rem; */
-	font-size: 0.3rem;
+	display:flex;
+	font-size: 0.33rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: red;
 	position: absolute;
-	left: 4.6rem;
-	top: 3.9rem;
+	left:6.3rem;
+	bottom:10.2rem;
+/* 	background:plum; */
+	text-align:center;
 }
 .password {
-	width: 6rem;
-	height: 0.82rem;
+	width:8.3rem;
+	height:1.01rem;
 	position: absolute;
-	top: 6.19rem;
-	right: 3.2rem;
+	top: 7.5rem;
+	right: 3.65rem;
 	background: #ffffff;
 	/* background:red; */
 }
 .password input {
-	width: 3.4rem;
-	height: 0.82rem;
+	width:4.8rem;
+	height:1.01rem;
 	/* float: left; */
 	padding-left: 0.25rem;
 	border: none;
 	line-height: 0.82rem;
 	display: inline-block;
 	float: left;
+	/* background:plum; */
+	color:#999999;
 }
 /* 登录按钮 */
 .Logon-button {
-	width: 5.279rem;
-	height: 0.8017rem;
+	width: 7.3rem;
+	height: 1.02rem;
 	position: absolute;
-	top: 7.7rem;
-	left: 3.3875rem;
+	top: 9.9rem;
+	left: 4.2rem;
 	background: url(../../assets/image/juxing3@2x.png);
-	background-size: 5.279rem 0.8017rem;
+	background-size: 7.3rem 1.02rem;
 	cursor: pointer;
-	font-size: 0.3933rem;
+	font-size: 0.4rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: #ffffff;
 	text-align: center;
-	line-height: 0.8017rem;
+	line-height: 1.02rem;
 }
 /* 还没有账号？马上注册 */
 .login-footer {
-	width: 4.0375rem;
-	height: 0.625rem;
+	/* width: 4.0375rem;
+	height: 0.625rem; */
 	font-size: 0.375rem;
 	position: absolute;
-	top: 8.725rem;
-	/* left:4.3rem; */
-	right: 4.3rem;
+	top:11.2rem;
+	left:5.9rem;
+	/* right:5.8rem; */
+/* 	display:flex;
+  justify-content:space-between; */
 }
 .noreg {
 	font-family: MicrosoftYaHei;

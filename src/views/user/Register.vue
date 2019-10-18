@@ -88,17 +88,17 @@
 						<input type="text" v-model="phone1" placeholder="请输入手机号"  @blur="fn"/>
 					</div>
 					<!-- 输入验证码-->
-					<div class="code" style="display:flex;">
-						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6"/>
+					<div class="code" style="display:flex;justify-content: space-between;">
+						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" style="font-size:0.45rem;"/>
 						<!-- <div class="codefooter" @click="yzm">获取验证码</div> -->
-						<span v-show="sendCode" @click="ObtainCode()" style="width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">获取验证码</span>
-						<span v-show="!sendCode" style="display:inline-block;width:2.3rem;height:0.7875rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:0.775rem;cursor:pointer;">{{authTime}} 秒后获取</span>
+						<span v-show="sendCode" @click="ObtainCode()" style="width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:1.01rem;cursor:pointer;">获取验证码</span>
+						<span v-show="!sendCode" style="display:inline-block;width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);float:right;line-height:1.01rem;cursor:pointer;">{{authTime}} 秒后获取</span>
 					</div>
 					<!-- 注册 -->
 					<div class="reg-button" @click="login()"><span>完成注册</span></div>
-					<div class="login-footer">
-						<i class="noreg">已有账户!</i>
-						<i class="login-reg" @click="fn3">立即登录</i>
+					<div class="login-footers">
+						<i class="noregs">已有账户!</i>
+						<i class="login-regs" @click="fn3">立即登录</i>
 					</div>
 				</div>
 					 	<!-- 社区部分 -->
@@ -413,7 +413,7 @@ export default {
 		//输入手机号@blur事件
 		fn() {
 			if(this.phone1==null){
-				this.phonename="手机号格式不正确";
+				this.phonename="请输入手机号";
 				this.panduanphone = true;
 				return;
 				}
@@ -1094,8 +1094,8 @@ export default {
 }
 /* 登录 */
 .login {
-	width:12.34375rem;
-	height:12.34375rem;
+	width:15.64375rem;
+	height:15.64375rem;
 	position: absolute;
 	z-index: 50;
 	top:10.5rem;
@@ -1104,7 +1104,7 @@ export default {
 	margin-left: -550px; */
 	background-color: white;
 	background: url(../../assets/image/beijing@2x.png) no-repeat;
-	background-size: 12.34375rem 12.34375rem;
+	background-size: 15.64375rem 15.64375rem;
 }
 #popContainer {
 	width:59.9375rem;
@@ -1129,11 +1129,11 @@ export default {
 	height:0.445rem;
 }
 .loginlogo {
-	width:2.8rem;
-	height:0.78rem;
+	width:4.33125rem;
+	height:1.15625rem;
 	position: absolute;
-	left:4.79rem;
-	top:2.7rem;
+	left:5.656rem;
+	top:3.3062rem;
 }
 .loginlogo img {
 	width: 100%;
@@ -1141,38 +1141,39 @@ export default {
 }
 /* 请输入手机号 */
 .userR {
-	width:6.05125rem;
-	height:0.836rem;
+	width:8rem;
+	height:1.01rem;
 	position: absolute;
-	top:4.4rem;
-	left:3.1rem;
+	top:5.525rem;
+	right:3.7rem;
 	background: #ffffff;
-	/* background:red; */
+/* 	background:red; */
 }
 .userimg {
-	width:0.78rem;
-	height:0.6rem;
+	width:1.1rem;
+	height:0.8rem;
 	display:inline-block;
 	float: left;
 	/* padding-let: 9px;
 	padding-top: 9px;
 	padding-right: 4px; */
 	/* background:blue; */
-	font-size:0.36rem;
+	font-size:0.46rem;
 	margin-top:0.2rem;
 	margin-left:0.1rem;
 	margin-right:0.02rem;
+	line-height:0.7rem;
 }
 
 .fenge {
 	width:0.05rem;
-	height:0.68rem;
+	height:0.9rem;
 	float: left;
 	margin-top:0.05rem;
 }
 .userR input {
-	width:4.69rem;
-	height:0.84rem;
+	width:6.35rem;
+	height:1.01rem;
 	float: left;
 	padding-left:0.3rem;
 	border: none;
@@ -1180,6 +1181,8 @@ export default {
 	display: inline-block;
 	margin-left:0.05rem;
 	color:rgba(153,153,153,1);
+	/* background:plum; */
+	font-size:0.45rem;
 }
 /* 请输入手机号结束 */
 /* 手机号已注册 */
@@ -1192,30 +1195,31 @@ export default {
 	font-family: MicrosoftYaHei;
 	color: red;
 	position: absolute;
-	left:4rem;
-	top:3.7rem;
+	left:6.2rem;
+	top:4.85rem;
 }
 /* 手机号已注册结束 */
 /* 获取验证码 */
 .code {
-	width:6.03125rem;
-	height:0.88rem;
+	width:8rem;
+	height:1.01rem;
 	position: absolute;
-	top:5.8rem;
-	left:3.1rem;
+	top:7.6rem;
+	right:3.7rem;
 	background: #ffffff;
-/* 	background:red; */
+	/* background:red; */
 }
 .code input {
-	width:3.46rem;
-	height:0.88rem;
+	width:4.55rem;
+	height:1.01rem;
 	color: #999999;
 	float: left;
 	padding-left:0.25rem;
 	border: none;
-	line-height:0.88rem;
+	line-height:1.01rem;
 	display: inline-block;
-	font-size:0.3rem;
+	font-size:0.45rem;
+	/* background:plum; */
 }
 .codefooter {
 	width:2rem;
@@ -1257,35 +1261,35 @@ export default {
 /* } */
 /* 注册按钮 */
 .reg-button {
-	width:5.32rem;
-	height:0.78rem;
+	width:7.43rem;
+	height:1.02rem;
 	position: absolute;
-	top:7.5rem;
-	left:3.5rem;
+	top:9.9rem;
+	left:4.26rem;
 	background: url(../../assets/image/juxing3@2x.png);
-	background-size:5.32rem 0.78rem; 
+	background-size:7.43rem 1.02rem; 
 	cursor: pointer;
-	line-height:0.41rem;
+	line-height:0.8rem;
 }
 .reg-button span {
-	font-size:0.3rem;
+	font-size:0.4rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: #ffffff;
 	text-align: center;
 	line-height:0.41rem;
+	/* background:red; */
 }
 /* 已有账号跳转登录 */
-.login-footer {
-	width:4.0375rem;
-	height:0.625rem;
+.login-footers {
+	/* width:4.0375rem;
+	height:0.625rem; */
 	font-size:0.375rem;
 	position: absolute;
-	top:8.725rem;
-	/* left:4.3rem; */
-	right:4.3rem;
+   top:11.2rem;
+	left:6.4rem;
 }
-.noreg {
+.noregs {
 	font-family: MicrosoftYaHei;
 	display:inline-block;
 	font-weight: 400;
@@ -1293,7 +1297,7 @@ export default {
 	font-size:0.375rem;
 	color: rgba(51, 51, 51, 1);
 }
-.login-reg {
+.login-regs {
 	color: #2180ed;
 	font-family: MicrosoftYaHei;
 	display:inline-block;
