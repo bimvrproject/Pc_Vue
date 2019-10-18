@@ -648,6 +648,12 @@
 			},
 			//点击发布
 			fnfabu() {
+				if(this.Printscreen.length==0){
+					// 调用点击发布的时候轮播显示
+					this.$eventbus.$emit('fbswiperss');
+				}else{
+					this.$eventbus.$emit('fbswipers');
+				}
 				// this.timer();
 				this.fbcolor = 'color:#2180ED';
 				this.fbtu = require('../../assets/image/fbblue.png');
@@ -657,8 +663,7 @@
 				this.nmfb = require('../../assets/image/shang.png');
 				this.nmbj = require('../../assets/image/pmjtxia.png');
 				this.lmore = require('../../assets/image/pmjtxia.png');
-				// 调用点击发布的时候轮播显示
-				this.$eventbus.$emit('fbswipers');
+				
 			},
 			// 划过更多
 			fnmornj(){
@@ -1132,7 +1137,7 @@
 	.swiper-slidebottom {
 		width: 6rem !important;
 		height: 6rem !important;
-		background:red;
+		/* background:red; */
 		margin-right: 0.5rem;
 	}
 	.swiper-slidebottomimg {
