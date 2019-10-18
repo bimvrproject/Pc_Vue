@@ -179,12 +179,12 @@
 	$(function(){
 		$(".quanxuan").click(function(){
 			alert("全选")
-    $(".vvv").addClass('checkeds');
-  });
-	$(".qx").click(function(){
+			$(".vvv").addClass('checkeds');
+		});
+		$(".qx").click(function(){
 		alert("取消")
-	  $(".vvv").removeClass('checkeds');
-	});
+		  $(".vvv").removeClass('checkeds');
+		});
 	})
 	// import Zheader from './header';
 	export default {
@@ -431,6 +431,7 @@
 			},
 			// 点击轮播中的全选
 			fnallswper(index){
+				alert(123)
 				this.fbswperall = "background:rgba(37,175,178,0.4);"
 				this.fbswper = "background:rgba(225,225,225,0);"
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
