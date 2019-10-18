@@ -177,18 +177,6 @@
 	import axios from 'axios';
 	import Releases from './releases';
 	import addressurls from '@/api/ip.js';
-<<<<<<< HEAD
-	import $ from 'jquery'
-	$(function(){
-		$(".quanxuan").click(function(){
-    $(".vvv").addClass('checkeds');
-  });
-	$(".qx").click(function(){
-	  $(".vvv").removeClass('checkeds');
-	});
-	})
-=======
->>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 	// import Zheader from './header';
 	export default {
 		data() {
@@ -243,11 +231,7 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
-<<<<<<< HEAD
-=======
 				// newarrs:[0,0,0,0,0,0],
-
->>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 
 				// swiper上边部分
@@ -456,13 +440,10 @@
 			},
 			// 点击轮播中的全选
 			fnallswper(index){
-<<<<<<< HEAD
-=======
 				// alert(123)
 				this.duigous = " ";
 				this.showIndex = true;
 				this.dgou = true;
->>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 				this.fbswperall = "background:rgba(37,175,178,0.4);"
 				this.fbswper = "background:rgba(225,225,225,0);"
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
