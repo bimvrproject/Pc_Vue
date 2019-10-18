@@ -35,7 +35,7 @@
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 				<!-- 	@mouseleave="fnhsqlev()" -->
-					<span class="el-dropdown-link" @click="fnsqtit">
+					<span class="el-dropdown-link" @click="fnsqtit" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
 						<img class="sqimg" :src="hsq" />
 						<i class="sq" :style="hsqcolor">社区</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -43,7 +43,7 @@
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhbjlev()" -->
-					<span class="el-dropdown-link" @click="ceyins()">
+					<span class="el-dropdown-link" @click="ceyins()" @mouseenter="fnhbj()">
 						<img class="bjimg" :src="bjtu" />
 						<i class="bj" :style="bjcolor">编辑</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -54,7 +54,7 @@
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhfblev()" -->
-					<span class="el-dropdown-link" @click="fnfabu()">
+					<span class="el-dropdown-link" @click="fnfabu()" @mouseenter="fnhfb()">
 						<img class="bjimg" :src="fbtu" />
 						<i class="bj" :style="fbcolor">发布</i>
 						<!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -141,20 +141,21 @@
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
 		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index" @contextmenu.prevent="fnyouji(index)">
-						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
+						<span class="vvvs" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
+					display:inline-block;position:absolute;top:0rem;right:0.03rem;" :class="{checkeds:dgarrs.includes(index),'abc':showIndex}" :style="duigous" 
 						 @click.stop="fnxz(index)">
 						</span>
-						<img :src="'http://192.168.6.152:8080/'+item.images" alt="">
+						<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
+						<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
 						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 						<div class="xbz" v-show="aaaaaa === index">
 							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
 								发布
 							</span>
-							<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
+							<span class="fqq quanxuans" @click.stop="fnallswper()" :style="fbswperall">
 								 全选
 							</span>
-							<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+							<span class="fqq qxs" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
 							   取消选择
 							</span>
 						</div>
@@ -176,6 +177,7 @@
 	import axios from 'axios';
 	import Releases from './releases';
 	import addressurls from '@/api/ip.js';
+<<<<<<< HEAD
 	import $ from 'jquery'
 	$(function(){
 		$(".quanxuan").click(function(){
@@ -185,10 +187,14 @@
 	  $(".vvv").removeClass('checkeds');
 	});
 	})
+=======
+>>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 	// import Zheader from './header';
 	export default {
 		data() {
 			return {
+				duigous:"",
+				showIndex:false,
 				sdsds:false,
 				aaaaaa:-1,
 				dddd:false,
@@ -237,7 +243,13 @@
 				// 中间部分隐藏
 				centerxy: true,
 				swipers: false,
+<<<<<<< HEAD
+=======
+				// newarrs:[0,0,0,0,0,0],
+
+>>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -251,6 +263,7 @@
 				moretb: require('../../assets/image/more@2x.png'),
 				// 对勾的数组
 				dgarrs:[],
+				dgou:false,
 				// 轮播中的发布的背景色
 				fbswper:"background:rgba(225,225,225,0)",
 				fbswperall:"background:rgba(225,225,225,0)",
@@ -270,7 +283,6 @@
 			Releases,
 		},
 		created() {
-			
 			// 创建点击动画得时候轮播图出现
 		   	this.$eventbus.$on('fbswipersfree', () => {
 		   this.frees = true
@@ -389,28 +401,42 @@
 			 var galleryThumbs = new Swiper('.gallery-thumbs', {
 			  spaceBetween: 10,
 			  slidesPerView:8,
-				 navigation: {
-				  nextEl: '.swiper-button-next',
-				  prevEl: '.swiper-button-prev',
-				},
+				//  navigation: {
+				//   nextEl: '.swiper-button-next',
+				//   prevEl: '.swiper-button-prev',
+				// },
 			  freeMode: true,
 			  watchSlidesVisibility: true,
 			  watchSlidesProgress: true,
+				observer:true,/*启动动态检查器，当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。*/
+       observeParents:true,/*将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。*/
 			});
 			 new Swiper('.gallery-top', {
 			  spaceBetween: 10,
-			  // navigation: {
-			  //   nextEl: '.swiper-button-next',
-			  //   prevEl: '.swiper-button-prev',
-			  // },
+			  navigation: {
+			    nextEl: '.swiper-button-next',
+			    prevEl: '.swiper-button-prev',
+			  },
+				observer:true,/*启动动态检查器，当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。*/
+				observeParents:true,/*将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。*/
 			  thumbs: {
 			    swiper: galleryThumbs
 			  }
 			});
 		},
 		methods: {
+			 // 这是一个定时器
+     //  timer() {
+     //    return setTimeout(()=>{
+					// 
+     //      alert(1)
+     //    },1000)
+     //  },
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
+				this.duigous = "background:rgba(225,225,225,0)";
+				this.showIndex = false;
+				this.dgou = false;
 				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
 				this.fbswperall = "background:rgba(225,225,225,0);"
 				this.fbswper = "background:rgba(225,225,225,0);"
@@ -430,10 +456,17 @@
 			},
 			// 点击轮播中的全选
 			fnallswper(index){
+<<<<<<< HEAD
+=======
+				// alert(123)
+				this.duigous = " ";
+				this.showIndex = true;
+				this.dgou = true;
+>>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 				this.fbswperall = "background:rgba(37,175,178,0.4);"
 				this.fbswper = "background:rgba(225,225,225,0);"
 				this.fbswperqxchang = "background:rgba(225,225,225,0);"
-				this.dgarrs.length = this.newarrs.length;
+				// this.dgarrs.length = this.newarrs.length;
 				// alert(this.dgarrs.length)
 			   // this.dgarrs = true
 				// if(this.dgarrs.includes(i)){
@@ -462,6 +495,7 @@
 			// 选择对勾
 			fnxz(i){
 				 // alert(i)
+				 this.duigous = " ";
 				if(this.dgarrs.includes(i)){
 					this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 					sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
@@ -633,6 +667,7 @@
 			},
 			//点击发布
 			fnfabu() {
+				// this.timer();
 				this.fbcolor = 'color:#2180ED';
 				this.fbtu = require('../../assets/image/fbblue.png');
 				this.bjtu = require('../../assets/image/bianji.png');
@@ -647,12 +682,12 @@
 			// 划过更多
 			fnmornj(){
 				this.moretb = require('../../assets/image/moress.png');
-				// this.bjtu = require('../../assets/image/bianji.png'),
-				// this.bjcolor = 'color:#333333';
-				// this.fbtu = require('../../assets/image/fbnav.png');
-				// this.fbcolor = 'color:#333333'
-				// this.hsq = require('../../assets/image/sq@2x.png'),
-				// this.hsqcolor = "color:#333333";
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333';
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333'
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
 					this.goos = false;
 				this.backs = false
 			},
@@ -675,36 +710,36 @@
 				this.backs = false
 			},
 			// 移入社区的时候
-			// fnhsq(){
-			// 	this.hsq = require('../../assets/image/shequ.png')
-			// 	this.hsqcolor = "color:#2180ED";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// 	this.bjtu = require('../../assets/image/bianji.png'),
-			// 	this.bjcolor = 'color:#333333';
-			// 	this.fbtu = require('../../assets/image/fbnav.png');
-			// 	this.fbcolor = 'color:#333333'
-			// 		this.goos = false;
-			// 	this.backs = false
-			// },
+			fnhsq(){
+				this.hsq = require('../../assets/image/shequ.png')
+				this.hsqcolor = "color:#2180ED";
+				this.moretb = require('../../assets/image/more@2x.png');
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333';
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333'
+					this.goos = false;
+				this.backs = false
+			},
 			// 移出社区的时候
-			// fnhsqlev(){
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 		this.goos = false;
-			// 	this.backs = false				
-			//  },
+			fnhsqlev(){
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+					this.goos = false;
+				this.backs = false				
+			 },
 			// 移入编辑
-			// fnhbj(){
-			// 	this.bjtu = require('../../assets/image/bjblue.png');
-			// 	this.bjcolor = 'color:#2180ED';
-			// 	this.fbtu = require('../../assets/image/fbnav.png');
-			// 	this.fbcolor = 'color:#333333';
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// 		this.goos = false;
-			// 	this.backs = false
-			// 	},
+			fnhbj(){
+				this.bjtu = require('../../assets/image/bjblue.png');
+				this.bjcolor = 'color:#2180ED';
+				this.fbtu = require('../../assets/image/fbnav.png');
+				this.fbcolor = 'color:#333333';
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+				this.moretb = require('../../assets/image/more@2x.png');
+					this.goos = false;
+				this.backs = false
+				},
 			// 移出编辑
 			// fnhbjlev(){
 			// 	this.bjtu = require('../../assets/image/bianji.png'),
@@ -713,15 +748,15 @@
 			// 	this.backs = false
 			// },
 			// 移入发布
-			// fnhfb(){
-			// 	this.fbtu = require('../../assets/image/fbblue.png');
-			// 	this.fbcolor = 'color:#2180ED';
-			// 	this.bjtu = require('../../assets/image/bianji.png'),
-			// 	this.bjcolor = 'color:#333333';
-			// 	this.hsq = require('../../assets/image/sq@2x.png'),
-			// 	this.hsqcolor = "color:#333333";
-			// 	this.moretb = require('../../assets/image/more@2x.png');
-			// },
+			fnhfb(){
+				this.fbtu = require('../../assets/image/fbblue.png');
+				this.fbcolor = 'color:#2180ED';
+				this.bjtu = require('../../assets/image/bianji.png'),
+				this.bjcolor = 'color:#333333';
+				this.hsq = require('../../assets/image/sq@2x.png'),
+				this.hsqcolor = "color:#333333";
+				this.moretb = require('../../assets/image/more@2x.png');
+			},
 			// 移出发布
 			// fnhfblev(){
 			// 	this.fbtu = require('../../assets/image/fbnav.png');
@@ -769,7 +804,7 @@
 		height:2.34375rem;
 		position:absolute;
 		bottom:0rem;
-		left:0.16rem;
+		left:0rem;
 		display:flex;
 		flex-direction: column;
 		cursor:pointer;
@@ -779,7 +814,11 @@
 	.checkeds{
 		background:url(../../assets/image/bluedui.png) no-repeat 0.07rem 0.03rem;
 		background-size:0.8rem 0.8rem;
-		z-index:20000;
+/* 		z-index:20000; */
+	}
+	.abc{
+			background:url(../../assets/image/bluedui.png) no-repeat 0.07rem 0.03rem;
+		background-size:0.8rem 0.8rem;
 	}
 	.moretopcomnj{
 		position:relative;
@@ -906,7 +945,7 @@
 	}
 
 	.zongjm {
-		width: 59.9375rem;
+		/* width: 59.9375rem; */
 		height: 33.65625rem;
 	/* 	background:green; */
 		/* background: url(../../assets/image/bjt.jpg);
@@ -1106,30 +1145,30 @@
 		height: 20.21875rem;
 	}
 	.swiper-slidetop img {
-		width: 47.46875rem;
-		height: 20.21875rem;
+	width: 47.46875rem;
+	height: 20.21875rem;
 	}
 	.swiper-slidebottom {
-		width: 10rem;
-		height: 6rem;
-		/* background:red; */
+		width: 6rem !important;
+		height: 6rem !important;
+		background:red;
 		margin-right: 0.5rem;
 	}
-	.swiper-slidebottom img {
-		width: 6rem;
-		height: 6rem;
+	.swiper-slidebottomimg {
+		width: 6rem !important;
+		height: 6rem !important;
 	}
-	.swiper-container {
+/* 	.swiper-container {
 		margin-left: auto;
 		margin-right: auto;
-	}
-	.swiper-slide {
+	} */
+/* 	.swiper-slide {
 		background-size: cover;
 		background-position: center;
-	}
+	} */
 	.gallery-top {
-		width: 45.86875rem;
-		height: 25.21875rem;
+		width: 45.86875rem !important;
+		height: 20.21875rem !important;
 	}
 	.gallery-thumbs {
 		box-sizing: border-box;

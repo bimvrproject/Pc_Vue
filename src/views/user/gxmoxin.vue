@@ -144,11 +144,11 @@
 						 @click.stop="fnxz(index)">
 						</span>
 					<img src="../../assets/image/t4.jpg" alt="">
-					<div class="xbz" v-show="aaaaaa === index">
+					<div class="xbzs" v-show="aaaaaa === index">
 						<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
 							发布
 						</span>
-						<span class="fqq quanxuan" @click.stop="fnallswper()" :style="fbswperall">
+						<span class="fqq quanxuan" @click.stop="fnallswper(index)" :style="fbswperall">
 							 全选
 						</span>
 						<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
@@ -172,7 +172,7 @@ import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
 import addressurls from '@/api/ip.js';
-
+import $ from 'jquery';
 $(function(){
 		$(".quanxuan").click(function(){
     $(".vvv").addClass('checkeds');
@@ -365,11 +365,11 @@ export default {
 			this.fbswperall = "background:rgba(37,175,178,0.4);"
 			this.fbswper = "background:rgba(225,225,225,0);"
 			this.fbswperqxchang = "background:rgba(225,225,225,0);"
-			this.dgarrs.length = this.newarrs.length;
-			if(this.dgarrs.length = this.newarrs,length){
-				
-				alert(1)
-				}
+			// this.dgarrs.length = this.newarrs.length;
+			// if(this.dgarrs.length = this.newarrs,length){
+			// 	
+			// 	alert(1)
+			// 	}
 			},
 			// 点击轮播中的发布
 		fnfbswper(index){
@@ -574,12 +574,12 @@ export default {
 		font-family:Microsoft YaHei;
 		 font-weight:400;
 	}
-	.xbz{
+	.xbzs{
 		width:5.999rem;
 		height:2.34375rem;
 		position:absolute;
 		bottom:0rem;
-		left:0.16rem;
+		left:0rem;
 		display:flex;
 		flex-direction: column;
 		cursor:pointer;
@@ -658,35 +658,32 @@ export default {
 		height: 20.21875rem;
 	}
 	.swiper-slidebottom {
-		width: 10rem;
-		height: 6rem;
-		/* background:red; */
+		width: 6rem !important;
+		height: 6rem !important;
 		margin-right: 0.5rem;
 	}
 	.swiper-slidebottom img {
-		width: 6rem;
-		height: 6rem;
+		width: 6rem !important;
+		height: 6rem !important;
 	}
-	.swiper-container {
+/* 	.swiper-container {
 		margin-left: auto;
 		margin-right: auto;
 	}
 	.swiper-slide {
 		background-size: cover;
 		background-position: center;
-	}
+	} */
 	.gallery-top {
 		width: 45.86875rem;
-		height: 25.21875rem;
+		height: 20.21875rem;
 	}
 	.gallery-thumbs {
 		box-sizing: border-box;
 		padding: 0.8rem 0;
-		/*  padding: 20px 0; */
 	}
 	.gallery-thumbs .swiper-slide {
-		/* width: 25%;
-	      height: 100%; */
+	
 		opacity: 0.8;
 	}
 	.gallery-thumbs .swiper-slide-thumb-active {

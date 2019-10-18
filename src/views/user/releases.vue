@@ -260,9 +260,15 @@ export default {
 			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 			// 图片中的拍照的字体颜色
 			this.fbpzscolor = 'color:#2180ED',
+<<<<<<< HEAD
 			axios.get(api.OpenCmd).then(result=>{
 				console.log(result.data)
 			})
+=======
+		    axios.get(api.OpenCmd).then(result=>{
+            console.log(result.data)
+   })
+>>>>>>> 0a453087e1b6b8bd62a299a2352d35230c4df72c
 		},
 		//点击平面图纸中的具体某一个平面图纸
 		fnpmtzxh(i){
