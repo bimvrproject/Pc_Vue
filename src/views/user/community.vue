@@ -1177,17 +1177,20 @@ html {
 }
 .yanzheng {
 	display: block;
-	/* width:4rem;
+/* 	width:4rem;
 	height:0.5rem; */
-	display:flex;
+	/* display:flex; */
 	font-size: 0.33rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: red;
 	position: absolute;
-	left:6.3rem;
+	right:6.8rem;
+	/* left:6.2rem; */
+	/* left:40%; */
+	/* margin-left:-0.2rem; */
 	bottom:10.2rem;
-/* 	background:plum; */
+	/* background:plum; */
 	text-align:center;
 }
 .password {
@@ -1230,14 +1233,17 @@ html {
 }
 /* 还没有账号？马上注册 */
 .login-footer {
-	/* width: 4.0375rem;
-	height: 0.625rem; */
+	width: 6.0375rem;
+	height: 0.625rem;
 	font-size: 0.375rem;
 	position: absolute;
 	top:11.2rem;
-	left:5.9rem;
+	right:4.7rem;
+	/* background:red; */
+	text-align:center;
+	/* display:flex; */
 	/* right:5.8rem; */
-/* 	display:flex;
+/* 	
   justify-content:space-between; */
 }
 .noreg {
@@ -1247,6 +1253,7 @@ html {
 	font-style: normal;
 	font-size: 0.375rem;
 	color: rgba(51, 51, 51, 1);
+/* 	background:green; */
 }
 .login-reg {
 	color: #2180ed;
@@ -1256,6 +1263,7 @@ html {
 	font-size: 0.333rem;
 	font-style: normal;
 	cursor: pointer;
+/* 	background:blue; */
 }
 input::-webkit-input-placeholder {
 	/* placeholder颜色  */

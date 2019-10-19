@@ -1210,13 +1210,13 @@ export default {
 	display: block;
 	/* width: 128px;
 	height: 16px; */
-	font-size:0.3rem;
+	font-size:0.33rem;
 	font-weight: 400;
 	font-family: MicrosoftYaHei;
 	color: red;
 	position: absolute;
-	left:6.2rem;
-	top:4.85rem;
+		right:6.8rem;
+	bottom:10.2rem;
 }
 /* 手机号已注册结束 */
 /* 获取验证码 */
@@ -1302,12 +1302,13 @@ export default {
 }
 /* 已有账号跳转登录 */
 .login-footers {
-	/* width:4.0375rem;
-	height:0.625rem; */
+	width:6.0375rem;
+	height:0.625rem;
 	font-size:0.375rem;
 	position: absolute;
    top:11.2rem;
-	left:6.4rem;
+	right:4.7rem;
+	text-align: center;
 }
 .noregs {
 	font-family: MicrosoftYaHei;
