@@ -249,7 +249,7 @@ export default {
 			username: '',
 			sendCode: true, // 控制发送验证码按钮显示
 			authTime: 0, // 倒计时
-			phonename: '手机号不正确', //输入不正确友好提示
+			phonename: '', //输入不正确友好提示
 			comarr: [0, 0],
 			password: '',
 			loginWindow: true,
@@ -402,19 +402,34 @@ export default {
 		fn3() {
 			this.$router.push('/Register');
 		},
+		//输入手机号的失焦事件
 		fn1() {
 			var re = /^1[3456789]\d{9}$/;
-			if (!re.test(this.username)) {
+			if(this.username==''){
+				this.phonename = '手机号不能为空';
 				this.panduan = true;
-			} else {
+			}else{
 				this.panduan = false;
-			}
-			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-				if (result.data == undefined) {
-					this.phonename = '您未注册，请注册！';
+				if (!re.test(this.username)) {
+					this.phonename = '手机号格式不正确';
 					this.panduan = true;
+				}else{
+					this.panduan = false;
 				}
-			});
+			}
+			
+			// if (!re.test(this.username)) {
+			// 	// this.phonename = '手机号格式不正确';
+			// 	this.panduan = true;
+			// } else {
+			// 	this.panduan = false;
+			// }
+			// axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+			// 	if (result.data == undefined) {
+			// 		this.phonename = '您未注册，请注册！';
+			// 		this.panduan = true;
+			// 	}
+			// });
 		},
 		fn2() {
 			var re = /^\w{6,12}$/;

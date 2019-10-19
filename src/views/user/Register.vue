@@ -85,7 +85,7 @@
 					<div class="userR">
 					<span  class="userimg">86+</span>
 						<img class="fenge" src="../../assets/image/juxing11@2x.png" alt="" />
-						<input type="text" v-model="phone1" placeholder="请输入手机号"  @blur="fn"/>
+						<input type="text" v-model="phone1" placeholder="请输入手机号" @focus="phonefocus"  @blur="fn"/>
 					</div>
 					<!-- 输入验证码-->
 					<div class="code" style="display:flex;justify-content: space-between;">
@@ -410,26 +410,46 @@ export default {
 		fn5() {
 			this.$router.push('/');
 		},
+		//输入手机号@foucs事件
+		phonefocus(){
+			this.panduandenglu=false;
+		},
 		//输入手机号@blur事件
 		fn() {
-			if(this.phone1==null){
-				this.phonename="请输入手机号";
+			var re = /^1[3456789]\d{9}$/;
+			this.panduandenglu=false;
+			if(this.phone1==''){
+				this.phonename = '手机号不能为空';
 				this.panduanphone = true;
-				return;
-				}
-				var re = /^1[3456789]\d{9}$/;
+			}else{
+				this.panduanphone = false;
 				if (!re.test(this.phone1)) {
+					this.phonename = '手机号格式不正确';
 					this.panduanphone = true;
-				} else {
-					axios.get(api.GetPhone+"?phone"+"="+this.phone1).then(result=>{
-						if(result.data==undefined){
-							this.panduanphone = false;
-						}else{
-							this.panduandenglu=true;
-						}
-					})
+				}else{
 					this.panduanphone = false;
 				}
+			}
+			
+			
+			// if(this.phone1==null){
+			// 	this.phonename="请输入手机号";
+			// 	this.panduanphone = true;
+			// 	return;
+			// 	}
+			// 	var re = /^1[3456789]\d{9}$/;
+			// 	if (!re.test(this.phone1)) {
+			// 		this.panduanphone = true;
+			// 	} else {
+			// 		axios.get(api.GetPhone+"?phone"+"="+this.phone1).then(result=>{
+			// 			if(result.data==undefined){
+			// 				this.panduanphone = false;
+			// 			}else{
+			// 				this.panduandenglu=true;
+			// 			}
+			// 		})
+			// 		this.panduanphone = false;
+			// 	}
 		},
 		fncomenter() {
 			this.$router.push('/');
