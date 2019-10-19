@@ -11,7 +11,7 @@
 			<!-- 右侧登录标识 -->
 			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
-			<div class="hometoplocom" v-show="hometop" style="z-index:20;background:red;">
+			<div class="hometoplocom" v-show="hometop" style="z-index:20;">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fndianji()" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
@@ -1140,11 +1140,11 @@ html {
 	height: 100%;
 }
 .user {
-	width: 6.03125rem;
-/* 	height: 0.838rem; */
+	width:8rem;
+	height:1.01rem;
 	position: absolute;
 	top: 5.525rem;
-	right:5.9rem;
+	right:4rem;
 	background: #ffffff;
 	/* 	background:red; */
 }

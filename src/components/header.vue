@@ -58,14 +58,13 @@
 	
 	</div>
 </template>
-
 <script>
 	export default{
 		data(){
 			return{
 				fndl:true,
 				// 登录下拉的显隐
-				headerxy:false,
+				headerxy:false
 			}
 		},
 		methods:{
@@ -90,6 +89,7 @@
 				sessionStorage.clear();
 				this.$router.push("/");
 				this.$forceUpdate();
+				  // location.reload()
 			}
 		},
 		created(){
@@ -107,8 +107,8 @@
 	 height:0.90625rem;
 	 position: absolute;
 	 top: 0.9rem;
-	 right:0.8rem;
-	background:red;
+	 right:4.5rem;
+	/* background:red; */
 	z-index:30000;
 	cursor:pointer;
 	}
@@ -179,8 +179,8 @@
 			}
 		.hhh{
 			position:absolute;
-			left:51.5rem !important;
-			top:0.6rem !important;
+			left:51rem !important;
+			top:1.3rem !important;
 			margin-top:0.5rem;
 			width:0rem;
 			height:0rem;
