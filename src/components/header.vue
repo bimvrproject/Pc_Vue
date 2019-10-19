@@ -69,6 +69,7 @@
 			}
 		},
 		methods:{
+			//移入事件
 			loginss(){
 				if(window.sessionStorage.getItem('token') !== null){
 					this.headerxy = true
@@ -76,6 +77,7 @@
 					this.headerxy = false
 				}
 			},
+			// 点击事件
 			logins(){
 				if(window.sessionStorage.getItem('token') !== null){
 					this.$eventbus.$emit('loginherfal')
@@ -83,6 +85,7 @@
 					this.$eventbus.$emit('loginhertru')
 				}
 			},
+			// 点击退出
 			outlogin(){
 				sessionStorage.clear();
 				this.$router.push("/");

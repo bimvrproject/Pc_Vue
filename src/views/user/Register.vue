@@ -1269,7 +1269,7 @@ export default {
 	background: url(../../assets/image/juxing3@2x.png);
 	background-size:7.43rem 1.02rem; 
 	cursor: pointer;
-	line-height:0.8rem;
+	line-height:0.7rem;
 }
 .reg-button span {
 	font-size:0.4rem;
