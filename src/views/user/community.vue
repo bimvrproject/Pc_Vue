@@ -11,7 +11,7 @@
 			<!-- 右侧登录标识 -->
 			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
-			<div class="hometoplocom" v-show="hometop" style="z-index:20;">
+			<div class="hometoplocom" v-show="hometop" style="z-index:20;background:red;">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fndianji()" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
@@ -1154,7 +1154,7 @@ html {
 	float: left;
 	padding-left: 0.3rem;
 	border: none;
-	line-height: 1.25rem;
+	line-height: 1.01rem;
 	display: inline-block;
 	/* background:red; */
 	font-size:0.45rem;

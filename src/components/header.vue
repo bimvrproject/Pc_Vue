@@ -45,11 +45,11 @@
 					</el-dropdown-menu>
 		 		</el-dropdown>
 		 		<!-- 小化 -->
-		 			<div class="guanbi-toprig">
+		 		<!-- 	<div class="guanbi-toprig">
 		 			<span class="toprig11"><img src="../assets/image/min.png" alt="" style="width:1.21875‬rem;height:0.875rem;" /></span>
 		 			<span class="toprig22"><img src="../assets/image/max.png" alt="" style="width:1.21875‬rem;height:0.875rem;" /></span>
 		 			<span class="toprig33"><img src="../assets/image/gb.png" alt="" style="width:1.21875‬rem;height:0.875rem;" /></span>
-		 		</div>
+		 		</div> -->
 		 	</div>
 		 </div>
 		 <!-- 划过头部的时候显示会员级别到期时间的框 -->
@@ -106,9 +106,9 @@
 	.login-parent {
 	 height:0.90625rem;
 	 position: absolute;
-	 top: 0;
-	 right:0.3rem;
-	/* background:red; */
+	 top: 0.9rem;
+	 right:0.8rem;
+	background:red;
 	z-index:30000;
 	cursor:pointer;
 	}
