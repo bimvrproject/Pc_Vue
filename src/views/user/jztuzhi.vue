@@ -11,7 +11,7 @@
 		</div>
 		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;"
 		 v-if="pmph">
-		 <img :src="pmdrawpicture" alt="">
+		 <img :src="pmdrawpicture" style="width:100%;height:100%;" alt="">
 		 </div>
 		<div>
 			<!-- 除去侧边栏的剩余部分 -->
