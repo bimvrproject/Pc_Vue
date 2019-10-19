@@ -8,7 +8,7 @@
 					<img class="ttu" :src="item.projectModelAddr" alt="" />
 				</div>
 				<div class="xmtitle">
-					<h4 class="xmmc" style="background:red;">{{item.projectName}}</h4>
+					<!-- <h4 class="xmmc" style="background:red;">{{item.projectName}}</h4> -->
 					<!-- <span class="start">起始时间:{{ dateFormat(item.createTime) }}</span>
 					<span class="end">竣工时间:{{ dateFormat(item.endTime) }}</span> -->
 				</div>
