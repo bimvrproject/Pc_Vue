@@ -237,7 +237,7 @@ export default {
 					projectContent: this.textarea,
 					projectId: pro_id})
 					.then(result => {
-						console.log(result.data);
+						// console.log(result.data);
 						this.$router.push('/newjzmodel');
 					});
 			}

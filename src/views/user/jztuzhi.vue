@@ -282,7 +282,7 @@
 				axios.get(api.getprojectids + "/1"+'/' + prid).then(result => {
 					this.pmph=true;
 					this.projectidsdrawingarr = result.data;
-					console.log(this.projectidsdrawingarr)
+					// console.log(this.projectidsdrawingarr)
 					this.pmdrawpicture=addressurls.url+result.data[0].url
 					if (this.projectidsdrawingarr.length != 0) {
 						this.centerdra = false;
@@ -349,7 +349,7 @@
 			},
 			//平面图纸双击事件
 			pmdb(name,index,index1){
-				console.log(name+"-----"+index+"----"+index1);
+				// console.log(name+"-----"+index+"----"+index1);
 				// this.fontdrawingarrpm=false;
 				// this.inputdrawingarrpm=true;
 				// this.inputdrawingar=name;

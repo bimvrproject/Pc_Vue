@@ -1,3 +1,5 @@
+
+
 <template>
 	<el-container style="overflow:-Scroll;overflow-y:hidden">
 		<el-main>
@@ -159,7 +161,7 @@
 		this.$eventbus.$on("shows",()=>{
 			this.xianyinxuni=true;
 		});
-		console.log(this.xianyinxuni)
+		// console.log(this.xianyinxuni)
 	},
 	mounted() {
 			if(window.sessionStorage.getItem("token") != null){
@@ -250,7 +252,7 @@
 		},
 		userHome(res){
 				this.username = res.data.userName;
-				console.log("this.userName   "+this.userName);
+				// console.log("this.userName   "+this.userName);
 		},
 		// 关闭login悬浮窗
 		closeLoginwindow(){

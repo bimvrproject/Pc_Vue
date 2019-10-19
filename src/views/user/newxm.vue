@@ -82,10 +82,9 @@ export default {
 				this.qx = true;
 				this.quanxianbiao = true;
 				// // 新增项目
-				axios
-					.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
+				axios.post(api.AddProject, { projectName: this.input, startTime: this.value1, endTime: this.value2, projectAddress: this.input1, projectContent: this.textarea })
 					.then(result => {
-						console.log(result.data);
+						// console.log(result.data);
 					});
 			}
 		},

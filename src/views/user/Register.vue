@@ -334,7 +334,7 @@ export default {
 	//一分钟倒计时
 		ObtainCode () {
 			axios.get(api.GetPhone+"?phone"+"="+this.phone1).then(result=>{
-				console.log(result.data)
+				// console.log(result.data)
 				if(this.phone1==null || this.phone1=="" || this.phone1==undefined){
 					this.panduanphone = true;
 				}else{
@@ -344,7 +344,7 @@ export default {
 						this.panduanphone = true;
 					} else if(re.test(this.phone1)){		//判断改手机号是否已被注册
 						axios.get(api.GetPhone+"?phone"+"="+this.phone1).then(result=>{
-							console.log(result.data)
+							// console.log(result.data)
 							if(result.data==undefined){//以上判断都没有经过说明可以通过我们的注册条件 实现发送验证码
 								this.panduanphone = false;
 									//发送验证码
@@ -464,7 +464,7 @@ export default {
 						this.phonename = '应用发生错误';
 						this.panduanphone = true;
 					}
-					console.log(result.msg);
+					// console.log(result.msg);
 				})
 			}
 		},

@@ -261,7 +261,7 @@ export default {
 			// 图片中的拍照的字体颜色
 			this.fbpzscolor = 'color:#2180ED',
 			axios.get(api.OpenCmd).then(result=>{
-				console.log(result.data)
+				// console.log(result.data)
 			})
 		},
 		//点击平面图纸中的具体某一个平面图纸

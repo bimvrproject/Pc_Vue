@@ -456,7 +456,7 @@ export default {
 		},
 		userHome(res) {
 			this.username = res.data.userName;
-			console.log('this.userName' + this.userName);
+			// console.log('this.userName' + this.userName);
 		},
 		requestFailed() {
 			this.msg = '应用发生错误';
@@ -467,7 +467,7 @@ export default {
 		},
 		userHome(res) {
 			this.username = res.data.userName;
-			console.log('this.userName   ' + this.userName);
+			// console.log('this.userName   ' + this.userName);
 		},
 		// 关闭login悬浮窗
 		closeLoginwindow() {

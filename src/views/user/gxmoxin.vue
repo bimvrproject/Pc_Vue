@@ -390,7 +390,7 @@ export default {
 			if(this.dgarrs.includes(i)){
 				this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
 				sessionStorage.setItem('releaones', JSON.stringify(this.dgarrs));
-				console.log(this.dgarrs)
+				// console.log(this.dgarrs)
 				// alert(1)
 			}else{
 				this.dgarrs.push(i);

@@ -55,7 +55,7 @@ export default {
 		},
 		fns() {
 			axios.post(api.Addprojects).then(result=>{
-				console.log(result.data)
+				// console.log(result.data)
 				this.projectLists.unshift(0);
 				axios.get(api.BindingProject).then(result => {
 					this.projectLists = result.data.projectList;
