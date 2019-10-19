@@ -9,6 +9,10 @@
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 			</div>
 		</div>
+		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;"
+		 v-if="pmph">
+		 <img :src="pmdrawpicture" alt="">
+		 </div>
 		<div>
 			<!-- 除去侧边栏的剩余部分 -->
 			<!-- 右侧登录标识 -->
@@ -54,23 +58,6 @@
 						 	<div class="moresbcomgxtz">版本号: v 1.0.1</div>
 						 </div>
 				</div>
-			<!-- 	<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @mouseenter="fnmoin">
-						<img class="moreimggxtz" src="../../assets/image/more@2x.png" />
-						<i class="moregxtz">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
-						</i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="gxtzmore">
-						<div class="gxtzmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="gxtzmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="gxtzmores1" @click="fnabout">联系我们</div>
-							<div class="gxtzmoresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
-				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 
@@ -100,10 +87,10 @@
 					<div class="pmzk" v-if="pmxy">
 						<!-- 新建项目 -->
 						<ul>
-							<li v-for="(item, index) in drawingarr" :key="index" class="pmnew" style="position:relative;cursor: pointer;" @click="drawdanji(index)" @dblclick="fntu22(index)">
+							<li v-for="(item, index) in drawingarr" :key="index" class="pmnew" style="position:relative;cursor: pointer;" @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
 								<span class="pmtz5" v-if="showname22">{{ item.drawName + (index + 1) }}</span>
-								<input type="text" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;" v-if="showrename22" @blur="change22(index)" />
+								<!-- <input type="text" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;" v-if="showrename22" /> -->
 							</li>
 						</ul>
 						<div class="pm6gt">
@@ -137,14 +124,14 @@
 						<ul>
 							<li v-for="(item, index) in arr" :key="index" @click="fnt()" class="pmnew" style="position:relative;">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span v-show="showname5" class="pmtz5">{{ wang5 }}</span>
-								<input
+								<span  class="pmtz5">{{ item.drawName + (index + 1) }}</span>
+<!-- 								<input
 									v-model="wang5"
 									v-show="showrename5"
 									type="text"
 									@blur="changename5"
 									style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);"
-								/>
+								/> -->
 							</li>
 							<div class="pm6gt">
 								<div>
@@ -203,13 +190,16 @@
 </template>
 <script>
 import api from '@/api/api.js';
+import axios from 'axios';
 import qs from 'qs';
 import Newjian from './newjian';
 import Xunilogo from './xunilogo';
+import addressurls from '@/api/ip.js';
 // import Zheader from './header';
 export default {
 	data() {
 		return {
+			showname22:true,
 			//上传功能
 			centerdra:true,
 			updraw: true,
@@ -236,17 +226,27 @@ export default {
 			abouts: false,
 			//上传限制
 			attrs: {
-				accept: '.zip, .jar, .war, .rar, .7z'
+				accept: '.dwg'
 			},
 			options: {
 				target: api.Uploadpipepingmian, //SpringBoot后台接收文件夹数据的接口
 				testChunks: false, //是否分片-不分片
 				chunkSize: '2048000000000'
 			},
+			statusText: {
+				success: '成功了',
+				error: '出错了',
+				uploading: '上传中',
+				paused: '暂停中',
+				waiting: '等待中'
+			},
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
-			moretb: require('../../assets/image/more@2x.png')
+			moretb: require('../../assets/image/more@2x.png'),
+			projectidsdrawingarr:[],
+			pmdrawpicture:'',
+			pmph:true
 		};
 	},
 	components: {
@@ -269,6 +269,27 @@ export default {
 			this.xianyin = true;
 		});
 		this.$eventbus.$emit('shows');
+		//展示图纸
+		var prid = sessionStorage.getItem("projectid");
+		if(prid!=null && prid!=undefined){
+			//该项目中是否有图纸 如果有则不显示上传图纸功能
+			axios.get(api.getprojectids +"/2"+ '/' + prid).then(result => {
+				this.centerdra=true;
+				this.projectidsdrawingarr = result.data;
+				this.pmdrawpicture=addressurls.url+result.data[0].url
+				if (this.projectidsdrawingarr.length != 0) {
+					this.centerdra = false;
+				}
+			});
+			//绑定平面图纸
+			axios.get(api.Pcreddrawing + '/2' + '/' + prid + "/1").then(result => {
+				this.drawingarr = result.data;
+			});
+			//绑定立面图纸
+			axios.get(api.Pcreddrawing + '/2' + '/' + prid + "/2").then(result => {
+				this.arr = result.data;
+			});
+		}
 	},
 	mounted() {
 		this.$eventbus.$emit('cezhan2', 'tuzhi');

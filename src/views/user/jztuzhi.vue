@@ -102,6 +102,7 @@
 					<div class="pmzk" v-if="pmxy">
 						<!-- 新建项目 -->
 						<ul>
+							<!-- projectidsdrawingarr -->
 							<li v-for="(item, index) in drawingarrpm" :key="index" @dblclick="pmdb(item.drawName+ (index + 1),item.resPictureId,index)" class="pmnew" style="position:relative;cursor: pointer;"
 							 @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
@@ -179,7 +180,7 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
-										<uploader-btn :directory="true" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
+										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传平面图纸</uploader-btn>
 									</uploader-drop>
 									<uploader-list class="pingmiancss"></uploader-list>
 								</uploader>
@@ -194,7 +195,7 @@
 								<uploader :file-status-text="statusText" :options="options" @file-complete="onFileSuccess">
 									<!-- <uploader-unsupport></uploader-unsupport> -->
 									<uploader-drop class="drawdrop">
-										<uploader-btn :directory="true" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
+										<uploader-btn :directory="false" :single="true" class="drawbtn" :attrs="attrs">上传立面图纸</uploader-btn>
 									</uploader-drop>
 									<uploader-list class="limiancss"></uploader-list>
 								</uploader>
@@ -275,14 +276,14 @@
 			// Zheader
 		},
 		created() {
-			var prid = this.$route.params.project_modelid;
+			var prid = sessionStorage.getItem("projectid");
 			if(prid!=null && prid!=undefined){
 				//该项目中是否有图纸 如果有则不显示上传图纸功能
-				axios.get(api.getprojectids + '/' + prid).then(result => {
+				axios.get(api.getprojectids + "/1"+'/' + prid).then(result => {
 					this.pmph=true;
 					this.projectidsdrawingarr = result.data;
+					console.log(this.projectidsdrawingarr)
 					this.pmdrawpicture=addressurls.url+result.data[0].url
-					console.log(this.pmdrawpicture)
 					if (this.projectidsdrawingarr.length != 0) {
 						this.centerdra = false;
 					}

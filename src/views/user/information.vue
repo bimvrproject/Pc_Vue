@@ -159,7 +159,6 @@ export default {
 	},
 	created() {
 		var pro_id = this.$route.params.project_id;
-		alert(pro_id)
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});
