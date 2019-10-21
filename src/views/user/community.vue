@@ -61,11 +61,12 @@
 				<!-- 验证账号密码是否正确 -->
 				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
 				<!-- 输入用户名 -->
-				<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
-				<!-- 输入密码 -->
-				<input type="password" placeholder="输入密码" v-model="password" class="mima">
+				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
+				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" />
+				
+				
 				<!-- 输入验证码 -->
-			<!-- 	<div class="password" style="display:flex;justify-content: space-between;">
+<!-- 				<div class="password" style="display:flex;justify-content: space-between;">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
 					<span
 						v-show="sendCode"
@@ -80,8 +81,8 @@
 					>
 						{{ authTime }} 秒后获取
 					</span>
-				</div>
- -->
+				</div> -->
+
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -341,31 +342,31 @@ export default {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
-		// //一分钟倒计时
-		// ObtainCode() {
-		// 	axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-		// 		if (result.data == undefined) {
-		// 			this.phonename = '您未注册，请注册！';
-		// 			this.panduan = true;
-		// 		} else {
-		// 			axios.get(api.Login + '?mobile=' + this.username).then(result => {
-		// 				this.token = result.data.token;
-		// 				// this.$store.commit("settoken",this.token);
-		// 				// alert(this.username)
-		// 				// this.$store.commit("setphone",this.username);
-		// 				this.sendCode = false; // 控制显示隐藏
-		// 				this.authTime = 59;
-		// 				let timeInt = setInterval(() => {
-		// 					this.authTime--;
-		// 					if (this.authTime <= 0) {
-		// 						this.sendCode = true;
-		// 						window.clearInterval(timeInt);
-		// 					}
-		// 				}, 1000);
-		// 			});
-		// 		}
-		// 	});
-		// },
+		//一分钟倒计时
+		ObtainCode() {
+			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+				if (result.data == undefined) {
+					this.phonename = '您未注册，请注册！';
+					this.panduan = true;
+				} else {
+					axios.get(api.Login + '?mobile=' + this.username).then(result => {
+						this.token = result.data.token;
+						// this.$store.commit("settoken",this.token);
+						// alert(this.username)
+						// this.$store.commit("setphone",this.username);
+						this.sendCode = false; // 控制显示隐藏
+						this.authTime = 59;
+						let timeInt = setInterval(() => {
+							this.authTime--;
+							if (this.authTime <= 0) {
+								this.sendCode = true;
+								window.clearInterval(timeInt);
+							}
+						}, 1000);
+					});
+				}
+			});
+		},
 		fncom() {
 			this.comarr.push(0);
 		},
@@ -419,7 +420,6 @@ export default {
 					this.panduan = false;
 				}
 			}
-			
 			
 			// if (!re.test(this.username)) {
 			// 	// this.phonename = '手机号格式不正确';
@@ -1166,15 +1166,14 @@ html {
 	width:8rem;
 	height:1.01rem;
 } */
-/* 输入手机号 */
 .userinput {
-	position: absolute;
-	top: 5.525rem;
-	right:3.6rem;
-	background: #ffffff;
 	width:8rem;
 	height: 1.01rem;
-	float: left;
+	position: absolute;
+	top: 5.525rem;
+	left:3.7rem;
+	background: #ffffff;
+	/* float: left; */
 	padding-left: 0.3rem;
 	border: none;
 	line-height: 1.01rem;
@@ -1183,15 +1182,14 @@ html {
 	font-size:0.45rem;
 	color:#999999;
 }
-/* 输入密码 */
-.mima{
-	position: absolute;
-	top: 7.525rem;
-	right:3.6rem;
-	background: #ffffff;
+.usermm{
 	width:8rem;
 	height: 1.01rem;
-	float: left;
+	position: absolute;
+	top:7.5rem;
+	left:3.7rem;
+	background: #ffffff;
+	/* float: left; */
 	padding-left: 0.3rem;
 	border: none;
 	line-height: 1.01rem;
@@ -1201,9 +1199,9 @@ html {
 	color:#999999;
 }
 .yanzheng {
-	display: block;
-/* 	width:4rem;
-	height:0.5rem; */
+	/* display: block; */
+	width:4rem;
+	height:0.8rem;
 	/* display:flex; */
 	font-size: 0.33rem;
 	font-weight: 400;
@@ -1214,30 +1212,9 @@ html {
 	/* left:6.2rem; */
 	/* left:40%; */
 	/* margin-left:-0.2rem; */
-	bottom:10.2rem;
+	bottom:10rem;
 	/* background:plum; */
 	text-align:center;
-}
-.password {
-	width:8.3rem;
-	height:1.01rem;
-	position: absolute;
-	top: 7.5rem;
-	right: 3.65rem;
-	background: #ffffff;
-	/* background:red; */
-}
-.password input {
-	width:4.8rem;
-	height:1.01rem;
-	/* float: left; */
-	padding-left: 0.25rem;
-	border: none;
-	line-height: 0.82rem;
-	display: inline-block;
-	float: left;
-	/* background:plum; */
-	color:#999999;
 }
 /* 登录按钮 */
 .Logon-button {
