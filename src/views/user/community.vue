@@ -63,26 +63,6 @@
 				<!-- 输入用户名 -->
 				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" />
-				
-				
-				<!-- 输入验证码 -->
-<!-- 				<div class="password" style="display:flex;justify-content: space-between;">
-					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
-					<span
-						v-show="sendCode"
-						@click="ObtainCode"
-						style="display:inline-block;width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);float:right;line-height:1.01rem;cursor:pointer;"
-					>
-						获取验证码
-					</span>
-					<span
-						v-show="!sendCode"
-						style="width:3.13rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:1.01rem;cursor:pointer;"
-					>
-						{{ authTime }} 秒后获取
-					</span>
-				</div> -->
-
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -1154,9 +1134,11 @@ html {
 .loginlogo {
 	width: 4.33125rem;
 	height: 1.15625rem;
-	position: absolute;
+	/* position: absolute;
 	left: 5.656rem;
-	top: 3.3062rem;
+	top: 3.3062rem; */
+	margin-top:3.30625rem;
+	margin-left:5.656rem;
 }
 .loginlogo img {
 	width: 100%;
@@ -1169,9 +1151,10 @@ html {
 .userinput {
 	width:8rem;
 	height: 1.01rem;
-	position: absolute;
+	/* position: absolute;
 	top: 5.525rem;
-	left:3.7rem;
+	left:3.7rem; */
+	margin-top:0.925rem;
 	background: #ffffff;
 	/* float: left; */
 	padding-left: 0.3rem;
@@ -1185,9 +1168,10 @@ html {
 .usermm{
 	width:8rem;
 	height: 1.01rem;
-	position: absolute;
+	/* position: absolute;
 	top:7.5rem;
-	left:3.7rem;
+	left:3.7rem; */
+	margin-top:1rem;
 	background: #ffffff;
 	/* float: left; */
 	padding-left: 0.3rem;
@@ -1200,7 +1184,7 @@ html {
 }
 .yanzheng {
 	/* display: block; */
-	width:4rem;
+	/* width:4rem; */
 	height:0.8rem;
 	/* display:flex; */
 	font-size: 0.33rem;
