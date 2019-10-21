@@ -1255,7 +1255,6 @@ html {
 	font-style: normal;
 	font-size: 0.375rem;
 	color: rgba(51, 51, 51, 1);
-/* 	background:green; */
 }
 .login-reg {
 	color: #2180ed;
