@@ -135,7 +135,7 @@
 						<span class="fqq quanxuan" @click.stop="checkAll" :style="fbswperall">
 							 全选
 						</span>
-						<span class="fqq qx" @click.stop=" clearCheckbox()" :style="fbswperqxchang">
+						<span class="fqq qx" @click.stop="clearCheckbox()" :style="fbswperqxchang">
 						   取消选择
 						</span>
 					</div>

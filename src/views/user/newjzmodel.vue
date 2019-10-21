@@ -129,7 +129,7 @@
 				  <div class="swiper-wrapper"  v-show="swiperxy">
 				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
 						<!-- "http://192.168.6.152:8080/" -->
-						 <img :src="'http://192.168.6.152:8080/'+item.images" alt="">
+						 <img :src="'http://192.168.6.153:8080/'+item.images" alt="">
 						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 							 @click.stop="fng(index)">
 						 </span>
@@ -142,11 +142,12 @@
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
 		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index" @contextmenu.prevent="fnyouji(index)">
 						<span class="vvvs" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.03rem;" :class="{checkeds:dgarrs.includes(index),'abc':showIndex}" :style="duigous" 
+					display:inline-block;position:absolute;top:0rem;right:0.03rem;"
+					 :class="checkbox.includes(index)?'checkeds':''"
 						 @click.stop="fnxz(index)">
 						</span>
 						<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
-						<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
+						<img class="swiper-slidebottomimg" :src="'http://192.168.6.153:8080/'+item.images" alt="">
 						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 						<div class="xbz" v-show="aaaaaa === index">
 							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
@@ -233,7 +234,7 @@
 				swipers: false,
 				// newarrs:[0,0,0,0,0,0],
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-
+        checkbox:[],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -343,6 +344,7 @@
 				//绑定截图的照片
 				axios.get(api.SelectPrintscreen+"/"+projectidss).then(result => {
 					this.Printscreen = result.data.printscreenslist;
+					console.log(this.Printscreen)
 				})
 			}
 			// 点击建筑结构 和模型展示模型
@@ -418,53 +420,21 @@
      //  },
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
-				this.duigous = "background:rgba(225,225,225,0)";
-				this.showIndex = false;
-				this.dgou = false;
-				this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
-				this.fbswperall = "background:rgba(225,225,225,0);"
-				this.fbswper = "background:rgba(225,225,225,0);"
-				 sessionStorage.removeItem("relea");
-				 sessionStorage.removeItem("releaone");
-				// alert("取消")
-				// sessionStorage.removeItem("relea");
-				// sessionStorage.removeItem("releaone");
-				// if(this.dgarrs.includes(i)){
-				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
-				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-				// 
-				// }else{
-				// 	this.dgarrs.push(i);
-				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
-				// }
+				 this.checkbox = [];
+				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkbox));
 			},
 			// 点击轮播中的全选
-			fnallswper(index){
-				// alert(123)
-				this.duigous = " ";
-				this.showIndex = true;
-				this.dgou = true;
-				this.fbswperall = "background:rgba(37,175,178,0.4);"
-				this.fbswper = "background:rgba(225,225,225,0);"
-				this.fbswperqxchang = "background:rgba(225,225,225,0);"
-				// this.dgarrs.length = this.newarrs.length;
-				// alert(this.dgarrs.length)
-			   // this.dgarrs = true
-				// if(this.dgarrs.includes(i)){
-				// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
-				// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-				// }else{
-				// 	this.dgarrs.push(i);
-				// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
-				// }
-				// this.sdsds = true
-				// alert(this.dgarrs.length)
+			fnallswper(){
+				 var len = this.Printscreen.length;
+				this.checkbox = [];
+				for(var i=0;i<len;i++){
+				  this.checkbox.push(i);
+				}
+				sessionStorage.setItem('quanxuan', JSON.stringify(this.checkbox));
 			},
 			// 点击轮播中的发布
-			fnfbswper(index){
-				this.fbswper = "background:rgba(37,175,178,0.4);"
-				this.fbswperall = "background:rgba(225,225,225,0);"
-				this.fbswperqxchang = "background:rgba(225,225,225,0);"
+			fnfbswper(){
+					sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkbox));
 				// alert(index)
 			},
 			// 鼠标右击
@@ -475,18 +445,14 @@
 			},
 			// 选择对勾
 			fnxz(i){
-				 // alert(i)
-				 this.duigous = " ";
-				if(this.dgarrs.includes(i)){
-					this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
-					sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-					console.log(this.dgarrs)
-					// alert(1)
+				var idx = this.checkbox.indexOf(i);
+				//如果已经选中了，那就取消选中，如果没有，则选中
+				if(idx>-1){
+				  this.checkbox.splice(idx,1);
 				}else{
-					this.dgarrs.push(i);
-					sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
+				  this.checkbox.push(i);
 				}
-				
+				sessionStorage.setItem('duoxuan', JSON.stringify(this.checkbox));
 			},
 			// 点击swiper头上的关闭
 			fng(index){
