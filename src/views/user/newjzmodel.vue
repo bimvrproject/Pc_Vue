@@ -414,12 +414,12 @@
 		methods: {
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
-				this.checkbox = [];
-				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkbox));
+				this.checkboxPrintscreen = [];
+				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkboxPrintscreen));
 			},
 			// 点击轮播中的全选
 			fnallswper(){
-				this.checkbox = [];
+				this.checkboxPrintscreen = [];
 				var len = this.Printscreen.length;
 					for(var i=0;i<len;i++){
 						this.checkboxPrintscreen.push(this.Printscreen[i].printscreenId);

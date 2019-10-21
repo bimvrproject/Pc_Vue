@@ -326,30 +326,30 @@ export default {
 			this.abouts = false;
 		},
 		//一分钟倒计时
-		ObtainCode() {
-			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-				if (result.data == undefined) {
-					this.phonename = '您未注册，请注册！';
-					this.panduan = true;
-				} else {
-					axios.get(api.Login + '?mobile=' + this.username).then(result => {
-						this.token = result.data.token;
-						// this.$store.commit("settoken",this.token);
-						// alert(this.username)
-						// this.$store.commit("setphone",this.username);
-						this.sendCode = false; // 控制显示隐藏
-						this.authTime = 59;
-						let timeInt = setInterval(() => {
-							this.authTime--;
-							if (this.authTime <= 0) {
-								this.sendCode = true;
-								window.clearInterval(timeInt);
-							}
-						}, 1000);
-					});
-				}
-			});
-		},
+		// ObtainCode() {
+		// 	axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+		// 		if (result.data == undefined) {
+		// 			this.phonename = '您未注册，请注册！';
+		// 			this.panduan = true;
+		// 		} else {
+		// 			axios.get(api.Login + '?mobile=' + this.username).then(result => {
+		// 				this.token = result.data.token;
+		// 				// this.$store.commit("settoken",this.token);
+		// 				// alert(this.username)
+		// 				// this.$store.commit("setphone",this.username);
+		// 				this.sendCode = false; // 控制显示隐藏
+		// 				this.authTime = 59;
+		// 				let timeInt = setInterval(() => {
+		// 					this.authTime--;
+		// 					if (this.authTime <= 0) {
+		// 						this.sendCode = true;
+		// 						window.clearInterval(timeInt);
+		// 					}
+		// 				}, 1000);
+		// 			});
+		// 		}
+		// 	});
+		// },
 		fncom() {
 			this.comarr.push(0);
 		},
