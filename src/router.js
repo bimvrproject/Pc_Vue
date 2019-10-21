@@ -193,5 +193,13 @@ export default new Router({
 		// 	},
 		// 	component: () => import("./views/user/donghua.vue")
 		// },
+		{
+			path: "/abc",
+			name: "/abc",
+			meta: {
+				
+			},
+			component: () => import("./views/user/abc.vue")
+		},
 	]
 });

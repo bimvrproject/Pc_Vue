@@ -70,22 +70,6 @@
 						 	<div class="moresbcomgxmx">版本号: v 1.0.1</div>
 						 </div>
 				</div>
-				<!-- <el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @mouseenter="fnmoin">
-						<img class="moreimggm" src="../../assets/image/more@2x.png" />
-						<i class="moregm">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img :src="lmore" alt="" style="width: 100%;height: 100%;"></i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="gxmodelmore">
-						<div class="moogx" @mouseenter="fnmoin" @mouseleave="fnleave">
-						<div class="mores1gx">
-								<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-						</div>	
-						<div class="mores1gx" @click="fnabout">联系我们</div>
-						<div class="moresbgx">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
@@ -138,20 +122,20 @@
     </div>
    <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
       <div class="swiper-wrapper" v-show="swiperbottomgx" >
-        <div class="swiper-slide swiper-slidebottom" @click="fnswipersgx()" v-for="(item, index) in newarrs" :key="index" @contextmenu.prevent="fnyouji(index)">
+        <div class="swiper-slide swiper-slidebottom" @click="fnswipersgx()" v-for="(item, index) in checkboxList" :key="index" @contextmenu.prevent="fnyouji(index)">
 						<span class="vvv" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="{checkeds:dgarrs.includes(index)}" 
-						 @click.stop="fnxz(index)">
+					display:inline-block;position:absolute;top:0rem;right:0.15rem;" :class="checkbox.includes(index)?'checkeds':''"
+						 @click.stop="check(index)">
 						</span>
 					<img src="../../assets/image/t4.jpg" alt="">
 					<div class="xbzs" v-show="aaaaaa === index">
-						<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
+						<span class="fqq" @click.stop="fabu" :style="fbswper">
 							发布
 						</span>
-						<span class="fqq quanxuan" @click.stop="fnallswper(index)" :style="fbswperall">
+						<span class="fqq quanxuan" @click.stop="checkAll" :style="fbswperall">
 							 全选
 						</span>
-						<span class="fqq qx" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
+						<span class="fqq qx" @click.stop=" clearCheckbox()" :style="fbswperqxchang">
 						   取消选择
 						</span>
 					</div>
@@ -172,15 +156,6 @@ import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
 import addressurls from '@/api/ip.js';
-import $ from 'jquery';
-$(function(){
-		$(".quanxuan").click(function(){
-    $(".vvv").addClass('checkeds');
-  });
-	$(".qx").click(function(){
-	  $(".vvv").removeClass('checkeds');
-	});
-	})
 	// import Zheader from './header';
 export default {
 	data() {
@@ -228,9 +203,10 @@ export default {
 			attrs: {
 				accept: '.zip, .jar, .war, .rar, .7z'
 			},
-			newarrs:[0,0,0,0,0,0,0,0],
-			// 对勾的数组
-			dgarrs:[],
+			// newarrs:[0,0,0,0,0,0,0,0],
+			// 轮播下部图纸展示数组
+			checkboxList:[0,0,0,0,0,0],
+		 checkbox:[],
 				// 轮播中的发布的背景色
 			fbswper:"background:rgba(225,225,225,0)",
 			fbswperall:"background:rgba(225,225,225,0)",
@@ -342,42 +318,23 @@ export default {
 	},
 	methods: {
 		// 点击轮播中的取消选择
-		fnqxchangswper(){
-			this.fbswperqxchang = "background:rgba(37,175,178,0.4);"
-			this.fbswperall = "background:rgba(225,225,225,0);"
-			this.fbswper = "background:rgba(225,225,225,0);"
-			 sessionStorage.removeItem("relea");
-			 sessionStorage.removeItem("releaone");
-			// alert("取消")
-			// sessionStorage.removeItem("relea");
-			// sessionStorage.removeItem("releaone");
-			// if(this.dgarrs.includes(i)){
-			// 	this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
-			// 	sessionStorage.setItem('releaone', JSON.stringify(this.dgarrs));
-			// 
-			// }else{
-			// 	this.dgarrs.push(i);
-			// 	sessionStorage.setItem('relea', JSON.stringify(this.dgarrs));
-			// }
+		 clearCheckbox(){
+		  this.checkbox = [];
+		 sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkbox));
 		},
 		// 点击轮播中的全选
-		fnallswper(index){
-			this.fbswperall = "background:rgba(37,175,178,0.4);"
-			this.fbswper = "background:rgba(225,225,225,0);"
-			this.fbswperqxchang = "background:rgba(225,225,225,0);"
-			// this.dgarrs.length = this.newarrs.length;
-			// if(this.dgarrs.length = this.newarrs,length){
-			// 	
-			// 	alert(1)
-			// 	}
-			},
-			// 点击轮播中的发布
-		fnfbswper(index){
-			this.fbswper = "background:rgba(37,175,178,0.4);"
-			this.fbswperall = "background:rgba(225,225,225,0);"
-			this.fbswperqxchang = "background:rgba(225,225,225,0);"
-			// alert(index)
+		checkAll(){
+		  var len = this.checkboxList.length;
+		  this.checkbox = [];
+		  for(var i=0;i<len;i++){
+		    this.checkbox.push(i);
+		  }
+			sessionStorage.setItem('quanxuan', JSON.stringify(this.checkbox));
 		},
+			// 点击轮播中的发布
+			fabu(){
+				sessionStorage.setItem('fabu', JSON.stringify(this.checkbox));
+			},
 		// 鼠标右击
 		fnyouji(index){
 			// this.isActivefb = index
@@ -385,18 +342,15 @@ export default {
 			this.aaaaaa = index
 		},
 		// 选择对勾
-		fnxz(i){
-			 // alert(i)
-			if(this.dgarrs.includes(i)){
-				this.dgarrs = this.dgarrs.filter(function(ele){return ele != i})
-				sessionStorage.setItem('releaones', JSON.stringify(this.dgarrs));
-				// console.log(this.dgarrs)
-				// alert(1)
-			}else{
-				this.dgarrs.push(i);
-				sessionStorage.setItem('releas', JSON.stringify(this.dgarrs));
-			}
-			
+		 check(i){
+		  var idx = this.checkbox.indexOf(i);
+		  //如果已经选中了，那就取消选中，如果没有，则选中
+		  if(idx>-1){
+		    this.checkbox.splice(idx,1);
+		  }else{
+		    this.checkbox.push(i);
+		  }
+			sessionStorage.setItem('duoxuan', JSON.stringify(this.checkbox));
 		},
 		// 点击swiper头上的关闭
 		fnggx(index){
