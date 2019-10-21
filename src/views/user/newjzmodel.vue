@@ -435,6 +435,7 @@
 			// 点击轮播中的发布
 			fnfbswper(){
 					sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkbox));
+					 this.checkbox = []
 				// alert(index)
 			},
 			// 鼠标右击
