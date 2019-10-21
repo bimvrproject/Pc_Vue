@@ -64,7 +64,7 @@
 				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" />
 				<!-- 登录 -->
-				<div class="Logon-button" @click="login()">登录</div>
+				<button class="Logon-button" @click="login()" @keyup.enter.native="login">登录</button>
 				<!-- 还没有账号？马上去注册 -->
 				<div class="login-footer">
 					<i class="noreg">还没有账户?</i>
@@ -264,6 +264,9 @@ export default {
 		// Release
 	},
 	created() {
+		this.username="";
+		this.password="";
+		this.keyupEnter();
 		this.$eventbus.$on('loginhertru', () => {
 			this.loginWindow = true;
 		});
@@ -423,6 +426,15 @@ export default {
 				this.panduan = true;
 			} else {
 				this.panduan = false;
+			}
+		},
+		keyupEnter(){
+			document.onkeydown = e =>{
+				let body = document.getElementsByTagName('body')[0]
+				if (e.keyCode === 13 && e.target.baseURI.match(/inputbook/) && e.target === body) {
+					console.log('enter')
+					this.login()
+				}
 			}
 		},
 		login() {
@@ -1216,6 +1228,7 @@ html {
 	color: #ffffff;
 	text-align: center;
 	line-height: 1.02rem;
+	border:none;
 }
 /* 还没有账号？马上注册 */
 .login-footer {
