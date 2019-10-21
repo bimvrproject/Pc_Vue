@@ -85,8 +85,10 @@
 					<div class="userR">
 					<span  class="userimg">86+</span>
 						<img class="fenge" src="../../assets/image/juxing11@2x.png" alt="" />
-						<input type="text" v-model="phone1" placeholder="请输入手机号" @focus="phonefocus"  @blur="fn"/>
+						<input type="text" v-model="phone1" class="userimginp" placeholder="请输入手机号" @focus="phonefocus"  @blur="fn"/>
 					</div>
+					<!-- 输入密码 -->
+					<input type="text" placeholder="请输入手机号" class="regmima">
 					<!-- 输入验证码-->
 					<div class="code" style="display:flex;justify-content: space-between;">
 						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" style="font-size:0.45rem;"/>
@@ -1161,11 +1163,11 @@ export default {
 }
 /* 请输入手机号 */
 .userR {
-	width:8rem;
+	width:8.2rem;
 	height:1.01rem;
 	position: absolute;
 	top:5.525rem;
-	right:3.7rem;
+	right:3.65rem;
 	background: #ffffff;
 /* 	background:red; */
 }
@@ -1191,8 +1193,8 @@ export default {
 	float: left;
 	margin-top:0.05rem;
 }
-.userR input {
-	width:6.35rem;
+.userimginp{
+	width:6.55rem;
 	height:1.01rem;
 	float: left;
 	padding-left:0.3rem;
@@ -1205,6 +1207,24 @@ export default {
 	font-size:0.45rem;
 }
 /* 请输入手机号结束 */
+/* 请输入密码 */
+.regmima{
+	position: absolute;
+	top:7.1rem;
+	right:3.6rem;
+	background: #ffffff;
+	width:8rem;
+	height: 1.01rem;
+	float: left;
+	padding-left: 0.3rem;
+	border: none;
+	line-height: 1.01rem;
+	display: inline-block;
+	/* background:red; */
+	font-size:0.45rem;
+	color:#999999;
+	
+}
 /* 手机号已注册 */
 .Nophone {
 	display: block;
@@ -1221,13 +1241,13 @@ export default {
 /* 手机号已注册结束 */
 /* 获取验证码 */
 .code {
-	width:8rem;
+	width:8.2rem;
 	height:1.01rem;
 	position: absolute;
-	top:7.6rem;
-	right:3.7rem;
+	top:8.6rem;
+	right:3.65rem;
 	background: #ffffff;
-	/* background:red; */
+/* 	background:red; */
 }
 .code input {
 	width:4.55rem;
@@ -1284,7 +1304,7 @@ export default {
 	width:7.43rem;
 	height:1.02rem;
 	position: absolute;
-	top:9.9rem;
+	top:10.2rem;
 	left:4.26rem;
 	background: url(../../assets/image/juxing3@2x.png);
 	background-size:7.43rem 1.02rem; 
@@ -1306,7 +1326,7 @@ export default {
 	height:0.625rem;
 	font-size:0.375rem;
 	position: absolute;
-   top:11.2rem;
+  top:11.39rem;
 	right:4.7rem;
 	text-align: center;
 }
@@ -1326,5 +1346,11 @@ export default {
 	font-size:0.333rem;
 	font-style: normal;
 	cursor: pointer;
+}
+input::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: #aab2bd;
+	/* placeholder字体大小  */
+	font-size: 0.4rem;
 }
 </style>

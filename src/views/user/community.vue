@@ -61,9 +61,11 @@
 				<!-- 验证账号密码是否正确 -->
 				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
 				<!-- 输入用户名 -->
-				<div class="user"><input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" /></div>
+				<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" />
+				<!-- 输入密码 -->
+				<input type="text" placeholder="输入密码" class="mima">
 				<!-- 输入验证码 -->
-				<div class="password" style="display:flex;justify-content: space-between;">
+			<!-- 	<div class="password" style="display:flex;justify-content: space-between;">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
 					<span
 						v-show="sendCode"
@@ -79,7 +81,7 @@
 						{{ authTime }} 秒后获取
 					</span>
 				</div>
-
+ -->
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -1154,16 +1156,33 @@ html {
 	width: 100%;
 	height: 100%;
 }
-.user {
+/* .user {
 	width:8rem;
 	height:1.01rem;
+} */
+/* 输入手机号 */
+.userinput {
 	position: absolute;
 	top: 5.525rem;
-	right:4rem;
+	right:3.6rem;
 	background: #ffffff;
-	/* 	background:red; */
+	width:8rem;
+	height: 1.01rem;
+	float: left;
+	padding-left: 0.3rem;
+	border: none;
+	line-height: 1.01rem;
+	display: inline-block;
+	/* background:red; */
+	font-size:0.45rem;
+	color:#999999;
 }
-.userinput {
+/* 输入密码 */
+.mima{
+	position: absolute;
+	top: 7.525rem;
+	right:3.6rem;
+	background: #ffffff;
 	width:8rem;
 	height: 1.01rem;
 	float: left;
