@@ -129,7 +129,7 @@
 				  <div class="swiper-wrapper"  v-show="swiperxy">
 				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
 						<!-- "http://192.168.6.152:8080/" -->
-						 <img :src="'http://192.168.6.153:8080/'+item.images" alt="">
+						 <img :src="'http://192.168.6.152:8080/'+item.images" alt="">
 						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 							 @click.stop="fng(index)">
 						 </span>
@@ -140,17 +140,17 @@
 				</div>
 		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
 		    <div class="swiper-wrapper" v-show="swiperbottom" >
-		      <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index" @contextmenu.prevent="fnyouji(index)">
+		         <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index" @contextmenu.prevent="fnyouji(index)">
 						<span class="vvvs" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
 					display:inline-block;position:absolute;top:0rem;right:0.03rem;"
 					 :class="checkbox.includes(index)?'checkeds':''"
 						 @click.stop="fnxz(index)">
 						</span>
 						<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
-						<img class="swiper-slidebottomimg" :src="'http://192.168.6.153:8080/'+item.images" alt="">
+						<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
 						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 						<div class="xbz" v-show="aaaaaa === index">
-							<span class="fqq" @click.stop="fnfbswper(index)" :style="fbswper">
+							<span class="fqq" @click.stop="fnfbswper()" :style="fbswper">
 								发布
 							</span>
 							<span class="fqq quanxuans" @click.stop="fnallswper()" :style="fbswperall">
@@ -160,7 +160,7 @@
 							   取消选择
 							</span>
 						</div>
-						</div>
+				</div>
 		    </div>
 				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
        <div class="swiper-button-next backs" v-show="backs"></div> -->
