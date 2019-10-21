@@ -110,7 +110,7 @@
 		 <!-- Swiper -->
    <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
       <div class="swiper-wrapper"  v-show="swiperxy">
-   	   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in newarrs" :key="index" style="position:relative;">
+   	   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in checkboxList" :key="index" style="position:relative;">
    			<img src="../../assets/image/t4.jpg" alt="">
    				<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
    					 @click.stop="fnggx(index)">

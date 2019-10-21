@@ -73,14 +73,14 @@
 				<!-- 悬浮登录窗口 --开始 -->
 				<div id="popContainer" v-show="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
 				<!-- 登录 -->
-				<div class="login" v-show="loginWindow">
+				<div class="logins" v-show="loginWindow">
 					<div class="close"><img src="../../assets/image/close.png" @click="closeLoginwindow" /></div>
-					<div class="loginlogo"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
+					<div class="loginlogos"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
 					<!-- 验证账号密码是否正确 -->
-					<span class="Nophone" v-if="panduanphone">{{phonename}}</span>
-					<span class="Nophone" v-if="panduandenglu">该账户已注册,<span @click="fn3"  style="text-decoration:underline;cursor: pointer;">请登录</span></span>
+					<span class="Nophones" v-if="panduanphone">{{phonename}}</span>
+					<span class="Nophones" v-if="panduandenglu">该账户已注册,<span @click="fn3"  style="text-decoration:underline;cursor: pointer;">请登录</span></span>
 					<!-- 验证码是否正确 -->
-					<span class="yanzhengma" v-if="yzm">验证码不正确</span>
+					<span class="yanzhengmas" v-if="yzm">验证码不正确</span>
 					<!-- 输入手机号 -->
 					<div class="userR">
 					<span  class="userimg">86+</span>
@@ -88,7 +88,7 @@
 						<input type="text" v-model="phone1" class="userimginp" placeholder="请输入手机号" @focus="phonefocus"  @blur="fn"/>
 					</div>
 					<!-- 输入密码 -->
-					<input type="password" placeholder="请输入密码" v-model="password" class="regmima">
+					<input type="passwords" placeholder="请输入密码" v-model="password" class="regmima">
 					<!-- 输入验证码-->
 					<div class="code" style="display:flex;justify-content: space-between;">
 						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" style="font-size:0.45rem;"/>
@@ -1117,7 +1117,7 @@ export default {
 	color: rgba(51, 51, 51, 1);
 }
 /* 登录 */
-.login {
+.logins {
 	width:15.64375rem;
 	height:15.64375rem;
 	position: absolute;
@@ -1152,14 +1152,14 @@ export default {
 	width:0.445rem;
 	height:0.445rem;
 }
-.loginlogo {
+.loginlogos {
 	width:4.33125rem;
 	height:1.15625rem;
 	position: absolute;
 	left:5.656rem;
 	top:3.3062rem;
 }
-.loginlogo img {
+.loginlogos img {
 	width: 100%;
 	height: 100%;
 }
@@ -1228,7 +1228,7 @@ export default {
 	
 }
 /* 手机号已注册 */
-.Nophone {
+.Nophones {
 	display: block;
 	/* width: 128px;
 	height: 16px; */
@@ -1274,7 +1274,7 @@ export default {
 	/* background:plum; */
 }
 /* 验证码是否正确 */
-.yanzhengma {
+.yanzhengmas {
 	color: #ff0000;
 	font-size:0.3rem;
 	position: absolute;

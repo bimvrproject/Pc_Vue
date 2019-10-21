@@ -64,6 +64,10 @@
 				<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				<!-- 输入密码 -->
 				<input type="password" placeholder="输入密码" v-model="password" class="mima">
+			<!-- 	<div class="refo">
+					<div class="remember"><el-checkbox v-model="checked">记住密码</el-checkbox></div>
+					<div class="forget"><div class="forget-paw">忘记密码</div></div>
+				</div> -->
 				<!-- 输入验证码 -->
 			<!-- 	<div class="password" style="display:flex;justify-content: space-between;">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
@@ -81,7 +85,7 @@
 						{{ authTime }} 秒后获取
 					</span>
 				</div>
- -->
+ -->     	<!-- 记住密码  忘记密码 -->
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -1111,6 +1115,7 @@ html {
 	background-color: white;
 	background: url(../../assets/image/beijing@2x.png) no-repeat;
 	background-size: 15.64375rem 15.64375rem;
+	/* background:plum; */
 }
 #popContainer {
 	width: 59.9375rem;
@@ -1154,9 +1159,12 @@ html {
 .loginlogo {
 	width: 4.33125rem;
 	height: 1.15625rem;
-	position: absolute;
+	/* background:red; */
+	margin-left:5.656rem;
+	margin-top:3.30625rem;
+/* 	position: absolute;
 	left: 5.656rem;
-	top: 3.3062rem;
+	top: 3.3062rem; */
 }
 .loginlogo img {
 	width: 100%;
@@ -1168,13 +1176,14 @@ html {
 } */
 /* 输入手机号 */
 .userinput {
-	position: absolute;
+/* 	position: absolute;
 	top: 5.525rem;
-	right:3.6rem;
+	right:3.6rem; */
+	margin-top:0.9rem;
 	background: #ffffff;
 	width:8rem;
 	height: 1.01rem;
-	float: left;
+/* 	float: left; */
 	padding-left: 0.3rem;
 	border: none;
 	line-height: 1.01rem;
@@ -1185,13 +1194,14 @@ html {
 }
 /* 输入密码 */
 .mima{
-	position: absolute;
+/* 	position: absolute;
 	top: 7.525rem;
-	right:3.6rem;
+	right:3.6rem; */
+	margin-top:0.9rem;
 	background: #ffffff;
 	width:8rem;
 	height: 1.01rem;
-	float: left;
+/* 	float: left; */
 	padding-left: 0.3rem;
 	border: none;
 	line-height: 1.01rem;
@@ -1227,25 +1237,54 @@ html {
 	background: #ffffff;
 	/* background:red; */
 }
-.password input {
+/* .password input {
 	width:4.8rem;
 	height:1.01rem;
-	/* float: left; */
+	float: left;
 	padding-left: 0.25rem;
 	border: none;
 	line-height: 0.82rem;
 	display: inline-block;
-	float: left;
-	/* background:plum; */
 	color:#999999;
+} */
+/* 记住忘记密码 */
+.refo {
+	width: 260px;
+	height: 15px;
+	background:red;
+/* 	position: absolute;
+	top: 330px;
+	left: 152px; */
+	/* margin-top: 5px; */
+}
+.el-checkbox__label {
+	position: absolute;
+	left: -30px;
+	top: -2px;
+	font-size: 12px;
+	color: #2180ed;
+	padding-left: 13px;
+	background: rgba(0, 0, 0, 0);
+}
+.el-checkbox__inner {
+	position: absolute;
+	left: -35px;
+	top: -10px;
+}
+.remember {
+	width: 63px;
+	height: 11px;
+	margin-left:3.8rem;
 }
 /* 登录按钮 */
 .Logon-button {
 	width: 7.3rem;
 	height: 1.02rem;
-	position: absolute;
+	margin-top:0.9rem;
+	margin-left:4.2rem;
+	/* position: absolute;
 	top: 9.9rem;
-	left: 4.2rem;
+	left: 4.2rem; */
 	background: url(../../assets/image/juxing3@2x.png);
 	background-size: 7.3rem 1.02rem;
 	cursor: pointer;
@@ -1261,10 +1300,12 @@ html {
 	width: 6.0375rem;
 	height: 0.625rem;
 	font-size: 0.375rem;
-	position: absolute;
+	margin-top:0.3rem;
+	margin-left:4.7rem;
+	/* position: absolute;
 	top:11.2rem;
-	right:4.7rem;
-	/* background:red; */
+	right:4.7rem; */
+/* 	background:red; */
 	text-align:center;
 	/* display:flex; */
 	/* right:5.8rem; */
