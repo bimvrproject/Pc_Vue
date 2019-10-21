@@ -61,9 +61,9 @@
 				<!-- 验证账号密码是否正确 -->
 				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
 				<!-- 输入用户名 -->
-				<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @blur="fn1" />
+				<input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				<!-- 输入密码 -->
-				<input type="text" placeholder="输入密码" class="mima">
+				<input type="password" placeholder="输入密码" v-model="password" class="mima">
 				<!-- 输入验证码 -->
 			<!-- 	<div class="password" style="display:flex;justify-content: space-between;">
 					<input type="text" placeholder="输入验证码" v-model="password" @blur="fn2" style="font-size:0.45rem;" />
@@ -341,31 +341,31 @@ export default {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
-		//一分钟倒计时
-		ObtainCode() {
-			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-				if (result.data == undefined) {
-					this.phonename = '您未注册，请注册！';
-					this.panduan = true;
-				} else {
-					axios.get(api.Login + '?mobile=' + this.username).then(result => {
-						this.token = result.data.token;
-						// this.$store.commit("settoken",this.token);
-						// alert(this.username)
-						// this.$store.commit("setphone",this.username);
-						this.sendCode = false; // 控制显示隐藏
-						this.authTime = 59;
-						let timeInt = setInterval(() => {
-							this.authTime--;
-							if (this.authTime <= 0) {
-								this.sendCode = true;
-								window.clearInterval(timeInt);
-							}
-						}, 1000);
-					});
-				}
-			});
-		},
+		// //一分钟倒计时
+		// ObtainCode() {
+		// 	axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+		// 		if (result.data == undefined) {
+		// 			this.phonename = '您未注册，请注册！';
+		// 			this.panduan = true;
+		// 		} else {
+		// 			axios.get(api.Login + '?mobile=' + this.username).then(result => {
+		// 				this.token = result.data.token;
+		// 				// this.$store.commit("settoken",this.token);
+		// 				// alert(this.username)
+		// 				// this.$store.commit("setphone",this.username);
+		// 				this.sendCode = false; // 控制显示隐藏
+		// 				this.authTime = 59;
+		// 				let timeInt = setInterval(() => {
+		// 					this.authTime--;
+		// 					if (this.authTime <= 0) {
+		// 						this.sendCode = true;
+		// 						window.clearInterval(timeInt);
+		// 					}
+		// 				}, 1000);
+		// 			});
+		// 		}
+		// 	});
+		// },
 		fncom() {
 			this.comarr.push(0);
 		},
@@ -420,6 +420,7 @@ export default {
 				}
 			}
 			
+			
 			// if (!re.test(this.username)) {
 			// 	// this.phonename = '手机号格式不正确';
 			// 	this.panduan = true;
@@ -432,6 +433,9 @@ export default {
 			// 		this.panduan = true;
 			// 	}
 			// });
+		},
+		phonefocus(){
+			this.panduan = false;
 		},
 		fn2() {
 			var re = /^\w{6,12}$/;
@@ -446,7 +450,8 @@ export default {
 				this.phonename = '手机号不能为空';
 				this.panduan = true;
 			} else {
-				axios.get(api.LogincheckSmsCode + '?smsCode=' + this.password + '&phone=' + this.username).then(res => this.loginSuccess(res));
+				// axios.get(api.LogincheckSmsCode + '?smsCode=' + this.password + '&phone=' + this.username).then(res => this.loginSuccess(res));
+				axios.get(api.Login + '?password=' + this.password + '&username=' + this.username).then(res => this.loginSuccess(res));
 			}
 		},
 		loginSuccess(res) {
@@ -454,6 +459,7 @@ export default {
 				this.phonename = res.msg;
 				this.panduan = true;
 			} else {
+				this.token = res.data.token;
 				this.$store.commit('settoken', this.token);
 				this.$store.commit('setPhone', this.username);
 				window.sessionStorage.setItem('token', this.token);

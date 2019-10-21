@@ -2,7 +2,7 @@ import global from "@/api/global";
 
 const version = global.url + "/v" + global.version;
 const api = {
-	Login: version + "/user/phoneLogin",  //登录发送验证码
+	Login: version + "/user/login",  //登录发送验证码
 	GetPhone:version+"/user/register",  //判断手机号是否已注册
 	RegistercheckSmsCode:version+"/user/RegistercheckSmsCode",   //判断手机号和验证码是否正确  完成注册
 	LogincheckSmsCode:version+"/user/LogincheckSmsCode",   //判断手机号和验证码是否正确  完成的登录

@@ -88,7 +88,7 @@
 						<input type="text" v-model="phone1" class="userimginp" placeholder="请输入手机号" @focus="phonefocus"  @blur="fn"/>
 					</div>
 					<!-- 输入密码 -->
-					<input type="text" placeholder="请输入手机号" class="regmima">
+					<input type="password" placeholder="请输入密码" v-model="password" class="regmima">
 					<!-- 输入验证码-->
 					<div class="code" style="display:flex;justify-content: space-between;">
 						<input type="text" @focus="fn6" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" style="font-size:0.45rem;"/>
@@ -279,7 +279,7 @@ export default {
 			moretb: require('../../assets/image/more@2x.png'),
 		  lmore: require('../../assets/image/pmjtxia.png'),
 			sqcolor: 'color: #333333',
-			token:"",
+			// token:"",
 			//总的等陆头部
 			// zheaderxy:true,
 				comarr: [0,0],
@@ -351,8 +351,8 @@ export default {
 								this.panduanphone = false;
 									//发送验证码
 								axios.get(api.RegisterphoneLogin+"?mobile="+this.phone1).then(result=>{
-									this.$store.commit("settoken",this.token);
-									this.token=result.data.token;
+									// this.$store.commit("settoken",this.token);
+									// this.token=result.data.token;
 									this.sendCode = false  // 控制显示隐藏
 									this.authTime = 59;
 									let timeInt = setInterval(() => {
@@ -384,22 +384,23 @@ export default {
 			// }
 		},
 		fnxiangmu(){
-				if(	window.sessionStorage.getItem('token') != null){
-			   this.$router.push('/Login');
-			}else{
-					this.loginWindow = true;
-			}
+			this.$router.push('/Login');
+			// 	if(	window.sessionStorage.getItem('token') != null){
+			//    this.$router.push('/Login');
+			// }else{
+			// 		this.loginWindow = true;
+			// }
 		},
 		fncom() {
 			this.comarr.push(0);
 		},
 		fnxnjz(){
-			if(	window.sessionStorage.getItem('token') != null){
-			   this.$router.push('/Login');
-			}else{
-					this.loginWindow = true;
-			}
-			
+			// if(	window.sessionStorage.getItem('token') != null){
+			//    this.$router.push('/Login');
+			// }else{
+			// 		this.loginWindow = true;
+			// }
+			this.$router.push('/Login');
 		},
 		sqq() {
 			this.xmtb = require('../../assets/image/sshouse.png');
@@ -469,17 +470,18 @@ export default {
 				this.phonename="手机号不能为空";
 				this.panduanphone = true;
 			}else{
-				axios.get(api.RegistercheckSmsCode+"?smsCode="+this.phoneyzm+"&phone="+this.phone1).then(result=>{
+				axios.get(api.RegistercheckSmsCode+"?smsCode="+this.phoneyzm+"&phone="+this.phone1+"&pwd="+this.password).then(result=>{
 					if(result.code!=0){
 						this.phonename=result.msg;
 						this.panduanphone = true;
 					}else if(result.code==0){
-						window.sessionStorage.setItem('token',this.token);
-						this.$store.commit("settoken",this.token);
-						this.$store.commit("setPhone",this.phone1);
+						// window.sessionStorage.setItem('token',this.token);
+						// this.$store.commit("settoken",this.token);
+						// this.$store.commit("setPhone",this.phone1);
 						//注册成功跳转页面
 						this.panduanphone = false;
 						this.loginWindow = false;
+						this.$router.push("/")
 						// alert("跳转页面")
 						// alert(this.phone1)
 					}else{
