@@ -15,6 +15,10 @@
 	<button @click="fabu">发布</button>
 	 </ul>
   <!--  <button @click="checkOpposite">反选</button> -->
+	<button @keyup.13="fn" style="width:50px;height:20px;background:red;">
+		
+	</button>
+		<h2><i></i><input type="button" value="忘记密码?" class="btn1"></h2>
   </div>
 </template>
 
@@ -40,9 +44,12 @@ export default {
       return false;
     }
   },
-
   methods: {
+		fn(){
+			this.fabu()
+		},
 		fabu(){
+			alert(1231)
 			sessionStorage.setItem('cgcgcg', JSON.stringify(this.checkbox));
 		},
     //单选
@@ -54,6 +61,7 @@ export default {
       var idx = this.checkbox.indexOf(i);
       //如果已经选中了，那就取消选中，如果没有，则选中
       if(idx>-1){
+				
         this.checkbox.splice(idx,1);
       }else{
         this.checkbox.push(i);
@@ -113,6 +121,15 @@ li{
 .active {
   border: 2px solid red;
 }
+.btn1{
+				width:70%;	
+					color:#000;
+						border: 1px solid black;
+						height: 0.6rem;
+						border-radius: 0.3rem;
+						padding-left: 0.2rem;
+						background: #ccc;
+			}
 </style>
 
 

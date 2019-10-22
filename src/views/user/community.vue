@@ -62,7 +62,8 @@
 				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
 				<!-- 输入用户名 -->
 				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
-				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" />
+				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" @keyup.enter="login"/>
+				  <el-checkbox v-model="checked" style="display:inline-block;position:absolute;left:4.2rem;top:8.6rem;">记住密码</el-checkbox>
 				<!-- 登录 -->
 				<div class="Logon-button" @click="login()">登录</div>
 				<!-- 还没有账号？马上去注册 -->
@@ -254,7 +255,9 @@ export default {
 			lmore: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
-			xmcolorh: 'color:#333333'
+			xmcolorh: 'color:#333333',
+			// 记住密码
+			 checked:false
 		};
 	},
 	components: {
@@ -1255,5 +1258,10 @@ input::-webkit-input-placeholder {
 	color: #aab2bd;
 	/* placeholder字体大小  */
 	font-size: 0.4rem;
+}
+.el-checkbox__label{
+	padding-left:0.1rem !important;
+	color: #2180ED;
+	font-size:0.35rem;
 }
 </style>

@@ -86,9 +86,9 @@
 			},
 			// 点击退出
 			outlogin(){
+				this.$forceUpdate()
 				sessionStorage.clear();
 				this.$router.push("/");
-				this.$forceUpdate();
 				  // location.reload()
 			}
 		},
