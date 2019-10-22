@@ -234,7 +234,7 @@
 				swipers: false,
 				// newarrs:[0,0,0,0,0,0],
 				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        checkbox:[],
+				checkbox:[],
 				// swiper上边部分
 				swiperxy:false,
 				// 轮播下边隐藏
@@ -260,6 +260,7 @@
 				qianjin:false,
 				houtui:false,
 				Printscreen:[],		//接收截图的图片
+				checkboxPrintscreen:[],
 			};
 		},
 		components: {
@@ -411,37 +412,28 @@
 			});
 		},
 		methods: {
-			 // 这是一个定时器
-     //  timer() {
-     //    return setTimeout(()=>{
-					// 
-     //      alert(1)
-     //    },1000)
-     //  },
 			// 点击轮播中的取消选择
 			fnqxchangswper(){
-				 this.checkbox = [];
-				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkbox));
+				this.checkboxPrintscreen = [];
+				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkboxPrintscreen));
 			},
 			// 点击轮播中的全选
 			fnallswper(){
-				 var len = this.Printscreen.length;
-				this.checkbox = [];
-				for(var i=0;i<len;i++){
-				  this.checkbox.push(i);
-				}
-				sessionStorage.setItem('quanxuan', JSON.stringify(this.checkbox));
+				this.checkboxPrintscreen = [];
+				var len = this.Printscreen.length;
+					for(var i=0;i<len;i++){
+						this.checkboxPrintscreen.push(this.Printscreen[i].printscreenId);
+						this.checkbox.push(i);
+					}
+				sessionStorage.setItem('quanxuan', JSON.stringify(this.checkboxPrintscreen));
 			},
 			// 点击轮播中的发布
 			fnfbswper(){
-					sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkbox));
-					 this.checkbox = []
-				// alert(index)
+				sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkboxPrintscreen));
+				this.checkboxPrintscreen = []
 			},
 			// 鼠标右击
 			fnyouji(index){
-				// this.isActivefb = index
-				// alert(this.isActivefb)
 				this.aaaaaa = index
 			},
 			// 选择对勾
@@ -449,11 +441,13 @@
 				var idx = this.checkbox.indexOf(i);
 				//如果已经选中了，那就取消选中，如果没有，则选中
 				if(idx>-1){
-				  this.checkbox.splice(idx,1);
+					this.checkboxPrintscreen.splice(idx,1);
+					this.checkbox.splice(idx,1);
 				}else{
-				  this.checkbox.push(i);
+					this.checkboxPrintscreen.push(i);
+					this.checkbox.push(i);
 				}
-				sessionStorage.setItem('duoxuan', JSON.stringify(this.checkbox));
+				sessionStorage.setItem('duoxuan', JSON.stringify(this.checkboxPrintscreen));
 			},
 			// 点击swiper头上的关闭
 			fng(index){

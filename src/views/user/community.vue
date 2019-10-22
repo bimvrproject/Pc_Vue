@@ -65,7 +65,7 @@
 				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" @keyup.enter="login"/>
 				  <el-checkbox v-model="checked" style="display:inline-block;position:absolute;left:4.2rem;top:8.6rem;">记住密码</el-checkbox>
 				<!-- 登录 -->
-				<div class="Logon-button" @click="login()">登录</div>
+				<button class="Logon-button" @click="login()" @keyup.enter.native="login">登录</button>
 				<!-- 还没有账号？马上去注册 -->
 				<div class="login-footer">
 					<i class="noreg">还没有账户?</i>
@@ -267,6 +267,9 @@ export default {
 		// Release
 	},
 	created() {
+		this.username="";
+		this.password="";
+		this.keyupEnter();
 		this.$eventbus.$on('loginhertru', () => {
 			this.loginWindow = true;
 		});
@@ -326,30 +329,30 @@ export default {
 			this.abouts = false;
 		},
 		//一分钟倒计时
-		ObtainCode() {
-			axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-				if (result.data == undefined) {
-					this.phonename = '您未注册，请注册！';
-					this.panduan = true;
-				} else {
-					axios.get(api.Login + '?mobile=' + this.username).then(result => {
-						this.token = result.data.token;
-						// this.$store.commit("settoken",this.token);
-						// alert(this.username)
-						// this.$store.commit("setphone",this.username);
-						this.sendCode = false; // 控制显示隐藏
-						this.authTime = 59;
-						let timeInt = setInterval(() => {
-							this.authTime--;
-							if (this.authTime <= 0) {
-								this.sendCode = true;
-								window.clearInterval(timeInt);
-							}
-						}, 1000);
-					});
-				}
-			});
-		},
+		// ObtainCode() {
+		// 	axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
+		// 		if (result.data == undefined) {
+		// 			this.phonename = '您未注册，请注册！';
+		// 			this.panduan = true;
+		// 		} else {
+		// 			axios.get(api.Login + '?mobile=' + this.username).then(result => {
+		// 				this.token = result.data.token;
+		// 				// this.$store.commit("settoken",this.token);
+		// 				// alert(this.username)
+		// 				// this.$store.commit("setphone",this.username);
+		// 				this.sendCode = false; // 控制显示隐藏
+		// 				this.authTime = 59;
+		// 				let timeInt = setInterval(() => {
+		// 					this.authTime--;
+		// 					if (this.authTime <= 0) {
+		// 						this.sendCode = true;
+		// 						window.clearInterval(timeInt);
+		// 					}
+		// 				}, 1000);
+		// 			});
+		// 		}
+		// 	});
+		// },
 		fncom() {
 			this.comarr.push(0);
 		},
@@ -426,6 +429,15 @@ export default {
 				this.panduan = true;
 			} else {
 				this.panduan = false;
+			}
+		},
+		keyupEnter(){
+			document.onkeydown = e =>{
+				let body = document.getElementsByTagName('body')[0]
+				if (e.keyCode === 13 && e.target.baseURI.match(/inputbook/) && e.target === body) {
+					console.log('enter')
+					this.login()
+				}
 			}
 		},
 		login() {
@@ -1219,6 +1231,7 @@ html {
 	color: #ffffff;
 	text-align: center;
 	line-height: 1.02rem;
+	border:none;
 }
 /* 还没有账号？马上注册 */
 .login-footer {
