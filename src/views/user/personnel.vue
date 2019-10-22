@@ -93,9 +93,10 @@
 						</div>
 						<div class="accountper">
 							<span class="accountperspan">账号权限</span>
-							<el-select v-model="item.value" clearable placeholder="请选择" class="accountpersel">
+							<el-select v-model="item.value" clearable placeholder="请选择" class="accountpersel" @change="qxs(index)">
 								<el-option v-for="(item) in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
 							</el-select>
+							
 						 <!-- <select class="info-select" style="width:6rem;height:1.3rem;line-height:1.3rem;font-size:0.4rem;border:1px solid gainsboro;border-radius:4px;padding-left:0.1rem;">
 							 <option value0="" class="changqx">请选择权限</option>
 						   <option value1="权限一">权限一</option>
@@ -111,7 +112,7 @@
 					</div>
 				</ul>
 				<!-- 人员信息填写的提交 -->
-				<div class="ryxxtj">提交</div>
+				<div class="ryxxtj" @click="fntijiao">提交</div>
 			</div>
 		</div>
 		<!-- 点击联系我们的遮罩 -->
@@ -192,13 +193,21 @@ export default {
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		// 提交
+		fntijiao(){
+			console.log(this.qxarr) 
+		},
+		qxs(index){
+			//设置localStroage值
+		 this.$set(this.qxarr[index]);
+		localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr));
+		},
 		// fnns(index){
 		// 	alert(index)
 		// },
 		//人员信息中的账号失焦事件
 		changewall3(index){
-				//设置localStroage值
-			 this.$set(this.qxarr[index]);
+				 this.$set(this.qxarr[index]);
 			localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr));
 		},
 		// 点击联系我们
@@ -229,8 +238,8 @@ export default {
 		},
 		// 点击权限的新建项目
 		fnnjqx() {
-			this.qxarr.push({ msgss:''});
-			localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr))
+			this.qxarr.push({ msgss:'',value:''});
+			// localStorage.setItem('wallss1ss', JSON.stringify(this.qxarr))
 		},
 		// 点击项目
 		fnperxm() {
@@ -495,7 +504,8 @@ a {
 /* 人员信息权限主要部分 */
 .ryxxcenter {
 	width: 26rem;
-	height: 20.4rem;
+	min-height: 10.4rem;
+	max-height:22rem;
 	/* background:red; */
 	margin-left: 10rem;
 	overflow: auto;

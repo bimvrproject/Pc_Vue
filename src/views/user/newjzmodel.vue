@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<div class="zongjm" @click="fnswepi()">
-			<iframe :src="projectmodel" frameborder="0" style="width:100%;height:100%;"></iframe>
+			<!-- <iframe :src="projectmodel" onload="this.focus()" frameborder="0" style="width:100%;height:100%;"></iframe> -->
+			<iframe :src ="projectmodel"  frameborder="0" style="width:100%;height:100%;"  onload="this.focus()"></iframe>
 		</div>
 		<div class="lefttopjzm">
 			<div class="leftjzm">
@@ -24,10 +25,6 @@
 						  <i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
 					   	vertical-align: middle;margin-left:0.16rem;">
 					  	</i>
-						<!-- <i class="xm" style="color: #2180ED;">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
-						</i> -->
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -123,55 +120,9 @@
 		<!-- 点击联系我们的遮罩 -->
 		<div style="width:59.9375rem;height:33.65625rem;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2);z-index: 600000;"
 		 v-show="abouts" @click="fnaboutmark"></div>
-		 		<!-- 图片展示轮播图 -->
-		  <!-- Swiper -->
-				 <div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
-				  <div class="swiper-wrapper"  v-show="swiperxy">
-				   <div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
-						<!-- "http://192.168.6.152:8080/" -->
-						 <img :src="'http://192.168.6.152:8080/'+item.images" alt="">
-						 	<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
-							 @click.stop="fng(index)">
-						 </span>
-						 </div>
-				  </div>
-				  <div class="swiper-button-next swiper-button-white " v-show="qianjin"></div>
-				  <div class="swiper-button-prev swiper-button-white" v-show="houtui"></div>
-				</div>
-		 <div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
-		    <div class="swiper-wrapper" v-show="swiperbottom" >
-		         <div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index" @contextmenu.prevent="fnyouji(index)">
-						<span class="vvvs" style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.03rem;"
-					 :class="checkbox.includes(index)?'checkeds':''"
-						 @click.stop="fnxz(index)">
-						</span>
-						<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
-						<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
-						<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
-						<div class="xbz" v-show="aaaaaa === index">
-							<span class="fqq" @click.stop="fnfbswper()" :style="fbswper">
-								发布
-							</span>
-							<span class="fqq quanxuans" @click.stop="fnallswper()" :style="fbswperall">
-								 全选
-							</span>
-							<span class="fqq qxs" @click.stop="fnqxchangswper()" :style="fbswperqxchang">
-							   取消选择
-							</span>
-						</div>
-				</div>
-		    </div>
-				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
-       <div class="swiper-button-next backs" v-show="backs"></div> -->
-		  </div>	
-		<!-- 拍照倒计时提示 -->
-		<div style="width:300px;height:200px;color: red; position:absolute;top:50%;left:50%;line-height:200px;text-align:center;" v-show="pzts">正在拍照...</div>
 	</div>
 </template>
 <script>
-	import Swiper from 'swiper';
-	import 'swiper/dist/css/swiper.min.css'
 	import api from '@/api/api.js';
 	import qs from 'qs';
 	import Newjian from './newjian';
@@ -183,14 +134,10 @@
 	export default {
 		data() {
 			return {
-				duigous:"",
-				showIndex:false,
-				sdsds:false,
-				aaaaaa:-1,
-				dddd:false,
-				// 发布轮播图中最下边鼠标右击事件控制的显隐
-				isActivefb:true,
-				title: "18306846355",
+				// duigous:"",
+				// showIndex:false,
+				// sdsds:false,
+				// title: "18306846355",
 				model: '',
 				panduan: false,
 				xianyin: false,
@@ -230,40 +177,11 @@
 				nmfb: require('../../assets/image/pmjtxia.png'),
 				// 联系我们
 				abouts: false,
-				// 中间部分隐藏
-				centerxy: true,
-				swipers: false,
-				// newarrs:[0,0,0,0,0,0],
-				// newarrs:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-				checkbox:[],
-				// swiper上边部分
-				swiperxy:false,
-				// 轮播下边隐藏
-				swiperbottom:false,
-				//轮播下边的最大背景图的显隐
-				swipersbj:"background:rgba(225,225,225,0)",
 				// 社区默认状态
 				hsq:require('../../assets/image/sq@2x.png'),
 				hsqcolor:"color:#333333",
-				topswper:true,
 				moretb: require('../../assets/image/more@2x.png'),
-				// 对勾的数组
-				dgarrs:[],
-				dgou:false,
-				// 轮播中的发布的背景色
-				fbswper:"background:rgba(225,225,225,0)",
-				fbswperall:"background:rgba(225,225,225,0)",
-				fbswperqxchang:"background:rgba(225,225,225,0)",
-				goss:false,
-				backs:false,
-				// 动画中自由拍摄组件得显隐
-				frees:true,
-				qianjin:false,
-				houtui:false,
-				Printscreen:[],		//接收截图的图片
-				checkboxPrintscreen:[],
-				// 点击拍照的时候显示的内容
-				pzts:false
+				
 			};
 		},
 		components: {
@@ -272,39 +190,6 @@
 			Releases,
 		},
 		created() {
-			// 创建点击拍照得时候提示内容出现
-			this.$eventbus.$on('fbpzts', () => {
-				this.pzts = true
-			});
-				// 创建点击拍照得时候提示内容消失
-			this.$eventbus.$on('fbpztss', () => {
-				this.pzts = false
-			});
-			// 创建点击动画得时候轮播图出现
-		   	this.$eventbus.$on('fbswipersfree', () => {
-				this.frees = true
-			});
-			// 创建点击发布的时候轮播图出现
-				this.$eventbus.$on('fbswipers', () => {
-				this.swiperbottom = true;
-				// this.topswper = true;
-				this.	swipersbj = 'background:#EEEEEE';
-				this.goss = true;
-				this.backs = true;
-				// this.qianjin = true;
-				// this.houtui = true;
-			});
-			// 创建点击发布的时候轮播图消失
-				this.$eventbus.$on('fbswiperss', () => {
-				this.swiperbottom = false;
-				this.swiperxy = false;
-				this.topswper = false,
-				this.	swipersbj = 'background:rgba(225,225,225,0)'
-				this.goos = false;
-				this.backs = false;
-				this.houtui = false;
-				this.qinajin = false
-			});
 			this.$eventbus.$on('ceyinfb', ite => {
 				if (ite == "fabu") {
 					this.release = true;
@@ -353,30 +238,7 @@
 						this.projectmodel = addressurls.url + this.model;
 					}
 				});
-				//绑定截图的照片
-				axios.get(api.SelectPrintscreen+"/"+projectidss).then(result => {
-					this.Printscreen = result.data.printscreenslist;
-					console.log(this.Printscreen)
-				})
 			}
-			// 点击建筑结构 和模型展示模型
-			// var pro_id = this.$route.params.project_modelid;
-			// alert(pro_id)
-			// sessionStorage.setItem("proid",pro_id)
-			// if (projectidss != '' && projectidss != null && projectidss != undefined) {
-			// 	axios.get(api.ShowModel + '/1' + '/' + projectidss).then(result => {
-			// 		if (result.data.modelId != null || result.data.projectId != null && result.data.url != '' || result.data.projectId !=
-			// 			"" && result.data.url != undefined || result.data.projectId != undefined) {
-			// 			this.fileshow = false;
-			// 		}
-			// 		if (result.data.url != null && result.data.url != '' && result.data.url != undefined) {
-			// 			this.fileshow = false;
-			// 			this.model = result.data.url;
-			// 			this.projectmodel = addressurls.url + this.model;
-			// 		}
-			// 	});
-			// }
-
 			let mythis = this;
 			this.$http.get(api.GetAllList).then(function(response) {
 				mythis.dataList = response;
@@ -393,89 +255,11 @@
 			})
 		},
 		mounted() {
-			this.$eventbus.$emit('fbswiperss');
+			// this.$eventbus.$emit('fbswiperss');
 			this.$eventbus.$emit('cezhan', 'moxin');
 			this.$eventbus.$emit('hometop');
-			 var galleryThumbs = new Swiper('.gallery-thumbs', {
-			  spaceBetween: 10,
-			  slidesPerView:8,
-				//  navigation: {
-				//   nextEl: '.swiper-button-next',
-				//   prevEl: '.swiper-button-prev',
-				// },
-			  freeMode: true,
-			  watchSlidesVisibility: true,
-			  watchSlidesProgress: true,
-				observer:true,/*启动动态检查器，当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。*/
-       observeParents:true,/*将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。*/
-			});
-			 new Swiper('.gallery-top', {
-			  spaceBetween: 10,
-			  navigation: {
-			    nextEl: '.swiper-button-next',
-			    prevEl: '.swiper-button-prev',
-			  },
-				observer:true,/*启动动态检查器，当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。*/
-				observeParents:true,/*将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。*/
-			  thumbs: {
-			    swiper: galleryThumbs
-			  }
-			});
 		},
 		methods: {
-			// 点击轮播中的取消选择
-			fnqxchangswper(){
-				this.checkboxPrintscreen = [];
-				sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkboxPrintscreen));
-			},
-			// 点击轮播中的全选
-			fnallswper(){
-				this.checkboxPrintscreen = [];
-				var len = this.Printscreen.length;
-					for(var i=0;i<len;i++){
-						this.checkboxPrintscreen.push(this.Printscreen[i].printscreenId);
-						this.checkbox.push(i);
-					}
-				sessionStorage.setItem('quanxuan', JSON.stringify(this.checkboxPrintscreen));
-			},
-			// 点击轮播中的发布
-			fnfbswper(){
-				sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkboxPrintscreen));
-				this.checkboxPrintscreen = []
-			},
-			// 鼠标右击
-			fnyouji(index){
-				this.aaaaaa = index
-			},
-			// 选择对勾
-			fnxz(i){
-				var idx = this.checkbox.indexOf(i);
-				//如果已经选中了，那就取消选中，如果没有，则选中
-				if(idx>-1){
-					this.checkboxPrintscreen.splice(idx,1);
-					this.checkbox.splice(idx,1);
-				}else{
-					this.checkboxPrintscreen.push(i);
-					this.checkbox.push(i);
-				}
-				sessionStorage.setItem('duoxuan', JSON.stringify(this.checkboxPrintscreen));
-			},
-			// 点击swiper头上的关闭
-			fng(index){
-				this.swiperxy = false,
-				this.topswper = false;
-				this.qianjin = false;
-				this.houtui = false
-			},
-			// 点击swiper下边的
-			fnswipers(){
-				this.swiperxy = true,
-				this.topswper = true,
-				this.aaaaaa = null;
-				this.qianjin = true;
-				this.houtui = true
-				// this.dddd = false
-				},
 			// 点击新建项目
 			fnjzmxxm() {
 				// this.$eventbus.$emit('cezhan', 'moxin');
@@ -569,18 +353,6 @@
 					});
 				})
 			},
-			// help1() {
-			// 	location.href = 'http://www.jh-bim.com/home/solution';
-			// },
-			// Preservation1() {
-			// 	this.$router.push('/baocun');
-			// },
-			// xiugai1() {
-			// 	this.$router.push('/xiugai');
-			// },
-			// abouts1() {
-			// 	this.$router.push('/about');
-			// },
 			fns() {
 				this.xianyin = !this.xianyin;
 				// this.xianyinxuni = false;
@@ -620,12 +392,12 @@
 			},
 			//点击发布
 			fnfabu() {
-				if(this.Printscreen.length==0){
-					// 调用点击发布的时候轮播显示
-					this.$eventbus.$emit('fbswiperss');
-				}else{
-					this.$eventbus.$emit('fbswipers');
-				}
+				// if(this.Printscreen.length==0){
+				// 	// 调用点击发布的时候轮播显示
+				// 	this.$eventbus.$emit('fbswiperss');
+				// }else{
+				// 	this.$eventbus.$emit('fbswipers');
+				// }
 				// this.timer();
 				this.fbcolor = 'color:#2180ED';
 				this.fbtu = require('../../assets/image/fbblue.png');
@@ -1095,50 +867,5 @@
 		border: none !important;
 		color: #ffffff !important;
 		padding: 0.03125rem 0.25rem !important;
-	}
-	
-	.swiper-slidetop {
-		background: paleturquoise;
-		width: 47.46875rem;
-		height: 20.21875rem;
-	}
-	.swiper-slidetop img {
-	width: 47.46875rem;
-	height: 20.21875rem;
-	}
-	.swiper-slidebottom {
-		width: 6rem !important;
-		height: 6rem !important;
-		/* background:red; */
-		margin-right: 0.5rem;
-	}
-	.swiper-slidebottomimg {
-		width: 6rem !important;
-		height: 6rem !important;
-	}
-/* 	.swiper-container {
-		margin-left: auto;
-		margin-right: auto;
-	} */
-/* 	.swiper-slide {
-		background-size: cover;
-		background-position: center;
-	} */
-	.gallery-top {
-		width: 45.86875rem !important;
-		height: 20.21875rem !important;
-	}
-	.gallery-thumbs {
-		box-sizing: border-box;
-		padding: 0.8rem 0;
-		/*  padding: 20px 0; */
-	}
-	.gallery-thumbs .swiper-slide {
-		/* width: 25%;
-	      height: 100%; */
-		opacity: 0.8;
-	}
-	.gallery-thumbs .swiper-slide-thumb-active {
-		opacity: 1;
 	}
 </style>
