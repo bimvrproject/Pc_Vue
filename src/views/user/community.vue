@@ -63,7 +63,7 @@
 				<!-- 输入用户名 -->
 				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" @keyup.enter="login"/>
-				  <el-checkbox v-model="checked" style="display:inline-block;position:absolute;left:4.2rem;top:8.6rem;">记住密码</el-checkbox>
+				  <el-checkbox @click="remberclickpwd" v-model="remeberpwd" style="display:inline-block;position:absolute;left:4.2rem;top:8.6rem;">记住密码</el-checkbox>
 				<!-- 登录 -->
 				<button class="Logon-button" @click="login()" @keyup.enter.native="login">登录</button>
 				<!-- 还没有账号？马上去注册 -->
@@ -257,7 +257,7 @@ export default {
 			abouts: false,
 			xmcolorh: 'color:#333333',
 			// 记住密码
-			 checked:false
+			 remeberpwd:false
 		};
 	},
 	components: {
@@ -269,7 +269,6 @@ export default {
 	created() {
 		this.username="";
 		this.password="";
-		this.keyupEnter();
 		this.$eventbus.$on('loginhertru', () => {
 			this.loginWindow = true;
 		});
@@ -299,6 +298,7 @@ export default {
 			this.this.$refs.xmcol.style.color = '#333333';
 			this.sqcolor = 'color:#333';
 		});
+		 this.getCookie();
 	},
 	mounted() {
 		if (window.sessionStorage.getItem('token') != null) {
@@ -431,23 +431,55 @@ export default {
 				this.panduan = false;
 			}
 		},
-		keyupEnter(){
-			document.onkeydown = e =>{
-				let body = document.getElementsByTagName('body')[0]
-				if (e.keyCode === 13 && e.target.baseURI.match(/inputbook/) && e.target === body) {
-					console.log('enter')
-					this.login()
-				}
-			}
-		},
 		login() {
 			if (this.username == null || this.username == '') {
 				this.phonename = '手机号不能为空';
 				this.panduan = true;
 			} else {
+				if(this.remeberpwd==true){
+					console.log("checktrue")
+					this.setCookie(this.username,this.password,this.remeberpwd,7);
+				}else{
+					console.log("清空cookie")
+					this.clearCookie();
+				}
 				// axios.get(api.LogincheckSmsCode + '?smsCode=' + this.password + '&phone=' + this.username).then(res => this.loginSuccess(res));
 				axios.get(api.Login + '?password=' + this.password + '&username=' + this.username).then(res => this.loginSuccess(res));
 			}
+		},
+		remberclickpwd(){
+			this.remeberpwd=true;
+		},
+		//设置cookie
+		setCookie(c_name, c_pwd,c_check, exdays) {
+			var exdate = new Date(); //获取时间
+			exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * exdays); //保存的天数
+			//字符串拼接cookie
+			window.document.cookie = "userName" + "=" + c_name + ";path=/;expires=" + exdate.toGMTString();
+			window.document.cookie = "userPwd" + "=" + c_pwd + ";path=/;expires=" + exdate.toGMTString();
+			window.document.cookie = "checkbox" + "=" + c_check + ";path=/;expires=" + exdate.toGMTString();
+		},
+		//读取cookie
+		getCookie: function() {
+			if (document.cookie.length > 0) {
+				var arr = document.cookie.split('; '); //这里显示的格式需要切割一下自己可输出看下
+				for (var i = 0; i < arr.length; i++) {
+					var arr2 = arr[i].split('='); //再次切割
+					//判断查找相对应的值
+					if (arr2[0] == 'userName') {
+						this.username = arr2[1]; //保存到保存数据的地方
+					} else if (arr2[0] == 'userPwd') {
+						this.password = arr2[1];
+					}else if(arr2[0]=="checkbox"){
+						this.remeberpwd=arr2[1];
+						this.remberclickpwd();
+					}
+				}
+			}
+		},
+		//清除cookie
+		clearCookie: function() {
+			this.setCookie("", "", -1); //修改2值都为空，天数为负1天就好了
 		},
 		loginSuccess(res) {
 			if (res.code != 0) {
