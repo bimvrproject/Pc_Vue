@@ -170,8 +170,8 @@ export default {
 		// 人员信息填写中的账号
 		this.qxarr = localStorage .getItem('wallss1ss')
 			? JSON.parse(localStorage .getItem('wallss1ss'))
-			: [{ msgss:''}, { msgss:''}, {msgss:''}, 
-			{ msgss:''}];
+			: [{ msgss:'',value:''}, { msgss:'',value:''}, {msgss:'',value:''}, 
+			{ msgss:'',value:''}];
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});

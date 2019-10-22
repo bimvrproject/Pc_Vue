@@ -165,7 +165,10 @@
 				<!-- <div class="swiper-button-prev gos" v-show="goss"></div>
        <div class="swiper-button-next backs" v-show="backs"></div> -->
 		  </div>	
-		
+		<!-- 拍照倒计时提示 -->
+		<div style="width:300px;height:200px;background:red;position:absolute;top:50%;left:50%;line-height:200px;text-align:center;" v-show="pzts">
+			{{paz}}
+		</div>
 	</div>
 </template>
 <script>
@@ -182,6 +185,7 @@
 	export default {
 		data() {
 			return {
+				paz:"正在拍照",
 				duigous:"",
 				showIndex:false,
 				sdsds:false,
@@ -261,6 +265,8 @@
 				houtui:false,
 				Printscreen:[],		//接收截图的图片
 				checkboxPrintscreen:[],
+				// 点击拍照的时候显示的内容
+				pzts:false
 			};
 		},
 		components: {
@@ -269,6 +275,20 @@
 			Releases,
 		},
 		created() {
+			// 创建点击拍照得时候提示内容出现
+			 	this.$eventbus.$on('fbpzts', () => {
+			this.pzts = true
+			 });
+			 	// 创建点击拍照得时候提示内容出现
+			  	this.$eventbus.$on('fbpztss', () => {
+						this.paz = "拍照成功"
+			      this.pzts = true
+			  });
+					// 创建点击拍照得时候提示内容消失
+					this.$eventbus.$on('fbpztss', () => {
+						this.paz = "拍照成功"
+				    this.pzts = false
+				});
 			// 创建点击动画得时候轮播图出现
 		   	this.$eventbus.$on('fbswipersfree', () => {
 		   this.frees = true

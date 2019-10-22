@@ -248,7 +248,8 @@ export default {
 	  // 路径拍摄图片
 		ljpstp:require('../../assets/image/ljpss.png'),
 		//路径拍摄的字体颜色
-		ljpstpcolor:'color:#FFFFFF'
+		ljpstpcolor:'color:#FFFFFF',
+		timer:''
 		};
 	},
 	created() {},
@@ -256,6 +257,15 @@ export default {
 	methods: {
 		//拍照
 		paizhao(){
+			this.timer =setTimeout(()=>{
+				this.$eventbus.$emit('fbpzts');
+			},500);
+				this.timer =setTimeout(()=>{
+				this.$eventbus.$emit('fbpztss');
+			},2500);
+			this.timer =setTimeout(()=>{
+				this.$eventbus.$emit('fbpztsss');
+			},500);
 			// 图片中的拍照图片
 			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 			// 图片中的拍照的字体颜色
