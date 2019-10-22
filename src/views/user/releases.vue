@@ -1367,7 +1367,6 @@
 	.swiper-slidebottom {
 		width: 6rem !important;
 		height: 6rem !important;
-		/* background:red; */
 		margin-right: 0.5rem;
 	}
 
