@@ -249,7 +249,8 @@ export default {
 		ljpstp:require('../../assets/image/ljpss.png'),
 		//路径拍摄的字体颜色
 		ljpstpcolor:'color:#FFFFFF',
-		timer:''
+		timer:'',
+		timers:""
 		};
 	},
 	created() {},
@@ -259,19 +260,21 @@ export default {
 		paizhao(){
 			this.timer =setTimeout(()=>{
 				this.$eventbus.$emit('fbpzts');
-			},500);
-				this.timer =setTimeout(()=>{
+			},1000);
+			this.timers =setTimeout(()=>{
 				this.$eventbus.$emit('fbpztss');
-			},2500);
-			this.timer =setTimeout(()=>{
-				this.$eventbus.$emit('fbpztsss');
-			},500);
+			},5500);
 			// 图片中的拍照图片
 			this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 			// 图片中的拍照的字体颜色
 			this.fbpzscolor = 'color:#2180ED',
 			axios.get(api.OpenCmd).then(result=>{
 				// console.log(result.data)
+				//绑定截图的照片
+				axios.get(api.SelectPrintscreen+"/"+projectidss).then(result => {
+					this.Printscreen = result.data.printscreenslist;
+					console.log(this.Printscreen)
+				})
 			})
 		},
 		//点击平面图纸中的具体某一个平面图纸
