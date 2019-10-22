@@ -72,7 +72,7 @@
 					<i class="login-reg" @click="fn3">马上注册</i>
 				</div>
 			</div>
-			<!-- 社区部分 -->
+			<!-- 社区部分  -->
 			<div>
 				<div class="community">
 					<!-- 社区头部 -->
