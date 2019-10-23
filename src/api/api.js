@@ -42,5 +42,6 @@ const api = {
 	Exceltohtml:version+"/excel/exceltohtml",		//展示excel清单
 	Addressurl:version+"/excel/addressurl",//查询清单的模型id项目id和登录人展示清单的位置
 	SelectPrintscreen:version+"/model/selectPrintscreen",		//查询截图表展示到页面
+	DynamicForeachTest:version+"/model/dynamicForeachTest",		//获取截图的id返回截图的路径
 };
 export default api;

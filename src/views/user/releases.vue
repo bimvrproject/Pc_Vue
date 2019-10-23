@@ -296,7 +296,7 @@
 				timer: '',
 				timers: "",
 				Printscreen: [], //接收截图的图片
-				checkboxPrintscreen: [],
+				checkboxPrintscreen: [],  //点击截图复选框获取到图片的id
 				// 对勾的数组
 				dgarrs: [],
 				dgou: false,
@@ -344,7 +344,7 @@
 						this.Printscreen = result.data.printscreenslist;
 						this.bigbox=true;
 					}
-					console.log(this.Printscreen)
+					// console.log(this.Printscreen)
 				})
 			}
 		},
@@ -422,8 +422,16 @@
 			},
 			// 点击轮播中的发布
 			fnfbswper() {
-				window.location.href="";
-				sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkboxPrintscreen));
+				// window.location.href="";
+				// sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkboxPrintscreen));
+				// var printscreenIds=sessionStorage.getItem("fabujzmodel");
+				// console.log(printscreenIds)
+				if(this.checkboxPrintscreen.length!=0){
+					// console.log(this.checkboxPrintscreen)
+					axios.get(api.DynamicForeachTest+"?ids="+this.checkboxPrintscreen).then(result=>{
+						
+					})
+				}
 				this.checkbox = [];
 				this.checkboxPrintscreen = [];
 			},
