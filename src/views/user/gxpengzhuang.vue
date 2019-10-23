@@ -52,27 +52,13 @@
 						 	<div class="moresbcomgxpz">版本号: v 1.0.1</div>
 						 </div>
 				</div>
-			<!-- 	<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @mouseenter="fnmoin">
-						<img class="moreimggxpz" src="../../assets/image/more@2x.png" />
-						<i class="moregxpz">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;">
-							</i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="gxpzmore">
-						<div class="gxpzmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="gxpzmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="gxpzmores1" @click="fnabout">联系我们</div>
-							<div class="gxpzmoresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 		<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">
+				{{projecttitgxpz}}
+			</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 			<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">管线综合</span>
 			<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
@@ -129,7 +115,8 @@ export default {
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
-			moretb: require('../../assets/image/more@2x.png')
+			moretb: require('../../assets/image/more@2x.png'),
+			projecttitgxpz:''
 		};
 	},
 	components: {
@@ -139,6 +126,8 @@ export default {
 		// Releases
 	},
 	created() {
+		// 接收一下title
+		this.projecttitgxpz = sessionStorage.getItem('projecttit'); 
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});

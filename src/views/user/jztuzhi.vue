@@ -77,7 +77,9 @@
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 				<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">新建项目</span>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">
+					{{projecttitjtz}}
+				</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.7575rem;">建筑结构</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
@@ -267,7 +269,9 @@
 				// 社区默认状态
 				hsq:require('../../assets/image/sq@2x.png'),
 				hsqcolor:"color:#333333",
-				moretb: require('../../assets/image/more@2x.png')
+				moretb: require('../../assets/image/more@2x.png'),
+				// 新建项目中获取到title
+				projecttitjtz:''
 			};
 		},
 		components: {
@@ -276,6 +280,8 @@
 			// Zheader
 		},
 		created() {
+			// 接收一下title
+			this.projecttitjtz = sessionStorage.getItem('projecttit');
 			var prid = sessionStorage.getItem("projectid");
 			if(prid!=null && prid!=undefined){
 				//该项目中是否有图纸 如果有则不显示上传图纸功能

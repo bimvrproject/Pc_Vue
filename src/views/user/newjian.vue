@@ -53,6 +53,7 @@ export default {
 		fnnnn(){
 			this.isActive = null;
 		},
+		// 点击新建项目
 		fns() {
 			axios.post(api.Addprojects).then(result=>{
 				// console.log(result.data)
@@ -62,6 +63,7 @@ export default {
 				});
 			})
 		},
+		// 点击其中一个
 		fnt(index) {
 			//点击当前创建页面的时候点开填写项目表，同时上边的创建项目消失
 			// if (this.projectLists[index].projectId == undefined) {
@@ -75,9 +77,13 @@ export default {
 			// 	this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
 			// 	// this.$router.push("/newjzmodel")
 			// }
+			// 存储tit
+			var tit = this.projectLists[index].projectName;
+			sessionStorage.setItem('projecttit', tit);
+			// 存储id
 			var id = this.projectLists[index].projectId;
 			sessionStorage.setItem('projectid', id);
-			this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId } });
+			this.$router.push({ name: '/newjzmodel', params: { project_id: this.projectLists[index].projectId} });
 		},
 		dateFormat: function(time) {
 			var date = new Date(time);

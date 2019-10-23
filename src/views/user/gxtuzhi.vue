@@ -62,7 +62,9 @@
 			<!-- 新建项目/管线综合/图纸 -->
 
 			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">新建项目</span>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">
+				{{projecttitgxtz}}
+				</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.7575rem;">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
@@ -246,7 +248,9 @@ export default {
 			moretb: require('../../assets/image/more@2x.png'),
 			projectidsdrawingarr:[],
 			pmdrawpicture:'',
-			pmph:true
+			pmph:true,
+			// 新建项目中获取title
+			projecttitgxtz:""
 		};
 	},
 	components: {
@@ -255,6 +259,8 @@ export default {
 		// Zheader
 	},
 	created() {
+		// 接收一下新建项目中的title
+		this.projecttitgxtz = sessionStorage.getItem('projecttit');
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
 		});

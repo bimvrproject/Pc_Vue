@@ -72,7 +72,9 @@
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;line-height:0.6875rem;float:left;">新建项目</span>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;line-height:0.6875rem;float:left;">
+					{{projecttitgxcl}}
+					</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;line-height:0.6875rem;float:left;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;line-height:0.7575rem;float:left;">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;line-height:0.6875rem;float:left;">/</i>
@@ -153,6 +155,7 @@ export default {
 			attrs: {
 				accept: ' .xls, .xlsx'
 			},
+			projecttitgxcl:''
 		};
 	},
 	components: {
@@ -162,6 +165,8 @@ export default {
 		Releases
 	},
 	created() {
+		// 接收一下新建项目中的title
+			this.projecttitgxcl = sessionStorage.getItem('projecttit');
 		// var pipemodelid = this.$route.params.pipemodelids;
 		// if (pipemodelid != '' && pipemodelid != null && pipemodelid != undefined) {
 		// 	axios.get(api.ShowModel + '/2' + '/' + pipemodelid).then(result => {

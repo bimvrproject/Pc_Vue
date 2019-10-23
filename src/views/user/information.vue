@@ -77,7 +77,9 @@
 			</div>
 			<!-- 新建项目/信息编辑/图纸 -->
 			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">新建项目</span>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;">
+					{{projecttitinfor}}
+				</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
 				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;margin-left:0.15625rem;line-height:0.7575rem;">信息编辑</span>
 			</div>
@@ -149,7 +151,8 @@ export default {
 			// 社区默认状态
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
-			moretb: require('../../assets/image/more@2x.png')
+			moretb: require('../../assets/image/more@2x.png'),
+			projecttitinfor:''
 		};
 	},
 	components: {
@@ -158,6 +161,8 @@ export default {
 		// Zheader
 	},
 	created() {
+		// 接收一下title
+		this.projecttitinfor = sessionStorage.getItem('projecttit');
 		var pro_id = this.$route.params.project_id;
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
