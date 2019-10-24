@@ -394,7 +394,7 @@
 				}, 1000);
 				this.timers = setTimeout(() => {
 					this.pzts = false
-				}, 4000);
+				}, 4500);
 				// 图片中的拍照图片
 				this.fbpzs = require('../../assets/image/fbpzsblue.png'),
 					// 图片中的拍照的字体颜色
