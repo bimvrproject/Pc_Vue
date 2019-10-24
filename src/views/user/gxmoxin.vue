@@ -6,6 +6,7 @@
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 				<Releases v-show="release"></Releases>
+				<Edit v-show="edits"></Edit>
 			</div>
 		</div>
 		<div class="box">
@@ -84,7 +85,8 @@
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
 			<div style="width:18.75rem;height:0.6875rem;position:absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;" @click="fnjzmx">
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;cursor:pointer;float:left;line-height:0.6875rem;" 
+				@click="fnjzmx()">
 					{{projecttitss}}
 				</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;cursor:pointer;float:left;line-height:0.6875rem;">/</i>
@@ -167,6 +169,7 @@ import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
+import Edit from './edit';
 import addressurls from '@/api/ip.js';
 // import Zheader from './header';
 export default {
@@ -253,7 +256,8 @@ export default {
 	components: {
 		Newjian,
 		Xunilogo,
-		Releases
+		Releases,
+		Edit
 		// Zheader
 	},
 	created() {
@@ -270,20 +274,31 @@ export default {
 			(this.topswper = false), (this.swipersbj = 'background:rgba(225,225,225,0)'), (this.houtui = false);
 			this.qinajin = false;
 		});
-		this.$eventbus.$on('ceyinfb', ite => {
-			if (ite == 'fabu') {
-				this.release = true;
-				this.xianyinxuni = false;
-			}
-			if (ite == 'xjxm') {
-				this.release = false;
-				this.xianyinxuni = true;
-			}
-			if (ite == 'jzjg') {
-				this.release = false;
-				this.xianyinxuni = true;
-			}
-		});
+		// 编辑与发布隐藏事件
+		this.$eventbus.$on('ceyinfbs', () => {
+			 this.edits = false;
+			 this.release = false;
+			 this.xianyinxuni = true
+			 this.istruebjgm = true;
+			 this.isfalsebjgm = false;
+			 this.istruefbgm = true;
+			 this.isfalsefbgm = false
+			 // this.xianyinxuni = true
+			});
+		// this.$eventbus.$on('ceyinfb', ite => {
+		// 	if (ite == 'fabu') {
+		// 		this.release = true;
+		// 		this.xianyinxuni = false;
+		// 	}
+		// 	if (ite == 'xjxm') {
+		// 		this.release = false;
+		// 		this.xianyinxuni = true;
+		// 	}
+		// 	if (ite == 'jzjg') {
+		// 		this.release = false;
+		// 		this.xianyinxuni = true;
+		// 	}
+		// });
    // 取出tit
 	  this.projecttitss = sessionStorage.getItem('projecttit');
 		var pipemodelid = sessionStorage.getItem('projectid');
@@ -396,8 +411,9 @@ export default {
 		// 点击新建项目
 		fnjzmx() {
 			// this.$eventbus.$emit('cezhan', 'moxin');
-			this.$eventbus.$emit('ceyindj', 'xinjianmoxin');
-			this.$eventbus.$emit('ceyinfb', 'xjxm');
+			// this.$eventbus.$emit('ceyindj', 'xinjianmoxin');
+			// this.$eventbus.$emit('ceyinfb', 'xjxm');
+			this.$eventbus.$emit('ceyinfbs');
 			this.$eventbus.$emit('fbswiperssgx');
 			this.fbtu = require('../../assets/image/fbnav.png');
 			this.bjtu = require('../../assets/image/bianji.png');
@@ -407,8 +423,9 @@ export default {
 		// 点击管线综合
 		fnjzmxg() {
 			// this.$router.push('/newjzmodel');
-			this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
-			this.$eventbus.$emit('ceyinfb', 'jzjg');
+			// this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
+			// this.$eventbus.$emit('ceyinfb', 'jzjg');
+			this.$eventbus.$emit('ceyinfbs');
 			this.$eventbus.$emit('fbswiperssgx');
 			this.fbtu = require('../../assets/image/fbnav.png');
 			this.bjtu = require('../../assets/image/bianji.png');
@@ -460,7 +477,8 @@ export default {
 			this.isfalsefbgm = false;
 			this.bjcolor = 'color:#2180ED';
 			this.release = false;
-			this.xianyinxuni = true;
+			this.xianyinxuni = false;
+			this.edits = true;
 			this.fbcolor = 'color:#333333';
 			this.lmore = require('../../assets/image/pmjtxia.png');
 			this.nmbj = require('../../assets/image/shang.png');
@@ -473,7 +491,10 @@ export default {
 			this.isfalsefbgm = true;
 			this.istruebjgm = true;
 			this.isfalsebjgm = false;
-			(this.release = true), (this.xianyinxuni = false), (this.bjcolor = 'color:#333333');
+			this.release = true,
+			this.xianyinxuni = false,
+			this.edits = false;
+			this.bjcolor = 'color:#333333';
 			this.nmfb = require('../../assets/image/shang.png');
 			this.nmbj = require('../../assets/image/pmjtxia.png');
 			this.lmore = require('../../assets/image/pmjtxia.png');

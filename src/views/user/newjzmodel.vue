@@ -9,6 +9,7 @@
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 				<Releases v-show="release"></Releases>
+				<Edit v-show="edits"></Edit>
 			</div>
 		</div>
 		<div class="box">
@@ -136,6 +137,7 @@ import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
+import Edit from './edit';
 import addressurls from '@/api/ip.js';
 import $ from 'jquery';
 // import Zheader from './header';
@@ -196,29 +198,42 @@ export default {
 			isfalsebj: false,
 			istruesq: true,
 			isfalsesq: false,
-			projecttits:''
+			projecttits:'',
+			// 编辑组件的显隐
+			edits:false
 		};
 	},
 	components: {
 		Newjian,
 		Xunilogo,
-		Releases
+		Releases,
+		Edit
 	},
 	created() {
-		this.$eventbus.$on('ceyinfb', ite => {
-			if (ite == 'fabu') {
-				this.release = true;
-				this.xianyinxuni = false;
-			}
-			if (ite == 'xjxm') {
-				this.release = false;
-				this.xianyinxuni = true;
-			}
-			if (ite == 'jzjg') {
-				this.release = false;
-				this.xianyinxuni = true;
-			}
-		});
+		this.$eventbus.$on('ceyinbj', () => {
+			 this.edits = false;
+			 this.release = false;
+			 this.xianyinxuni = true
+			 this.istruebj = true;
+			 this.isfalsebj = false;
+			 this.istrue = true;
+			 this.isfalse = false
+			 // this.xianyinxuni = true
+			});
+		// this.$eventbus.$on('ceyinfb', ite => {
+		// 	if (ite == 'fabu') {
+		// 		this.release = true;
+		// 		this.xianyinxuni = false;
+		// 	}
+		// 	if (ite == 'xjxm') {
+		// 		this.release = false;
+		// 		this.xianyinxuni = true;
+		// 	}
+		// 	if (ite == 'jzjg') {
+		// 		this.release = false;
+		// 		this.xianyinxuni = true;
+		// 	}
+		// });
 		//服务器IP
 		// var addressurls="http://36.112.65.110";
 		this.$eventbus.$on('shows', () => {
@@ -289,11 +304,11 @@ export default {
 		// 点击新建项目
 		fnjzmxxm() {
 			// this.$eventbus.$emit('cezhan', 'moxin');
-			this.$eventbus.$emit('ceyindj', 'xinjianmoxin');
-			this.$eventbus.$emit('ceyinfb', 'xjxm');
+			this.$eventbus.$emit('ceyinbj');
+			// this.$eventbus.$emit('ceyinfb', 'xjxm');
 			// 调用点击发布的时候轮播显示
 			this.$eventbus.$emit('fbswiperss');
-			this.fbtu = require('../../assets/image/fbnav.png');
+			// this.fbtu = require('../../assets/image/fbnav.png');
 			this.bjtu = require('../../assets/image/bianji.png');
 			this.bjcolor = 'color:#333333';
 			this.fbcolor = 'color:#333333';
@@ -304,8 +319,9 @@ export default {
 		fnjzmxs() {
 			// this.$router.go(0);
 			// this.$router.push('/newjzmodel');
-			this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
-			this.$eventbus.$emit('ceyinfb', 'jzjg');
+			// this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
+			this.$eventbus.$emit('ceyinbj');
+			// this.$eventbus.$emit('ceyinfb', 'jzjg');
 			// 调用点击发布的时候轮播显示
 			this.$eventbus.$emit('fbswiperss');
 			this.fbtu = require('../../assets/image/fbnav.png');
@@ -410,14 +426,15 @@ export default {
 		},
 		// 点击编辑
 		ceyins() {
-			this.$eventbus.$emit('ceyin');
-			this.$eventbus.$emit('ceyinxxs');
+			// this.$eventbus.$emit('ceyin');
+			// this.$eventbus.$emit('ceyinxxs');
 			// 调用轮播图中的隐藏
 			this.istruebj = false;
 			this.isfalsebj = true;
 			this.bjcolor = 'color:#2180ED';
 			this.release = false;
-			this.xianyinxuni = true;
+	  	this.xianyinxuni = false;
+			this.edits = true;
 			this.fbcolor = 'color:#333333';
 			this.istrue = true;
 			this.isfalse = false;
@@ -432,7 +449,8 @@ export default {
 			this.istrue = false;
 			this.isfalsebj = false;
 			this.istruebj = true;
-			(this.release = true), 
+			(this.release = true),
+			 this.edits = false;
 			(this.xianyinxuni = false), 
 			this.$eventbus.$emit('btnswiper-01');
 			(this.bjcolor = 'color:#333333');
