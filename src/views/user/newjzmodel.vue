@@ -426,13 +426,16 @@ export default {
 			this.nmfb = require('../../assets/image/pmjtxia.png');
 		},
 		//点击发布
-		fnfabu() {
+		fnfabu() { 
 			this.fbcolor = 'color:#2180ED';
 			this.isfalse = true;
 			this.istrue = false;
 			this.isfalsebj = false;
 			this.istruebj = true;
-			(this.release = true), (this.xianyinxuni = false), (this.bjcolor = 'color:#333333');
+			(this.release = true), 
+			(this.xianyinxuni = false), 
+			this.$eventbus.$emit('btnswiper-01');
+			(this.bjcolor = 'color:#333333');
 			this.nmfb = require('../../assets/image/shang.png');
 			this.nmbj = require('../../assets/image/pmjtxia.png');
 			this.lmore = require('../../assets/image/pmjtxia.png');

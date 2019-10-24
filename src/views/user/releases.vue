@@ -332,19 +332,26 @@
 			};
 		},
 		created() {
+			// 控制下边轮播的显隐
+			this.$eventbus.$on('btnswiper-01', () => {
+		        if(this.Printscreen.length<=0){
+					this.swipersbj = 'display:none';
+				}else{
+					this.swipersbj = 'display:block';
+				}
+			});
 			//绑定截图的照片
 			var projectidss = sessionStorage.getItem("projectid");
 			if (projectidss != '' && projectidss != null && projectidss != undefined) {
 				axios.get(api.SelectPrintscreen + "/" + projectidss+"/1").then(result => {
-					if(result.data.printscreenslist==null){
-						this.bigbox=false;
-						this.swipersbj = 'display:none';
-					}else{
+					if(result.data.printscreenslist!=null){
 						this.swipersbj = 'display:block';
 						this.Printscreen = result.data.printscreenslist;
-						this.bigbox=true;
+						console.log(this.Printscreen+"999")
+					}else{
+						console.log(result.data.printscreenslist+"-nu")
+						this.swipersbj = 'display:none';
 					}
-					// console.log(this.Printscreen)
 				})
 			}
 		},
@@ -402,7 +409,9 @@
 									console.log(this.Printscreen)
 								})
 							}
+							this.swipersbj = 'display:block';
 						}, 7000);
+						
 					})
 			},
 
