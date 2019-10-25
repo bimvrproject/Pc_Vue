@@ -84,15 +84,16 @@
 									<ul style="width:7.975rem;height:26.675rem;overflow:auto;" ref="ele">
 										<li v-for="(item, index) in material" :key="index" class="obj1" @click="fnedit(index)">
 						           <img src="../../assets/image/u91_02.png" alt="" style="width:6.875rem;height:5.53125rem;">
-											 <span style="width:6.849rem;height:5.51rem;z-index:80;display:inline-block;position:absolute;top:0;
+											 <span style="width:6.849rem;height:5.51rem;z-index:30;display:inline-block;position:absolute;top:0;
 											 left:0;"></span>
-					             <ul class="edit-ritopen" :class="{ editopens:index==iseditopens}">
+					             <ul class="edit-ritopen" :class="{ editopens:index==iseditopens}"  v-for="(item, index) in sum" :key="index">
+												 <li class="edit-ri" :class="[item]"></li>
+												<!-- <li class="edit-ri edit-ri5"></li>
 												 <li class="edit-ri edit-ri1"></li>
 												 <li class="edit-ri edit-ri2"></li>
 												 <li class="edit-ri edit-ri3"></li>
 												 <li class="edit-ri edit-ri4"></li>
-												 <li class="edit-ri edit-ri5"></li>
-												 <li class="edit-ri edit-ri6"></li>
+												 <li class="edit-ri edit-ri6"></li> -->
 											 </ul>
 										</li>
 									</ul>
@@ -129,7 +130,16 @@ export default {
 			//材质循环
 			material:[0,0,0,0,0,0],
 			// 材质盘的显隐
-	   iseditopens:-1
+	   iseditopens:-1,
+		 isri5:-1,
+		 isri1:-1,
+		 isri2:-1,
+		 isri3:-1,
+		 isri4:-1,
+		 isri6:-1,
+		 arr:[],
+		 sum:['bai','red','green','yellow','cyan'],
+		 index:0
 		};
 	},
 	created() {
@@ -241,6 +251,57 @@ export default {
 		fnedit(index){
      this.iseditopens = index
 		},
+		fnri5(index){
+			this.isri5 = index;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri1(index){
+			this.isri5 = -1;
+			this.isri1 = index;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri2(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = index;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri3(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = index;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri4(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = index;
+			this.isri6 = -1
+		},
+		fnri6(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = index;
+			this.arr = this.isri6;
+			this.arr.push(this.isri6);
+			console.log(this.arr)
+		},
 	}
 };
 </script>
@@ -322,7 +383,7 @@ export default {
 		display: block;
 		width:5.71rem;
 		height: 100%;
-		background-color: rgba(64,224,205,0.3);
+		background-color: rgba(255,255,255,0);
 		content: attr(data-text);
 		transition:all 1s ease;
 		transform: translateY(-100%);
@@ -353,7 +414,7 @@ export default {
 	position:absolute;
 	top:0rem;
 	right:0rem;
-	z-index:80;
+	z-index:50;
 	display:none;
 }
 .editopens{
@@ -377,7 +438,7 @@ export default {
 	background:#228B22;
 }
 .edit-ri5{
-	background:#00B2EE;
+	background:#FFFFFF;
 }
 .edit-ri6{
 	background:#0000FF;
@@ -431,5 +492,42 @@ ul,ol,li{
 	float:left;
 	line-height:0.9375rem;
 	margin-left:2rem;
+}
+.ri5{
+	background:rgba(225,225,225,0);
+}
+.ri1{
+	background-color: rgba(255,0,0, 0.3);
+}
+.ri2{
+	background-color: rgba(255,153,18, 0.3);
+}
+.ri3{
+	background-color: rgba(255,255,0,0.3);
+}
+.ri4{
+	background-color: rgba(34,139,34,0.3);
+}
+.ri6{
+	background-color: rgba(0,0,255,0.3);
+}
+
+.bai{
+	background:#FFFFFF;
+}
+.red{
+	background-color: rgba(255,0,0, 0.3);
+}
+.blue{
+	background-color:blue;
+}
+.green{
+	background:green;
+}
+.yellow{
+	background: #FFFF00;
+}
+.cyan{
+	background: #FFC0CB;
 }
 </style>

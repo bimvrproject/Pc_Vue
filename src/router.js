@@ -184,6 +184,6 @@ export default new Router({
 				
 			},
 			component: () => import("./views/user/abc.vue")
-		},
+		}
 	]
 });
