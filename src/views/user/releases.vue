@@ -438,7 +438,7 @@
 				if(this.checkboxPrintscreen.length!=0){
 					// console.log(this.checkboxPrintscreen)
 					axios.get(api.DynamicForeachTest+"?ids="+this.checkboxPrintscreen).then(result=>{
-						
+						window.location.href=result.data
 					})
 				}
 				this.checkbox = [];
