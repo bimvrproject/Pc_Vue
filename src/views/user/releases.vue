@@ -187,6 +187,7 @@
 			<div class="swiper-button-next swiper-button-white" v-show="qianjin"></div>
 			<div class="swiper-button-prev swiper-button-white" v-show="houtui"></div>
 		</div>
+		
 		<div  class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;background:#EEEEEE"
 		 :style="swipersbj">
 			<div class="swiper-wrapper" v-show="swiperbottom">
