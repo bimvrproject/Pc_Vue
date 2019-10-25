@@ -84,13 +84,15 @@
 									<ul style="width:7.975rem;height:26.675rem;overflow:auto;" ref="ele">
 										<li v-for="(item, index) in material" :key="index" class="obj1" @click="fnedit(index)">
 						           <img src="../../assets/image/u91_02.png" alt="" style="width:6.875rem;height:5.53125rem;">
+											 <span style="width:6.849rem;height:5.51rem;z-index:30;display:inline-block;position:absolute;top:0;
+											 left:0;" :class="{ri5:isri5==index,ri1:isri1==index,ri2:isri2==index,ri3:isri3==index,ri4:isri4==index,ri6:isri6==index}"></span>
 					             <ul class="edit-ritopen" :class="{ editopens:index==iseditopens}">
-												 <li class="edit-ri edit-ri1"></li>
-												 <li class="edit-ri edit-ri2"></li>
-												 <li class="edit-ri edit-ri3"></li>
-												 <li class="edit-ri edit-ri4"></li>
-												 <li class="edit-ri edit-ri5"></li>
-												 <li class="edit-ri edit-ri6"></li>
+												 <li class="edit-ri edit-ri5" @click.stop="fnri5(index)"></li>
+												 <li class="edit-ri edit-ri1" @click.stop="fnri1(index)"></li>
+												 <li class="edit-ri edit-ri2" @click.stop="fnri2(index)"></li>
+												 <li class="edit-ri edit-ri3" @click.stop="fnri3(index)"></li>
+												 <li class="edit-ri edit-ri4" @click.stop="fnri4(index)"></li>
+												 <li class="edit-ri edit-ri6" @click.stop="fnri6(index)"></li>
 											 </ul>
 										</li>
 									</ul>
@@ -127,7 +129,13 @@ export default {
 			//材质循环
 			material:[0,0,0,0,0,0],
 			// 材质盘的显隐
-	   iseditopens:-1
+	   iseditopens:-1,
+		 isri5:-1,
+		 isri1:-1,
+		 isri2:-1,
+		 isri3:-1,
+		 isri4:-1,
+		 isri6:-1
 		};
 	},
 	created() {
@@ -239,6 +247,57 @@ export default {
 		fnedit(index){
      this.iseditopens = index
 		},
+		fnri5(index){
+			this.isri5 = index;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri1(index){
+			this.isri5 = -1;
+			this.isri1 = index;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri2(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = index;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri3(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = index;
+			this.isri4 = -1;
+			this.isri6 = -1
+		},
+		fnri4(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = index;
+			this.isri6 = -1
+		},
+		fnri6(index){
+			this.isri5 = -1;
+			this.isri1 = -1;
+			this.isri2 = -1;
+			this.isri3 = -1;
+			this.isri4 = -1;
+			this.isri6 = index;
+			this.arr = this.isri6;
+			this.arr.push(this.isri6);
+			console.log(this.arr)
+		},
 	}
 };
 </script>
@@ -320,7 +379,7 @@ export default {
 		display: block;
 		width:5.71rem;
 		height: 100%;
-		background-color: rgba(64,224,205,0.3);
+	  background-color: rgba(255,255,255,0);
 		content: attr(data-text);
 		transition:all 1s ease;
 		transform: translateY(-100%);
@@ -375,7 +434,7 @@ export default {
 	background:#228B22;
 }
 .edit-ri5{
-	background:#00B2EE;
+	background:#FFFFFF;
 }
 .edit-ri6{
 	background:#0000FF;
@@ -430,4 +489,23 @@ ul,ol,li{
 	line-height:0.9375rem;
 	margin-left:2rem;
 }
+.ri5{
+	background:rgba(225,225,225,0);
+}
+.ri1{
+	background-color: rgba(255,0,0, 0.3);
+}
+.ri2{
+	background-color: rgba(255,153,18, 0.3);
+}
+.ri3{
+	background-color: rgba(255,255,0,0.3);
+}
+.ri4{
+	background-color: rgba(34,139,34,0.3);
+}
+.ri6{
+	background-color: rgba(0,0,255,0.3);
+}
+
 </style>
