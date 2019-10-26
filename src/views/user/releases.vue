@@ -16,7 +16,7 @@
 							<div v-show="pzshow">
 								<div class="piczk">
 									<img :src="fbpzs" class="picimgzk" alt="" />
-									<span class="picpz" :style="fbpzscolor" @click="paizhao()"><a href="printscreen://">截图</a></span>
+									<span class="picpz" :style="fbpzscolor" @click="paizhao()">拍照</span>
 								</div>
 							</div>
 						</div>
