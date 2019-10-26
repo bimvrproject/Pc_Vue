@@ -39,7 +39,7 @@
 					   <span class="hgmorecomR">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
 						 vertical-align: middle;margin-left:0.16rem;">
 						 </i>
-						  <div class="moocomR" style="margin-top:0.1rem;">
+						  <div class="moocomR">
 						 	<div class="mores1comR">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 						 	</div>

@@ -18,8 +18,8 @@
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
 					<span class="el-dropdown-link" @click="fnjzclxm">
-						<img class="xmimg" src="../../assets/image/bluefz.png" alt=""/>
-						 <span class="xm">项目</span>
+						<img class="xmimgs" src="../../assets/image/bluefz.png" alt=""/>
+						 <span class="xms">项目</span>
 						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
 						 vertical-align: middle;margin-left:0.16rem;">
 						</i>
@@ -34,8 +34,8 @@
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<span class="el-dropdown-link" @click="fnjzclsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
-						<img class="sqimg" :src="hsq"/>
-						<i class="sq" :style="hsqcolor">社区</i>
+						<img class="sqimgsj" :src="hsq"/>
+						<i class="sqsj" :style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
 					</span>
 				</el-dropdown>
@@ -420,13 +420,13 @@ a {
 	cursor: pointer;
 	color: #333333;
 }
-.xmimg {
+.xmimgs {
 	width:0.84375rem;
 	height:0.8125rem;
 	padding-left:2.5rem;
 	padding-top:0.0625rem;
 }
-.xm {
+.xms {
 	width:0.84375rem;
 	height:0.53125‬;
 	font-size:0.625rem;
@@ -437,12 +437,11 @@ a {
 	padding-left: 0.15625rem;
 	line-height: 0.53125rem;
 }
-.sqimg,
-.bjimg {
+.sqimgsj{
 	width:0.84375rem;
 	height: 0.8125rem;
 }
-.sq {
+.sqsj {
 	width:1.25rem;
 	height:0.5625rem;
 	font-size:0.625rem;

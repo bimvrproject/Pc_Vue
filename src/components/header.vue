@@ -86,9 +86,12 @@
 			},
 			// 点击退出
 			outlogin(){
-				this.$forceUpdate()
-				sessionStorage.clear();
+				// this.$forceUpdate()
+				// sessionStorage.clear();
 				this.$router.push("/");
+				 this.$store.commit('deletetoken');
+				 this.$store.commit('deletePhone');
+				console.log(this.$store.state.phone)
 				  // location.reload()
 			}
 		},
@@ -180,7 +183,7 @@
 		.hhh{
 			position:absolute;
 			left:51rem !important;
-			top:1.3rem !important;
+			top:1.5rem !important;
 			margin-top:0.5rem;
 			width:0rem;
 			height:0rem;

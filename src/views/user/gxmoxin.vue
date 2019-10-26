@@ -16,19 +16,14 @@
 			<!-- 右侧top部分 -->
 			<div class="hometopgm" v-show="hometop">
 				<!-- 	下拉菜单---项目 -->
-				<el-dropdown style="float: left; margin-left:-1.4rem;">
+				<el-dropdown style="float: left; margin-left:1.1rem;">
 					<span class="el-dropdown-link" @click="fngxmxxm()">
-						<img class="xmimggm" src="../../assets/image/bluefz.png" />
+						<span :class="{ xmimggm: istruexmgm}"></span>
+					<!-- 	<img class="xmimggm" src="../../assets/image/bluefz.png" /> -->
 						<span class="xmgm">项目</span>
-						<i
-							class="fa fa-angle-down shouye"
-							style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;"
-						></i>
-						<!-- 	<i class="xmgm" style="color:#2180ED">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;">
-						</i> -->
+					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
+					</i>
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -48,33 +43,33 @@
 						<span :class="{ bjimggms: istruebjgm, bjimggmsf: isfalsebjgm }"></span>
 						<!-- <img class="bjimggm" :src="bjtu" /> -->
 						<i class="bjgm" :style="bjcolor">编辑</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="nmbj" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					</span>
 				</el-dropdown>
-				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<!-- @mouseleave="fnhfblev()" -->
-					<span class="el-dropdown-link fbssgm" @click="fnfabug()">
-						<span :class="{ fbimggms: istruefbgm, fbimggmsf: isfalsefbgm }"></span>
-						<!-- <img class="bjimggm" :src="fbtu" /> -->
-						<i class="fbgm" :style="fbcolor">发布</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="nmfb" alt="" style="width: 100%;height: 100%;" />
-						</i>
-					</span>
-				</el-dropdown>
+			<el-dropdown style="float: left; margin-left:1.5rem;">
+				<!-- @mouseleave="fnhfblev()" -->
+				<span class="el-dropdown-link fbss" @click="fnfabug()">
+					<span :class="{ fbimg: istrue, fbimgf: isfalse }"></span>
+					<!-- <img class="bjimg" :src="fbtu" /> -->
+					<i class="bjsg bjf" :style="fbcolor">发布</i>
+					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						<img :src="nmfb" alt="" style="width: 100%;height: 100%;" />
+					</i>
+				</span>
+			</el-dropdown>
 				<!-- 	下拉菜单---社区--结束
 				下拉菜单---更多 -->
 				<!-- 	@mouseleave="fnmorlevgxmx()" -->
 				<div class="moretopcomgxmx" style="height:0.93125rem;" @mouseenter="fnmorgxmx()" @mouseleave="fnmorlevgxmx()">
-					<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" />
-					<span class="hgmorecomgxmx">更多</span>
-					<i
-						class="fa fa-angle-down shouye"
-						style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;"
-					></i>
+				<!-- 	<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" /> -->
+				<span :class="{ gdimgm: istruegdm, gdimgfm: isfalsegdm }"></span>
+				<i class="hgmorecomgxmx" :style="gdcolor">更多</i>
+					<!-- <span class="hgmorecomgxmx">更多</span> -->
+					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						<img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+					</i>
 					<div class="moocomgxmx" style="margin-top:0.1rem;">
 						<div class="mores1comgxmx"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
 						<div class="mores1comgxmx" @click="fnabout">联系我们</div>
@@ -202,6 +197,7 @@ export default {
 			bjcolor: 'color:#333333',
 			fbtu: require('../../assets/image/fbnav.png'),
 			fbcolor: 'color:#333333',
+			gdcolor:'color:#333333',
 			//发布
 			release: false,
 			//总的等陆头部
@@ -212,6 +208,8 @@ export default {
 			nmbj: require('../../assets/image/pmjtxia.png'),
 			// 发布下拉
 			nmfb: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			//上传文件的类型限制
@@ -247,10 +245,13 @@ export default {
 			istruebjgm: true,
 			isfalsebjgm: false,
 			// 发布
-			istruefbgm: true,
-			isfalsefbgm: false,
+			istrue: true,
+			isfalse: false,
 			// 建筑项目的标题
-			projecttitss:''
+			projecttitss:'',
+			istruexmgm:true,
+			istruegdm:true,
+			isfalsegdm:false
 		};
 	},
 	components: {
@@ -473,8 +474,8 @@ export default {
 			this.$eventbus.$emit('fbswiperssgx');
 			this.istruebjgm = false;
 			this.isfalsebjgm = true;
-			this.istruefbgm = true;
-			this.isfalsefbgm = false;
+			this.istrue = true;
+			this.isfalse = false;
 			this.bjcolor = 'color:#2180ED';
 			this.release = false;
 			this.xianyinxuni = false;
@@ -487,8 +488,8 @@ export default {
 		//点击发布
 		fnfabug() {
 			this.fbcolor = 'color:#2180ED';
-			this.istruefbgm = false;
-			this.isfalsefbgm = true;
+			this.istrue = false;
+			this.isfalse = true;
 			this.istruebjgm = true;
 			this.isfalsebjgm = false;
 			this.release = true,
@@ -504,10 +505,18 @@ export default {
 		// 划过更多
 		fnmorgxmx() {
 			this.moretb = require('../../assets/image/moress.png');
+			this.gdcolor = 'color:#2180ED';
+			this.nmgd = require('../../assets/image/shang.png');
+			this.isfalsegdm = true;
+			this.istruegdm = false
 		},
 		// 移出更多
 		fnmorlevgxmx() {
 			this.moretb = require('../../assets/image/more@2x.png');
+			this.gdcolor = 'color:#333333';
+			this.nmgd = require('../../assets/image/pmjtxia.png');
+			this.isfalsegdm = false;
+			this.istruegdm = true
 		}
 	}
 };
@@ -531,10 +540,11 @@ export default {
 	background-size: 0.84375rem 0.8125rem;
 }
 /* 划过发布 */
-.fbssgm:hover .fbgm {
+.fbss:hover .bjf {
 	color: #2180ed !important;
 }
-.fbssgm:hover .fbimggms {
+.fbss:hover .fbimg {
+	color: #2180ed !important;
 	background: url(../../assets/image/fbblue.png) no-repeat;
 	background-size: 0.84375rem 0.8125rem;
 }
@@ -583,6 +593,13 @@ export default {
 }
 .hgmorecomgxmx {
 	color: #333333;
+	width: 1.25rem;
+	height: 0.5625rem;
+	font-size: 0.625rem;
+	font-family: MicrosoftYaHei;
+	font-weight: 400;
+	padding-left: 0.1875rem;
+	font-style: normal;
 }
 .moocomgxmx {
 	width: 4.75rem;
@@ -618,12 +635,12 @@ export default {
 .moretopcomgxmx:hover .moocomgxmx {
 	display: block;
 }
-.moretopcomgxmx:hover .hgmorecomgxmx {
+/* .moretopcomgxmx:hover .hgmorecomgxmx {
 	color: #2180ed;
 }
 .moretopcomgxmx:hover .shouye {
 	transform: rotate(180deg);
-}
+} */
 
 /* tou */
 .swiper-slidetop {
@@ -780,10 +797,11 @@ html {
 	color: #333333;
 }
 .xmimggm {
+	display: inline-block;
 	width: 0.84375rem;
 	height: 0.8125rem;
-	padding-left: 2.5rem;
-	padding-top: 0.0625rem;
+	background: url(../../assets/image/bluefz.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 .xmgm {
 	width: 0.84375rem;
@@ -826,17 +844,42 @@ html {
 	background: url(../../assets/image/bjblue.png) no-repeat;
 	background-size: 0.84375rem 0.8125rem;
 }
-.fbimggms {
+.bjsg {
+	width: 1.25rem;
+	height: 0.5625rem;
+	font-size: 0.625rem;
+	font-family: MicrosoftYaHei;
+	font-weight: 400;
+	padding-left: 0.1875rem;
+	font-style: normal;
+}
+.fbimg {
 	display: inline-block;
 	width: 0.84375rem;
 	height: 0.8125rem;
 	background: url(../../assets/image/fbnav.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
-.fbimggmsf {
+.fbimgf {
 	display: inline-block;
 	width: 0.84375rem;
 	height: 0.8125rem;
 	background: url(../../assets/image/fbblue.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
+}
+.gdimgm{
+	display: inline-block;
+	width: 0.84375rem;
+	height: 0.7725rem;
+	background: url(../../assets/image/more@2x.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
+}
+.gdimgfm{
+	display: inline-block;
+	width: 0.84375rem;
+	height: 0.7725rem;
+	background: url(../../assets/image/moress.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 .sqgm {
 	width: 1.25rem;
@@ -857,13 +900,11 @@ html {
 	font-style: normal;
 }
 .fbgm {
-	width: 1.25rem;
-	height: 0.5625rem;
-	font-size: 0.625rem;
-	font-family: MicrosoftYaHei;
-	font-weight: 400;
-	padding-left: 0.1875rem;
-	font-style: normal;
+	display: inline-block;
+	width: 0.84375rem;
+	height: 0.8125rem;
+	background: url(../../assets/image/fbnav.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 .moreimggm {
 	width: 0.78125rem‬;

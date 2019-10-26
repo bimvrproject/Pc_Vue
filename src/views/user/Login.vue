@@ -26,8 +26,8 @@
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
 					<span class="el-dropdown-link" @click="fncomenter()" @mouseenter="fnnew()" @mouseleave="fnhsqlev()">
-						<img class="sqimg" :src="sqtb" />
-						<i class="sq" ref="sqcol" :style="sqcolor">社区</i>
+						<img class="sqimgl" :src="sqtb" />
+						<i class="sql" ref="sqcol" :style="sqcolor">社区</i>
 					</span>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
@@ -37,7 +37,7 @@
 					   <span class="hgmore">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;display:inline-block;
 						 vertical-align: middle;margin-left:0.16rem;">
 						 </i>
-						 <div class="moo" style="margin-top:0.1rem;">
+						 <div class="moo">
 						 	<div class="mores1">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 						 	</div>
@@ -459,12 +459,12 @@
 		line-height: 0.53125rem;
 	}
 
-	.sqimg {
+	.sqimgl {
 		width: 0.84375rem;
 		height: 0.8125rem;
 	}
 
-	.sq {
+	.sql {
 		width: 1.25rem;
 		height: 0.5625rem;
 		font-size: 0.625rem;
