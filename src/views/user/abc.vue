@@ -87,7 +87,11 @@
 											 <span style="width:6.849rem;height:5.51rem;z-index:30;display:inline-block;position:absolute;top:0;
 											 left:0;"></span>
 					             <ul class="edit-ritopen" :class="{ editopens:index==iseditopens}"  v-for="(item, index) in sum" :key="index">
-												 <li class="edit-ri" :class="[item]"></li>
+												 <li class="edit-ri" :class="sum[0].val1" @click.stop="fnri0()"></li>
+                         <li class="edit-ri" :class="sum[1].val1"></li>
+												 <li class="edit-ri" :class="sum[2].val1"></li>
+												 <li class="edit-ri" :class="sum[3].val1"></li>
+												  <li class="edit-ri" :class="sum[4].val1"></li>
 												<!-- <li class="edit-ri edit-ri5"></li>
 												 <li class="edit-ri edit-ri1"></li>
 												 <li class="edit-ri edit-ri2"></li>
@@ -104,6 +108,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div>
+			
 		</div>
 	</div>
 </template>
@@ -138,7 +145,23 @@ export default {
 		 isri4:-1,
 		 isri6:-1,
 		 arr:[],
-		 sum:['bai','red','green','yellow','cyan'],
+		 sum:[
+			{
+				val1:'bai'
+			},
+			{
+				val1: 'red'
+			},
+			{
+				val1: 'green'
+			},
+			{
+				val1:'yellow'
+			},
+			{
+				val1:'cyan'
+			}
+		],
 		 index:0
 		};
 	},

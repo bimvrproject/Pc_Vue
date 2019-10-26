@@ -184,6 +184,14 @@ export default new Router({
 				
 			},
 			component: () => import("./views/user/abc.vue")
+		},
+		{
+			path: "/cs",
+			name: "/cs",
+			meta: {
+				
+			},
+			component: () => import("./views/user/cs.vue")
 		}
 	]
 });
