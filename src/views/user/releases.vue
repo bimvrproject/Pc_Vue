@@ -178,7 +178,7 @@
 			<div class="swiper-wrapper" v-show="swiperxy">
 				<div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
 					<!-- "http://192.168.6.152:8080/" -->
-					<img :src="'http://36.112.65.110:8080/'+item.images" alt="">
+					<img :src="'http://192.168.6.152:8080/'+item.images" alt="">
 					<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 					 @click.stop="fng(index)">
 					</span>
@@ -198,7 +198,8 @@
 					 :class="checkbox.includes(index)?'checkeds':''" @click.stop="fnxz(index)">
 					</span>
 					<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
-					<img class="swiper-slidebottomimg" :src="'http://36.112.65.110:8080/'+item.images" alt="">
+					<!-- http://36.112.65.110:8080/ -->
+					<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
 					<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 					<div class="xbz" v-show="aaaaaa === index">
 						<span class="fqq" @click.stop="fnfbswper()" :style="fbswper">
