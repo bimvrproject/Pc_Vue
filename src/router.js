@@ -176,6 +176,14 @@ export default new Router({
 				// requireAuth: true
 			},
 			component: () => import("./views/user//personnel.vue")
+		},
+		{
+			path: "/cs",
+			name: "/cs",
+			meta: {
+				
+			},
+			component: () => import("./views/user/cs.vue")
 		}
 	]
 });

@@ -486,6 +486,7 @@ export default {
 .fbss:hover .fbimg {
 	color: #2180ed !important;
 	background: url(../../assets/image/fbblue.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 /* 划过编辑 */
 .bjss:hover .bjj {
@@ -788,12 +789,14 @@ html {
 	width: 0.84375rem;
 	height: 0.8125rem;
 	background: url(../../assets/image/fbnav.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 .fbimgf {
 	display: inline-block;
 	width: 0.84375rem;
 	height: 0.8125rem;
 	background: url(../../assets/image/fbblue.png) no-repeat;
+	background-size: 0.84375rem 0.8125rem;
 }
 .sq {
 	width: 1.25rem;
