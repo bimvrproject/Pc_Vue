@@ -24,8 +24,8 @@
 					<span class="el-dropdown-link" @click="fnjztz">
 						<img class="xmimgjztz" src="../../assets/image/bluefz.png" alt="" />
 						 <span class="xmjztz">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
 						<!-- <i class="xmjztz" ref="xmcol" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img
@@ -46,9 +46,10 @@
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomjztz" style="height:0.93125rem;" @mouseenter="fnmorjztz()" @mouseleave="fnmorlevjztz()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomjztz">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomjztz">更多</span>
+						 <i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						   <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+					   </i>
 						  <div class="moocomjztz" style="margin-top:0.1rem;">
 						 	<div class="mores1comjztz">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -57,22 +58,6 @@
 						 	<div class="moresbcomjztz">版本号: v 1.0.1</div>
 						 </div>
 				</div>
-				<!-- <el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin()">
-						<img class="moreimgjztz" src="../../assets/image/more@2x.png" />
-						<i class="morejztz">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
-						</i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="jztzmore">
-						<div class="jztzmoo" @mouseenter="fnmoin()" @mouseleave="fnleave()">
-							<div class="jztzmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="jztzmores1" @click="fnabout()">联系我们</div>
-							<div class="jztzmoresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
@@ -105,11 +90,13 @@
 						<!-- 新建项目 -->
 						<ul>
 							<!-- projectidsdrawingarr -->
-							<li v-for="(item, index) in drawingarrpm" :key="index" @dblclick="pmdb(item.drawName+ (index + 1),item.resPictureId,index)" class="pmnew" style="position:relative;cursor: pointer;"
+							<li v-for="(item, index) in drawingarrpm" :key="index" class="pmnew" style="position:relative;cursor: pointer;"
 							 @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5" v-if="fontdrawingarrpm">{{ item.drawName + (index + 1) }}</span>
-								<input type="text" v-if="inputdrawingarrpm" v-model="inputdrawingar" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;"  @blur="change22(index)" />
+								<span class="pmtz5" v-show="!item.changes" @dblclick="xgtz(index)">{{ item.drawName}}</span>
+								<input type="text" v-show="item.changes" v-model="item.drawName"
+								 style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;
+								 height:0.875rem;"  @blur="changepm(index)" />
 							</li>
 						</ul>
 						<div class="pm6">
@@ -143,8 +130,10 @@
 						<ul>
 							<li v-for="(item, index) in drawingarrlm" :key="index"  class="pmnew" style="position:relative;cursor: pointer;"  @click="drawdanjilimian(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5">{{ item.drawName + (index + 1) }}</span>
-								<!-- <input v-model="wang5" v-show="showrename5" type="text" @blur="changename5" style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);" /> -->
+								<span class="pmtz5" v-show="!item.changelm" @dblclick="xglmtz(index)">{{item.drawName}}</span>
+								<input v-model="item.drawName" v-show="item.changelm" type="text" @blur="changelm(index)"
+								 style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;
+								 height:0.875rem;"/>
 							</li>
 						</ul>
 							<div class="pm6">
@@ -159,7 +148,6 @@
 									</uploader>
 								</div>
 							</div>
-						
 					</div>
 				</div>
 			</div>
@@ -239,6 +227,8 @@
 				pmjt: require('../../assets/image/pmjtxia.png'),
 				lmjt: require('../../assets/image/pmjtxia.png'),
 				lmore: require('../../assets/image/pmjtxia.png'),
+				// 更多下拉
+				nmgd: require('../../assets/image/pmjtxia.png'),
 				// 联系我们
 				abouts: false,
 				drawingarrpm: [],		//接收平面图纸
@@ -280,6 +270,18 @@
 			// Zheader
 		},
 		created() {
+			//右侧平面
+			this.drawingarrpm = localStorage.getItem('pmxg')
+			? JSON.parse(localStorage.getItem('pmxg'))
+			: [{msg:'',changes:false}];
+			// 获取存储的值
+			localStorage.getItem('pmxg');
+			// 右侧立面
+			this.drawingarrlm = localStorage.getItem('lmxg')
+			? JSON.parse(localStorage.getItem('lmxg'))
+			: [{msglm:'',changelm:false}];
+			// 获取存储的值
+			localStorage.getItem('lmxg');
 			// 接收一下title
 			this.projecttitjtz = sessionStorage.getItem('projecttit');
 			var prid = sessionStorage.getItem("projectid");
@@ -344,21 +346,38 @@
 			// 划过更多
 			fnmorjztz(){
 				this.moretb = require('../../assets/image/moress.png');
+				this.nmgd = require('../../assets/image/shang.png');
 			},
 			// 移出更多
 			 fnmorlevjztz(){
-				 this.moretb = require('../../assets/image/more@2x.png');
+				this.moretb = require('../../assets/image/more@2x.png');
+				this.nmgd = require('../../assets/image/pmjtxia.png');
 			},
 			// 移出社区
 			fnleave() {
 				this.lmore = require('../../assets/image/pmjtxia.png');
 			},
-			//平面图纸双击事件
-			pmdb(name,index,index1){
-				// console.log(name+"-----"+index+"----"+index1);
-				// this.fontdrawingarrpm=false;
-				// this.inputdrawingarrpm=true;
-				// this.inputdrawingar=name;
+			// 右侧平面图纸双击事件
+			xgtz(index){
+				this.$set(this.drawingarrpm[index],'changes',true);
+			},
+			// 右侧平面图纸失焦事件
+			changepm(index){
+				this.$set(this.drawingarrpm[index],'changes',false);
+				// 设置localStroage
+			localStorage.setItem('pmxg',JSON.stringify(this.drawingarrpm));
+			console.log(localStorage.getItem('pmxg'))
+			},
+			// 右侧立面图纸双击事件
+			xglmtz(index){
+				this.$set(this.drawingarrlm[index],'changelm',true);
+			},
+			// 右侧立面图纸失焦事件
+			changelm(index){
+				this.$set(this.drawingarrlm[index],'changelm',false);
+				// 设置localStorage
+				localStorage.setItem('lmxg',JSON.stringify(this.drawingarrlm));
+				console.log(localStorage.getItem('lmxg'))
 			},
 			//点击平面图纸名称显示图纸
 			drawdanji(index) {

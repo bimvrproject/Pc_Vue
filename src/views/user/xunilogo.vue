@@ -338,10 +338,10 @@ export default {
 	margin-top:0.46875rem;
 }
 
-.logoxn {
+/* .logoxn {
 	width:6.78125rem;
 	height:3.625rem;
-}
+} */
 .xunitop {
 	width:6.875rem;
 	height:33.75rem;

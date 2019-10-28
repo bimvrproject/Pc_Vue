@@ -33,7 +33,7 @@ export default {
 			xianyin: false,
 			tian: true,
 			// 删除按钮部分的背景色
-			isActive:true,
+			isActive:-1,
 			projectListsss:[]
 		};
 	},

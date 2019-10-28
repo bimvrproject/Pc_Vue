@@ -20,8 +20,8 @@
 					<span class="el-dropdown-link" @click="fnopxm">
 						<img class="xmimgone" src="../../assets/image/bluefz.png" />
 						<span class="xmone">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
 						<!-- <i class="xmone" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -43,9 +43,10 @@
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomone" style="height:0.93125rem;" @mouseenter="fnmorone()" @mouseleave="fnmorlevone()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomone">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomone">更多</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+						</i>
 						  <div class="moocomone" style="margin-top:0.1rem;">
 						 	<div class="mores1comone">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -93,6 +94,8 @@ export default {
 			//总的等陆头部
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			// 社区默认状态

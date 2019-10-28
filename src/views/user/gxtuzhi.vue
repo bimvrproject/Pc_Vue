@@ -24,13 +24,9 @@
 					<span class="el-dropdown-link" @click="fngxtzmx">
 						<img class="xmimggxtz" src="../../assets/image/bluefz.png" />
 						 <span class="xmgxtz">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
-						</i>
-						<!-- <i class="xmgxtz" style="color: #2180ED;">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
-						</i> -->
+					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
+					</i>
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -47,9 +43,10 @@
 				<!-- 下拉菜单---更多 -->
 					<div class="moretopcomgxtz" style="height:0.93125rem;" @mouseenter="fnmorgxtz()" @mouseleave="fnmorlevgxtz()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomgxtz">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomgxtz">更多</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+						</i>
 						  <div class="moocomgxtz" style="margin-top:0.1rem;">
 						 	<div class="mores1comgxtz">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -91,8 +88,9 @@
 						<ul>
 							<li v-for="(item, index) in drawingarr" :key="index" class="pmnew" style="position:relative;cursor: pointer;" @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5" v-if="showname22">{{ item.drawName + (index + 1) }}</span>
-								<!-- <input type="text" style="position:absolute;left:1.59375rem;top:0.03125rem;width:3.125rem;height:1.09375rem;" v-if="showrename22" /> -->
+								<span class="pmtz5" v-show="!item.changegp" @dblclick="fnxgtz(index)">{{ item.drawName}}</span>
+								<input type="text" v-show="item.changegp" v-model="item.drawName" 
+								style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;" @blur="changepmg(index)"/>
 							</li>
 						</ul>
 						<div class="pm6gt">
@@ -126,14 +124,10 @@
 						<ul>
 							<li v-for="(item, index) in arr" :key="index" @click="fnt()" class="pmnew" style="position:relative;">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span  class="pmtz5">{{ item.drawName + (index + 1) }}</span>
-<!-- 								<input
-									v-model="wang5"
-									v-show="showrename5"
-									type="text"
-									@blur="changename5"
+								<span  class="pmtz5" v-show="!item.changelmg" @dblclick="fnlmtzg(index)">{{ item.drawName}}</span>
+								<input v-model="item.drawName" v-show="item.changelmg" type="text" @blur="changelmg(index)"
 									style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);"
-								/> -->
+								/>
 							</li>
 							<div class="pm6gt">
 								<div>
@@ -224,6 +218,8 @@ export default {
 			//总的等陆头部
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			//上传限制
@@ -259,6 +255,12 @@ export default {
 		// Zheader
 	},
 	created() {
+		// 右侧平面
+		this.drawingarr = localStorage.getItem('pmxgg') ? JSON.parse(localStorage.getItem('pmxgg')) : [{msg:'',changegp:false}];
+		localStorage.getItem('pmxgg');
+		// 右侧立面
+		this.arr = localStorage.getItem('lmxgg') ? JSON.parse(localStorage.getItem('lmxgg')) : [{msggs:'',changelmg:false}];
+		localStorage.getItem('lmxgg')
 		// 接收一下新建项目中的title
 		this.projecttitgxtz = sessionStorage.getItem('projecttit');
 		this.$eventbus.$on('shows', () => {
@@ -302,6 +304,25 @@ export default {
 		this.$eventbus.$emit('hometop');
 	},
 	methods: {
+		// 右侧平面图纸双击事件
+		fnxgtz(index){
+			this.$set(this.drawingarr[index],'changegp',true)
+		},
+		// 右侧平面失焦事件
+		changepmg(index){
+			this.$set(this.drawingarr[index],'changegp',false);
+			localStorage.setItem('pmxgg',JSON.stringify(this.drawingarr));
+			console.log(localStorage.getItem('pmxgg'))
+		},
+		// 右侧立面图纸双击事件
+		fnlmtzg(index){
+			this.$set(this.arr[index],'changelmg',true)
+		},
+		// 右侧立面图纸失焦事件
+		changelmg(index){
+			this.$set(this.arr[index],'changelmg',false);
+			localStorage.setItem('lmxgg',JSON.stringify(this.arr));
+		},
 		//上传成功事件
 		onFileSuccess(){
 			this.centerdra=false;
@@ -378,10 +399,12 @@ export default {
 		// 划过更多
 	  fnmorgxtz(){
 	 	  this.moretb = require('../../assets/image/moress.png');
+			this.nmgd = require('../../assets/image/shang.png');
 	 },
 		// 移出更多
 	 fnmorlevgxtz(){
 		 this.moretb = require('../../assets/image/more@2x.png');
+		 this.nmgd = require('../../assets/image/pmjtxia.png');
 	 },
 			// 移入社区的时候
 		fnhsq(){

@@ -20,8 +20,8 @@
 					<span class="el-dropdown-link" @click="fntwoxm">
 						<img class="xmimgtwo" src="../../assets/image/bluefz.png" />
 						  <span class="xmtwo">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
 					<!-- 	<i class="xmtwo" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -43,8 +43,9 @@
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomtwo" style="height:0.93125rem;" @mouseenter="fnmortwo()" @mouseleave="fnmorlevtwo()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomtwo">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
+					   <span class="hgmorecomtwo">更多</span>
+						 <i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						   <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
 						 </i>
 						  <div class="moocomtwo" style="margin-top:0.1rem;">
 						 	<div class="mores1comtwo">
@@ -54,22 +55,6 @@
 						 	<div class="moresbcomtwo">版本号: v 1.0.1</div>
 						 </div>
 				</div>
-			<!-- 	<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin" @mouseleave="fnleave">
-						<img class="moreimgtwo" src="../../assets/image/more@2x.png" />
-						<i class="moretwo">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
-						</i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="twomore">
-						<div class="twomoo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="twomores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="twomores1" @click="fnabout">联系我们</div>
-							<div class="twomoresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
@@ -110,6 +95,8 @@ export default {
 			//总的等陆头部
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			// 社区默认状态
@@ -168,10 +155,12 @@ export default {
 		// 划过更多
 		fnmortwo(){
 			this.moretb = require('../../assets/image/moress.png');
+			this.nmgd = require('../../assets/image/shang.png');
 		},
 		// 移出更多
 		 fnmorlevtwo(){
 			 this.moretb = require('../../assets/image/more@2x.png');
+			 this.nmgd = require('../../assets/image/pmjtxia.png');
 		},
 		// 移出社区
 		fnleave() {

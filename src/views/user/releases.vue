@@ -823,11 +823,10 @@
 	}
 
 	/* 发布侧边栏轮廓 */
-	.logoxn {
+/* 	.logoxn {
 		width: 6.78125rem;
 		height: 31.625rem;
-	}
-
+	} */
 	.xunitop {
 		width: 6.875rem;
 		height: 33.75rem;

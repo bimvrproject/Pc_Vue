@@ -23,13 +23,9 @@
 					<span class="el-dropdown-link" @click="fnxxxm">
 						<img class="xmimgin" src="../../assets/image/bluefz.png" alt="" />
 						   <span class="xmin">项目</span>
-							 <i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-							 vertical-align: middle;margin-left:0.16rem;">
-							 </i>
-						<!-- <i class="xmin" ref="xmcol" style="color: #2180ED;">项目</i> -->
-						<!-- <i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="xmxl" alt="" style="width: 100%;height: 100%;" />
-						</i> -->
+							<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+								<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
+							</i>
 					</span>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
@@ -46,9 +42,10 @@
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomin" style="height:0.93125rem;" @mouseenter="fnmorin()" @mouseleave="fnmorlevin()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomin">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomin">更多</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+						</i>
 						  <div class="moocomin" style="margin-top:0.1rem;">
 						 	<div class="mores1comin">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -57,22 +54,6 @@
 						 	<div class="moresbcomin">版本号: v 1.0.1</div>
 						 </div>
 			 	</div>
-				<!-- <el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" style="position:relative;" @mouseenter="fnmoin">
-						<img class="moreimgin" src="../../assets/image/more@2x.png" />
-						<i class="morein">更多</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img :src="lmore" alt="" style="width: 100%;height: 100%;" />
-						</i>
-					</span>
-					<el-dropdown-menu slot="dropdown" class="inmodelmore">
-						<div class="inmoo" @mouseenter="fnmoin" @mouseleave="fnleave">
-							<div class="inmores1"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
-							<div class="inmores1" @click="fnabout">联系我们</div>
-							<div class="inmoresb">版本号: v 1.0.1</div>
-						</div>
-					</el-dropdown-menu>
-				</el-dropdown> -->
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 新建项目/信息编辑/图纸 -->
@@ -146,6 +127,8 @@ export default {
 			textarea: '',
 			xmxl: require('../../assets/image/pmjtxia.png'),
 			lmore: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			// 社区默认状态
@@ -197,10 +180,12 @@ export default {
 		// 划过更多
 		fnmorin(){
 			this.moretb = require('../../assets/image/moress.png');
+			this.nmgd = require('../../assets/image/shang.png');
 		},
 		// 移出更多
-		 fnmorlevin(){
-			 this.moretb = require('../../assets/image/more@2x.png');
+		fnmorlevin(){
+			this.moretb = require('../../assets/image/more@2x.png');
+			this.nmgd = require('../../assets/image/pmjtxia.png');
 		},
 		// 点击项目
 		fnxxxm() {

@@ -19,14 +19,14 @@
 								<i style="font-style:normal;font-size:0.5625rem;font-weight:400;color:#FFFFFF;display:inline-block;line-height:0.9375rem;float:left;margin-left:0.1rem;" :style="xinxitit">信息</i>
 							</div> 
 							<!-- 信息展开 -->
-							<div v-show="xinxizhanshi">
+							<div v-show="xinxizhanshi" style="max-height:20rem;overflow:auto;min-height:18rem;">
 								<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-								margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;">
-								墙
+								margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;" @click="fnground()">
+								地面
 								</span>
 								<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;"></span>
-								<!-- 创建新的墙的厚度 -->
-									<ul>
+								<!-- 创建新的地面的厚度 -->
+									<ul v-show="ground">
 										<li v-for="(item, index) in newjian" :key="index">
 											<div style="height:0.825rem;
 											margin-bottom:0.25rem;
@@ -61,7 +61,7 @@
 															style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
 														/>
 													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear(index)" alt="">
+													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear1(index)" alt="">
 											</div>
 										</li>
 										<li style="width:5.75rem;height:0.98125rem;">
@@ -70,6 +70,49 @@
 											</span>
 										</li>
 									</ul>
+									<!-- 墙面metope -->
+									<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
+									margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;" @click="fnmetope()">
+									墙面
+									</span>
+									<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;"></span>
+									<!-- 创建新的墙面的厚度 -->
+										<ul v-show="metope">
+											<li v-for="(item, index) in metarr" :key="index">
+												<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
+												justify-content:space-around;padding-right:0.5rem;"
+											>
+																<i
+																@dblclick="fnmet1(index)"
+																style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
+																position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;"
+																>{{item.metopes}}:</i>
+																<input 
+																v-model="metarr[index].metopes"
+																@blur="changemet1(index)"
+																v-show="item.changemetope1"
+																type="text"
+																style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
+																/>
+																<i v-show="!item.changemetope2" @dblclick="fnmet2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
+																font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">{{ item.msgmet }}</i>
+																<input
+																	v-model="metarr[index].msgmet"
+																	type="text"
+																	@blur="changemet2(index)"
+																	v-show="item.changemetope2"
+																	style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
+																/>
+														</i>
+														<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear2(index)" alt="">
+												</div>
+											</li>
+											<li style="width:5.75rem;height:0.98125rem;">
+												<span style="display:inline-block;width:0.65625rem;height:0.71875rem;float:right;" @click="establishmetop()">
+													<img src="../../assets/image/jjjj.png" alt="" style="width:100%;height:100%;" />
+												</span>
+											</li>
+										</ul>
 							</div>
 						</div>
 						<!-- 材质 -->
@@ -112,7 +155,8 @@ export default {
 	data() {
 		return {
 			// cexiaoshi: true,
-			newjian: [], //墙的厚度数组
+			newjian: [], //地面的数组
+			metarr:[],//墙面的数组
 			xinxitu: require('../../assets/image/xx.png'),
 			xinxitit: 'color:#FFFFFF',
 			caizhitu: require('../../assets/image/caizhi.png'),
@@ -135,16 +179,26 @@ export default {
 		 isri2:-1,
 		 isri3:-1,
 		 isri4:-1,
-		 isri6:-1
+		 isri6:-1,
+		 //地面里边的内容
+		 ground:false,
+		 //墙面里边的内容
+		 metope:false
 		};
 	},
 	created() {
 		// console.log(localStorage.getItem('wallss1'));
+	  // 地面
 		this.newjian = localStorage .getItem('wallss1')
 			? JSON.parse(localStorage .getItem('wallss1'))
-			: [{ msg:50,msgs:'墙体厚度', change: false ,changes:false}, { msg: 50,msgs:'墙体厚度', change: false ,changes:false}, { id: 2, msg: 50,msgs:'墙体厚度', change: false,changes:false }, 
-			{ msg: 50, msgs:'墙体厚度',change: false,changes:false }];
-
+			: [{ msg:50,msgs:'地面厚度', change: false ,changes:false}, { msg: 50,msgs:'地面厚度', change: false ,changes:false}, 
+			{ id: 2, msg: 50,msgs:'地面厚度', change: false,changes:false }, 
+			{ msg: 50, msgs:'地面厚度',change: false,changes:false }];
+   // 墙面
+	 this.metarr = localStorage.getItem('met')
+	 ? JSON.parse(localStorage .getItem('met'))
+	 : [{msgmet:50,metopes:"墙面厚度",changemetope1:false,changemetope2:false},{msgmet:50,metopes:"墙面厚度",changemetope1:false,changemetope2:false},
+	 {msgmet:50,metopes:"墙面厚度",changemetope1:false,changemetope2:false},{msgmet:50,metopes:"墙面厚度",changemetope1:false,changemetope2:false}]
 		// 隐藏建筑结构,管线模型,设备监控
 		this.$eventbus.$on('ceyin', () => {
 			this.cexiaoshi = false;
@@ -177,52 +231,84 @@ export default {
 		 
 	},
 	methods: {
+		//点击地面
+		fnground(){
+			this.ground = !this.ground;
+		},
+		//点击墙面
+		fnmetope(){
+			this.metope = !this.metope
+		},
 		ce1() {
 			this.$router.push('/Login');
 		},
-		// 点击编辑新建项目
+		// 点击地面新建项目
 		establish() {
 			// this.newjian.push(6);
-			this.newjian.push({ msg: 50,msgs:"墙体厚度", change: false ,changes:false });
+			this.newjian.push({ msg: 50,msgs:"地面厚度", change: false ,changes:false });
 			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
 		// 删除信息
-		clear(index) {
+		clear1(index) {
 			this.newjian.splice(index, 1);
 			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
-		// 删除默认的第一个信息
-		// clear1() {
-		// 	this.newjian.splice(index, 1);
-		// },
-		// 保存信息
-		// store(index){
-		// 	 localStorage.setItem("'xinxi'+index",this.mmm);
-		// 	},
-		// 修改
+		// 地面厘米数双击事件
 		fnwall1(index) {
 			// console.log(index);
 			this.$set(this.newjian[index], 'change', true);
 			(this.wall1 = false), (this.walls1 = true);
 		},
-		// 墙体厚度修改
+		// 地面厚度双击事件
 		fnwall2(index) {
 			// console.log(index);
 			this.$set(this.newjian[index], 'changes', true);
 			(this.wall1 = false), (this.walls1 = true);
 		},
-		//失焦的时候
+		//地面厘米数失焦的时候
 		changewall1(index) {
-			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'change', false);
+			(this.walls1 = false), (this.wall1 = true), 
+			this.$set(this.newjian[index], 'change', false);
 			//设置localStroage值
 			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
-		//聚焦的时候
+		//地面厚度失焦的时候
 		changewall2(index) {
-			(this.walls1 = false), (this.wall1 = true), this.$set(this.newjian[index], 'changes', false);
+			(this.walls1 = false), (this.wall1 = true),
+			 this.$set(this.newjian[index], 'changes', false);
 			//设置localStroage值
 			localStorage.setItem('wallss1', JSON.stringify(this.newjian));
 		},
+		// 双击墙面厚度事件
+		fnmet1(index){
+			this.$set(this.metarr[index], 'changemetope1', true);
+		},
+		// 墙面厚度失焦事件
+		changemet1(index){
+			this.$set(this.metarr[index], 'changemetope1', false);
+			//设置localStroage值
+			localStorage.setItem('met', JSON.stringify(this.metarr));
+		},
+		//墙面厘米数的聚焦事件
+		fnmet2(index){
+			this.$set(this.metarr[index], 'changemetope2', true);
+		},
+	 //墙面厘米数失焦的时候
+	  changemet2(index){
+			this.$set(this.metarr[index], 'changemetope2', false);
+			//设置localStroage值
+			localStorage.setItem('met', JSON.stringify(this.metarr));
+		},
+		//清除墙面信息
+		clear2(index){
+			this.metarr.splice(index, 1);
+			localStorage.setItem('met', JSON.stringify(this.metarr));
+		},
+	 // 点击墙面的新建
+	 establishmetop(){
+		 this.metarr.push({msgmet:50,metopes:"墙面厚度",changemetope1:false,changemetope2:false});
+		 localStorage.setItem('met', JSON.stringify(this.metarr));
+	 },
 		// 点击信息标题
 		xxtitle() {
 			this.xinxitu = require('../../assets/image/information.png');
@@ -439,10 +525,10 @@ export default {
 .edit-ri6{
 	background:#0000FF;
 }
-.logoxnedit {
+/* .logoxnedit {
 	width:6.78125rem;
 	height:3.625rem;
-}
+} */
 .xunitopedit {
 	width:6.875rem;
 	height:33.75rem;

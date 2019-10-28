@@ -20,8 +20,8 @@
 					<span class="el-dropdown-link" @click="fnsfxm">
 						<img class="xmimgsfjc" src="../../assets/image/bluefz.png" />
 						 <span class="xmsfjc">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
 				<!-- 		<i class="xmsfjc" style="color: #2180ED;">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -43,9 +43,10 @@
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomsfjc" style="height:0.93125rem;" @mouseenter="fnmorsfjc()" @mouseleave="fnmorlevsfjc()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomsfjc">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomsfjc">更多</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+						</i>
 						  <div class="moocomsfjc" style="margin-top:0.1rem;">
 						 	<div class="mores1comsfjc">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -98,6 +99,8 @@ export default {
 			//总的等陆头部
 			zheaderxy: true,
 			lmore: require('../../assets/image/pmjtxia.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			// 联系我们
 			abouts: false,
 			//点进碰撞页中询问是否点击碰撞的遮罩
@@ -157,10 +160,12 @@ export default {
 		// 划过更多
 		fnmorsfjc(){
 			this.moretb = require('../../assets/image/moress.png');
+			this.nmgd = require('../../assets/image/shang.png');
 		},
 		// 移出更多
 		 fnmorlevsfjc(){
 			 this.moretb = require('../../assets/image/more@2x.png');
+			 this.nmgd = require('../../assets/image/pmjtxia.png');
 		},
 		// 点击项目
 		fnsfxm() {

@@ -19,8 +19,8 @@
 					<span class="el-dropdown-link" @click="fngxpzxm()">
 						<img class="xmimggxpz" src="../../assets/image/bluefz.png" />
 						<span class="xmgxpz">项目</span>
-						<i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						vertical-align: middle;margin-left:0.16rem;">
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
 						<!-- <i class="xmgxpz" style="color:#2180ED">项目</i>
 						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
@@ -41,9 +41,10 @@
 				下拉菜单---更多 -->
 				<div class="moretopcomgxpz" style="height:0.93125rem;" @mouseenter="fnmorgxpz()" @mouseleave="fnmorlevgxpz()">
 					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomgxpz">更多</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.6);font-size:0.9rem;display:inline-block;
-						 vertical-align: middle;margin-left:0.16rem;">
-						 </i>
+					   <span class="hgmorecomgxpz">更多</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
+						</i>
 						  <div class="moocomgxpz" style="margin-top:0.1rem;">
 						 	<div class="mores1comgxpz">
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
@@ -116,6 +117,8 @@ export default {
 			hsq:require('../../assets/image/sq@2x.png'),
 			hsqcolor:"color:#333333",
 			moretb: require('../../assets/image/more@2x.png'),
+			// 更多下拉
+			nmgd: require('../../assets/image/pmjtxia.png'),
 			projecttitgxpz:''
 		};
 	},
@@ -162,10 +165,12 @@ export default {
 			// 划过更多
 		fnmorgxpz(){
 			this.moretb = require('../../assets/image/moress.png');
+			this.nmgd = require('../../assets/image/shang.png');
 		},
 		// 移出更多
-		 fnmorlevgxpz(){
-			 this.moretb = require('../../assets/image/more@2x.png');
+		fnmorlevgxpz(){
+			this.moretb = require('../../assets/image/more@2x.png');
+			this.nmgd = require('../../assets/image/pmjtxia.png');
 		},
 		fnpz(){
 			this.$router.push('/sfjianchapz');
