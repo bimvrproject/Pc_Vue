@@ -1171,12 +1171,13 @@
 			            break;
 			        }
 			        case 3: {
-						alert("第三")
+						// alert("第三")
+						//另存为
 			            UploadCaptureData(content, localpath);
 			            break;
 			        }
 			        case 4: {
-						alert("第四")
+						// alert("第四")
 			            if (info == '0') {
 			                // $('#info').html('从剪贴板获取到了截图： ' + localpath);
 			                UploadCaptureData(content, localpath);

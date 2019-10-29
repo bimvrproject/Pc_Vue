@@ -85,16 +85,17 @@
 						<div class="conmunitytopright"></div>
 					</div>
 					<!-- 社区main -->
-					<div class="communitymain" v-for="(item, index) in comarr" :key="index">
+					<!-- v-for="(item, index) in comarr" :key="index" -->
+					<div class="communitymain" >
 						<!-- 第一排 -->
 						<div class="communitymain1">
-							<div class="community11"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community11"><img src="../../assets/image/bridge.png" alt="" @click.stop="fnbir" /></div>
 							<div class="community12">
 								<!-- 第一排第二个框的第一个 -->
 								<div class="community12-1">
 									<div class="com12-1title">
 										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
-											建筑结构
+											桥 梁
 										</h2>
 									</div>
 									<div class="com12-line"></div>
@@ -109,7 +110,7 @@
 								<div class="community12-2">
 									<div class="com22-1title">
 										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
-											建筑结构
+											幼儿园
 										</h2>
 									</div>
 									<div class="com22-line"></div>
@@ -121,13 +122,13 @@
 									</div>
 								</div>
 							</div>
-							<div class="community13"><img src="../../assets/image/disan.png" alt="" /></div>
-							<div class="community14"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community13"><img src="../../assets/image/youeryuan.png" alt="" @click.stop="youeryuan" /></div>
+							<div class="community14"><img src="../../assets/image/bieshu.png" alt=""  @click.stop="bieshu"/></div>
 							<div class="community15">
 								<div class="community12-1">
 									<div class="com12-1title">
 										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
-											建筑结构
+											别墅
 										</h2>
 									</div>
 									<div class="com12-line"></div>
@@ -194,6 +195,61 @@
 							</div>
 							<div class="community25"><img src="../../assets/image/disan.png" alt="" /></div>
 						</div>
+						
+						<div class="communitymain1">
+							<div class="community11"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community12">
+								<!-- 第一排第二个框的第一个 -->
+								<div class="community12-1">
+									<div class="com12-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com12-line"></div>
+									<div class="com12-1titlemin"><span>京止阁</span></div>
+									<div class="com12-1zan"><span>200点赞</span></div>
+									<div class="from12">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+								<!-- 第一排第二个框的第二个 -->
+								<div class="community12-2">
+									<div class="com22-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com22-line"></div>
+									<div class="com22-1titlemin"><span>室内</span></div>
+									<div class="com22-1zan"><span>200点赞</span></div>
+									<div class="from22">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+							<div class="community13"><img src="../../assets/image/disan.png" alt="" /></div>
+							<div class="community14"><img src="../../assets/image/diyi.png" alt="" /></div>
+							<div class="community15">
+								<div class="community12-1">
+									<div class="com12-1title">
+										<h2 style="font-weight:normal;width:6.25rem;height:1.15625rem;font-size:1.1875rem;font-family:Microsoft YaHei;font-weight:300;color:rgba(204,204,204,1);">
+											建筑结构
+										</h2>
+									</div>
+									<div class="com12-line"></div>
+									<div class="com12-1titlemin"><span>京止阁</span></div>
+									<div class="com12-1zan"><span>200点赞</span></div>
+									<div class="from12">
+										来自
+										<span style="font-size:0.4375rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(33,128,237,1);">136****5089</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 					<!-- 社区尾部 -->
 					<div></div>
@@ -308,6 +364,24 @@ export default {
 		}
 	},
 	methods: {
+		//点击社区中的模型
+		fnbir(){
+			sessionStorage.setItem('projectid', "8");
+			sessionStorage.setItem('projecttit', "Bridge");
+			this.$router.push('/newjzmodel')
+			
+		},
+		youeryuan(){
+			sessionStorage.setItem('projectid', "12");
+			sessionStorage.setItem('projecttit', "youeryuan");
+			this.$router.push('/newjzmodel')
+		},
+		bieshu(){
+			sessionStorage.setItem('projectid', "3");
+			sessionStorage.setItem('projecttit', "别墅");
+			this.$router.push('/newjzmodel')
+		},
+		
 		// 划过项目
 		fnhxm() {
 			this.xmtb = require('../../assets/image/bluefz.png');
