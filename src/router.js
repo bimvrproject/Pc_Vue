@@ -174,9 +174,16 @@ export default new Router({
 			name: "/personnel",
 			meta: {
 				// requireAuth: true
-				
 			},
 			component: () => import("./views/user//personnel.vue")
+		},
+		{
+			path: "/a",
+			name: "/a",
+			meta: {
+				// requireAuth: true
+			},
+			component: () => import("./views/user//a.vue")
 		}
 	]
 });

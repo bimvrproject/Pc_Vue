@@ -16,7 +16,8 @@
 							<div v-show="pzshow">
 								<div class="piczk">
 									<img :src="fbpzs" class="picimgzk" alt="" />
-									<span class="picpz" :style="fbpzscolor" @click="paizhao()">拍照</span>
+									<span class="picpz" :style="fbpzscolor" ref="creenBtn">拍照</span>
+									<span id="info"  style="position: absolute;top: 6.375rem;left: 20.125rem;display: inline-block;width: 16.875rem;color: royalblue"></span>
 								</div>
 							</div>
 						</div>
@@ -178,7 +179,7 @@
 			<div class="swiper-wrapper" v-show="swiperxy">
 				<div class="swiper-slide swiper-slidetop" v-for="(item, index) in Printscreen" :key="index" style="position:relative;">
 					<!-- "http://192.168.6.152:8080/" -->
-					<img :src="'http://192.168.6.152:8080/'+item.images" alt="">
+					<img :src="item.images" alt="">
 					<span class="fa fa-times" style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
 					 @click.stop="fng(index)">
 					</span>
@@ -188,7 +189,7 @@
 			<div class="swiper-button-prev swiper-button-white" v-show="houtui"></div>
 		</div>
 		
-		<div  class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;background:#EEEEEE"
+		<div  class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:6.9rem;background:#EEEEEE"
 		 :style="swipersbj">
 			<div class="swiper-wrapper" v-show="swiperbottom">
 				<div class="swiper-slide swiper-slidebottom" @click="fnswipers()" v-for="(item, index) in Printscreen" :key="index"
@@ -199,7 +200,7 @@
 					</span>
 					<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
 					<!-- http://36.112.65.110:8080/ -->
-					<img class="swiper-slidebottomimg" :src="'http://192.168.6.152:8080/'+item.images" alt="">
+					<img class="swiper-slidebottomimg" :src="item.images" alt="">
 					<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 					<div class="xbz" v-show="aaaaaa === index">
 						<span class="fqq" @click.stop="fnfbswper()" :style="fbswper">
@@ -215,8 +216,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- 拍照倒计时提示 -->
-		<div style="width:9.4rem;height:6.25rem; font-size: 1.5rem;color: red; position:absolute;top:10rem;left:25rem;line-height:6.25rem;text-align:center;" v-show="pzts">正在拍照...</div>
 	</div>
 </template>
 <script>
@@ -295,8 +294,6 @@
 				ljpstp: require('../../assets/image/ljpss.png'),
 				//路径拍摄的字体颜色
 				ljpstpcolor: 'color:#FFFFFF',
-				timer: '',
-				timers: "",
 				Printscreen: [], //接收截图的图片
 				checkboxPrintscreen: [],  //点击截图复选框获取到图片的id
 				// 对勾的数组
@@ -331,6 +328,7 @@
 				houtui: false,
 				// 点击拍照的时候显示的内容
 				pzts:false,
+				timer:"", //超出5秒显示截图插件
 			};
 		},
 		created() {
@@ -349,7 +347,6 @@
 					if(result.data.printscreenslist!=null){
 						this.swipersbj = 'display:block';
 						this.Printscreen = result.data.printscreenslist;
-						console.log(this.Printscreen+"999")
 					}else{
 						console.log(result.data.printscreenslist+"-nu")
 						this.swipersbj = 'display:none';
@@ -387,36 +384,859 @@
 					swiper: galleryThumbs
 				}
 			});
+			this.fnScreen();   
 		},
 		methods: {
 			//拍照
-			paizhao() {
-				this.timer = setTimeout(() => {
-					this.pzts=true;
-				}, 1000);
-				this.timers = setTimeout(() => {
-					this.pzts = false
-				}, 4500);
-				// 图片中的拍照图片
-				this.fbpzs = require('../../assets/image/fbpzsblue.png'),
-					// 图片中的拍照的字体颜色
-					this.fbpzscolor = 'color:#2180ED',
-					axios.get(api.OpenCmd).then(result => {
-						//绑定截图的照片
-						this.timers = setTimeout(() => {
-							var projectidss = sessionStorage.getItem("projectid");
-							if (projectidss != '' && projectidss != null && projectidss != undefined) {
-								axios.get(api.SelectPrintscreen + "/" + projectidss+"/1"+"/1").then(result => {
-									this.Printscreen = result.data.printscreenslist;
-									console.log(this.Printscreen)
-								})
-							}
-							this.swipersbj = 'display:block';
-						}, 7000);
-						
-					})
+			fnScreen() {
+			    var _self = this;
+			    var emPensize = 1;      //设置画笔大小
+			    var emDrawType = 2;     //设置是腾讯风格还是360风格 0： 腾讯风格   1： 360风格
+			    var emTrackColor = 3;       //自动识别的边框的颜色
+			    var emEditBorderColor = 4;  //文本输入的边框颜色
+			    var emTransparent = 5;      //工具栏的透明度
+			    var emWindowAware = 6;      //设置是否禁用随着DPI放大
+			    var emSetSaveName = 8;      //设置保存时的开始文字     免费版本无效
+			    var emSetMagnifierBkColor = 9; //设置放大镜的背景色，不设置则透明
+			    var emSetMagnifierLogoText = 10; //设置放大镜上的LOGO字符，可提示快捷键，如： 牛牛截图(CTRL + SHIFT + A)     免费版本无效
+			    var emSetWatermarkPictureType = 20;                     //设置水印的类型 
+			    var emSetWatermarkPicturePath = 21;                     //设置水印的路径 
+			    var emSetWatermarkTextType = 22;                        //设置水印文字的类型 
+			    var emSetWatermarkTextValue = 23;                       //设置水印文字的字符串
+			    var emSetMosaicType = 24;               //指定马赛克的类型，1为矩形，2为画线 
+			    var emSetTooltipText = 25;               //用于设置工具栏图标的TOOLTIP文字 
+			    var emSetMoreInfo = 26;                         //设置额外的信息，用于特殊需求 
+			    /*******************************************************************************/
+				//下载的地址
+				var downloadUrl = 'http://www.ggniu.cn/download/CaptureInstall.exe';
+			
+			    var emClosed = 1;
+			    var emConnected = 2;
+			    var emConnecting = 3;
+			
+			    var emCaptureSuccess = 0;
+			    var emCaptureFailed = 1;
+			    var emCaptureUnknown = 2;
+			
+			    var emCmdReady = -1;
+			    var emCmdCapture = 0;
+			    var emCmdSaveFile = 1;
+			
+			    function rgb2value(r, g, b)
+			    {
+			        return r | g << 8 | b << 16;
+			    }
+			
+			    function onpluginLoaded()
+			    {   
+			        _self.captureObjSelf.pluginLoaded();
+			    }
+			
+			    function NiuniuCaptureObject() 
+			    {
+			        var self = this;
+			        _self.captureObjSelf = this;
+			        this.PenSize = 2;
+			        this.DrawType = 0;
+			        this.TrackColor = rgb2value(255, 0, 0);
+			        this.EditBorderColor = rgb2value(255, 0, 0);
+			        this.Transparent = 240;
+			        this.WindowAware = 1;
+			        this.MosaicType = 1;
+			        this.SaveName = "测试保存";
+			        this.MagnifierLogoText = "测试截图";
+			        this.WatermarkPictureType = "2|100|100|400|400|20";
+			        this.WatermarkPicturePath = "";
+			        this.WatermarkTextType = "2|100|100|100|40|20|0|150|30|80,55,55,55";
+			        this.WatermartTextValue = "";
+			        this.NiuniuAuthKey = "";
+			        this.ToolTipText = "";  //tipRectangle|tipCircle|tipArrow|tipBrush|tipGlitter|tipMosaic|tipText|tipUndo|tipSave|tipCancel|tipFinish|txtFinish
+			        this.MoreInfo = "1,100|300|600";
+			        
+			        this.useCrx = false;        //是否使用crx
+			        this.useCustomizedProtoco = true;   //是否使用浏览器自定义协议加websocket 
+			        
+			        this.Version = "1.0.0.0";
+			        this.hostPort = "30101,30102";  
+			        this.hostPortIndex = 0;
+			        this.CaptureName = "NiuniuCapture";  
+			        this.NiuniuSocket = null;
+			        this.connectState = emClosed;
+			        this.IsWaitCustomizedCallBack = false;
+			        this.TimeIntervalID = -1;
+			        this.ReceivedEchoBack = false;
+			        this.SocketTimeStamp = new Date().getTime();
+			        this.TimeOutID = -1;
+			        
+			        this.FinishedCallback = null;
+			        this.PluginLoadedCallback = null;
+			        this.VersionCallback = null;
+			        
+			        this.IsNeedCrx = function()
+			        {
+			        
+			            if(!self.useCrx)
+			            {
+			                return false;
+			            }
+			            if(self.pluginValid())
+			            {
+			                return false;
+			            }
+			            var isChrome = self.IsRealChrome();
+			            var chromeMainVersion = self.GetChromeMainVersion();
+			            if(isChrome && chromeMainVersion > 41)
+			            {
+			                return true;
+			            }
+			            return false;
+			        }
+			        this.LoadPlugin = function()
+			        {
+			            var obj = document.getElementById('capturecontainer');
+			            if(!obj)
+			            {
+			                var div = document.createElement("div");
+			                div.id = 'capturecontainer';
+			                div.style.height = 0;
+			                div.style.width = 0;
+			                document.body.appendChild(div);
+			                obj = document.getElementById('capturecontainer');
+			            }        
+			            obj.innerHTML = '';
+			            obj.innerHTML = '<object id="niuniuCapture" type="application/x-niuniuwebcapture" width="0" height="0"><param name="onload" value="onpluginLoaded" /></object>';
+			            
+			            var iframeObj = document.getElementById('startCaptureFrame');
+			            if(!iframeObj)
+			            {   
+			                var iframe = document.createElement("iframe");
+			                iframe.id = 'startCaptureFrame';
+			                iframe.style.display = 'none';
+			                document.body.appendChild(iframe);
+			                iframeObj = document.getElementById('startCaptureFrame');      
+			            }
+			        }
+			        this.niuniuCapture = function ()
+			        {
+			            return document.getElementById('niuniuCapture');
+			        }
+			            
+			        this.addEvent = function(obj, name, func)
+			        {
+			            if (obj.attachEvent) {
+			                obj.attachEvent("on"+name, func);
+			            } else {
+			                obj.addEventListener(name, func, false); 
+			            }
+			        }
+			        this.pluginValid = function()
+			        {
+			            try
+			            {
+			                if(self.niuniuCapture().valid)
+			                {
+			                    return true;
+			                }
+			            }
+			            catch(e)
+			            {
+			            }
+			            return false;        
+			        }
+			        this.OnCaptureFinished = function(x, y, width, height, content,localpath) 
+			        {
+			            self.OnCaptureFinishedEx(1, x, y, width, height, "", content,localpath);      
+			        }
+			        this.OnCaptureFinishedEx = function(type, x, y, width, height, info, content,localpath) 
+			        {
+			            //交给上层去处理截图完成后的事项 
+			            if(self.FinishedCallback != null)
+			            {
+			                self.FinishedCallback(type, x, y, width, height, info, content,localpath);
+			            }
+			            else
+			            {
+			                alert("截图完成的事件未绑定，将不能对图片进行处理，请指定FinishedCallback回调函数");
+			            }
+			        }
+			        this.pluginLoaded = function()
+			        {
+			            self.GetVersion();
+			            if(!self.pluginValid())
+			            {
+			                if(self.PluginLoadedCallback != null)
+			                {
+			                    self.PluginLoadedCallback(false);
+			                }
+			                return false;
+			            }   
+			            //此函数必需调用，传递正确的参数，且必需先于其他函数调用  
+			            self.niuniuCapture().InitCapture(self.NiuniuAuthKey); 
+			            self.niuniuCapture().InitParam(emPensize, self.PenSize);
+			            self.niuniuCapture().InitParam(emDrawType, self.DrawType);
+			            self.niuniuCapture().InitParam(emTrackColor, self.TrackColor);
+			            self.niuniuCapture().InitParam(emEditBorderColor, self.EditBorderColor);
+			            self.niuniuCapture().InitParam(emTransparent, self.Transparent);
+			            self.niuniuCapture().InitParam(emSetSaveName, self.SaveName);            
+			            self.niuniuCapture().InitParam(emSetMagnifierLogoText, self.MagnifierLogoText);
+			            self.niuniuCapture().InitParam(emSetMosaicType, self.MosaicType);
+			            
+			            //设置工具栏上的按钮TOOLTIP  
+			            self.niuniuCapture().InitParam(emSetTooltipText, self.ToolTipText);
+			            
+			            // self.niuniuCapture().InitParam(emSetMoreInfo, self.MoreInfo);
+			            //注：以上设置LOGO及保存名的接口，免费版本无效
+			            
+			            //添加控件的事件监听 
+			            self.addEvent(self.niuniuCapture(), 'CaptureFinishedEx', self.OnCaptureFinishedEx);
+			            //以下这个事件主要是用于兼容旧的浏览器控件的事件通知
+			            self.addEvent(self.niuniuCapture(), 'CaptureFinished', self.OnCaptureFinished);
+			            if(self.PluginLoadedCallback != null)
+			            {
+			                self.PluginLoadedCallback(true);
+			            }
+			        }
+			        this.SetWatermarkPicture = function(watermarPicData)
+			        {
+			            self.WatermarkPicturePath = watermarPicData;
+			            //设置测试的水印图片的Base64字符串，此操作应该是在页面加载中处理比较合适 
+			            if(!self.pluginValid())
+			                return;
+			            self.niuniuCapture().InitParam(emSetWatermarkPicturePath, self.WatermarkPicturePath);        
+			            self.niuniuCapture().InitParam(emSetWatermarkPictureType, self.WatermarkPictureType);
+			        }
+			        this.SetWatermarkText = function(watermarkText)
+			        {
+			            self.WatermarkTextValue = watermarkText;
+			            //设置测试的水印文字，此操作应该是在页面加载中处理比较合适 
+			            if(!self.pluginValid())
+			                return;
+			            //nShowType|nMinWidth|nMinHeight|nVerticalInterval|nOffset|nFontSize|nIsBold|nTextWidth|nTextHeight|colorText
+			            self.niuniuCapture().InitParam(emSetWatermarkTextValue, self.WatermarkTextValue);
+			            self.niuniuCapture().InitParam(emSetWatermarkTextType, self.WatermarkTextType);
+			        }
+			        this.SavePicture = function(savename)
+			        {
+			            if(self.pluginValid())
+			            {
+			                self.niuniuCapture().SavePicture(savename);
+			            }
+			        }
+			        this.GetCursorPosition = function()
+			        {
+			            if(self.pluginValid())
+			            {
+			                var val = self.niuniuCapture().GetCursorPosition();
+			                return val;
+			            }
+			            return "";
+			        }
+			        this.NewCaptureParamObject = function(defaultpath, hideCurrWindow, autoCaptureFlag, x, y, width, height)
+			        {  
+			            var obj = new Object(); 
+			            obj.CmdType = 1;
+			            obj.IsGBK = 0;              //是否是GBK编码，这样会涉及到编码转换  
+			            obj.AuthKey = self.NiuniuAuthKey;  //                       
+			            obj.Pensize = self.PenSize;     //设置画笔大小
+			            obj.DrawType = self.DrawType;           //设置是腾讯风格还是360风格
+			            obj.TrackColor= self.TrackColor;        //自动识别的边框的颜色
+			            obj.EditBorderColor= self.EditBorderColor;  //文本输入的边框颜色
+			            obj.Transparent = self.Transparent;     //工具栏的透明度
+			            obj.SetSaveName = self.SaveName;                                    //设置保存时的开始文字
+			            obj.SetMagnifierLogoText = self.MagnifierLogoText;                      //设置放大镜上的LOGO字符   
+			            obj.SetWatermarkPictureTypeEx = self.WatermarkPictureType;                      //设置水印的类型 
+			            obj.SetWatermarkPicturePath = self.WatermarkPicturePath;                        //设置水印的路径 
+			            obj.SetWatermarkTextTypeEx=self.WatermarkTextType;                          //设置水印文字的类型 
+			            obj.SetWatermarkTextValue= self.WatermarkTextValue;                     //设置水印文字
+			            obj.MosaicType = self.MosaicType;          //设置马赛克的类型 
+			            obj.SetToolbarText = self.ToolTipText;
+			            obj.MoreInfo = this.MoreInfo;
+			            //以下是截图时传递的参数 
+			            obj.DefaultPath = defaultpath;
+			            obj.HideCurrentWindow = hideCurrWindow;
+			            obj.AutoCaptureFlag = autoCaptureFlag;
+			            obj.x = x;
+			            obj.y = y;
+			            obj.Width = width;
+			            obj.Height = height;
+			            return obj; 
+			        } 
+			
+			        //此函数用于绑定在Chrome42以上的版本时，扩展在截图完成后进行事件通知的处理 
+			        this.BindChromeCallback = function()
+			        {
+			            document.addEventListener('NiuniuCaptureEventCallBack', function(evt) { 
+			                var _aoResult = evt.detail; 
+			                if(_aoResult.Result == -2)
+			                {
+			                    self.OnCaptureFinishedEx(-1, 0, 0, 0, 0, "", "", "");   //通知重新下载控件  
+			                }
+			                if(_aoResult.Result != -1)
+			                {
+			                    self.OnCaptureFinishedEx(_aoResult.Type, _aoResult.x, _aoResult.y, _aoResult.Width, _aoResult.Height, _aoResult.Info, _aoResult.Content, _aoResult.LocalPath);
+			                }
+			                else
+			                {
+			                    alert("出错："  + _aoResult.Info);
+			                }
+			            });
+			        }
+			
+			        this.IsRealChrome = function()
+			        {
+			            try
+			            {
+			                var agent = window.navigator.userAgent.toLowerCase();            
+			                var isQQBrowser = agent.indexOf("qqbrowser") != -1;
+			                if(isQQBrowser)
+			                {
+			                    return false;
+			                }
+			                var isUBrowser = agent.indexOf("ubrowser") != -1;
+			                if(isUBrowser)
+			                {
+			                    return false;
+			                }
+			                var isChrome = agent.indexOf("chrome") != -1;
+			                if(isChrome)
+			                {
+			                    if(chrome&&chrome.runtime)
+			                    {
+			                        return true;
+			                    }
+			                }
+			                return false;
+			            }
+			            catch(e)
+			            {
+			            }
+			            return false;    
+			        }
+			
+			        this.GetChromeMainVersion = function()
+			        {
+			            var gsAgent=navigator.userAgent.toLowerCase();
+			            var gsChromeVer=""+(/chrome\/((\d|\.)+)/i.test(gsAgent)&&RegExp["$1"]);
+			            
+			            if(gsChromeVer != "false") 
+			                return parseInt(gsChromeVer);
+			            return 0;
+			        }
+			        
+			        
+			        this.DoCaptureForChrome = function(name, hide, AutoCapture, x, y, width, height)
+			        {
+			            var obj = self.NewCaptureParamObject(name, hide, AutoCapture, x, y, width, height);
+			            try
+			            {           
+			                var json = JSON.stringify(obj)
+			                
+			                var CrxEventFlag = 'NiuniuCaptureEvent';
+			                var objFlag = document.getElementById(CrxEventFlag);//$('#' + CrxEventFlag);
+			                if(objFlag.length < 1)
+			                {
+			                    return emCaptureFailed;
+			                }
+			                var evt = document.createEvent("CustomEvent");          
+			                evt.initCustomEvent(CrxEventFlag, true, false, json); 
+			                document.dispatchEvent(evt);        
+			                return emCaptureUnknown;
+			            }
+			            catch(e)
+			            {
+			                
+			            }  
+			            return emCaptureUnknown;       
+			        }
+			
+			        this.DoCapture = function(name, hide, AutoCapture, x, y, width, height)
+			        {
+			            if(self.IsNeedCrx())
+			            {
+			                return self.DoCaptureForChrome(name, hide, AutoCapture, parseInt(x), parseInt(y), parseInt(width), parseInt(height));
+			            }   
+			            
+			            if(self.IsNeedCustomizedProtocol())
+			            {
+			                return self.DoCaptureForCustomize(name, hide, AutoCapture, parseInt(x), parseInt(y), parseInt(width), parseInt(height));
+			            }
+			                    
+			            if(!self.pluginValid())
+			            {
+			                return emCaptureFailed;
+			            }
+			            self.niuniuCapture().Capture(name, hide, AutoCapture, x, y, width, height);
+			            return emCaptureSuccess;            
+			        }
+			    
+			        this.InitNiuniuCapture = function()
+			        {
+			            self.LoadPlugin();
+			            if(self.IsNeedCrx())
+			            {
+			                self.BindChromeCallback();
+			            }
+			            
+			            if(self.IsNeedCustomizedProtocol())
+			            {
+			                self.InitWebSocketAndBindCallback();
+			            }
+			        }
+			        
+			        
+			            
+			        this.InitWebSocketAndBindCallback = function()
+			        {
+			            self.connectHost();
+			        }
+			        
+			        this.getNextPort = function()
+			        {
+			            //init port params flag
+			            //进行拆分处理 self.hostPort;
+			            var portArray = self.hostPort.split(",");
+			            if(portArray.length < 1)
+			            {
+			                alert("服务端口为空");
+			                return 30101;
+			            }
+			            if(self.hostPortIndex < 0)
+			            {
+			                self.hostPortIndex = 0;             
+			            }
+			            if(self.hostPortIndex > portArray.length - 1)
+			            {
+			                self.hostPortIndex = portArray.length - 1;              
+			            }
+			            var nPort = parseInt(portArray[self.hostPortIndex]);
+			            self.hostPortIndex++;
+			            if(self.hostPortIndex > portArray.length - 1)
+			            {
+			                self.hostPortIndex = 0;             
+			            }   
+			            return nPort;
+			        }
+			        
+			        this.connectHost = function()
+			        {
+			                if(self.NiuniuSocket != null)
+			                {
+			                    self.WriteLog("connectHost NiuniuSocket is not null, return.");
+			                    return;
+			                }
+			                clearTimeout(self.TimeOutID);
+			                self.connectState = emConnecting;
+			                
+			                
+			                try{
+			                    var wshosts = ['127.0.0.1', 'localhost'];
+			                    for (var i in wshosts) {
+			                        try{
+			                            var host = "ws://127.0.0.1:" + self.getNextPort() + "/" + self.CaptureName;
+			                            self.NiuniuSocket = new WebSocket(host);
+			                            break;
+			                        }
+			                        catch(ee){
+			                            var ggg= 0;
+			                        }
+			                    }
+			                                    
+			                    //OutputLog('Socket Status: '+socket.readyState);
+			                    self.NiuniuSocket.onopen = function(evt){                   
+			                        self.NiuniuSocket.send('0' + self.SocketTimeStamp);
+			                        self.WriteLog("NiuniuSocket.onopen.");
+			                        clearTimeout(self.TimeOutID);
+			                    }
+			                    
+			                    self.NiuniuSocket.onmessage = function(msg){
+			                        var str = "";
+			                        str = msg.data;
+			                        var id  = str.substr(0, 1);
+			                        var arg1 = str.substr(1);
+			                        clearTimeout(self.TimeOutID);
+			                        if(id == "0"){
+			                            self.hostPortIndex--;
+			                            //表示连接成功，此时应该提示可以截图了 
+			                            self.connectState = emConnected;
+			                            self.pluginLoaded();
+			                            if(self.IsWaitCustomizedCallBack)
+			                            {
+			                                setTimeout(_self.captureObjSelf.SendReadyRecvData(), 3);
+			                            }
+			                            self.WriteLog("connect sucess.");
+			                            self.ReceivedEchoBack = true;
+			                            clearInterval(self.TimeIntervalID);
+			                            self.TimeIntervalID = setInterval(_self.captureObjSelf.LoopEchoMessage(), 3000);
+			                        }
+			                        if(id == "1"){
+			                            //解析消息 
+			                            var _aoResult = eval("(" + arg1 + ")");
+			                            self.ReceivedEchoBack = true;
+			                            if(_aoResult.command == "echo")
+			                            {                   
+			                                self.WriteLog("received echo");
+			                                return;
+			                            }
+			                            self.WriteLog("received capturedata.");
+			                            if(_aoResult.command == "version")
+			                            {
+			                                self.WriteLog(_aoResult.Ver);
+			                                self.VersionCallback(_aoResult.Ver);
+			                            }
+			                            else{
+			                                self.OnCaptureFinishedEx(_aoResult.Type, _aoResult.x, _aoResult.y, _aoResult.Width, _aoResult.Height, _aoResult.Info, _aoResult.Content, _aoResult.LocalPath);                      
+			                            }
+			                            
+			                            
+			                        }                                                       
+			                    }
+			                    
+			                    self.NiuniuSocket.onclose = function(evt){
+			                        self.OnWebSocketError("self.NiuniuSocket.onclose." + evt.data);
+			                    }   
+			                    self.NiuniuSocket.onerror = function (evt) {                    
+			                        //self.OnWebSocketError("self.NiuniuSocket.onerror." + evt.data);
+			                    };
+			                        
+			                } catch(e){
+			                    self.OnWebSocketError("connect exception." + e.message);
+			                }
+			        }
+			        
+			        this.WriteLog = function(txt)
+			        {
+			            //写日志 
+			            try{
+			                // console.log(txt);
+			            }
+			            catch(e)
+			            {
+			                
+			            }
+			        }
+			        
+			        this.OnWebSocketError = function(type)
+			        {       
+			            self.WriteLog(type);
+			            self.ReceivedEchoBack = false;
+			            self.connectState = emClosed;       
+			            
+			            if(self.NiuniuSocket != null)
+			            {
+			                self.NiuniuSocket.close();
+			            }
+			            
+			            self.NiuniuSocket = null;
+			            clearTimeout(self.TimeOutID);
+			            self.TimeOutID = setTimeout(_self.captureObjSelf.connectHost(), 800);
+			        }
+			        
+			        this.LoopEchoMessage = function()
+			        {
+			            if(!self.ReceivedEchoBack)
+			            {
+			                self.OnWebSocketError("this.LoopEchoMessage, !self.ReceivedEchoBack");
+			                self.ReceivedEchoBack = false;
+			                clearInterval(self.TimeIntervalID);
+			                self.TimeIntervalID = setInterval(_self.captureObjSelf.LoopEchoMessage(), 3000);
+			                return;
+			            }
+			            self.ReceivedEchoBack = false;
+			            clearTimeout(self.TimeOutID);
+			            if(self.connectState != emConnected)
+			            {
+			                return;
+			            }       
+			            var obj = new Object(); 
+			            obj.command = "echo";
+			            self.NiuniuSocket.send("1" + encodeURIComponent(JSON.stringify(obj)) );      
+			        }
+			        
+			        this.SendReadyRecvData = function()
+			        {
+			            self.WriteLog("SendReadyRecvData.");
+			            var obj = self.NewCaptureParamObject("", 0, 0, 0, 0, 0, 0);
+			            obj.CmdType = -1;
+			            self.NiuniuSocket.send("1" + encodeURIComponent( JSON.stringify(obj)) );
+			        }
+			
+			        this.DoCaptureForCustomize = function(name, hide, AutoCapture, x, y, width, height)
+			        {
+			            var obj = self.NewCaptureParamObject(name, hide, AutoCapture, x, y, width, height);
+			            try
+			            {
+			                //启动客户端，或者通过websocket去发送数据   
+			                if(self.connectState == emConnected)
+			                {
+			                    var json = JSON.stringify(obj);
+			                    self.NiuniuSocket.send('1' + encodeURIComponent(json) );
+			                }
+			                else
+			                {
+			                    //首次启动时，不支持水印，否则会过长 
+			                    obj.SetWatermarkPicturePath = "";
+			                    //obj.SetWatermarkTextValue = "";   
+			                    var json = JSON.stringify(obj);
+			                    self.WriteLog(json.length);
+			                    var newUrl = self.CaptureName + "://" + encodeURIComponent(json);
+			                    self.WriteLog(newUrl.length);
+			                    
+			                    //启动客户端  
+			                    document.getElementById('startCaptureFrame').src = newUrl;
+			                    
+			                    self.IsWaitCustomizedCallBack = true;
+			                    return emCaptureUnknown;
+			                }
+			                
+			                return emCaptureSuccess;
+			            }
+			            catch(e)
+			            {
+			                alert(e.message);
+			            }  
+			            return emCaptureUnknown;       
+			        }
+			        
+			        
+			        this.IsNeedCustomizedProtocol = function()
+			        {
+			            if(!self.useCustomizedProtoco)
+			            {
+			                return false;
+			            }
+			            
+			            if(self.pluginValid())
+			            {
+			                return false;
+			            }
+			            
+			            try
+			            {
+			                var agent = window.navigator.userAgent.toLowerCase();            
+			                var isQQBrowser = agent.indexOf("qqbrowser") != -1;
+			                if(isQQBrowser)
+			                {
+			                    return false;
+			                }
+			                var isUBrowser = agent.indexOf("ubrowser") != -1;
+			                if(isUBrowser)
+			                {
+			                    return false;
+			                }
+			                var isChrome = agent.indexOf("chrome") != -1;
+			                if(isChrome)
+			                {
+			                    if(chrome&&chrome.runtime)
+			                    {
+			                        return true;
+			                    }
+			                }
+			                return true;
+			            }
+			            catch(e)
+			            {
+			            }
+			            return false;    
+			        }
+			        
+			        this.GetVersion = function()
+			        {
+			            if(self.IsNeedCustomizedProtocol())
+			            {
+			                if(self.connectState != emConnected)
+			                {
+			                    return;
+			                }       
+			                var obj = new Object(); 
+			                obj.command = "version";
+			                self.NiuniuSocket.send("1" + encodeURIComponent( JSON.stringify(obj)) );
+			                return;
+			            }
+			                    
+			            if(!self.pluginValid())
+			            {
+			                return;
+			            }
+			            var verSion = self.niuniuCapture().GetVersion();
+			            self.VersionCallback(verSion);
+			            self.WriteLog(verSion);
+			        }
+			    }
+			    // end
+			    var captureObj = null;
+			
+			    /*
+			    * 用于初始化牛牛截图控件，此函数需要在页面加载完成后立即调用 在此函数中，您可以设置相关的截图的UI控制，如，画笔大小、边框颜色等等
+			    */
+			    function Init() {
+			        captureObj = new NiuniuCaptureObject();
+			        captureObj.NiuniuAuthKey = "niuniu";
+			        // 此处可以设置相关参数
+			        captureObj.TrackColor = rgb2value(255, 0, 0);
+			        captureObj.EditBorderColor = rgb2value(0, 0, 255);
+			
+			        // 设置工具栏的TOOLTIP
+			        // captureObj.ToolTipText =
+			        // "tipRectangle|tipCircle|tipArrow|tipBrush|tipGlitter|tipMosaic|tipText|tipUndo|tipSave|tipCancel|tipFinish|Finish";
+			
+			        // 设置控件加载完成以及截图完成的回调函数
+			        captureObj.FinishedCallback = OnCaptureFinishedCallback;
+			        captureObj.PluginLoadedCallback = PluginLoadedCallback;
+			        captureObj.VersionCallback = VersionCallback;
+			
+			        // 初始化控件
+			        captureObj.InitNiuniuCapture();
+			
+			        captureObj.SetWatermarkText(" ");
+			        captureObj.SetWatermarkPicture(" ");
+			    }
+			
+			    // 用于返回控件的版本号
+			    function VersionCallback(ver) {
+			        return captureObj.Version;
+			        // 可以在此根据最新的版本号与控件返回的版本号对比，决定是否要提示升级
+			    }
+			    /*
+			    * 当控件成功加载后回调的的函数，您可以在此控制相应的UI显示
+			    */
+			    function PluginLoadedCallback(success) {
+			        if (success) {
+			            _self.isBox = true;
+			        }
+			    }
+			    /*
+			    * 需要下载控件安装包的提示信息，您可以根据需要进行调整
+			    */
+			    function ShowDownLoad() {
+					$('#info').html('未找到该插件，请点击<a target="_blank" href="' + downloadUrl + '" + date.getMinutes() + date.getSeconds()" style="color: rgb(33, 128, 237);">安装</a>');
+			    }
+			    /*
+			    * 当提示安装控件后，需要重新加载控件来使用截图； 也有部分是需要刷新浏览器的
+			    */
+			    function ReloadPlugin() {
+			        // 如果是Chrome42以上版本，此处需要刷新页面才能让扩展在此页面上生效
+			        if (captureObj.IsNeedCrx()) {
+			            location.reload();
+			            return;
+			        }
+			        captureObj.LoadPlugin();
+			        _self.isBox = false;
+			        if (captureObj.pluginValid()) {
+			            _self.isBox = true;
+			            // $('#info').html("截图控件已经安装完毕，您可以进行截图了。");
+			        } else {
+			            var msg = '截图控件未能识别到，请按如下步骤检查:<br/>1. 确定您已经下载控件安装包并正常安装 <br/>';
+			            // console.log(msg)
+			            _self.$confirm(msg, '提示', {
+			                confirmButtonText: '好的',
+			                type: 'warning',
+			                showCancelButton : false,
+			            });
+			        }
+			    }
+			    /*
+			    * 截图入口函数，用于控制UI标签的显示
+			    */
+			    function StartCapture(n) {
+			        var n = n || 0;
+			        var captureRet = captureObj.DoCapture("1.jpg", n*1, 0, 0, 0, 0, 0); //2
+					$('#info').html('');
+			        // 从返回值来解析显示
+			         if (captureRet == emCaptureUnknown) {  //2
+						self.timer=setTimeout(function(){
+							ShowDownLoad();
+					    },5000);
+			        }
+			    }
+			    /*
+			    * 此处是截图后的回调函数，用于将截图的详细信息反馈回来，你需要调整此函数，完成图像数据的传输与显示
+			    */
+			    function OnCaptureFinishedCallback(type, x, y, width, height, info, content, localpath) {
+			        if (type < 0) {
+						alert("没有"+type)
+			            // 需要重新安装控件
+			            // ShowDownLoad();
+			            return;
+			        }
+			        switch (type) {
+					//回车
+			        case 1: {
+			            UploadCaptureData(content, localpath);
+			            break;
+			        }
+					//取消
+			        case 2: {
+			            // $('#info').html('您取消了截图');
+						document.getElementById("info").style.display="none";
+			            break;
+			        }
+			        case 3: {
+						alert("第三")
+			            UploadCaptureData(content, localpath);
+			            break;
+			        }
+			        case 4: {
+						alert("第四")
+			            if (info == '0') {
+			                // $('#info').html('从剪贴板获取到了截图： ' + localpath);
+			                UploadCaptureData(content, localpath);
+			            } else {
+			                var msg = '从剪贴板获取图片失败。';
+			                // console.log(msg);
+			                _self.$confirm(msg, '提示', {
+			                    confirmButtonText: '好的',
+			                    type: 'warning',
+			                    showCancelButton : false,
+			                });
+			            }
+			            break;
+			        }
+			        }
+			    }
+			    // 控制上传
+			    function UploadCaptureData(content, localpath) {
+					
+					document.getElementById("info").style.display="none";
+					//var img = document.createElement("img");
+			        //img.src = 'data:image/png;base64,' + content;
+					var base64='data:image/png;base64,' + content;
+					var projectid=sessionStorage.getItem("projectid");
+					//保存到数据库
+					axios.post(api.Addprintscreen,{
+								images:base64,
+								projectId:projectid,
+								modelId:1,
+								typdprint:1,
+							}).then(retult=>{
+								// console.log(retult.data)
+								_self.swipersbj = 'display:block';
+								//绑定截图的照片
+								var projectidss = sessionStorage.getItem("projectid");
+								if (projectidss != '' && projectidss != null && projectidss != undefined) {
+									axios.get(api.SelectPrintscreen + "/" + projectidss+"/1"+"/1").then(result => {
+										_self.Printscreen = result.data.printscreenslist;
+									})
+								}
+							})
+			    }
+			    _self.$nextTick(()=>{
+			        var hasInitNiuniu = null;
+			        document.onkeydown = function(e) {
+			            if((e.ctrlKey && e.which == 88)) {
+							Init();
+			                StartCapture();
+			            }
+			        }
+			        _self.$refs.creenBtn.onclick = function(){
+						// 图片中的拍照图片
+						this.fbpzs = require('../../assets/image/fbpzsblue.png'),
+						// 图片中的拍照的字体颜色
+						this.fbpzscolor = 'color:#2180ED'
+						Init();
+			            StartCapture();
+			        }
+			    });
 			},
-
 			// 点击轮播中的取消选择
 			fnqxchangswper() {
 				this.checkbox = [];
@@ -439,9 +1259,9 @@
 				// console.log(printscreenIds)
 				if(this.checkboxPrintscreen.length!=0){
 					// console.log(this.checkboxPrintscreen)
-					axios.get(api.DynamicForeachTest+"?ids="+this.checkboxPrintscreen).then(result=>{
-						window.location.href=result.data
-					})
+					// axios.get(api.DynamicForeachTest+"?ids="+this.checkboxPrintscreen).then(result=>{
+					// 	window.location.href=result.data
+					// })
 				}
 				this.checkbox = [];
 				this.checkboxPrintscreen = [];
