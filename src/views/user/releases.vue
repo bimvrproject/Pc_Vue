@@ -387,7 +387,8 @@
 			this.fnScreen();   
 		},
 		methods: {
-			//拍照
+			
+			//拍照001
 			fnScreen() {
 			    var _self = this;
 			    var emPensize = 1;      //设置画笔大小
