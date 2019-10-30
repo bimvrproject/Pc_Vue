@@ -5,7 +5,7 @@
 			<div class="mores1" @click="Preservation">保存设置</div>
 			<div class="mores1" @click="Xiugai">修改密码</div>
 			<div class="mores1" @click="abouts">联系我们</div>
-			<div class="moresb">版本号: v 1.0.1</div>
+			<div class="moresb">版本号: v 1.0.3</div>
 		</div>
 	</div>
 </template>

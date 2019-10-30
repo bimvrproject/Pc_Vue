@@ -49,7 +49,7 @@
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>更改密码</el-dropdown-item>
-						<el-dropdown-item>版本 1.0</el-dropdown-item>
+						<el-dropdown-item>版本 1.0.3</el-dropdown-item>
 						<el-dropdown-item>注销登录</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>

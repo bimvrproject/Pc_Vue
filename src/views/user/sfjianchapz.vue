@@ -52,7 +52,7 @@
 						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
 						 	</div>
 						 	<div class="mores1comsfjc" @click="fnabout">联系我们</div>
-						 	<div class="moresbcomsfjc">版本号: v 1.0.1</div>
+						 	<div class="moresbcomsfjc">版本号: v 1.0.3</div>
 						 </div>
 				</div>
 				<!-- 下拉菜单---更多--结束 -->

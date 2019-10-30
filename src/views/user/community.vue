@@ -44,7 +44,7 @@
 					<div class="moocom">
 						<div class="mores1com"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
 						<div class="mores1com" @click="fnabout">联系我们</div>
-						<div class="moresbcom">版本号: v 1.0.1</div>
+						<div class="moresbcom">版本号: v 1.0.3</div>
 					</div>
 				</div>
 				<!-- 更多下拉 -->
