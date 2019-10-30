@@ -463,6 +463,14 @@ export default {
 			this.$refs.gdcol.style.color = '#333333';
 			this.moretb = require('../../assets/image/more@2x.png');
 		},
+		setCookie(c_name, c_pwd,c_check, exdays) {
+			var exdate = new Date(); //获取时间
+			exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * exdays); //保存的天数
+			//字符串拼接cookie
+			window.document.cookie = "userName" + "=" + c_name + ";path=/;expires=" + exdate.toGMTString();
+			window.document.cookie = "userPwd" + "=" + c_pwd + ";path=/;expires=" + exdate.toGMTString();
+			window.document.cookie = "checkbox" + "=" + c_check + ";path=/;expires=" + exdate.toGMTString();
+		},
 		//注册
 		login() {
 			this.panduandenglu=false;
@@ -481,6 +489,7 @@ export default {
 						//注册成功跳转页面
 						this.panduanphone = false;
 						this.loginWindow = false;
+						this.setCookie("", "", -1); //修改2值都为空，天数为负1天就好了
 						this.$router.push("/")
 						// alert("跳转页面")
 						// alert(this.phone1)

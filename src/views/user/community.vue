@@ -323,8 +323,9 @@ export default {
 		// Release
 	},
 	created() {
-		this.username="";
-		this.password="";
+		this.getCookie();
+		// this.username="";
+		// this.password="";
 		this.$eventbus.$on('loginhertru', () => {
 			this.loginWindow = true;
 		});
@@ -354,7 +355,7 @@ export default {
 			this.this.$refs.xmcol.style.color = '#333333';
 			this.sqcolor = 'color:#333';
 		});
-		 this.getCookie();
+		 
 	},
 	mounted() {
 		if (window.sessionStorage.getItem('token') != null) {
@@ -590,7 +591,7 @@ export default {
 			this.$http.post(api.GetUser).then(res => this.userHome(res));
 		},
 		userHome(res) {
-			this.username = res.data.userName;
+			this.username = res.data.phone;
 			// console.log('this.userName   ' + this.userName);
 		},
 		// 关闭login悬浮窗
