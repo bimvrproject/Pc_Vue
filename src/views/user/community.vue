@@ -273,6 +273,7 @@
 
 <script>
 /*eslint-disable*/
+import global from "@/api/global";
 import api from '@/api/api.js';
 import axios from 'axios';
 import qs from 'qs';
@@ -566,6 +567,8 @@ export default {
 				this.$store.commit('setPhone', this.username);
 				window.sessionStorage.setItem('token', this.token);
 				window.sessionStorage.setItem('phone', this.username);
+				//储存版本号
+				window.sessionStorage.setItem("version",global.version)
 				this.getUserByToken();
 				//注册成功跳转页面
 				this.panduan = false;
