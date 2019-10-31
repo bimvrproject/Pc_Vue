@@ -6,13 +6,11 @@
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 				<Releases v-show="release"></Releases>
-				<Edit v-show="edits"></Edit>
+				<Gedit v-show="gedits"></Gedit>
 			</div>
 		</div>
 		<div class="box">
 			<!-- 除去侧边栏的剩余部分-->
-			<!--右侧登录标识 -->
-			<!--  <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
 			<div class="hometopgm" v-show="hometop">
 				<!-- 	下拉菜单---项目 -->
@@ -34,7 +32,7 @@
 					<span class="el-dropdown-link sqssgm" @click="fngxmxsq()">
 						<span :class="{ sqimggm: istruesqgm, sqimggmf: isfalsesqgm }"></span>
 						<!-- <img class="sqimggm" :src="hsq"/> -->
-						<i class="sqgm" :style="hsqcolor">社区</i>
+						<i class="sqgm">社区</i>
 					</span>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
@@ -66,7 +64,6 @@
 				<!-- 	<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" /> -->
 				<span :class="{ gdimgm: istruegdm, gdimgfm: isfalsegdm }"></span>
 				<i class="hgmorecomgxmx" :style="gdcolor">更多</i>
-					<!-- <span class="hgmorecomgxmx">更多</span> -->
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
 					</i>
@@ -118,41 +115,6 @@
 			v-show="abouts"
 			@click="fnaboutmark"
 		></div>
-		<!-- 图片展示轮播图 -->
-		<!-- Swiper -->
-		<div class="swiper-container gallery-top" style="position:absolute;top:5rem;left:10rem;" v-show="topswper">
-			<div class="swiper-wrapper" v-show="swiperxy">
-				<div class="swiper-slide swiper-slidetop" v-for="(item, index) in checkboxList" :key="index" style="position:relative;">
-					<img src="../../assets/image/t4.jpg" alt="" />
-					<span
-						class="fa fa-times"
-						style="position:absolute;right:0.016rem;top:0.016rem;z-index:30;font-size:0.66rem;color:#EEEEEE;display:inline-block;width:0.8rem;height:0.8rem;background:rgba(225,225,225,.3);line-height:0.8rem;"
-						@click.stop="fnggx(index)"
-					></span>
-				</div>
-			</div>
-			<div class="swiper-button-next swiper-button-white" v-show="qianjin"></div>
-			<div class="swiper-button-prev swiper-button-white" v-show="houtui"></div>
-		</div>
-		<div class="swiper-container gallery-thumbs" style="width:53rem;height:8rem;position:absolute;top:25.7rem;left:7rem;" :style="swipersbj">
-			<div class="swiper-wrapper" v-show="swiperbottomgx">
-				<div class="swiper-slide swiper-slidebottom" @click="fnswipersgx()" v-for="(item, index) in checkboxList" :key="index" @contextmenu.prevent="fnyouji(index)">
-					<span
-						class="vvv"
-						style="width:0.9rem;height:0.9rem;border:2px solid #FFFFFF;
-					display:inline-block;position:absolute;top:0rem;right:0.15rem;"
-						:class="checkbox.includes(index) ? 'checkeds' : ''"
-						@click.stop="check(index)"
-					></span>
-					<img src="../../assets/image/t4.jpg" alt="" />
-					<div class="xbzs" v-show="aaaaaa === index">
-						<span class="fqq" @click.stop="fabu" :style="fbswper">发布</span>
-						<span class="fqq quanxuan" @click.stop="checkAll" :style="fbswperall">全选</span>
-						<span class="fqq qx" @click.stop="clearCheckbox()" :style="fbswperqxchang">取消选择</span>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
 <script>
@@ -164,13 +126,12 @@ import Newjian from './newjian';
 import Xunilogo from './xunilogo';
 import axios from 'axios';
 import Releases from './releases';
-import Edit from './edit';
+import Gedit from './gedit';
 import addressurls from '@/api/ip.js';
 // import Zheader from './header';
 export default {
 	data() {
 		return {
-			aaaaaa: -1,
 			//显示上传的功能按钮
 			fileshow: true,
 			title: '18306846355',
@@ -200,6 +161,8 @@ export default {
 			gdcolor:'color:#333333',
 			//发布
 			release: false,
+			//编辑
+			gedits:false,
 			//总的等陆头部
 			zheaderxy: true,
 			// 更多中的下拉
@@ -217,26 +180,9 @@ export default {
 				accept: '.zip, .jar, .war, .rar, .7z'
 			},
 			// newarrs:[0,0,0,0,0,0,0,0],
-			// 轮播下部图纸展示数组
-			checkboxList: [0, 0, 0, 0, 0, 0],
-			checkbox: [],
-			// 轮播中的发布的背景色
-			fbswper: 'background:rgba(225,225,225,0)',
-			fbswperall: 'background:rgba(225,225,225,0)',
-			fbswperqxchang: 'background:rgba(225,225,225,0)',
-			// swiper上边部分
-			swiperxy: true,
-			// 轮播下边隐藏
-			swiperbottomgx: false,
-			//轮播下边的最大背景图的显隐
-			swipersbj: 'background:rgba(225,225,225,0)',
-			// 轮播中的大图的左右按钮
-			qianjin: false,
-			houtui: false,
 			// 社区默认状态
 			hsq: require('../../assets/image/sq@2x.png'),
 			// hsqcolor:"color:#333333",
-			topswper: true,
 			moretb: require('../../assets/image/more@2x.png'),
 			// 社区
 			istruesqgm: true,
@@ -258,26 +204,13 @@ export default {
 		Newjian,
 		Xunilogo,
 		Releases,
-		Edit
+		Gedit
 		// Zheader
 	},
 	created() {
-		// 创建点击发布的时候轮播图出现
-		this.$eventbus.$on('fbswipersgx', () => {
-			this.swiperbottomgx = true;
-			// this.topswper = true;
-			this.swipersbj = 'background:#EEEEEE';
-		});
-		// 创建点击发布的时候轮播图消失
-		this.$eventbus.$on('fbswiperssgx', () => {
-			this.swiperbottomgx = false;
-			this.swiperxy = false;
-			(this.topswper = false), (this.swipersbj = 'background:rgba(225,225,225,0)'), (this.houtui = false);
-			this.qinajin = false;
-		});
 		// 编辑与发布隐藏事件
 		this.$eventbus.$on('ceyinfbs', () => {
-			 this.edits = false;
+			 this.gedits = false;
 			 this.release = false;
 			 this.xianyinxuni = true
 			 this.istruebjgm = true;
@@ -338,84 +271,16 @@ export default {
 		//管线模型
 	},
 	mounted() {
-		this.$eventbus.$emit('fbswiperssgx');
 		this.$eventbus.$emit('cezhan2', 'moxin');
-		this.$eventbus.$emit('hometop');
-		var galleryThumbs = new Swiper('.gallery-thumbs', {
-			spaceBetween: 10,
-			slidesPerView: 8,
-			freeMode: true,
-			watchSlidesVisibility: true,
-			watchSlidesProgress: true
-		});
-		new Swiper('.gallery-top', {
-			spaceBetween: 10,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			},
-			thumbs: {
-				swiper: galleryThumbs
-			}
-		});
+		this.$eventbus.$emit('hometop')
 	},
 	methods: {
-		// 点击轮播中的取消选择
-		clearCheckbox() {
-			this.checkbox = [];
-			sessionStorage.setItem('qingkongquanbu', JSON.stringify(this.checkbox));
-		},
-		// 点击轮播中的全选
-		checkAll() {
-			var len = this.checkboxList.length;
-			this.checkbox = [];
-			for (var i = 0; i < len; i++) {
-				this.checkbox.push(i);
-			}
-			sessionStorage.setItem('quanxuan', JSON.stringify(this.checkbox));
-		},
-		// 点击轮播中的发布
-		fabu() {
-			sessionStorage.setItem('fabu', JSON.stringify(this.checkbox));
-		},
-		// 鼠标右击
-		fnyouji(index) {
-			// this.isActivefb = index
-			// alert(this.isActivefb)
-			this.aaaaaa = index;
-		},
-		// 选择对勾
-		check(i) {
-			var idx = this.checkbox.indexOf(i);
-			//如果已经选中了，那就取消选中，如果没有，则选中
-			if (idx > -1) {
-				this.checkbox.splice(idx, 1);
-			} else {
-				this.checkbox.push(i);
-			}
-			sessionStorage.setItem('duoxuan', JSON.stringify(this.checkbox));
-		},
-		// 点击swiper头上的关闭
-		fnggx(index) {
-			this.swiperxy = false;
-			this.topswper = false;
-			this.qianjin = false;
-			this.houtui = false;
-		},
-		//点击swiper下边的
-		fnswipersgx() {
-			this.swiperxy = true;
-			this.qianjin = true;
-			this.houtui = true;
-			(this.topswper = true), (this.aaaaaa = null);
-		},
 		// 点击新建项目
 		fnjzmx() {
 			// this.$eventbus.$emit('cezhan', 'moxin');
 			// this.$eventbus.$emit('ceyindj', 'xinjianmoxin');
 			// this.$eventbus.$emit('ceyinfb', 'xjxm');
 			this.$eventbus.$emit('ceyinfbs');
-			this.$eventbus.$emit('fbswiperssgx');
 			this.fbtu = require('../../assets/image/fbnav.png');
 			this.bjtu = require('../../assets/image/bianji.png');
 			this.bjcolor = 'color:#333333';
@@ -427,7 +292,6 @@ export default {
 			// this.$eventbus.$emit('ceyindj', 'jianzhumoxin');
 			// this.$eventbus.$emit('ceyinfb', 'jzjg');
 			this.$eventbus.$emit('ceyinfbs');
-			this.$eventbus.$emit('fbswiperssgx');
 			this.fbtu = require('../../assets/image/fbnav.png');
 			this.bjtu = require('../../assets/image/bianji.png');
 			this.bjcolor = 'color:#333333';
@@ -471,7 +335,6 @@ export default {
 		ceyins() {
 			this.$eventbus.$emit('ceyin');
 			this.$eventbus.$emit('ceyinxxs');
-			this.$eventbus.$emit('fbswiperssgx');
 			this.istruebjgm = false;
 			this.isfalsebjgm = true;
 			this.istrue = true;
@@ -479,7 +342,7 @@ export default {
 			this.bjcolor = 'color:#2180ED';
 			this.release = false;
 			this.xianyinxuni = false;
-			this.edits = true;
+			this.gedits = true;
 			this.fbcolor = 'color:#333333';
 			this.lmore = require('../../assets/image/pmjtxia.png');
 			this.nmbj = require('../../assets/image/shang.png');
@@ -494,13 +357,11 @@ export default {
 			this.isfalsebjgm = false;
 			this.release = true,
 			this.xianyinxuni = false,
-			this.edits = false;
+			this.gedits = false;
 			this.bjcolor = 'color:#333333';
 			this.nmfb = require('../../assets/image/shang.png');
 			this.nmbj = require('../../assets/image/pmjtxia.png');
 			this.lmore = require('../../assets/image/pmjtxia.png');
-			// 调用点击发布的时候轮播显示
-			this.$eventbus.$emit('fbswipersgx');
 		},
 		// 划过更多
 		fnmorgxmx() {
@@ -547,32 +408,6 @@ export default {
 	color: #2180ed !important;
 	background: url(../../assets/image/fbblue.png) no-repeat;
 	background-size: 0.84375rem 0.8125rem;
-}
-.checkeds {
-	background: url(../../assets/image/bluedui.png) no-repeat 0.07rem 0.03rem;
-	background-size: 0.8rem 0.8rem;
-	z-index: 20000;
-}
-.fqq {
-	height: 0.7rem;
-	font-size: 0.4375rem;
-	text-align: left;
-	padding-left: 0.4rem;
-	color: rgba(51, 51, 51, 1);
-	font-family: Microsoft YaHei;
-	font-weight: 400;
-}
-.xbzs {
-	width: 5.999rem;
-	height: 2.34375rem;
-	position: absolute;
-	bottom: 0rem;
-	left: 0rem;
-	display: flex;
-	flex-direction: column;
-	cursor: pointer;
-	background: rgba(225, 225, 225, 0.7);
-	/* display:none; */
 }
 /* 更多 */
 .moretopcomgxmx {
@@ -641,48 +476,6 @@ export default {
 .moretopcomgxmx:hover .shouye {
 	transform: rotate(180deg);
 } */
-
-/* tou */
-.swiper-slidetop {
-	background: paleturquoise;
-	width: 47.46875rem;
-	height: 20.21875rem;
-}
-.swiper-slidetop img {
-	width: 47.46875rem;
-	height: 20.21875rem;
-}
-.swiper-slidebottom {
-	width: 6rem !important;
-	height: 6rem !important;
-	margin-right: 0.5rem;
-}
-.swiper-slidebottom img {
-	width: 6rem !important;
-	height: 6rem !important;
-}
-/* 	.swiper-container {
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.swiper-slide {
-		background-size: cover;
-		background-position: center;
-	} */
-.gallery-top {
-	width: 45.86875rem;
-	height: 20.21875rem;
-}
-.gallery-thumbs {
-	box-sizing: border-box;
-	padding: 0.8rem 0;
-}
-.gallery-thumbs .swiper-slide {
-	opacity: 0.8;
-}
-.gallery-thumbs .swiper-slide-thumb-active {
-	opacity: 1;
-}
 .gxmodelmore {
 	background: rgba(225, 225, 225, 0.3);
 	position: absolute;

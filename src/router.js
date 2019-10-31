@@ -11,7 +11,7 @@ export default new Router({
 		{
 			path: "/",
 			name: "community",
-			component: () =>import('./views/user/community.vue'),
+			component: () => import("./views/user/community.vue"),
 			// children:[
 			// 	{
 			// 		path: 'baocun',
@@ -176,14 +176,6 @@ export default new Router({
 				// requireAuth: true
 			},
 			component: () => import("./views/user//personnel.vue")
-		},
-		{
-			path: "/a",
-			name: "/a",
-			meta: {
-				// requireAuth: true
-			},
-			component: () => import("./views/user//a.vue")
 		}
 	]
 });

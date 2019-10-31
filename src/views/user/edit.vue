@@ -20,340 +20,204 @@
 							</div> 
 							<!-- 信息展开 -->
 							<div v-show="xinxizhanshi">
-								<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-								margin-bottom:0.2rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnground()">
-								地面<img src="../../assets/image/editx.png" alt="" v-show="groundimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-								<img src="../../assets/image/edits.png" alt="" v-show="!groundimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
+								<span class="grounda" @click="fnground()" :class="{gro:grot,gros:!grot}">
+								   地面
+								  <img src="../../assets/image/editx.png" alt="" v-show="groundimg" class="groundb">
+								  <img src="../../assets/image/edits.png" alt="" v-show="!groundimg" class="groundb">
 								</span>
 								<!--地面的line -->
-								<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.25rem;" v-show="groline">
-								</span>
+								<span class="groundc" v-show="groline"></span>
 								<!-- 创建新的地面的厚度 -->
-									<ul v-show="ground">
-										<li v-for="(item, index) in newjian" :key="index">
-											<div style="height:0.825rem;
-											margin-bottom:0.25rem;
-											position: relative;
-											display:flex;
-											padding-left:0.6rem;
-											text-align:left;
-											justify-content:space-around;
-											padding-right:0.5rem;
-											">
-													<!-- item.change 代表input-->
-													<!-- <i style="font-style: normal;color:rgba(225,225,225,1);font-weight:400;float:left;font-size:0.5rem;display:inline-block;"> -->
-														<div
-														@dblclick="fnwall2(index)"
-														style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-														position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;"
-														><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.msgs">{{item.msgs}}</p>
-														</div>
-														<input 
-														v-model="newjian[index].msgs"
-														@blur="changewall2(index)"
-														v-show="item.changes"
-														type="text"
-														style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-														/>
-														<div v-show="!item.change" @dblclick="fnwall1(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-														font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-														<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.msg">: {{ item.msg }}</p>
-													</div>
-														<input
-															v-model="newjian[index].msg"
-															type="text"
-															@blur="changewall1(index)"
-															v-show="item.change"
-															style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-														/>
-													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear1(index)" alt="">
+								<ul v-show="ground">
+									<li v-for="(item, index) in newjian" :key="index">
+										<div class="groundd">
+											<div @dblclick="fnwall2(index)" class="grounde">
+												<p class="groundf" :title="item.msgs">{{item.msgs}}</p>
 											</div>
-										</li>
-										<li style="width:6.2rem;height:0.98125rem;">
-											<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establish()">
-												<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-											</span>
-										</li>
-									</ul>
-									<!-- 墙面metope -->
-									<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-									margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnmetope()">
-									墙面<img src="../../assets/image/editx.png" alt="" v-show="metopeimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-									<img src="../../assets/image/edits.png" alt="" v-show="!metopeimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-									</span>
-									<!-- 墙面下边的line -->
-									<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="metline"></span>
-									<!-- 创建新的墙面的厚度 -->
-										<ul v-show="metope">
-											<li v-for="(item, index) in metarr" :key="index">
-												<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-												justify-content:space-around;padding-right:0.5rem;"
-											>
-																<div
-																@dblclick="fnmet1(index)"
-																style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-																position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-																><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.metopes">{{item.metopes}}</p></div>
-																<input 
-																v-model="metarr[index].metopes"
-																@blur="changemet1(index)"
-																v-show="item.changemetope1"
-																type="text"
-																style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-																/>
-																<div v-show="!item.changemetope2" @dblclick="fnmet2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-																font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-																<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.msgmet">: {{ item.msgmet }}</p>
-																</div>
-																<input
-																	v-model="metarr[index].msgmet"
-																	type="text"
-																	@blur="changemet2(index)"
-																	v-show="item.changemetope2"
-																	style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-																/>
-														</i>
-														<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear2(index)" alt="">
-												</div>
-											</li>
-											<li style="width:6.2rem;height:0.98125rem;">
-												<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishmetop()">
-													<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-												</span>
-											</li>
-										</ul>
-										<!-- 天棚metope -->
-										<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-										margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnceil()">
-										天棚<img src="../../assets/image/editx.png" alt="" v-show="ceiimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-										<img src="../../assets/image/edits.png" alt="" v-show="!ceiimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-										</span>
-										<!-- 天棚下边的line -->
-										<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="ceiline"></span>
-										<!-- 创建新的天棚的厚度 -->
-											<ul v-show="ceiling">
-												<li v-for="(item, index) in ceiarr" :key="index">
-													<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-													justify-content:space-around;padding-right:0.5rem;"
-												>
-												     <div
-																	@dblclick="fncei1(index)"
-																	style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-																	position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-																	><p style="white-space: nowrap; overflow:hidden;text-overflow: ellipsis;" :title="item.ceis1">{{item.ceis1}}</p></div>
-																	<input 
-																	v-model="ceiarr[index].ceis1"
-																	@blur="changecei1(index)"
-																	v-show="item.changecei1"
-																	type="text"
-																	style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-																	/>
-																	<div v-show="!item.changecei2" @dblclick="fncei2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-																	font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-																	<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.ceis2">: {{item.ceis2}}</p>
-																	</div>
-																	<input
-																		v-model="ceiarr[index].ceis2"
-																		type="text"
-																		@blur="changecei2(index)"
-																		v-show="item.changecei2"
-																		style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-																	/>
-															</i>
-															<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear3(index)" alt="">
-													</div>
-												</li>
-												<li style="width:6.2rem;height:0.98125rem;">
-													<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishcei()">
-														<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-													</span>
-												</li>
-											</ul>
-											<!-- 门窗 -->
-											<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-											margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fndoor()">
-											门窗<img src="../../assets/image/editx.png" alt="" v-show="doorimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-											<img src="../../assets/image/edits.png" alt="" v-show="!doorimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-											</span>
-											<!-- 门窗下边的line -->
-											<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="doorline"></span>
-											<!-- 创建新的门窗的厚度 -->
-												<ul v-show="doors">
-													<li v-for="(item, index) in doorarr" :key="index">
-														<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-														justify-content:space-around;padding-right:0.5rem;"
-													>
-													     <div
-																		@dblclick="fndoor1(index)"
-																		style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-																		position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-																		><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.door1">{{item.door1}}</p></div>
-																		<input 
-																		v-model="doorarr[index].door1"
-																		@blur="changedoor1(index)"
-																		v-show="item.changedoor1"
-																		type="text"
-																		style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-																		/>
-																		<div v-show="!item.changedoor2" @dblclick="fndoor2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-																		font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-																		<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.door2">: {{item.door2}}</p>
-																		</div>
-																		<input
-																			v-model="doorarr[index].door2"
-																			type="text"
-																			@blur="changedoor2(index)"
-																			v-show="item.changedoor2"
-																			style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-																		/>
-																</i>
-																<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear4(index)" alt="">
-														</div>
-													</li>
-													<li style="width:6.2rem;height:0.98125rem;">
-														<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishdoor()">
-															<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-														</span>
-													</li>
-										</ul>
-								<!-- 结构 -->
-								<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-								margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnstr()">
-								结构<img src="../../assets/image/editx.png" alt="" v-show="strimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-								<img src="../../assets/image/edits.png" alt="" v-show="!strimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-								</span>
-								<!-- 结构下边的line -->
-								<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="strline"></span>
-								<!-- 创建新的结构的厚度 -->
-									<ul v-show="strs">
-										<li v-for="(item, index) in strarr" :key="index">
-											<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-											justify-content:space-around;padding-right:0.5rem;"
-										>
-										     <div
-															@dblclick="fnstr1(index)"
-															style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-															position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-															><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.str1">{{item.str1}}</p></div>
-															<input 
-															v-model="strarr[index].str1"
-															@blur="changestr1(index)"
-															v-show="item.changestr1"
-															type="text"
-															style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-															/>
-															<div v-show="!item.changestr2" @dblclick="fnstr2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-															font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-															<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.str2">: {{item.str2}}</p>
-															</div>
-															<input
-																v-model="strarr[index].str2"
-																type="text"
-																@blur="changestrs2(index)"
-																v-show="item.changestr2"
-																style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-															/>
-													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear5(index)" alt="">
+											<input v-model="newjian[index].msgs" @blur="changewall2(index)" v-show="item.changes" class="groundg" type="text"/>
+											<div v-show="!item.change" @dblclick="fnwall1(index)" class="groundh">
+												<p class="groundf" :title="item.msg">: {{ item.msg }}</p>
 											</div>
-										</li>
-										<li style="width:6.2rem;height:0.98125rem;">
-											<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishstr()">
-												<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-											</span>
-										</li>
-									</ul>
-								<!-- 室外 -->
-								<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-								margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnoutdoor()">
-								室外<img src="../../assets/image/editx.png" alt="" v-show="outdoorimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-								<img src="../../assets/image/edits.png" alt="" v-show="!outdoorimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-								</span>
-								<!-- 结构下边的line -->
-								<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="outdoorline"></span>
-								<!-- 创建新的结构的厚度 -->
-									<ul v-show="outdoor">
-										<li v-for="(item, index) in outdoorarr" :key="index">
-											<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-											justify-content:space-around;padding-right:0.5rem;"
-										>
-										     <div
-															@dblclick="fnoutdoor1(index)"
-															style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-															position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-															><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.outdoor1">{{item.outdoor1}}</p></div>
-															<input 
-															v-model="outdoorarr[index].outdoor1"
-															@blur="changeoutdoor1(index)"
-															v-show="item.changeoutdoor1"
-															type="text"
-															style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-															/>
-															<div v-show="!item.changeoutdoor2" @dblclick="fnoutdoor2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-															font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-															<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.outdoor2">: {{item.outdoor2}}</p>
-															</div>
-															<input
-																v-model="outdoorarr[index].outdoor2"
-																type="text"
-																@blur="changeoutdoor2(index)"
-																v-show="item.changeoutdoor2"
-																style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-															/>
-													</i>
-													<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear6(index)" alt="">
-											</div>
-										</li>
-										<li style="width:6.2rem;height:0.98125rem;">
-											<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishoutdor()">
-												<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
-											</span>
-										</li>
-									</ul>
-							<!-- 其他 -->
-							<span style="width:5.245rem;height:0.625rem;font-size:0.5rem;display:block;color:#FFFFFF;text-align:left;
-							margin-bottom:0.3rem;margin-top:0.38rem;margin-left:0.9rem;display:flex;justify-content: space-between;" @click="fnother()">
-							其他<img src="../../assets/image/editx.png" alt="" v-show="otherimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-							<img src="../../assets/image/edits.png" alt="" v-show="!otherimg" style="width:0.41625rem;height:0.26rem;padding-top:0.26rem;">
-							</span>
-							<!-- 结构下边的line -->
-							<span style="width:5.375rem;margin-left:0.9rem;height:0.03125rem‬;display:block;border-bottom:0.03125rem solid darkgray;margin-bottom:0.3rem;" v-show="otherline"></span>
-							<!-- 创建新的结构的厚度 -->
-								<ul v-show="other">
-									<li v-for="(item, index) in otherarr" :key="index">
-										<div style="height:0.825rem;margin-bottom:0.25rem;position: relative;display:flex;padding-left:0.6rem;text-align:left;
-										justify-content:space-around;padding-right:0.5rem;"
-									>
-									     <div
-														@dblclick="fnother1(index)"
-														style="font-style:normal;display:inline-block;font-size:0.5rem;font-family:Microsoft YaHei;font-weight:400;color:rgba(255,255,255,1);
-														position:relative;width:2.38rem;height:0.75rem;line-height:0.8rem;text-overflow:ellipsis;"
-														><p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.other1">{{item.other1}}</p></div>
-														<input 
-														v-model="otherarr[index].other1"
-														@blur="changeother1(index)"
-														v-show="item.changeother1"
-														type="text"
-														style="width:2.5rem;height:0.75rem;font-size:0.5rem;border:none;position:absolute;left:0.3rem;"
-														/>
-														<div v-show="!item.changeother2" @dblclick="fnother2(index)" style="font-style:normal;display:inline-block;width:2.075rem;height:0.75rem;
-														font-size:0.5rem;padding-top:0.2rem;margin-left:-0.4rem;position:relative;color:#FFFFFF;">
-														<p style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" :title="item.other2">: {{item.other2}}</p>
-														</div>
-														<input
-															v-model="otherarr[index].other2"
-															type="text"
-															@blur="changeother2(index)"
-															v-show="item.changeother2"
-															style="width:2.03125rem;height:0.75rem;font-size:0.5rem;border:none;margin-left:-0.33rem;"
-														/>
-												</i>
-												<img src="../../assets/image/lj.png" style="width:0.40625rem;height:0.5rem;padding-bottom:0.3125rem;padding-top:0.2rem;" @click="clear7(index)" alt="">
+											<input v-model="newjian[index].msg" type="text" @blur="changewall1(index)" v-show="item.change" class="groundi"/>
+											<img src="../../assets/image/lj.png" @click="clear1(index)" class="groundk" alt="">
 										</div>
 									</li>
 									<li style="width:6.2rem;height:0.98125rem;">
-										<span style="display:inline-block;width:0.60625rem;height:0.61875rem;float:right;" @click="establishother()">
+										<span class="groundl" @click="establish()">
+											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
+										</span>
+									</li>
+								</ul>
+								<!-- 墙面metope -->
+								<span class="grounda" @click="fnmetope()" :class="{met:mett,mets:!mett}">
+									墙面
+									<img src="../../assets/image/editx.png" alt="" v-show="metopeimg" class="groundb">
+									<img src="../../assets/image/edits.png" alt="" v-show="!metopeimg" class="groundb">
+								</span>
+								<!-- 墙面下边的line -->
+								<span class="groundc" v-show="metline"></span>
+								<!-- 创建新的墙面的厚度 -->
+								<ul v-show="metope">
+									<li v-for="(item, index) in metarr" :key="index">
+										<div class="groundd">
+											<div @dblclick="fnmet1(index)" class="grounde">
+												<p class="groundf" :title="item.metopes">{{item.metopes}}</p>
+											</div>
+											<input v-model="metarr[index].metopes" @blur="changemet1(index)" v-show="item.changemetope1" type="text" class="groundg"/>
+											<div v-show="!item.changemetope2" @dblclick="fnmet2(index)" class="groundh">
+												<p class="groundf" :title="item.msgmet">: {{ item.msgmet }}</p>
+											</div>
+											<input v-model="metarr[index].msgmet" type="text" @blur="changemet2(index)" v-show="item.changemetope2" class="groundi"/>
+											<img src="../../assets/image/lj.png" class="groundk" @click="clear2(index)" alt="">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span class="groundl" @click="establishmetop()">
+										  <img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
+										</span>
+									</li>
+								</ul>
+								<!-- 天棚metope -->
+								<span @click="fnceil()" class="grounda" :class="{cei:ceit,ceis:!ceit}">
+									天棚
+									<img src="../../assets/image/editx.png" alt="" v-show="ceiimg" class="groundb">
+									<img src="../../assets/image/edits.png" alt="" v-show="!ceiimg" class="groundb">
+								</span>
+								<!-- 天棚下边的line -->
+								<span v-show="ceiline" class="groundc"></span>
+									<!-- 创建新的天棚的厚度 -->
+								<ul v-show="ceiling">
+									<li v-for="(item, index) in ceiarr" :key="index">
+										<div class="groundd">
+											<div @dblclick="fncei1(index)" class="grounde">
+												<p :title="item.ceis1" class="groundf">{{item.ceis1}}</p>
+											</div>
+											<input v-model="ceiarr[index].ceis1" @blur="changecei1(index)" v-show="item.changecei1" type="text" class="groundg"/>
+											<div v-show="!item.changecei2" @dblclick="fncei2(index)" class="groundh">
+												<p :title="item.ceis2" class="groundf">: {{item.ceis2}}</p>
+											</div>
+											<input v-model="ceiarr[index].ceis2" type="text" @blur="changecei2(index)" v-show="item.changecei2" class="groundi">
+											<img src="../../assets/image/lj.png" @click="clear3(index)" alt=""  class="groundk">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span @click="establishcei()" class="groundl">
+											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;"/>
+										</span>
+									</li>
+							  </ul>
+								<!-- 门窗 -->
+								<span @click="fndoor()" class="grounda" :class="{dor:dort,dors:!dort}">
+									门窗
+									<img src="../../assets/image/editx.png" alt="" v-show="doorimg" class="groundb">
+									<img src="../../assets/image/edits.png" alt="" v-show="!doorimg" class="groundb">
+								</span>
+								<!-- 门窗下边的line -->
+								<span v-show="doorline" class="groundc"></span>
+								<!-- 创建新的门窗的厚度 -->
+								<ul v-show="doors">
+									<li v-for="(item, index) in doorarr" :key="index">
+										<div class="groundd">
+                      <div @dblclick="fndoor1(index)" class="grounde">
+												<p :title="item.door1" class="groundf">{{item.door1}}</p>
+											</div>
+											<input v-model="doorarr[index].door1" @blur="changedoor1(index)" v-show="item.changedoor1" type="text" class="groundg"/>
+											<div v-show="!item.changedoor2" @dblclick="fndoor2(index)"  class="groundh">
+												<p :title="item.door2" class="groundf">: {{item.door2}}</p>
+											</div>
+											<input v-model="doorarr[index].door2" type="text" @blur="changedoor2(index)" v-show="item.changedoor2" class="groundi"/>
+											<img src="../../assets/image/lj.png" @click="clear4(index)" alt="" class="groundk">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span @click="establishdoor()" class="groundl">
+											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
+										</span>
+									</li>
+								</ul>
+								<!-- 结构 -->
+								<span @click="fnstr()" class="grounda" :class="{st:stt,sts:!stt}">
+								  结构
+								  <img src="../../assets/image/editx.png" alt="" v-show="strimg" class="groundb">
+								  <img src="../../assets/image/edits.png" alt="" v-show="!strimg" class="groundb">
+								</span>
+								<!-- 结构下边的line -->
+								<span v-show="strline" class="groundc"></span>
+								<!-- 创建新的结构的厚度 -->
+								<ul v-show="strs">
+									<li v-for="(item, index) in strarr" :key="index">
+										<div class="groundd">
+										  <div @dblclick="fnstr1(index)" class="grounde">
+												<p :title="item.str1" class="groundf">{{item.str1}}</p>
+											</div>
+											<input v-model="strarr[index].str1" @blur="changestr1(index)" v-show="item.changestr1" type="text" class="groundg"/>
+											<div v-show="!item.changestr2" @dblclick="fnstr2(index)" class="groundh">
+												<p :title="item.str2" class="groundf">: {{item.str2}}</p>
+											</div>
+											<input v-model="strarr[index].str2" type="text" @blur="changestrs2(index)" v-show="item.changestr2" class="groundi"/>
+		                  <img src="../../assets/image/lj.png" @click="clear5(index)" alt="" class="groundk">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span  @click="establishstr()" class="groundl">
+											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
+										</span>
+									</li>
+								</ul>
+								<!-- 室外 -->
+								<span @click="fnoutdoor()" class="grounda" :class="{outdr:outdrt,outdrs:!outdrt}">
+								  室外
+								  <img src="../../assets/image/editx.png" alt="" v-show="outdoorimg" class="groundb">
+								  <img src="../../assets/image/edits.png" alt="" v-show="!outdoorimg" class="groundb">
+								</span>
+								<!-- 结构下边的line -->
+								<span v-show="outdoorline" class="groundc"></span>
+								<!-- 创建新的结构的厚度 -->
+								<ul v-show="outdoor">
+									<li v-for="(item, index) in outdoorarr" :key="index">
+									  <div class="groundd">
+										  <div @dblclick="fnoutdoor1(index)" class="grounde">
+												<p :title="item.outdoor1" class="groundf">{{item.outdoor1}}</p>
+											</div>
+											<input v-model="outdoorarr[index].outdoor1" @blur="changeoutdoor1(index)" v-show="item.changeoutdoor1" type="text" class="groundg"/>
+											<div v-show="!item.changeoutdoor2" @dblclick="fnoutdoor2(index)"  class="groundh">
+												<p :title="item.outdoor2" class="groundf">: {{item.outdoor2}}</p>
+											</div>
+											<input v-model="outdoorarr[index].outdoor2" type="text" @blur="changeoutdoor2(index)" v-show="item.changeoutdoor2" class="groundi"/>
+											<img src="../../assets/image/lj.png"  @click="clear6(index)" alt="" class="groundk">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span @click="establishoutdor()" class="groundl">
+											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
+										</span>
+									</li>
+								</ul>
+							  <!-- 其他 -->
+						  	<span @click="fnother()" class="grounda" :class="{othe:othet,othes:!othet}">
+							    其他
+									<img src="../../assets/image/editx.png" alt="" v-show="otherimg" class="groundb">
+									<img src="../../assets/image/edits.png" alt="" v-show="!otherimg" class="groundb">
+							  </span>
+							  <!-- 结构下边的line -->
+							  <span v-show="otherline" class="groundc"></span>
+						    <!-- 创建新的结构的厚度 -->
+								<ul v-show="other">
+									<li v-for="(item, index) in otherarr" :key="index">
+										<div class="groundd">
+									    <div @dblclick="fnother1(index)" class="grounde">
+												<p :title="item.other1" class="groundf">{{item.other1}}</p>
+											</div>
+											<input v-model="otherarr[index].other1" @blur="changeother1(index)" v-show="item.changeother1" type="text" class="groundg"/>
+											<div v-show="!item.changeother2" @dblclick="fnother2(index)" class="groundh">
+												<p :title="item.other2" class="groundf">: {{item.other2}}</p>
+											</div>
+											<input v-model="otherarr[index].other2" type="text" @blur="changeother2(index)" v-show="item.changeother2" class="groundi"/>
+											<img src="../../assets/image/lj.png"  @click="clear7(index)" alt="" class="groundk">
+										</div>
+									</li>
+									<li style="width:6.2rem;height:0.98125rem;">
+										<span @click="establishother()" class="groundl">
 											<img src="../../assets/image/add.png" alt="" style="width:100%;height:100%;" />
 										</span>
 									</li>
@@ -430,30 +294,37 @@ export default {
 		 ground:false,
 		 groline:false,
 		 groundimg:true,
+		 grot:true,
 		 //墙面里边的内容,线,上下翻图标
 		 metope:false,
 		 metline:false,
 		 metopeimg:true,
+		 mett:true,
 		 //天棚里边的内容,线,上下翻
 		 ceiling:false,
 		 ceiline:false,
 		 ceiimg:true,
+		 ceit:true,
 		 //门窗里边内容,线，上下翻
 		 doors:false,
 		 doorline:false,
 		 doorimg:true,
+		 dort:true,
 		 //结构里边内容，线，上下翻
 		 strs:false,
 		 strline:false,
 		 strimg:true,
+		 stt:true,
 		 //室外里边内容，线，上下翻
 		 outdoor:false,
 		 outdoorline:false,
 		 outdoorimg:true,
+		 outdrt:true,
 		 //其他里边内容，线，上下翻
 		 other:false,
 		 otherline:false,
-		 otherimg:true
+		 otherimg:true,
+		 othet:true
 		};
 	},
 	created() {
@@ -528,6 +399,14 @@ export default {
 	methods: {
 		//点击地面
 		fnground(){
+			this.grot = !this.grot;
+			this.mett = true;
+			this.ceit = true;
+			this.dort = true;
+			this.stt = true;
+			this.outdrt = true;
+			this.othet = true;
+		  // 地面
 			this.ground = !this.ground;
 			this.groline = !this.groline;
 			this.groundimg = !this.groundimg;
@@ -558,6 +437,13 @@ export default {
 		},
 		//点击墙面
 		fnmetope(){
+			this.mett = !this.mett;
+			this.grot = true;
+			this.ceit = true;
+			this.dort = true;
+			this.stt = true;
+			this.outdrt = true;
+			this.othet = true;
 			// 地面
 			this.ground = false;
 			this.groline = false;
@@ -589,6 +475,13 @@ export default {
 		},
 		// 点击天棚
 		fnceil(){
+			this.ceit = !this.ceit;
+			this.mett = true;
+			this.grot = true;
+			this.dort = true;
+			this.stt = true;
+			this.outdrt = true;
+			this.othet = true;
 			// 地面
 			this.ground = false;
 			this.groline = false;
@@ -620,6 +513,13 @@ export default {
 		},
 		// 点击门窗
 		fndoor(){
+			this.dort = !this.dort;
+			this.grot = true;
+			this.mett = true;
+			this.ceit = true;
+			this.stt = true;
+			this.outdrt = true;
+			this.othet = true;
 			// 地面
 			this.ground = false;
 			this.groline = false;
@@ -652,6 +552,13 @@ export default {
 		},
 	 //点击结构
 	 fnstr(){
+		 this.stt = !this.stt;
+		 this.dort = true;
+		 this.grot = true;
+		 this.mett = true;
+		 this.ceit = true;
+		 this.outdrt = true;
+		 this.othet = true;
 		 // 地面
 		 this.ground = false;
 		 this.groline = false;
@@ -683,6 +590,13 @@ export default {
 	 },
 	//点击室外
 	fnoutdoor(){
+		this.outdrt = !this.outdrt;
+		this.stt = true;
+		this.dort = true;
+		this.grot = true;
+		this.mett = true;
+		this.ceit = true;
+		this.othet = true;
 		// 地面
 		this.ground = false;
 		this.groline = false;
@@ -714,6 +628,13 @@ export default {
 	},
 	//点击其他
 	fnother(){
+		this.othet = !this.othet;
+		this.outdrt = true;
+		this.stt = true;
+		this.dort = true;
+		this.grot = true;
+		this.mett = true;
+		this.ceit = true;
 		// 地面
 		this.ground = false;
 		this.groline = false;
@@ -1033,6 +954,102 @@ export default {
 </script>
 
 <style scoped>
+.gro,.met,.cei,.dor,.st,.outdr,.othe{
+	color:#FFFFFF
+}
+.gros,.mets,.ceis,.dors,.sts,.outdrs,.othes{
+	color:#2180ED
+}
+.grounda{
+	width:5.245rem;
+	height:0.625rem;
+	font-size:0.5rem;
+	display:block;
+	text-align:left;
+	margin-bottom:0.2rem;
+	margin-top:0.38rem;
+	margin-left:0.9rem;
+	display:flex;
+	justify-content:space-between
+}
+.groundb{
+	width:0.41625rem;
+	height:0.26rem;
+	padding-top:0.26rem
+}
+.groundc{
+	width:5.375rem;
+	margin-left:0.9rem;
+	height:0.03125rem‬;
+	display:block;
+	border-bottom:0.03125rem solid darkgray;
+	margin-bottom:0.25rem
+}
+.groundd{
+	height:0.825rem;
+	margin-bottom:0.25rem;
+	position: relative;
+	display:flex;
+	padding-left:0.6rem;
+	text-align:left;
+	justify-content:space-around;
+	padding-right:0.5rem
+}
+.grounde{
+	font-style:normal;
+	display:inline-block;
+	font-size:0.5rem;
+	font-family:Microsoft YaHei;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+	position:relative;
+	width:2.38rem;
+	height:0.75rem;
+	line-height:0.8rem
+}
+.groundf{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.groundg{
+	width:2.5rem;
+	height:0.75rem;
+	font-size:0.5rem;
+	border:none;
+	position:absolute;
+	left:0.3rem
+}
+.groundh{
+	font-style:normal;
+	display:inline-block;
+	width:2.075rem;
+	height:0.75rem;
+	font-size:0.5rem;
+	padding-top:0.2rem;
+	margin-left:-0.4rem;
+	position:relative;
+	color:#FFFFFF
+}
+.groundi{
+		width:2.03125rem;
+		height:0.75rem;
+		font-size:0.5rem;
+		border:none;
+		margin-left:-0.33rem
+}
+.groundk{
+	width:0.40625rem;
+	height:0.5rem;
+	padding-bottom:0.3125rem;
+	padding-top:0.2rem;
+}
+.groundl{
+	display:inline-block;
+	width:0.60625rem;
+	height:0.61875rem;
+	float:right
+}
 	/* 材质展开中的li */
 .obj1 {
 	width:6.875rem;
