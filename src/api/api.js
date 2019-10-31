@@ -43,6 +43,6 @@ const api = {
 	Addressurl:version+"/excel/addressurl",//查询清单的模型id项目id和登录人展示清单的位置
 	SelectPrintscreen:version+"/model/selectPrintscreen",		//查询截图表展示到页面
 	Addprintscreen:version+"/model/addprintscreen",		//保存截图
-	DynamicForeachTest:version+"/model/dynamicForeachTest"
+	DynamicForeachTest:version+"/model/dynamicForeachTest"  //发布截图图片
 };
 export default api;
