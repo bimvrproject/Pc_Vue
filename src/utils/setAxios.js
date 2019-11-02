@@ -24,7 +24,6 @@ export default function setAxios() {
   axios.interceptors.response.use(response => {
     if (response.status == 200) {
       const data = response.data;
-	  console.log("data的事件--"+data)
       // if(data.code==-1){
       //     //登录过期 需要重新登录 清空vuex的token和localstorage的token
       //     store.commit('settoken','')
