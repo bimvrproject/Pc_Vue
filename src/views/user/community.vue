@@ -22,7 +22,6 @@
 						</i>
 					</span>
 				</el-dropdown>
-				
 			<!-- 	<div  class="cmtop" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
 						<img  :src="xmtb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
 				       <span style="vertical-align:bottom;" :style="xmcolorh">项目</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;
