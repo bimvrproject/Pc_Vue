@@ -4,12 +4,11 @@ var savedPictureContent = '';
 var extendName = '';
 var captureObj = null;
 var downloadUrl = 'http://www.ggniu.cn/download/CaptureInstall.exe?';
-
+var Printscreen = [];
 /*
 用于初始化牛牛截图控件，此函数需要在页面加载完成后立即调用 
 在此函数中，您可以设置相关的截图的UI控制，如，画笔大小、边框颜色等等 【这部分信息在niuniucapture.js中也有默认值，直接修改默认值也可 】
 */
-
 
 function Init()
 {
@@ -201,8 +200,10 @@ function OnCaptureFinishedCallback(type, x, y, width, height, info, content,loca
 		// 'data:image/png;base64,' +
 	    var base64= content;
 	     var projectid=sessionStorage.getItem("projectid");
+		 //截图保存到数据库
 		   $.ajax({
 			   type:"POST",
+			   default: true,
 			   url:"/v"+version+"/model/addprintscreen",
 			   contentType: "application/json",
 			   data:JSON.stringify({
@@ -212,40 +213,7 @@ function OnCaptureFinishedCallback(type, x, y, width, height, info, content,loca
 					typdprint:1,
 			   }),
 			   success:function(result){
-				   console.log(this.aa)
-				   //获取刚刚那个数组
-				   // this.$store.commit('setPrintscreen', 0);
-					 // var Printscreen=[];
-					 // that.Printscreen.push();
-					 // thatPrintscreen.pop();
-				 //    var projectidss = sessionStorage.getItem("projectid");
-					// $.ajax({
-					// 	type:"Get",
-					// 	url:"/v"+version+"/model/selectPrintscreen"+"/"+projectidss+"/1/1",
-					// 	success:function(result){
-					// 		console.log(result.data.printscreenslist)
-					// 		// this.projectidss=result.data.printscreenslist;
-					// 	}
-					// })
 			   }
 		   })
-		   
-	     //保存到数据库
-	     // axios.post(api.Addprintscreen,{
-	     //    images:base64,
-	     //    projectId:projectid,
-	     //    modelId:1,
-	     //    typdprint:1,
-	     //   }).then(retult=>{
-	     //    // console.log(retult.data)
-	     //    _self.swipersbj = 'display:block';
-	     //    //绑定截图的照片
-	     //    var projectidss = sessionStorage.getItem("projectid");
-	     //    if (projectidss != '' && projectidss != null && projectidss != undefined) {
-	     //     axios.get(api.SelectPrintscreen + "/" + projectidss+"/1"+"/1").then(result => {
-	     //      _self.projectidss = result.data.printscreenslist;
-	     //     })
-	     //    }
-	     //   })
 	}
 

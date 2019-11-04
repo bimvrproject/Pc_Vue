@@ -11,7 +11,7 @@ export default new Router({
 		{
 			path: "/",
 			name: "community",
-			component: () => import("./views/user/community.vue"),
+			component: () =>import('./views/user/community.vue'),
 			// children:[
 			// 	{
 			// 		path: 'baocun',

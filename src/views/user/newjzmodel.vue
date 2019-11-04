@@ -429,6 +429,8 @@ export default {
 		},
 		// 点击编辑
 		ceyins() {
+			//清楚计时器
+			this.$eventbus.$emit("xianshi-01");
 			// this.$eventbus.$emit('ceyin');
 			// this.$eventbus.$emit('ceyinxxs');
 			// 调用轮播图中的隐藏
@@ -483,6 +485,8 @@ export default {
 		},
 		//点击社区
 		fnsqtit() {
+			//清楚计时器
+			this.$eventbus.$emit("xianshi-01");
 			this.$router.push('/');
 		}
 	}

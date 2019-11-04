@@ -433,7 +433,7 @@
 		{
 			//写日志 
 			try{
-				console.log(txt);
+				// console.log(txt);
 			}
 			catch(e)
 			{
