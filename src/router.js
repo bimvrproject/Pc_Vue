@@ -178,5 +178,5 @@ export default new Router({
 			component: () => import("./views/user//personnel.vue")
 		},
 		
-	]
+	],
 });

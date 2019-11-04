@@ -3,7 +3,7 @@
 		<div>
 			<div class="lefttopcom">
 				<div class="left" style="cursor:pointer;">
-					<img class="logocom" src="../../assets/image/jinghekeji.png" @click="fnxnjz" />
+					<img class="logocom" src="../../assets/image/jinghekeji.png" @click="fnxnjz"/>
 					<Xunilogo v-show="xianyinxuni"></Xunilogo>
 				</div>
 			</div>
@@ -22,6 +22,14 @@
 						</i>
 					</span>
 				</el-dropdown>
+			<!-- 	<div  class="cmtop" @mouseenter="fnhxm()" @mouseleave="fnhxmlev()">
+						<img  :src="xmtb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+				       <span style="vertical-align:bottom;" :style="xmcolorh">项目</span><i class="fa fa-angle-down shouye" style="color:rgba(0,0,0,.5);font-size:0.9rem;
+							 display:inline-block;vertical-align: middle;margin-left:0.16rem;"></i>
+				 	  <div class="newxmtop">
+				      <Newjian></Newjian>
+				   </div>
+				</div> -->
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
@@ -252,16 +260,14 @@
 						
 					</div>
 					<!-- 社区尾部 -->
-					<div></div>
-				</div>
-				<!-- 社区尾部 -->
-				<div class="comend">
-					<!-- 尾部左边 -->
-					<div class="comendleft"></div>
-					<!-- 尾部中间按钮 -->
-					<div class="comendbtn" @click="fncom">查看更多</div>
-					<!-- 尾部右边 -->
-					<div class="comendright"></div>
+					<div class="comend">
+						<!-- 尾部左边 -->
+						<div class="comendleft"></div>
+						<!-- 尾部中间按钮 -->
+						<div class="comendbtn" @click="fncom">查看更多</div>
+						<!-- 尾部右边 -->
+						<div class="comendright"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -606,6 +612,31 @@ export default {
 </script>
 
 <style>
+.cmtop{
+		 position:relative;
+		 float: left;
+		/* margin-left:-1.4rem; */
+		 font-size: 0.625rem;
+		 font-family: MicrosoftYaHei;
+		 font-weight: 400;
+		 font-style: normal;
+		 line-height: 0.93125rem;
+		/* background-color:red; */
+		/* width: 2.9375rem; */
+		 height: 0.63125rem‬;
+		 margin-top:0.380rem;
+		 margin-left:0.9rem;
+		 text-align:left;
+		 cursor:pointer;
+		 margin-right:0.03rem;
+}
+.cmtop:hover .shouye{
+	 transform:rotate(180deg);
+ }
+ /* 划过项目 */
+ .cmtop:hover .newxmtop{
+ 	 display:block;
+ }
 .moretopcom {
 	position: relative;
 	float: left;
@@ -622,6 +653,14 @@ export default {
 	text-align: left;
 	cursor: pointer;
 }
+ .newxmtop{
+	 display:none;
+	 margin-top:0.5rem;
+	 margin-left:-8.2rem;
+	/* position:absolute;
+	 left:-7.78rem;
+	top:1.4rem; */
+ }
 .hgmorecom {
 	color: #333333;
 }
@@ -697,7 +736,7 @@ html {
 .community {
 	width: 57.43375rem;
 	/*height:29.06rem;*/
-	height: 29.06rem;
+	height: 29.5rem;
 	overflow-y: scroll;
 	/* background: red; */
 	background: #ffffff;
@@ -709,9 +748,9 @@ html {
 	/* 	background:red; */
 }
 
-.community::-webkit-scrollbar {
+/* .community::-webkit-scrollbar {
 	display: none;
-}
+} */
 /* 社区头部 */
 .conmunitytop {
 	width: 56.9rem;
@@ -1023,9 +1062,10 @@ html {
 	width: 57.3925rem;
 	height: 1.21875rem;
 	background: #ffffff;
-	position: absolute;
+	margin-top:0.5rem;
+/* 	position: absolute;
 	top: 32.09375rem;
-	left: 1.56375rem;
+	left: 1.56375rem; */
 	/* background:red; */
 }
 /* 社区尾部左边 */
@@ -1034,7 +1074,7 @@ html {
 	height: 0.0625rem;
 	border-top: 0.03125rem solid gainsboro;
 	float: left;
-	margin-top: 0.625rem;
+	margin-top:1.2rem;
 }
 /* 社区中间按钮 */
 .comendbtn {
@@ -1050,13 +1090,14 @@ html {
 	color: rgba(153, 153, 153, 1);
 	line-height: 1.21875rem;
 	cursor: pointer;
+		margin-top:0.5rem;
 }
 .comendright {
 	width: 19.09375rem;
 	height: 0.0625rem;
 	border-top: 0.03125rem solid gainsboro;
 	float: left;
-	margin-top: 0.625rem;
+	margin-top:1.2rem;
 }
 
 .logocom {

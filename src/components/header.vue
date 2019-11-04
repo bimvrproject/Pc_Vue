@@ -228,7 +228,7 @@
 	/*下拉手机号 */
 	.svdone{
 		display:inline-block;
-		font-size:16px;
+		font-size:0.4375rem;
 		font-family:Microsoft YaHei;
 		font-weight:400;
 		color:rgba(102,102,102,1);

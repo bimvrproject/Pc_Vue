@@ -14,9 +14,9 @@
 							</div>
 							<!-- 图片展开的拍照 -->
 							<div v-show="pzshow">
-								<div class="piczk">
+								<div class="piczk" @click="jishi">
 									<img :src="fbpzs" class="picimgzk" alt="" />
-									<a href="javascript:StartCapture()" class="picpz"  :style="fbpzscolor" >拍照</a>
+									<a href="javascript:StartCapture()" class="picpz"  :style="fbpzscolor"  >拍照</a>
 									<span id="info"  style="position: absolute;top: 6.375rem;left: 20.125rem;display: inline-block;width: 16.875rem;color: royalblue"></span>
 								</div>
 							</div>
@@ -200,7 +200,7 @@
 					</span>
 					<!-- <img src="../../assets/image/bluedui.png" alt="" style="width:0.9rem;height:0.9rem;z-index:60000;position:absolute;top:0rem;right:0.1rem;" v-show="dgou"> -->
 					<!-- http://36.112.65.110:8080/ -->
-					<img class="swiper-slidebottomimg" :src="'data:image/png;base64,'+item.images" alt="">
+					<img class="swiper-slidebottomimg" :src="'data:image/png;base64,'+item.images" alt="">  
 					<!-- 鼠标右击出现的内容 :class="{activefb:index==isActivefb}"-->
 					<div class="xbz" v-show="aaaaaa === index">
 						<span class="fqq" @click.stop="fnfbswper()" :style="fbswper">
@@ -219,11 +219,11 @@
 	</div>
 </template>
 <script>
-	// import html2canvas from 'html2canvas';
 	import api from '@/api/api.js';
 	import axios from 'axios';
 	import Swiper from 'swiper';
 	import 'swiper/dist/css/swiper.min.css'
+	import $ from 'jquery'
 	window.Init();//截图
 	export default {
 		data() {
@@ -333,6 +333,9 @@
 			};
 		},
 		created() {
+			this.$eventbus.$on('xianshi-01', () => {
+				clearInterval(this.timer);
+			});
 			// 控制下边轮播的显隐
 			this.$eventbus.$on('btnswiper-01', () => {
 		        if(this.Printscreen.length<=0){
@@ -348,12 +351,15 @@
 					if(result.data.printscreenslist!=null){
 						this.swipersbj = 'display:block';
 						this.Printscreen = result.data.printscreenslist;
-						// sessionStorage.setItem("Printscreen",JSON.stringify(this.Printscreen))
 					}else{
 						this.swipersbj = 'display:none';
 					}
 				})
 			}
+			
+		},
+		destroy(){ 
+			clearInterval(this.timer);
 		},
 		mounted() {
 			var galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -385,20 +391,35 @@
 					swiper: galleryThumbs
 				}
 			}); 
-			this.fnScreen();
 		},
 		methods: {
-			fnScreen(){
-				//控制上传
-				
+			jishi(){
+				//实时更新接口
+				var projectidss = sessionStorage.getItem("projectid");
+				this.timer=setInterval(()=>{
+					if (projectidss != '' && projectidss != null && projectidss != undefined) {
+						axios.get(api.SelectPrintscreen + "/" + projectidss+"/1"+"/1").then(result => {
+							if(result.data.printscreenslist!=null){
+								this.swipersbj = 'display:block';
+								this.Printscreen = result.data.printscreenslist;
+							}else{
+								this.swipersbj = 'display:none';
+							}
+						})
+					}
+				},5000)
 			},
 			// 点击轮播中的取消选择
 			fnqxchangswper() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				this.checkbox = [];
 				this.checkboxPrintscreen = [];
 			},
 			// 点击轮播中的全选
 			fnallswper() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				this.checkboxPrintscreen = [];
 				var len = this.Printscreen.length;
 				for (var i = 0; i < len; i++) {
@@ -408,6 +429,8 @@
 			},
 			// 点击轮播中的发布
 			fnfbswper() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				// window.location.href="";
 				// sessionStorage.setItem('fabujzmodel', JSON.stringify(this.checkboxPrintscreen));
 				// var printscreenIds=sessionStorage.getItem("fabujzmodel");
@@ -415,7 +438,7 @@
 				if(this.checkboxPrintscreen.length!=0){
 					console.log(this.checkboxPrintscreen)
 					axios.get(api.DynamicForeachTest+"?ids="+this.checkboxPrintscreen).then(result=>{
-						// window.location.href=result.data
+						window.location.href=result.data
 					})
 				}
 				this.checkbox = [];
@@ -423,10 +446,14 @@
 			},
 			// 鼠标右击
 			fnyouji(index) {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				this.aaaaaa = index
 			},
 			// 选择对勾
 			fnxz(i) {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				var idx = this.checkbox.indexOf(i);
 				var projectidid = this.checkboxPrintscreen.indexOf(this.Printscreen[i].printscreenId);
 				//如果已经选中了，那就取消选中，如果没有，则选中
@@ -557,6 +584,9 @@
 			},
 			//点击动画
 			animation() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
+				// clearInterval(this.timer);
 				// this.$router.push('/donghua')
 				// this.$eventbus.$emit('cgcg');
 				// this.$eventbus.$emit('fbswiperss');
@@ -649,6 +679,8 @@
 			},
 			//点击清单
 			list() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				// 点击图片时候的颜色
 				this.fbtp = require('../../assets/image/tuimg.png'),
 					// 点击图片时候的字体颜色
@@ -741,6 +773,8 @@
 			},
 			//点击图纸
 			fntuz() {
+				//清楚计时器
+				this.$eventbus.$emit("xianshi-01");
 				// 点击图片时候的颜色
 				this.fbtp = require('../../assets/image/tuimg.png'),
 					// 点击图片时候的字体颜色
