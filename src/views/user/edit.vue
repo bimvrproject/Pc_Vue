@@ -227,7 +227,7 @@
 						<!-- 材质 -->
 						<div style="cursor:pointer;">
 							<div class="caizhi" @click="cztitle">
-								<span class="czimg"><img :src="caizhitu" alt="" style="width:100%;height:100%;" /></span>
+								<span class="czimg"><img :src="caizhitu" alt="" style="width:100%;height:100%;"/></span>
 								<i style="font-style:normal;font-size:0.5625rem;font-weight:400;color:#FFFFFF;display:inline-block;line-height:0.9375rem;float:left;margin-left:0.1rem;" :style="cztit">材质</i>
 							</div>
 							<!-- 材质展开 -->

@@ -101,7 +101,7 @@
 							</div>
 							<!-- 展开清单 -->
 							<div v-show="lists">
-								<div class="rele">
+								<div class="rele" @click="fnreqd()">
 									<img src="../../assets/image/feiji.png" class="releimg" alt="" />
 									<span class="reles">发布</span>
 								</div>
@@ -121,7 +121,7 @@
 									<div class="fdraw" @click="fnwenjianjia()">
 										<img :src="xzwjj" class="fdrawimg" alt="" />
 										<span class="fdraws">选择文件夹</span>
-										<img src="../../assets/image/fbxl.png" class="fdraws1" alt="" />
+										<img :src="fdraf" class="fdraws1" alt="" />
 									</div>
 									<!-- 图纸文件夹展开 -->
 									<div v-show="tzwjjzk">
@@ -130,7 +130,7 @@
 											<div class="pmloader" @click="fnfbpm()">
 												<img :src="pmtuh" class="pmloaderimg" alt="" />
 												<span class="pmloaders">平面图纸</span>
-												<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
+												<img :src="pmloads" class="pmloaderimg1" alt="" />
 											</div>
 											<!-- 展开平面图纸 -->
 											<ul v-show="fbzkpm">
@@ -147,11 +147,11 @@
 											<div class="pmloader" @click="fnlmtz()">
 												<img :src="lmtuh" class="pmloaderimg" alt="" />
 												<span class="pmloaders">立面图纸</span>
-												<img src="../../assets/image/fbxl.png" class="pmloaderimg1" alt="" />
+												<img :src="lmtus" class="pmloaderimg1" alt="" />
 											</div>
 											<!-- 展开立面图纸 -->
 											<ul v-show="zklmtz">
-												<li v-for="(item, index) in zklmtzarr" :key="index" class="zkpmloader">
+												<li v-for="(item, index) in zklmtzarr" :key="index" class="zkpmloader" @click="fnlmtzxh(index)" :class="{checks:dgars.includes(index)}">
 													<img src="../../assets/image/ttt.png" class="zkpmloaderimg" alt="" />
 													<span class="zkpmloaders">立面图纸1</span>
 													<img src="../../assets/image/dxk.png" class="zkpmloaderimg1" alt="" />
@@ -161,7 +161,7 @@
 										</div>
 										<!-- 发布 -->
 										<div>
-											<div class="rele">
+											<div class="rele" @click="fnrele()">
 												<img src="../../assets/image/feiji.png" class="releimg" alt="" />
 												<span class="reles">发布</span>
 											</div>
@@ -230,10 +230,13 @@
 			return {
 				// 选择文件夹时的图片初始状态
 				xzwjj: require('../../assets/image/wjhezhu.png'),
+				fdraf:require('../../assets/image/fbxl.png'),
 				//图纸中的选择文件夹中的平面图纸
 				pmtuh: require('../../assets/image/wjhezhu.png'),
+				pmloads:require('../../assets/image/fbxl.png'),
 				// 图纸中的选择文件夹中的立面图纸
 				lmtuh: require('../../assets/image/wjhezhu.png'),
+				lmtus:require('../../assets/image/fbxl.png'),
 				chooseNum: true,
 				//拍照显隐
 				pzshow: false,
@@ -251,8 +254,10 @@
 				lujin: false,
 				//点击清单控制清单的显隐
 				lists: false,
-				// 对勾对勾对勾数组
+				//平面图纸对勾数组
 				dgarr: [],
+				//立面图纸对勾数组
+				dgars:[],
 				//平面图纸循环中的对号
 				isTzloop: true,
 				//平面展开图
@@ -266,7 +271,7 @@
 				// 展开平面图纸数组
 				zkpmtzarr: [0, 0, 0, 0, 0],
 				// 展开立面图纸数组
-				zklmtzarr: [0],
+				zklmtzarr: [0,0,0,0,0,0],
 				// 发布图片
 				fbtp: require('../../assets/image/tuimg.png'),
 				// 图片字体颜色
@@ -393,6 +398,10 @@
 			}); 
 		},
 		methods: {
+		// 点击清单中的发布
+			fnreqd(){
+				// 点击清单中的发布
+			},
 			jishi(){
 				//实时更新接口
 				var projectidss = sessionStorage.getItem("projectid");
@@ -494,6 +503,17 @@
 				}
 
 			},
+			//点击立面图纸中的具体某一个立面图纸
+			fnlmtzxh(i){
+				if(this.dgars.includes(i)){
+					this.dgars = this.dgars.filter(function(ele){
+						return ele != i;
+					})
+				}else{
+					this.dgars.push(i)
+				}
+		   // console.log(this.dgars)
+			},
 			ce1() {
 				this.$router.push('/');
 			},
@@ -527,12 +547,15 @@
 					this.ljpstp = require('../../assets/image/ljpss.png');
 				// 路径拍摄的字体颜色
 				this.ljpstpcolor = 'color:#FFFFFF',
-					// 图纸中的选择文件夹的图纸
+				// 图纸中的选择文件夹的图纸
 					this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.fdraf = require('../../assets/image/fbxl.png');
 				// 点击时立面的图片
 				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 				// 点击时平面图纸的图片
 				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 				// 路径拍摄中的文件夹
 				this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 					//拍照显示
@@ -573,11 +596,14 @@
 				this.zypszi = true;
 				this.lujin = false;
 				// 图纸中的选择文件夹的图纸
-				this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.fdraf = require('../../assets/image/fbxl.png');
 				// 点击时立面的图片
 				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 				// 点击时平面图纸的图片
 				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 				this.Plane = false;
 				// 路径拍摄中的文件夹
 				this.ljpswjj = require('../../assets/image/wjhezhu.png')
@@ -619,12 +645,15 @@
 					this.zyps = require('../../assets/image/zypsblue.png'),
 					// 自由拍摄字体颜色
 					this.zypscolor = 'color:#2180ED',
-					// 图纸中的选择文件夹的图纸
+				// 图纸中的选择文件夹的图纸
 					this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.fdraf = require('../../assets/image/fbxl.png');
 				// 点击时立面的图片
 				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 				// 点击时平面图纸的图片
 				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 				// 路径拍摄中的文件夹
 				this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 					//自由拍摄显示
@@ -671,11 +700,14 @@
 					// 自由拍摄字体颜色
 					this.zypscolor = 'color:#FFFFFF';
 				// 图纸中的选择文件夹的图纸
-				this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.fdraf = require('../../assets/image/fbxl.png');
 				// 点击时立面的图片
 				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 				// 点击时平面图纸的图片
-				this.pmtuh = require('../../assets/image/wjhezhu.png')
+				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 			},
 			//点击清单
 			list() {
@@ -711,10 +743,13 @@
 				this.ljpstpcolor = 'color:#FFFFFF',
 					// 图纸中的选择文件夹的图纸
 					this.xzwjj = require('../../assets/image/wjhezhu.png');
+					this.fdraf = require('../../assets/image/fbxl.png');
 				// 点击时立面的图片
 				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 				// 点击时平面图纸的图片
 				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 				// 路径拍摄中的文件夹
 				this.ljpswjj = require('../../assets/image/wjhezhu.png'),
 					//清单里边得内容出现
@@ -752,8 +787,10 @@
 				this.zklmtz = false;
 				// 点击平面时的图片
 				this.pmtuh = require('../../assets/image/fbwjj.png');
+				this.pmloads = require('../../assets/image/sjw.png')
 				// 点击平面时立面的图片
-				this.lmtuh = require('../../assets/image/wjhezhu.png')
+				this.lmtuh = require('../../assets/image/wjhezhu.png');
+				this.lmtus = require('../../assets/image/fbxl.png')
 			},
 			//点击立面图纸让展开
 			fnlmtz() {
@@ -763,13 +800,20 @@
 				this.fbzkpm = false;
 				// 立面图纸展开时的图片
 				this.lmtuh = require('../../assets/image/fbwjj.png');
+				this.lmtus = require('../../assets/image/sjw.png')
 				// 点击立面图纸时平面图纸的图片
 				this.pmtuh = require('../../assets/image/wjhezhu.png');
+				this.pmloads = require('../../assets/image/fbxl.png')
 			},
 			//点击图纸中得文件夹
 			fnwenjianjia() {
 				this.tzwjjzk = true;
-				this.xzwjj = require('../../assets/image/fbwjj.png')
+				this.xzwjj = require('../../assets/image/fbwjj.png');
+				this.fdraf = require('../../assets/image/sjw.png')
+			},
+			// 点击图纸中的发布
+			fnrele(){
+				//点击图纸中的发布，进行发布
 			},
 			//点击图纸
 			fntuz() {
@@ -825,12 +869,15 @@
 </script>
 
 <style scoped>
-	/* 图纸中的对勾 */
+	/* 平面图纸中的对勾 */
 	.checked {
 		background: url(../../assets/image/dui.png) no-repeat 5.75rem 0.05rem;
 		background-size: 0.8rem 0.5rem;
 	}
-
+  .checks{
+		background:url(../../assets/image/dui.png) no-repeat 5.75rem 0.05rem;
+		background-size:0.8rem 0.5rem;
+	}
 	/* 发布侧边栏轮廓 */
 /* 	.logoxn {
 		width: 6.78125rem;
@@ -1255,12 +1302,12 @@
 	}
 
 	.fdraws1 {
-		width: 0.4375rem;
-		height: 0.1875rem;
+		width: 0.42rem;
+		height: 0.1975rem;
 		float: left;
 		line-height: 0.625rem;
 		margin-left: 0.25rem;
-		margin-top: 0.2rem;
+		margin-top: 0.23rem;
 		/* background:red; */
 	}
 
@@ -1294,9 +1341,9 @@
 		float: left;
 		line-height: 0.625rem;
 		margin-left: 0.25rem;
-		width: 0.4375rem;
-		height: 0.25rem;
-		margin-top: 0.2rem;
+		width: 0.42rem;
+		height: 0.2rem;
+		margin-top: 0.23rem;
 	}
 
 	/* 平面,立面图纸展开 */

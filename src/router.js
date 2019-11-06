@@ -177,6 +177,13 @@ export default new Router({
 			},
 			component: () => import("./views/user//personnel.vue")
 		},
-		
+		{
+			path: "/abc",
+			name: "/abc",
+			meta: {
+				// requireAuth: true
+			},
+			component: () => import("./views/user//abc.vue")
+		}
 	],
 });

@@ -14,38 +14,32 @@
 		 <img :src="pmdrawpicture" style="width:100%;height:100%;" alt="">
 		 </div>
 		<div>
-			<!-- 除去侧边栏的剩余部分 -->
-			<!-- 右侧登录标识 -->
-			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
-			<!-- 右侧top部分 -->
+			<!--nav -->
 			<div class="hometopjzmjztz" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fnjztz">
-						<img class="xmimgjztz" src="../../assets/image/bluefz.png" alt="" />
+					<div class="el-dropdown-link" @click="fnjztz">
+						<img class="xmimgjztz" src="../../assets/image/bluefz.png" alt="" style="vertical-align:text-bottom;"/>
 						 <span class="xmjztz">项目</span>
 						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
-						<!-- <i class="xmjztz" ref="xmcol" style="color: #2180ED;">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;"><img
-							 src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;"></i> -->		 
-					</span>
+					</div>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnjztzsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
-						<img class="sqimgjztz" :src="hsq" />
+					<div class="el-dropdown-link" @click="fnjztzsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimgjztz" :src="hsq" style="vertical-align:text-bottom;"/>
 						<i class="sqjztz" :style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
-					</span>
+					</div>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomjztz" style="height:0.93125rem;" @mouseenter="fnmorjztz()" @mouseleave="fnmorlevjztz()">
-					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;vertical-align:text-bottom;">
 					   <span class="hgmorecomjztz">更多</span>
 						 <i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						   <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
@@ -93,7 +87,9 @@
 							<li v-for="(item, index) in drawingarrpm" :key="index" class="pmnew" style="position:relative;cursor: pointer;"
 							 @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5" v-show="!item.changes" @dblclick="xgtz(index)">{{ item.drawName}}</span>
+								<div>
+									<p class="pmtz5"  v-show="!item.changes" @dblclick="xgtz(index)" :title="item.drawName">{{ item.drawName}}</p>
+								</div>
 								<input type="text" v-show="item.changes" v-model="item.drawName"
 								 style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;
 								 height:0.875rem;"  @blur="changepm(index)" />
@@ -130,7 +126,9 @@
 						<ul>
 							<li v-for="(item, index) in drawingarrlm" :key="index"  class="pmnew" style="position:relative;cursor: pointer;"  @click="drawdanjilimian(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5" v-show="!item.changelm" @dblclick="xglmtz(index)">{{item.drawName}}</span>
+								<div>
+									<p class="pmtz5" v-show="!item.changelm" @dblclick="xglmtz(index)" :title="item.drawName">{{item.drawName}}</p>
+								</div>
 								<input v-model="item.drawName" v-show="item.changelm" type="text" @blur="changelm(index)"
 								 style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;
 								 height:0.875rem;"/>
@@ -818,6 +816,9 @@
 		/* background:red; */
 		text-align: left;
 		/* 	background:red; */
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
 	}
 
 	.pm6 {

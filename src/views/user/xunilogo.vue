@@ -14,15 +14,15 @@
 							</span>
 							<div class="jianzhu-group" v-if="a">
 								<div class="moxin1" @click="fnmx1" :style="mx1">
-									<i class="moxinimg1"><img :src="mxtb1" alt="" /></i>
+									<img :src="mxtb1" alt="" class="moxinimg1" style="vertical-align:text-bottom;"/>
 									模型
 								</div>
 								<div class="tuzhi1" @click="fntz1" :style="tz1">
-									<i class="tuzhiimg1"><img :src="tztb1" alt="" style="vertical-align: bottom;"/></i>
+									<img :src="tztb1" alt="" class="tuzhiimg1" style="vertical-align:text-bottom;"/>
 									图纸
 								</div>
 								<div class="cailiao1" @click="fncl1" :style="cl1">
-									<i class="cailiaoimg1"><img :src="cltb1" alt="" /></i>
+								<img :src="cltb1" class="cailiaoimg1" alt="" style="vertical-align:text-bottom;"/>
 									材料
 								</div>
 							</div>
@@ -30,24 +30,24 @@
 						<!-- 管线模型 -->
 						<div class="guanxian">
 							<span @click="fnguan" class="gxzh" :style="gxzh">
-								<i class="gaunxianimg"><img :src="gxzhtb" alt="" /></i>
+								<img :src="gxzhtb" alt="" class="gaunxianimg"/>
 								管线综合
 							</span>
 							<div class="guanxian-group" v-if="b">
 								<div class="moxin2" @click="fnmx2" :style="mx2">
-									<i class="moxinimg2"><img :src="mxtb2" alt="" /></i>
+									<img :src="mxtb2" alt="" class="moxinimg2" style="vertical-align:text-bottom;"/>
 									模型
 								</div>
 								<div class="tuzhi2" @click="fntz2" :style="tz2">
-									<i class="tuzhiimg2"><img :src="tztb2" alt="" style="vertical-align: bottom;"/></i>
-									图纸
+									<img :src="tztb2" alt="" class="tuzhiimg2" style="vertical-align:text-bottom"/>
+									 图纸
 								</div>
 								<div class="cailiao2" @click="fncl2" :style="cl2">
-									<i class="cailiaoimg2"><img :src="cltb2" alt="" /></i>
+								  <img :src="cltb2" alt="" class="cailiaoimg2" style="vertical-align:text-bottom"/>
 									材料
 								</div>
 								<div class="pengzhuang" @click="fnpz2" :style="pz2">
-									<i class="pengzhuang2"><img :src="pztb2" alt="" /></i>
+									<img :src="pztb2" alt="" class="pengzhuang2" style="vertical-align:text-bottom;"/>
 									碰撞
 								</div>
 							</div>
@@ -55,8 +55,8 @@
 						<!-- 设备监控 -->
 						<div class="shebei">
 							<span @click="fnshebei" class="sbjk" :style="sbjk">
-								<i class="shebeiimg"><img :src="sbjktb" alt="" /></i>
-								设备监控
+								<img :src="sbjktb" alt="" class="shebeiimg"/>
+								 设备监控
 							</span>
 							<div class="shebei-group" v-if="c">
 							</div>
@@ -64,16 +64,16 @@
 						<!-- 信息编辑 -->
 						<div class="xinxibj">
 							<span @click="fnxxbj" class="xxbj" :style="xxbjc">
-								<i class="xinxibjimg"><img :src="xinxitb" alt="" /></i>
+							  <img :src="xinxitb" alt="" class="xinxibjimg"/>
 								信息编辑
 							</span>
 							<div class="xinxibj-group" v-if="d">
 								<div class="xinxibj1" @click="fnxmxx" :style="xmxx">
-									<i class="xinxibjimg1"><img :src="xmxxt" alt="" /></i>
+									<i class="xinxibjimg1"><img :src="xmxxt" alt="" style="vertical-align:text-bottom;"/></i>
 									项目信息
 								</div>
 								<div class="tuzhi4" @click="fnryxx" :style="ryxx">
-									<i class="tuzhiimg4"><img :src="ryxxs" alt="" /></i>
+									<i class="tuzhiimg4"><img :src="ryxxs" alt="" style="vertical-align:text-bottom;"/></i>
 									人员信息
 								</div>
 							</div>
@@ -389,7 +389,6 @@ ul,ol,li{list-style:none}
 }
 /* 建筑结构 */
 .jinazhu,.xinxibj {
-	/* background:blue; */
 	margin-bottom:0.9375rem;
 }
 .jianzhu-group,.guanxian-group,.xinxibj-group,.shebei-group {
@@ -398,13 +397,14 @@ ul,ol,li{list-style:none}
 }
 .jianzhuimg,.gaunxianimg,.shebeiimg,.xinxibjimg{
 	width: 0.6875rem;
-	height: 0.6875rem;
+	height: 0.7275rem;
 	line-height: 0.6875rem;
 	display: inline-block;
 	/* 	background: url(../../assets/image/jianzhu@2x.png) no-repeat; */
 	/* background-size: 22px 22px; */
 	/* position: absolute; */
 	left: 1.71875rem;
+	vertical-align:text-bottom;
 }
 .jianzhuimg img,.gaunxianimg img,.shebeiimg img,.xinxibjimg img{
 	width: 100%;
@@ -491,7 +491,7 @@ ul,ol,li{list-style:none}
 }
 .moxinimg2 {
 	width:0.54rem;
-	height:0.59375rem;
+	height:0.63rem;
 	display: inline-block;
 	/* 	background: url(../../assets/image/moxin.png) no-repeat; */
 /* 	background-size: 22px 22px;

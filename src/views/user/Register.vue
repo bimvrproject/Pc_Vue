@@ -433,8 +433,6 @@ export default {
 					this.panduanphone = false;
 				}
 			}
-			
-			
 			// if(this.phone1==null){
 			// 	this.phonename="请输入手机号";
 			// 	this.panduanphone = true;

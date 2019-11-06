@@ -60,14 +60,14 @@
 				<!-- 下拉菜单---更多--结束 -->
 			</div>
 			<!-- 悬浮登录窗口 --开始 -->
-			<div id="popContainer" v-show="loginWindow" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
+			<div id="popContainer" v-show="loginWindow1" style="position:absolute; z-index: 49;"><!-- 这个是遮罩,蒙窗 --></div>
 			<!-- 登录 -->
 			<div class="login" v-show="loginWindow">
 				<!-- <div style="width: 100%;height: 40px;background-image: url(../../assets/image/dingbutiao.png);"> -->
 				<div class="close"><img src="../../assets/image/close.png" @click="closeLoginwindow" /></div>
 				<div class="loginlogo"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
 				<!-- 验证账号密码是否正确 -->
-				<span class="yanzheng" v-if="panduan">{{ phonename }}</span>
+				<span class="yanzheng" v-if="panduan">{{ phonename1 }}</span>
 				<!-- 输入用户名 -->
 				 <input type="text" placeholder="输入手机号" v-model="username" class="userinput" @focus="phonefocus" @blur="fn1" />
 				 <input type="password" placeholder="输入密码" class="usermm" v-model="password" @blur="fn1" @keyup.enter="login"/>
@@ -80,6 +80,52 @@
 					<i class="login-reg" @click="fn3">马上注册</i>
 				</div>
 			</div>
+			<!-- 登录结束 -->
+			  <!--注册-->
+			  <div class="logins" v-show="loginWindowreg">
+			  	<div class="closes"><img src="../../assets/image/close.png" @click="closeLoginwindowreg" /></div>
+			  	<div class="loginlogos"><img src="../../assets/image/loginlogo@2x.png" alt="" /></div>
+			  	<!-- 验证账号密码是否正确 -->
+			  	<span class="Nophones" v-if="panduanphone">{{ phonename }}</span>
+			  	<span class="Nophones" v-if="panduandenglu">
+			  		该账户已注册,
+			  		<span @click="fn31" style="text-decoration:underline;cursor: pointer;">请登录</span>
+			  	</span>
+			  	<!-- 验证码是否正确 -->
+			  	<span class="yanzhengmas" v-if="yzm">验证码不正确</span>
+			  	<!-- 输入手机号 -->
+			  	<div class="userR">
+			  		<span class="userimg">86+</span>
+			  		<img class="fenge" src="../../assets/image/juxing11@2x.png" alt="" />
+			  		<input type="text" v-model="phone1" class="userimginp" placeholder="请输入手机号" @focus="phonefocusreg" @blur="fn" />
+			  	</div>
+			  	<!-- 输入密码 -->
+			  	<input type="password" placeholder="请输入密码" v-model="passwords" class="regmima" />
+			  	<!-- 输入验证码-->
+			  	<div class="code" style="display:flex;justify-content: space-between;">
+			  		<input type="text" placeholder="请输入短信验证码" v-model="phoneyzm" @blur="fn9" maxlength="6" style="font-size:0.45rem;"/>
+			  		<!-- <div class="codefooter" @click="yzm">获取验证码</div> -->
+			  		<span
+			  			v-show="sendCode"
+			  			@click="ObtainCode()"
+			  			style="width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);;display:inline-block;float:right;line-height:1.01rem;cursor:pointer;"
+			  		>
+			  			获取验证码
+			  		</span>
+			  		<span
+			  			v-show="!sendCode"
+			  			style="display:inline-block;width:3.2rem;height:1.01rem;font-size:0.375rem;font-family:Microsoft YaHei;font-weight:bold;color:rgba(33,128,237,1);float:right;line-height:1.01rem;cursor:pointer;"
+			  		>
+			  			{{ authTime }} 秒后获取
+			  		</span>
+			  	</div>
+			  	<!-- 注册 -->
+			  	<div class="reg-button" @click="loginreg()"><span>完成注册</span></div>
+			  	<div class="logins-footers">
+			  		<i class="noregs">已有账户!</i>
+			  		<i class="login-regs" @click="fn3s">立即登录</i>
+			  	</div>
+			  </div>
 			<!-- 社区部分  -->
 			<div>
 				<div class="community">
@@ -94,7 +140,7 @@
 					</div>
 					<!-- 社区main -->
 					<!-- v-for="(item, index) in comarr" :key="index" -->
-					<div class="communitymain" >
+					<div class="communitymain" v-for="(item, index) in comarr" :key="index">
 						<!-- 第一排 -->
 						<div class="communitymain1">
 							<div class="community11"><img src="../../assets/image/bridge.png" alt="" @click.stop="fnbir" /></div>
@@ -294,12 +340,11 @@ export default {
 		return {
 			// a:null,
 			username: '',
-			sendCode: true, // 控制发送验证码按钮显示
-			authTime: 0, // 倒计时
-			phonename: '', //输入不正确友好提示
-			comarr: [0, 0],
+			phonename1: '', //输入不正确友好提示
+			comarr: [0],
 			password: '',
 			loginWindow: true,
+			loginWindow1:true,
 			checked: '',
 			panduan: false,
 			xianyin: false,
@@ -320,7 +365,32 @@ export default {
 			abouts: false,
 			xmcolorh: 'color:#333333',
 			// 记住密码
-			 remeberpwd:false
+		 remeberpwd:false,
+		 // 注册
+		 panduandenglu: false,
+		 sendCode: true, // 控制发送验证码按钮显示
+		 authTime: 0, // 倒计时
+		 // username: '',
+		 passwords: '',
+		 // 注册显隐
+		 loginWindowreg:false,
+		 // checked: '',
+		 //手机号是否正确
+		 panduanphone: false,
+		 phonename: '手机号格式不正确',
+		 //验证码不正确
+		 yzm: false,
+		 input: '',
+		 phone1: '',
+		 yz: '点击',
+		 // phone: false,
+		 // word: '请输入密码',
+		 phoneyz: '1234567',
+		 // panduan: false,
+		 phonesj: true,
+		 phoneyzm: '',
+		 yzshj: false,
+		 yzword: false
 		};
 	},
 	components: {
@@ -335,9 +405,11 @@ export default {
 		// this.password="";
 		this.$eventbus.$on('loginhertru', () => {
 			this.loginWindow = true;
+			this.loginWindow1 = true
 		});
 		this.$eventbus.$on('loginherfal', () => {
 			this.loginWindow = false;
+			this.loginWindow1 = false
 		});
 		this.$eventbus.$on('shows', () => {
 			this.xianyinxuni = true;
@@ -367,8 +439,10 @@ export default {
 	mounted() {
 		if (window.sessionStorage.getItem('token') != null) {
 			this.loginWindow = false;
+			this.loginWindow1 = false;
 		} else {
 			this.loginWindow = true;
+			this.loginWindow1 = false
 		}
 	},
 	methods: {
@@ -410,39 +484,16 @@ export default {
 			this.$eventbus.$emit('aboutsbi');
 			this.abouts = false;
 		},
-		//一分钟倒计时
-		// ObtainCode() {
-		// 	axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-		// 		if (result.data == undefined) {
-		// 			this.phonename = '您未注册，请注册！';
-		// 			this.panduan = true;
-		// 		} else {
-		// 			axios.get(api.Login + '?mobile=' + this.username).then(result => {
-		// 				this.token = result.data.token;
-		// 				// this.$store.commit("settoken",this.token);
-		// 				// alert(this.username)
-		// 				// this.$store.commit("setphone",this.username);
-		// 				this.sendCode = false; // 控制显示隐藏
-		// 				this.authTime = 59;
-		// 				let timeInt = setInterval(() => {
-		// 					this.authTime--;
-		// 					if (this.authTime <= 0) {
-		// 						this.sendCode = true;
-		// 						window.clearInterval(timeInt);
-		// 					}
-		// 				}, 1000);
-		// 			});
-		// 		}
-		// 	});
-		// },
 		fncom() {
 			this.comarr.push(0);
 		},
+		//点击项目
 		fndianji() {
 			if (window.sessionStorage.getItem('token') != null) {
 				this.$router.push('/Login');
 			} else {
 				this.loginWindow = true;
+				this.loginWindow1 = true
 			}
 		},
 		fnxnjz() {
@@ -450,6 +501,7 @@ export default {
 				this.$router.push('/Login');
 			} else {
 				this.loginWindow = true;
+				this.loginWindow1 = true
 			}
 		},
 		// 移入更多
@@ -470,37 +522,36 @@ export default {
 			this.$refs.gdcol.style.color = '#333333';
 			this.moretb = require('../../assets/image/more@2x.png');
 		},
+		// 点击立刻去注册
 		fn3() {
-			this.$router.push('/Register');
+			// this.$router.push('/Register');
+			this.loginWindow = false;
+			this.loginWindowreg = true
+		},
+		//立即登录
+		fn3s() {
+			this.loginWindow = true;
+			this.loginWindowreg = false
+		},
+		fn31() {
+			this.loginWindow = true;
+			this.loginWindowreg = false
 		},
 		//输入手机号的失焦事件
 		fn1() {
 			var re = /^1[3456789]\d{9}$/;
 			if(this.username==''){
-				this.phonename = '手机号不能为空';
+				this.phonename1 = '手机号不能为空';
 				this.panduan = true;
 			}else{
 				this.panduan = false;
 				if (!re.test(this.username)) {
-					this.phonename = '手机号格式不正确';
+					this.phonename1 = '手机号格式不正确';
 					this.panduan = true;
 				}else{
 					this.panduan = false;
 				}
 			}
-			
-			// if (!re.test(this.username)) {
-			// 	// this.phonename = '手机号格式不正确';
-			// 	this.panduan = true;
-			// } else {
-			// 	this.panduan = false;
-			// }
-			// axios.get(api.GetPhone + '?phone' + '=' + this.username).then(result => {
-			// 	if (result.data == undefined) {
-			// 		this.phonename = '您未注册，请注册！';
-			// 		this.panduan = true;
-			// 	}
-			// });
 		},
 		phonefocus(){
 			this.panduan = false;
@@ -515,7 +566,7 @@ export default {
 		},
 		login() {
 			if (this.username == null || this.username == '') {
-				this.phonename = '手机号不能为空';
+				this.phonename1 = '手机号不能为空';
 				this.panduan = true;
 			} else {
 				if(this.remeberpwd==true){
@@ -563,9 +614,50 @@ export default {
 		clearCookie: function() {
 			this.setCookie("", "", -1); //修改2值都为空，天数为负1天就好了
 		},
+		//一分钟倒计时
+		ObtainCode() {
+			axios.get(api.GetPhone + '?phone' + '=' + this.phone1).then(result => {
+				// console.log(result.data)
+				if (this.phone1 == null || this.phone1 == '' || this.phone1 == undefined) {
+					this.panduanphone = true;
+				} else {
+					//判断手机号格式是否正确
+					var re = /^1[3456789]\d{9}$/;
+					if (!re.test(this.phone1)) {
+						this.panduanphone = true;
+					} else if (re.test(this.phone1)) {
+						//判断改手机号是否已被注册
+						axios.get(api.GetPhone + '?phone' + '=' + this.phone1).then(result => {
+							// console.log(result.data)
+							if (result.data == undefined) {
+								//以上判断都没有经过说明可以通过我们的注册条件 实现发送验证码
+								this.panduanphone = false;
+								//发送验证码
+								axios.get(api.RegisterphoneLogin + '?mobile=' + this.phone1).then(result => {
+									// this.$store.commit("settoken",this.token);
+									// this.token=result.data.token;
+									this.sendCode = false; // 控制显示隐藏
+									this.authTime = 59;
+									let timeInt = setInterval(() => {
+										this.authTime--;
+										if (this.authTime <= 0) {
+											this.sendCode = true;
+											window.clearInterval(timeInt);
+										}
+									}, 1000);
+								});
+							} else {
+								this.panduandenglu = true;
+							}
+						});
+						this.panduanphone = false;
+					}
+				}
+			});
+		},
 		loginSuccess(res) {
 			if (res.code != 0) {
-				this.phonename = res.msg;
+				this.phonename1 = res.msg;
 				this.panduan = true;
 			} else {
 				this.token = res.data.token;
@@ -580,9 +672,70 @@ export default {
 				this.panduan = false;
 				// alert("跳转页面")
 				this.loginWindow = false;
+				this.loginWindow1 = false;
 				// alert(this.username)
 				// window.localStorage.setItem('userpho',this.username);
 				// this.a = this.username;
+			}
+		},
+		fn9() {
+			// if (this.phoneyzm == this.phoneyz) {
+			// 	this.yzshj = true;
+			// } else {
+			// 	this.yzshj = false;
+			// 	this.phoneyzm = '验证码错误';
+			// }
+		},
+		//输入手机号@foucs事件
+		phonefocusreg() {
+			this.panduandenglu = false;
+		},
+		//输入手机号@blur事件
+		fn() {
+			var re = /^1[3456789]\d{9}$/;
+			this.panduandenglu = false;
+			if (this.phone1 == '') {
+				this.phonename = '手机号不能为空';
+				this.panduanphone = true;
+			} else {
+				this.panduanphone = false;
+				if (!re.test(this.phone1)) {
+					this.phonename = '手机号格式不正确';
+					this.panduanphone = true;
+				} else {
+					this.panduanphone = false;
+				}
+			}
+		},
+		//注册
+		loginreg() {
+			this.panduandenglu = false;
+			if (this.phone1 == null || this.phone1 == '') {
+				this.phonename = '手机号不能为空';
+				this.panduanphone = true;
+			} else {
+				axios.get(api.RegistercheckSmsCode + '?smsCode=' + this.phoneyzm + '&phone=' + this.phone1 + '&pwd=' + this.passwords).then(result => {
+					if (result.code != 0) {
+						this.phonename = result.msg;
+						this.panduanphone = true;
+					} else if (result.code == 0) {
+						// window.sessionStorage.setItem('token',this.token);
+						// this.$store.commit("settoken",this.token);
+						// this.$store.commit("setPhone",this.phone1);
+						//注册成功跳转页面
+						this.panduanphone = false;
+						this.loginWindowreg = false;
+						this.loginWindow = true;   
+						this.setCookie('', '', -1); //修改2值都为空，天数为负1天就好了
+						this.$router.push('/');
+						// alert("跳转页面")
+						// alert(this.phone1)
+					} else {
+						this.phonename = '应用发生错误';
+						this.panduanphone = true;
+					}
+					// console.log(result.msg);
+				});
 			}
 		},
 		getUserByToken() {
@@ -606,6 +759,14 @@ export default {
 		// 关闭login悬浮窗
 		closeLoginwindow() {
 			this.loginWindow = false;
+			this.loginWindow1 = false;
+			this.loginWindowreg = false;
+		},
+		// 关闭login悬浮窗
+		closeLoginwindowreg() {
+			this.loginWindow = false;
+			this.loginWindow1 = false;
+			this.loginWindowreg = false;
 		}
 	}
 };
@@ -1427,5 +1588,207 @@ input::-webkit-input-placeholder {
 	padding-left:0.1rem !important;
 	color: #2180ED;
 	font-size:0.35rem;
+}
+/* 注册 */
+.logins {
+	width: 15.64375rem;
+	height: 15.64375rem;
+	position: absolute;
+	z-index: 50;
+	top: 10.5rem;
+	left: 22.3125rem;
+	/* 	margin-top: -228px;
+	margin-left: -550px; */
+	background-color: white;
+	background: url(../../assets/image/beijing@2x.png) no-repeat;
+	background-size: 15.64375rem 15.64375rem;
+}
+.closes {
+	width: 0.445rem;
+	height: 0.445rem;
+	/* background: linear-gradient(180deg, rgba(255, 255, 255, 0.2)); */
+	border-radius: 2px;
+	position: absolute;
+	right: -1.2625rem;
+}
+.closes img {
+	width: 0.445rem;
+	height: 0.445rem;
+}
+.loginlogos {
+	width: 4.33125rem;
+	height: 1.15625rem;
+	position: absolute;
+	left: 5.656rem;
+	top: 3.3062rem;
+}
+.loginlogos img {
+	width: 100%;
+	height: 100%;
+}
+/* 请输入手机号 */
+.userR {
+	width: 8.2rem;
+	height: 1.01rem;
+	position: absolute;
+	top: 5.525rem;
+	right: 3.65rem;
+	background: #ffffff;
+	/* 	background:red; */
+}
+.userimg {
+	width: 1.1rem;
+	height: 0.8rem;
+	display: inline-block;
+	float: left;
+	/* padding-let: 9px;
+	padding-top: 9px;
+	padding-right: 4px; */
+	/* background:blue; */
+	font-size: 0.46rem;
+	margin-top: 0.2rem;
+	margin-left: 0.1rem;
+	margin-right: 0.02rem;
+	line-height: 0.7rem;
+}
+
+.fenge {
+	width: 0.05rem;
+	height: 0.9rem;
+	float: left;
+	margin-top: 0.05rem;
+}
+.userimginp {
+	width: 6.55rem;
+	height: 1.01rem;
+	float: left;
+	padding-left: 0.3rem;
+	border: none;
+	line-height: 0.3rem;
+	display: inline-block;
+	margin-left: 0.05rem;
+	color: rgba(153, 153, 153, 1);
+	/* background:plum; */
+	font-size: 0.45rem;
+}
+/* 请输入手机号结束 */
+/* 请输入密码 */
+.regmima {
+	position: absolute;
+	top: 7.1rem;
+	right: 3.6rem;
+	background: #ffffff;
+	width: 8rem;
+	height: 1.01rem;
+	float: left;
+	padding-left: 0.3rem;
+	border: none;
+	line-height: 1.01rem;
+	display: inline-block;
+	/* background:red; */
+	font-size: 0.45rem;
+	color: #999999;
+}
+/* 手机号已注册 */
+.Nophones {
+	display: block;
+	/* width: 128px;
+	height: 16px; */
+	font-size: 0.33rem;
+	font-weight: 400;
+	font-family: MicrosoftYaHei;
+	color: red;
+	position: absolute;
+	right: 6.8rem;
+	bottom: 10.2rem;
+}
+/* 手机号已注册结束 */
+/* 获取验证码 */
+.code {
+	width: 8.2rem;
+	height: 1.01rem;
+	position: absolute;
+	top: 8.6rem;
+	right: 3.65rem;
+	background: #ffffff;
+	/* 	background:red; */
+}
+.code input {
+	width: 4.55rem;
+	height: 1.01rem;
+	color: #999999;
+	float: left;
+	padding-left: 0.25rem;
+	border: none;
+	line-height: 1.01rem;
+	display: inline-block;
+	font-size: 0.45rem;
+	/* background:plum; */
+}
+.codefooter {
+	width: 2rem;
+	height: 0.88rem;
+	float: left;
+	font-size: 0.3rem;
+	color: #2180ed;
+	line-height: 0.88rem;
+	cursor: pointer;
+	/* background:plum; */
+}
+/* 验证码是否正确 */
+.yanzhengmas {
+	color: #ff0000;
+	font-size: 0.3rem;
+	position: absolute;
+	top: 3.9rem;
+	left: 4.8rem;
+}
+/* 注册按钮 */
+.reg-button {
+	width: 7.43rem;
+	height: 1.02rem;
+	position: absolute;
+	top: 10.2rem;
+	left: 4.26rem;
+	background: url(../../assets/image/juxing3@2x.png);
+	background-size: 7.43rem 1.02rem;
+	cursor: pointer;
+	line-height: 0.7rem;
+}
+.reg-button span {
+	font-size: 0.4rem;
+	font-weight: 400;
+	font-family: MicrosoftYaHei;
+	color: #ffffff;
+	text-align: center;
+	line-height: 0.41rem;
+	/* background:red; */
+}
+/* 已有账号跳转登录 */
+.logins-footers {
+	width: 6.0375rem;
+	height: 0.625rem;
+	font-size: 0.375rem;
+	position: absolute;
+	top: 11.39rem;
+	right: 4.7rem;
+	text-align: center;
+}
+.noregs {
+	font-family: MicrosoftYaHei;
+	display: inline-block;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 0.375rem;
+	color: rgba(51, 51, 51, 1);
+}
+.login-regs {
+	color: #2180ed;
+	font-family: MicrosoftYaHei;
+	display: inline-block;
+	font-weight: 400;
+	font-size: 0.333rem;
+	font-style: normal;
+	cursor: pointer;
 }
 </style>

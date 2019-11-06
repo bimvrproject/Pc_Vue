@@ -1,67 +1,51 @@
 <template>
 	<div>
-		<div class="zonggxtz" @click="cetuend" style="overflow:hidden;">
-			<!-- <iframe src="https://www.baidu.com/s?tn=news&rtt=1&bsst=1&wd=%E9%A6%99%E6%B8%AF&cl=2&origin=ps" frameborder="0" style="width:100%;height:100%;"></iframe> -->
-		</div>
+		<div class="zonggxtz" @click="cetuend" style="overflow:hidden;"></div>
 		<div class="lefttopjzm">
 			<div class="leftjzm">
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
 			</div>
 		</div>
-		<div style="width:47.8125rem;height:28.4375rem;line-height:28.4375rem;position:absolute;top:5rem;left:6.875rem;"
-		 v-if="pmph">
-		 <img :src="pmdrawpicture" alt="" style="width:100%;height:100%;">
-		 </div>
+		<div class="pms" v-if="pmph"><img :src="pmdrawpicture" alt="" style="width:100%;height:100%;" /></div>
 		<div>
-			<!-- 除去侧边栏的剩余部分 -->
-			<!-- 右侧登录标识 -->
-			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
 			<div class="hometopjzmgxtz" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fngxtzmx">
-						<img class="xmimggxtz" src="../../assets/image/bluefz.png" />
-						 <span class="xmgxtz">项目</span>
-					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
-						<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
-					</i>
-					</span>
+					<div class="el-dropdown-link" @click="fngxtzmx">
+						<img class="xmimggxtz" src="../../assets/image/bluefz.png" style="vertical-align:text-bottom;"/>
+						<span class="xmgxtz">项目</span>
+						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
+							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
+						</i>
+					</div>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fngxtzsq"  @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
-						<img class="sqimggxtz" :src="hsq"/>
+					<div class="el-dropdown-link" @click="fngxtzsq" @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimggxtz" :src="hsq" style="vertical-align:text-bottom;"/>
 						<i class="sqgxtz" :style="hsqcolor">社区</i>
-						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
-					</span>
+					</div>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
-					<div class="moretopcomgxtz" style="height:0.93125rem;" @mouseenter="fnmorgxtz()" @mouseleave="fnmorlevgxtz()">
-					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
-					   <span class="hgmorecomgxtz">更多</span>
-						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
-						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
-						</i>
-						  <div class="moocomgxtz" style="margin-top:0.1rem;">
-						 	<div class="mores1comgxtz">
-						 		<a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a>
-						 	</div>
-						 	<div class="mores1comgxtz" @click="fnabout">联系我们</div>
-						 	<div class="moresbcomgxtz">版本号: v 1.0.3</div>
-						 </div>
+				<div class="moretopcomgxtz" style="height:0.93125rem;" @mouseenter="fnmorgxtz()" @mouseleave="fnmorlevgxtz()">
+					<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;vertical-align:text-bottom;"/>
+					<span class="hgmorecomgxtz">更多</span>
+					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;"><img :src="nmgd" alt="" style="width: 100%;height: 100%;" /></i>
+					<div class="moocomgxtz" style="margin-top:0.1rem;">
+						<div class="mores1comgxtz"><a href="http://www.jh-bim.com/home/solution" target="_blank" style="display:inline-block;color:#666666;width:4.5rem;">帮助</a></div>
+						<div class="mores1comgxtz" @click="fnabout">联系我们</div>
+						<div class="moresbcomgxtz">版本号: v 1.0.3</div>
+					</div>
 				</div>
 			</div>
 			<!-- 新建项目/管线综合/图纸 -->
-
 			<div style="width:18.75rem;height:0.6875rem;position: absolute;top:3.93125rem;left:8.21875rem;text-align:left;cursor:pointer;">
-				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">
-				{{projecttitgxtz}}
-				</span>
+				<span style="margin-right:0.1875rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.6875rem;">{{ projecttitgxtz }}</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
 				<span style="margin-right:0.1875rem;margin-left:0.15625rem;color:#2180ED;font-size:0.5rem;font-weight:500;float:left;line-height:0.7575rem;">管线综合</span>
 				<i style="font-weight:900;font-style:normal;font-size:0.625rem;float:left;line-height:0.6875rem;">/</i>
@@ -88,9 +72,8 @@
 						<ul>
 							<li v-for="(item, index) in drawingarr" :key="index" class="pmnew" style="position:relative;cursor: pointer;" @click="drawdanji(index)">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span class="pmtz5" v-show="!item.changegp" @dblclick="fnxgtz(index)">{{ item.drawName}}</span>
-								<input type="text" v-show="item.changegp" v-model="item.drawName" 
-								style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;" @blur="changepmg(index)"/>
+								<p class="pmtz5" v-show="!item.changegp" @dblclick="fnxgtz(index)" :title="item.drawName">{{ item.drawName }}</p>
+								<input type="text" v-show="item.changegp" v-model="item.drawName" @blur="changepmg(index)" class="gxpms" />
 							</li>
 						</ul>
 						<div class="pm6gt">
@@ -124,9 +107,15 @@
 						<ul>
 							<li v-for="(item, index) in arr" :key="index" @click="fnt()" class="pmnew" style="position:relative;">
 								<img src="../../assets/image/zk.png" class="pmt5" alt="" />
-								<span  class="pmtz5" v-show="!item.changelmg" @dblclick="fnlmtzg(index)">{{ item.drawName}}</span>
-								<input v-model="item.drawName" v-show="item.changelmg" type="text" @blur="changelmg(index)"
-									style="position:absolute;left:1.4rem;top:0.2rem;width:3.3125rem;height:0.875rem;background:rgba(225,225,225,.8);"
+								<div>
+									<p class="pmtz5" v-show="!item.changelmg" @dblclick="fnlmtzg(index)" :title="item.drawName">{{ item.drawName }}</p>
+								</div>
+								<input
+									v-model="item.drawName"
+									v-show="item.changelmg"
+									type="text"
+									@blur="changelmg(index)"
+									class="gxpms"
 								/>
 							</li>
 							<div class="pm6gt">
@@ -195,9 +184,9 @@ import addressurls from '@/api/ip.js';
 export default {
 	data() {
 		return {
-			showname22:true,
+			showname22: true,
 			//上传功能
-			centerdra:true,
+			centerdra: true,
 			updraw: true,
 			drawpicture: '',
 			title: '12312313122',
@@ -239,14 +228,14 @@ export default {
 				waiting: '等待中'
 			},
 			// 社区默认状态
-			hsq:require('../../assets/image/sq@2x.png'),
-			hsqcolor:"color:#333333",
+			hsq: require('../../assets/image/sq@2x.png'),
+			hsqcolor: 'color:#333333',
 			moretb: require('../../assets/image/more@2x.png'),
-			projectidsdrawingarr:[],
-			pmdrawpicture:'',
-			pmph:true,
+			projectidsdrawingarr: [],
+			pmdrawpicture: '',
+			pmph: true,
 			// 新建项目中获取title
-			projecttitgxtz:""
+			projecttitgxtz: ''
 		};
 	},
 	components: {
@@ -256,11 +245,11 @@ export default {
 	},
 	created() {
 		// 右侧平面
-		this.drawingarr = localStorage.getItem('pmxgg') ? JSON.parse(localStorage.getItem('pmxgg')) : [{msg:'',changegp:false}];
+		this.drawingarr = localStorage.getItem('pmxgg') ? JSON.parse(localStorage.getItem('pmxgg')) : [{ msg: '', changegp: false }];
 		localStorage.getItem('pmxgg');
 		// 右侧立面
-		this.arr = localStorage.getItem('lmxgg') ? JSON.parse(localStorage.getItem('lmxgg')) : [{msggs:'',changelmg:false}];
-		localStorage.getItem('lmxgg')
+		this.arr = localStorage.getItem('lmxgg') ? JSON.parse(localStorage.getItem('lmxgg')) : [{ msggs: '', changelmg: false }];
+		localStorage.getItem('lmxgg');
 		// 接收一下新建项目中的title
 		this.projecttitgxtz = sessionStorage.getItem('projecttit');
 		this.$eventbus.$on('shows', () => {
@@ -269,7 +258,6 @@ export default {
 		this.$eventbus.$on('showyin', () => {
 			this.xianyinxuni = false;
 		});
-		// console.log(this.xianyinxuni)
 		this.$eventbus.$on('hometop', () => {
 			this.hometop = true;
 		});
@@ -278,23 +266,23 @@ export default {
 		});
 		this.$eventbus.$emit('shows');
 		//展示图纸
-		var prid = sessionStorage.getItem("projectid");
-		if(prid!=null && prid!=undefined){
+		var prid = sessionStorage.getItem('projectid');
+		if (prid != null && prid != undefined) {
 			//该项目中是否有图纸 如果有则不显示上传图纸功能
-			axios.get(api.getprojectids +"/2"+ '/' + prid).then(result => {
-				this.centerdra=true;
+			axios.get(api.getprojectids + '/2' + '/' + prid).then(result => {
+				this.centerdra = true;
 				this.projectidsdrawingarr = result.data;
-				this.pmdrawpicture=addressurls.url+result.data[0].url
+				this.pmdrawpicture = addressurls.url + result.data[0].url;
 				if (this.projectidsdrawingarr.length != 0) {
 					this.centerdra = false;
 				}
 			});
 			//绑定平面图纸
-			axios.get(api.Pcreddrawing + '/2' + '/' + prid + "/1").then(result => {
+			axios.get(api.Pcreddrawing + '/2' + '/' + prid + '/1').then(result => {
 				this.drawingarr = result.data;
 			});
 			//绑定立面图纸
-			axios.get(api.Pcreddrawing + '/2' + '/' + prid + "/2").then(result => {
+			axios.get(api.Pcreddrawing + '/2' + '/' + prid + '/2').then(result => {
 				this.arr = result.data;
 			});
 		}
@@ -305,27 +293,27 @@ export default {
 	},
 	methods: {
 		// 右侧平面图纸双击事件
-		fnxgtz(index){
-			this.$set(this.drawingarr[index],'changegp',true)
+		fnxgtz(index) {
+			this.$set(this.drawingarr[index], 'changegp', true);
 		},
 		// 右侧平面失焦事件
-		changepmg(index){
-			this.$set(this.drawingarr[index],'changegp',false);
-			localStorage.setItem('pmxgg',JSON.stringify(this.drawingarr));
-			console.log(localStorage.getItem('pmxgg'))
+		changepmg(index) {
+			this.$set(this.drawingarr[index], 'changegp', false);
+			localStorage.setItem('pmxgg', JSON.stringify(this.drawingarr));
+			console.log(localStorage.getItem('pmxgg'));
 		},
 		// 右侧立面图纸双击事件
-		fnlmtzg(index){
-			this.$set(this.arr[index],'changelmg',true)
+		fnlmtzg(index) {
+			this.$set(this.arr[index], 'changelmg', true);
 		},
 		// 右侧立面图纸失焦事件
-		changelmg(index){
-			this.$set(this.arr[index],'changelmg',false);
-			localStorage.setItem('lmxgg',JSON.stringify(this.arr));
+		changelmg(index) {
+			this.$set(this.arr[index], 'changelmg', false);
+			localStorage.setItem('lmxgg', JSON.stringify(this.arr));
 		},
 		//上传成功事件
-		onFileSuccess(){
-			this.centerdra=false;
+		onFileSuccess() {
+			this.centerdra = false;
 		},
 		// 点击联系我们
 		fnabout() {
@@ -348,9 +336,6 @@ export default {
 		xjlmfn() {
 			this.arr.push(6);
 		},
-		// xjfn() {
-		// 	this.drawingarr.push(6);
-		// },
 		drawdanji(index) {
 			var drawid = this.drawingarr[index].resPictureId;
 			axios.get(api.SelectByPrimaryKey + '/' + drawid).then(result => {
@@ -360,12 +345,8 @@ export default {
 		},
 		fns() {
 			this.xianyin = !this.xianyin;
-			// this.xianyinxuni = false;
 			this.$eventbus.$emit('showyin');
 		},
-		// fnxuni(){
-		// 	this.xianyin = false;
-		// },
 		fn4() {
 			this.loginWindow = 'display:block';
 		},
@@ -397,97 +378,89 @@ export default {
 				(this.pmjt = require('../../assets/image/pmjtxia.png'));
 		},
 		// 划过更多
-	  fnmorgxtz(){
-	 	  this.moretb = require('../../assets/image/moress.png');
+		fnmorgxtz() {
+			this.moretb = require('../../assets/image/moress.png');
 			this.nmgd = require('../../assets/image/shang.png');
-	 },
+		},
 		// 移出更多
-	 fnmorlevgxtz(){
-		 this.moretb = require('../../assets/image/more@2x.png');
-		 this.nmgd = require('../../assets/image/pmjtxia.png');
-	 },
-			// 移入社区的时候
-		fnhsq(){
-			this.hsq = require('../../assets/image/shequ.png')
-			this.hsqcolor = "color:#2180ED"
+		fnmorlevgxtz() {
+			this.moretb = require('../../assets/image/more@2x.png');
+			this.nmgd = require('../../assets/image/pmjtxia.png');
+		},
+		// 移入社区的时候
+		fnhsq() {
+			this.hsq = require('../../assets/image/shequ.png');
+			this.hsqcolor = 'color:#2180ED';
 		},
 		// 移出社区的时候
-		fnhsqlev(){
-			this.hsq = require('../../assets/image/sq@2x.png'),
-			this.hsqcolor = "color:#333333"
-			}
+		fnhsqlev() {
+			(this.hsq = require('../../assets/image/sq@2x.png')), (this.hsqcolor = 'color:#333333');
+		}
 	}
-}
+};
 </script>
 
 <style>
-.moretopcomgxtz{
-	position:relative;
-	 float: left;
-	 margin-left:-1.4rem;
-	 font-size: 0.625rem;
-	 font-family: MicrosoftYaHei;
-	 font-weight: 400;
-	/* color:#2180ED; */
-	 font-style: normal;
-	 line-height: 0.93125rem;
-	/* background-color:red; */
-	 margin-top:0.380rem;
-	 margin-left:1.62rem;
-	 text-align:left;
-	 cursor:pointer;
-}
-.hgmorecomgxtz{
-	color:#333333;
-}
-.moocomgxtz{
-	width:4.75rem;
-	/* width: 183px;
-	height: 195px; */
-	/* background: url(../../assets/image/mores.png); */
-	background:rgba(225,225,225,.2);
-	padding-left:0.2rem;
-	padding-right:0.25rem;
+.moretopcomgxtz {
+	position: relative;
+	float: left;
+	margin-left: -1.4rem;
+	font-size: 0.625rem;
+	font-family: MicrosoftYaHei;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 0.93125rem;
+	margin-top: 0.38rem;
+	margin-left: 1.62rem;
+	text-align: left;
 	cursor: pointer;
-	display:none;
 }
-.mores1comgxtz{
-	width:4.65rem;
-		height:0.9rem;
-		border-bottom: 1px solid #999999;
-		text-align: left;
-		line-height:1rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
-	/* 	background:red; */
+.hgmorecomgxtz {
+	color: #333333;
 }
-.moresbcomgxtz{
-		border: 0;
-		text-align: left;
-		line-height:0.9rem;
-		color: #666666;
-		font-size:0.46rem;
-		font-weight: 500;
-		/* background:red; */
-	}
-	.moretopcomgxtz:hover .moocomgxtz{
-		  display:block;
-	}
-	.moretopcomgxtz:hover .hgmorecomgxtz{
-		 color:#2180ED
-	}
-	.moretopcomgxtz:hover .shouye{
-		 transform:rotate(180deg);
-	}
-	.pingmiancss{
-		left: -1.25rem;
-		width: 14.375rem;
-	}
-	.limiancss{
-		left: -7.8rem;
-		width: 14.375rem;
-	}
+.moocomgxtz {
+	width: 4.75rem;
+	background: rgba(225, 225, 225, 0.2);
+	padding-left: 0.2rem;
+	padding-right: 0.25rem;
+	cursor: pointer;
+	display: none;
+}
+.mores1comgxtz {
+	width: 4.65rem;
+	height: 0.9rem;
+	border-bottom: 1px solid #999999;
+	text-align: left;
+	line-height: 1rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
+}
+.moresbcomgxtz {
+	border: 0;
+	text-align: left;
+	line-height: 0.9rem;
+	color: #666666;
+	font-size: 0.46rem;
+	font-weight: 500;
+}
+.moretopcomgxtz:hover .moocomgxtz {
+	display: block;
+}
+.moretopcomgxtz:hover .hgmorecomgxtz {
+	color: #2180ed;
+}
+.moretopcomgxtz:hover .shouye {
+	transform: rotate(180deg);
+}
+.pingmiancss {
+	left: -1.25rem;
+	width: 14.375rem;
+}
+.limiancss {
+	left: -7.8rem;
+	width: 14.375rem;
+}
 .gxtzmore {
 	background: rgba(225, 225, 225, 0.3);
 	position: absolute;
@@ -504,8 +477,6 @@ export default {
 }
 .gxtzmoo {
 	width: 4.75rem;
-	/* 		height: 195px; */
-	/* 	background: url(../../assets/image/mores.png); */
 	padding-left: 0.2rem;
 	padding-right: 0.25rem;
 	cursor: pointer;
@@ -519,7 +490,6 @@ export default {
 	color: #666666;
 	font-size: 0.46rem;
 	font-weight: 500;
-	/* 	background:red; */
 }
 .gxtzmoresb {
 	border: 0;
@@ -540,16 +510,9 @@ a {
 .zonggxtz {
 	width: 60rem;
 	height: 33.75rem;
-	/* 	background:green; */
-	/* background: url(../../assets/image/bjt.jpg);
-	background-repeat: no-repeat;
-	background-size: 100% 100%; */
-	/* 	background-attachment: fixed; */
 	position: relative;
 }
 .el-main {
-	/* padding-left:50px; */
-	/* padding-top:29px; */
 	padding: 0 !important;
 }
 .login-img3 {
@@ -560,16 +523,14 @@ a {
 /* 主页top部分*/
 .hometopjzmgxtz {
 	position: absolute;
-	top:0.6275rem;
-	left:7.2rem;
-	/* 	background:red; */
+	top: 0.6275rem;
+	left: 7.2rem;
 	line-height: 1.78125rem;
 }
 /* 左侧边栏 */
 .left {
 	width: 217px;
 	height: 987px;
-	/* background:blue; */
 	padding-right: 10px;
 }
 .logojzm {
@@ -582,8 +543,6 @@ a {
 .lefttopjzm {
 	width: 6.75rem;
 	height: 1.875rem;
-	/* 	background-color:green;
-			background: url(../../assets/image/homecebian8@2x.png); */
 	position: absolute;
 	top: 0rem;
 }
@@ -670,7 +629,6 @@ a {
 .pmtop {
 	width: 5.03125rem;
 	height: 1.40625rem;
-	/* 	background:red; */
 }
 .pmtopn {
 	width: 5.03125rem;
@@ -691,14 +649,10 @@ a {
 }
 .pmz {
 	display: inline-block;
-	/* float: left; */
 	font-size: 0.5rem;
 	font-weight: 400;
 	color: #333333;
 	margin-right: 0.25rem;
-	/* flex:1; */
-	/* background: blue; */
-	/* height:1.2rem; */
 }
 .pmjt {
 	display: inline-block;
@@ -717,7 +671,6 @@ a {
 	list-style: none;
 	width: 5.03125rem;
 	height: 1.375rem;
-	/* 	background:red; */
 	border-bottom: 0.03125rem solid #666666;
 	line-height: 1.375rem;
 }
@@ -745,9 +698,10 @@ a {
 	margin-left: 0.25rem;
 	width: 3rem;
 	height: 1.2rem;
-	/* background: red; */
 	text-align: left;
-	/* 	background:red; */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .pm6gt {
 	width: 5.03125rem;
@@ -759,17 +713,18 @@ a {
 	width: 2.46875rem;
 	height: 0.59375rem;
 }
-/* .uploader-list {
+.pms {
+	width: 47.8125rem;
+	height: 28.4375rem;
+	line-height: 28.4375rem;
 	position: absolute;
-	width:12.1875rem;
-	top:2.34375rem;
-} */
-/*  */
+	top: 5rem;
+	left: 6.875rem;
+}
 /* 中见部分图纸 */
 .gxtzdrawing {
 	width: 15.625rem;
 	height: 15.625rem;
-	/* background:red; */
 	position: absolute;
 	left: 25rem;
 	top: 10rem;
@@ -778,7 +733,6 @@ a {
 .gxtzdrawingtop {
 	width: 12.84375rem;
 	height: 7.8125rem;
-	/* background:plum; */
 	margin-left: 1.3rem;
 }
 .gxtzdrawingtop img {
@@ -789,7 +743,6 @@ a {
 .gxtzdrawinghz {
 	width: 15.625rem;
 	height: 3rem;
-	/* background:blue; */
 	font-size: 0.9375rem;
 	font-family: PingFang SC;
 	font-weight: 500;
@@ -800,24 +753,20 @@ a {
 .gxtzdrawingbut {
 	width: 15.625rem;
 	height: 4.7rem;
-	/* background:plum; */
 	display: flex;
 	justify-content: space-between;
 }
 .gxtzdrawpm {
 	width: 5.46875rem;
 	height: 4.7rem;
-	/* background:blue; */
 	margin-left: 2rem;
 }
 .gxtzdrawlm {
 	width: 5.46875rem;
 	height: 4.7rem;
-	/* background:blue; */
 	margin-right: 1.6rem;
 }
 .gxtzdrawdrop {
-	/* padding:0.3125rem; */
 	border: 0 !important;
 	background-color: #ffffff !important;
 	width: 4.76875rem !important;
@@ -844,6 +793,13 @@ a {
 	border: none !important;
 	color: #ffffff !important;
 	padding: 0.03125rem 0.25rem !important;
+}
+.gxpms {
+	position: absolute;
+	left: 1.4rem;
+	top: 0.2rem;
+	width: 3.3125rem;
+	height: 0.875rem;
 }
 /* 右侧 */
 .upgt {

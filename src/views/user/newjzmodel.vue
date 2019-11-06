@@ -8,64 +8,61 @@
 			<div class="leftjzm">
 				<img class="logojzm" src="../../assets/image/jinghekeji.png" />
 				<Xunilogo v-show="xianyinxuni"></Xunilogo>
-				<Releases v-show="release"></Releases>
+					<Releases v-show="release"></Releases>
 				<Edit v-show="edits"></Edit>
 			</div>
 		</div>
 		<div class="box">
-			<!-- 除去侧边栏的剩余部分 -->
-			<!-- 右侧登录标识 -->
-			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
 			<!-- 右侧top部分 -->
 			<div class="hometopjzm" v-show="hometop">
 				<!-- 下拉菜单---项目  @click="xmfn()"点击之后不触发移出事件 -->
 				<el-dropdown style="float: left; margin-left:1.1rem;">
-					<span class="el-dropdown-link" @click="xmfn()">
-						<span :class="{ xmimgg: istruexmgm}"></span>
+					<div class="el-dropdown-link" @click="xmfn()">
+						<span :class="{ xmimgg: istruexmgm}" style="vertical-align:text-bottom;"></span>
 						<span class="xmg">项目</span>
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 					</i>
-					</span>
+					</div>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- 	@mouseleave="fnhsqlev()" -->
-					<span class="el-dropdown-link sqss" @click="fnsqtit">
-						<span :class="{ sqimg: istruesq, sqimgf: isfalsesq }"></span>
+					<div class="el-dropdown-link sqss" @click="fnsqtit">
+						<span :class="{ sqimg: istruesq, sqimgf: isfalsesq }" style="vertical-align:text-bottom;"></span>
 						<!-- 	<img class="sqimg" :src="hsq" /> -->
 						<i class="sq" :style="hsqcolor">社区</i>
-					</span>
+					</div>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhbjlev()" -->
-					<span class="el-dropdown-link bjss" @click="ceyins()">
-						<span :class="{ bjimg: istruebj, bjimgf: isfalsebj }"></span>
+					<div class="el-dropdown-link bjss" @click="ceyins()">
+						<span :class="{ bjimg: istruebj, bjimgf: isfalsebj }" style="vertical-align:text-bottom;"></span>
 						<!-- <img class="bjimg" :src="bjtu" /> -->
 						<i class="bjsj bjj" :style="bjcolor">编辑</i>
 						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="nmbj" alt="" style="width: 100%;height: 100%;" />
 						</i>
-					</span>
+					</div>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- @mouseleave="fnhfblev()" -->
-					<span class="el-dropdown-link fbss" @click="fnfabu()">
-						<span :class="{ fbimg: istrue, fbimgf: isfalse }"></span>
+					<div class="el-dropdown-link fbss" @click="fnfabu()">
+						<span :class="{ fbimg: istrue, fbimgf: isfalse }" style="vertical-align:text-bottom;"></span>
 						<!-- <img class="bjimg" :src="fbtu" /> -->
 						<i class="bjsj bjf" :style="fbcolor">发布</i>
 						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="nmfb" alt="" style="width: 100%;height: 100%;" />
 						</i>
-					</span>
+					</div>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomnj" @mouseenter="fnmornj()" @mouseleave="fnmorelev()">
 					<!-- <img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" /> -->
-					<span :class="{ gdimg: istruegd, gdimgf: isfalsegd }"></span>
+					<span :class="{ gdimg: istruegd, gdimgf: isfalsegd }" style="vertical-align:text-bottom;"></span>
 					<i class="hgmorecomnj" :style="gdcolor">更多</i>
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img :src="nmgd" alt="" style="width: 100%;height: 100%;" />

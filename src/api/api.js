@@ -29,6 +29,7 @@ const api = {
 	Uploadbuildingdrawing:version+"/Upload/uploadbuildingdrawing",   //上传zip建筑图纸方法
 	RegisterphoneLogin:version+"/user/RegisterphoneLogin",			//注册发送验证码
 	Ceshi :version+"/Upload/ceshi",
+	
 	GetAllList:version+"/file/getAllList",		//查询所有exe
 	Download:version+"/file/download",  //下载模型exe
 	GetList:version+"/file/getList", //我的下载

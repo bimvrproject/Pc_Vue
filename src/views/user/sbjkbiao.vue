@@ -10,39 +10,32 @@
 			</div>
 		</div>
 		<div style="background: #FFFFFF;">
-			<!-- 除去侧边栏的剩余部分 -->
-			<!-- 右侧登录标识 -->
-			<!-- <Zheader v-show="zheaderxy"></Zheader> -->
-			<!-- 右侧top部分 -->
+			<!-- nav -->
 			<div class="hometopjzm" v-show="hometop">
 				<!-- 下拉菜单---项目 -->
 				<el-dropdown style="float: left;margin-left:-1.4rem;">
-					<span class="el-dropdown-link" @click="fnsbjkxm()">
-						<img class="xmimg" src="../../assets/image/bluefz.png" />
+					<div class="el-dropdown-link" @click="fnsbjkxm()">
+						<img class="xmimg" src="../../assets/image/bluefz.png" style="vertical-align:text-bottom;"/>
 						<span class="xm">项目</span>
 						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 						</i>
-						<!-- <i class="xm" style="color: #2180ED;">项目</i>
-						<i style="display:inline-block;width:0.5rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
-							<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;">
-						</i> -->
-					</span>
+					</div>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束 -->
 				<!-- 下拉菜单---社区 -->
 				<el-dropdown style="float: left;margin-left:1.5rem;">
-					<span class="el-dropdown-link" @click="fnsbjksq()"  @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
-						<img class="sqimg" :src="hsq"/>
+					<div class="el-dropdown-link" @click="fnsbjksq()"  @mouseenter="fnhsq()" @mouseleave="fnhsqlev()">
+						<img class="sqimg" :src="hsq" style="vertical-align:text-bottom;"/>
 						<i class="sq" :style="hsqcolor">社区</i>
 						<!-- 	<i class="el-icon-arrow-down el-icon--right"></i> -->
-					</span>
+					</div>
 				</el-dropdown>
 				<!-- 下拉菜单---社区--结束 -->
 				<!-- 下拉菜单---更多 -->
 				<div class="moretopcomsbjk" style="height:0.93125rem;" @mouseenter="fnmorsbjk()" @mouseleave="fnmorlevsbjk()">
-					<img  :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;">
+					<img :src="moretb"  alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;vertical-align:text-bottom;">
 					   <span class="hgmorecomsbjk">更多</span>
 						<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						  <img :src="nmgd" alt="" style="width: 100%;height: 100%;" />

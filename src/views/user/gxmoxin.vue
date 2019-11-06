@@ -15,54 +15,54 @@
 			<div class="hometopgm" v-show="hometop">
 				<!-- 	下拉菜单---项目 -->
 				<el-dropdown style="float: left; margin-left:1.1rem;">
-					<span class="el-dropdown-link" @click="fngxmxxm()">
-						<span :class="{ xmimggm: istruexmgm}"></span>
+					<div class="el-dropdown-link" @click="fngxmxxm()">
+						<span :class="{ xmimggm: istruexmgm}" style="vertical-align:text-bottom;"></span>
 					<!-- 	<img class="xmimggm" src="../../assets/image/bluefz.png" /> -->
 						<span class="xmgm">项目</span>
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img src="../../assets/image/shang.png" alt="" style="width: 100%;height: 100%;" />
 					</i>
-					</span>
+					</div>
 					<Newjian v-show="xianyin"></Newjian>
 				</el-dropdown>
 				<!-- 下拉菜单---项目--结束
 				下拉菜单---社区 -->
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- 	@mouseleave="fnhsqlev()" -->
-					<span class="el-dropdown-link sqssgm" @click="fngxmxsq()">
-						<span :class="{ sqimggm: istruesqgm, sqimggmf: isfalsesqgm }"></span>
+					<div class="el-dropdown-link sqssgm" @click="fngxmxsq()">
+						<span :class="{ sqimggm: istruesqgm, sqimggmf: isfalsesqgm }" style="vertical-align:text-bottom;"></span>
 						<!-- <img class="sqimggm" :src="hsq"/> -->
 						<i class="sqgm">社区</i>
-					</span>
+					</div>
 				</el-dropdown>
 				<el-dropdown style="float: left; margin-left:1.5rem;">
 					<!-- 	@mouseleave="fnhbjlev()" -->
-					<span class="el-dropdown-link bjssgm" @click="ceyins()">
-						<span :class="{ bjimggms: istruebjgm, bjimggmsf: isfalsebjgm }"></span>
+					<div class="el-dropdown-link bjssgm" @click="ceyins()">
+						<span :class="{ bjimggms: istruebjgm, bjimggmsf: isfalsebjgm }" style="vertical-align:text-bottom;"></span>
 						<!-- <img class="bjimggm" :src="bjtu" /> -->
 						<i class="bjgm" :style="bjcolor">编辑</i>
 						<i style="display:inline-block;width:0.45rem;height:0.25rem;line-height:height:0.53125rem‬;margin-left:0.2rem;">
 							<img :src="nmbj" alt="" style="width: 100%;height: 100%;" />
 						</i>
-					</span>
+					</div>
 				</el-dropdown>
 			<el-dropdown style="float: left; margin-left:1.5rem;">
 				<!-- @mouseleave="fnhfblev()" -->
-				<span class="el-dropdown-link fbss" @click="fnfabug()">
-					<span :class="{ fbimg: istrue, fbimgf: isfalse }"></span>
+				<div class="el-dropdown-link fbss" @click="fnfabug()">
+					<span :class="{ fbimg: istrue, fbimgf: isfalse }" style="vertical-align:text-bottom;"></span>
 					<!-- <img class="bjimg" :src="fbtu" /> -->
 					<i class="bjsg bjf" :style="fbcolor">发布</i>
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img :src="nmfb" alt="" style="width: 100%;height: 100%;" />
 					</i>
-				</span>
+				</div>
 			</el-dropdown>
 				<!-- 	下拉菜单---社区--结束
 				下拉菜单---更多 -->
 				<!-- 	@mouseleave="fnmorlevgxmx()" -->
 				<div class="moretopcomgxmx" style="height:0.93125rem;" @mouseenter="fnmorgxmx()" @mouseleave="fnmorlevgxmx()">
 				<!-- 	<img :src="moretb" alt="" style="width:0.84375rem;height:0.8125rem;margin-right:0.16rem;float:left;" /> -->
-				<span :class="{ gdimgm: istruegdm, gdimgfm: isfalsegdm }"></span>
+				<span :class="{ gdimgm: istruegdm, gdimgfm: isfalsegdm }" style="vertical-align:text-bottom;"></span>
 				<i class="hgmorecomgxmx" :style="gdcolor">更多</i>
 					<i style="display:inline-block;width:0.45rem;height:0.53125rem‬;margin-left:0.2rem;">
 						<img :src="nmgd" alt="" style="width: 100%;height: 100%;" />
